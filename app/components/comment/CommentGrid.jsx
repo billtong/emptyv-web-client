@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { BarLoader } from 'react-spinners';
 import CommentBlock from "./CommentBlock.jsx";
 import {getCommentAction}  from '../../actions/getCommentAction.jsx';
 
-class CommentGrid extends React.Component {
 
+class CommentGrid extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
