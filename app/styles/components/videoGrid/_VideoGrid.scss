@@ -1,0 +1,23 @@
+.video-grid-container {
+  box-sizing: border-box;
+}
+
+.video-blocks-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.video-block-section{
+  width : 205px;
+  height : 200px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+
+.video-title-section, .video-view-num-section {
+  margin: 0 auto;
+  white-space: normal;
+}
