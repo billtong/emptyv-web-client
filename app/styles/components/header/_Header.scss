@@ -1,5 +1,52 @@
 .header-section {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
+  .active {
+    text-decoration: none;
+  }
+
+  nav {
+    background-color: #1f1f1f;
+    position: relative;
+    max-height: 2rem;
+    padding-left: 5%;
+    .logo-container {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .logo-container:hover {
+      cursor: pointer;
+    }
+
+    .menu-container {
+      display: inline-block;
+      vertical-align: middle;
+      width: 90%;
+      height: 2rem;
+      .desktop {
+        display: inline-block;
+        font-size: 0.5rem;
+        padding-left: 1rem;
+        .usr-icon-action {
+          vertical-align: -0.1rem;
+          margin-right: 0.1rem;
+        }
+
+        a{
+          color: #d9d9d9
+        }
+        a:hover {
+          text-decoration: none;
+          color: gray;
+        }
+      }
+
+      .menu-left {
+        float: left;
+        padding-left: 0;
+      }
+
+      .menu-right {
+        float: right;
+      }
+    }
+  }
 }

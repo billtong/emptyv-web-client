@@ -1,6 +1,11 @@
-@import "components/Main";
+@import "components/Home";
 @import "components/videoPage/VideoPage";
 
 @import "components/header/Header";
 @import "components/userSign/Sign";
 @import "components/videoGrid/VideoGrid";
+
+.main-section {
+  background-color: #0d0d0d;
+  color: #d9d9d9;
+}

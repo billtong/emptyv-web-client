@@ -5,12 +5,9 @@ import Header from './header/Header.jsx';
 class Main extends React.Component {
   render() {
     return (
-      <div>
+      <div className="main-section">
         <Header />
-        <hr />
-        <div className="main-section">
-          {this.props.children}
-        </div>
+        {this.props.children}
       </div>
     );
   }

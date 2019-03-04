@@ -14,7 +14,7 @@ import DonatePage from './components/donatePage/DonatePage.jsx';
 
 const store = configureStore.configure();
 store.subscribe(() => {
-    console.log('New state', store.getState());
+    //console.log('New state', store.getState());
 });
 require('style-loader!css-loader!sass-loader!applicationStyles');
 

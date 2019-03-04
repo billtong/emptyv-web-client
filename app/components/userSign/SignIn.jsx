@@ -24,49 +24,44 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const loadingIcon = this.props.isLoading ? <BarLoader color={'#000000'} /> : null;
+    const loadingIcon = this.props.isLoading ? (
+      <div className="loader">
+        <BarLoader color={'#d9d9d9'} /> 
+      </div>
+    ) : null;
     const errText = (this.props.error === undefined) ?
       null : (
-        <div className="badge badge-danger">
-          {this.props.error}
+        <div className="error">
+          <div className="badge badge-danger">
+            {this.props.error}
+          </div>
         </div>
       );
 
     return (
-      <div className="sign-in-section">
-        <div>
-          <form className="sign-in-form" onSubmit={this.onSubmit}>
-            <div className="form-group">
-              <div className="user-name-section">Username</div>
-              <div>
-                <input
-                  className="form-control"
-                  id="exampleInputUsername1"
-                  aria-describedby="usernameHelp"
-                  placeholder="Enter Username"
-                  ref="username"
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="user-password-section">Password</div>
-              <div>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Enter Password"
-                  ref="password"
-                />
-              </div>
-            </div>
-            <div className="signin-btn-section">
-              <button type="submit" className="btn btn-primary signin-btn">Sign In</button>
-            </div>
-            <div className="loader" > {loadingIcon} </div>
-          </form>
-        </div>
-        {errText}
+      <div className="sign-section">
+        <p className="sign-title">
+          welcome home!
+        </p>
+        <form className="sign-form" onSubmit={this.onSubmit}>
+          <input
+            id="exampleInputUsername1"
+            aria-describedby="usernameHelp"
+            placeholder="Enter Username"
+            ref="username"
+          />
+          <input
+            type="password"
+            id="exampleInputPassword1"
+            placeholder="Enter Password"
+            ref="password"
+          />
+          <div className="sign-btn-section">
+            <input type="submit" className="btn btn-primary" value="Sign In" />
+          </div>
+          {loadingIcon}
+          {errText}
+        </form>
       </div>
     );
   }

@@ -18,65 +18,66 @@ class SignUp extends React.Component {
   }
 
   onSubmit(e) {
+    const {email, username, password1 } = this.refs;
     const inputJson = {
-      userName: this.refs.username.value,
-      userPassword: this.refs.password.value,
-      userEmail: this.refs.email.value
+      userName: username.value,
+      userPassword: password1.value,
+      userEmail: email.value
     };
     e.preventDefault();
     this.props.signUpAction(inputJson);
   }
 
   render() {
-      const loadingIcon = this.props.isLoading ? <BarLoader color={'#000000'} /> : null;
+      const loadingIcon = this.props.isLoading ? (
+        <div className="loader">
+          <BarLoader color={'#d9d9d9'} /> 
+        </div>
+      ) : null;
       const rsltMessage = (this.props.rslt === undefined) ? null : 
         (
-          <div className="badge">
-            {this.props.rslt}
+          <div className="error">
+            <div className="badge badge-danger">
+              {this.props.rslt}
+            </div>
           </div>
         );
 
     return (
-      <div className="sign-up-section">
-        <form className="sign-up-form" onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <div className="user-mail-section">Email</div>
-            <div>
-              <input
-                className="form-control"
-                id="exampleInputname1"
-                aria-describedby="emailHelp"
-                placeholder="Enter email"
-                ref="email" />
-            </div>
+      <div className="sign-section">
+        <p className="sign-title">
+          Start your journey at Empty Video Today!
+        </p>
+        <form className="sign-form" onSubmit={this.onSubmit}>
+          <input
+            id="exampleInputname1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            ref="email" 
+          />
+          <input
+            id="exampleInputUsername1"
+            aria-describedby="usernameHelp"
+            placeholder="Enter Username"
+            ref="username" 
+          />
+          <input
+            type="password"
+            id="exampleInputPassword1"
+            placeholder="Enter Password"
+            ref="password1" 
+          />
+           <input
+            type="password"
+            id="exampleInputPassword1"
+            placeholder="Confirm Password"
+            ref="password2" 
+          />
+          <div className="sign-btn-section">
+            <input type="submit" className="btn btn-primary" value="Sign Up" />
           </div>
-          <div className="form-group">
-            <div className="user-name-section">Username</div>
-            <div>
-              <input
-                className="form-control"
-                id="exampleInputUsername1"
-                aria-describedby="usernameHelp"
-                placeholder="Enter Username"
-                ref="username" />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="user-password-section">Password</div>
-            <div>
-              <input
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Enter Password"
-                ref="password" />
-            </div>
-          </div>
-            <div className="signup-btn-section">
-              <button type="submit" className="btn btn-primary signin-btn">Sign In</button>
-            </div>
-            <div className="loader"> {loadingIcon} </div>
-            {rsltMessage}
+          {loadingIcon} 
+          {rsltMessage}
         </form>
       </div>
     );

@@ -1,0 +1,21 @@
+.home-section {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  .ad-banner {
+    text-align: center;
+    padding-bottom: 1rem;
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      cursor: pointer;
+    }
+
+    img{
+      max-width: 90%;
+      vertical-align: middle;
+      border-style: none; 
+    }
+  }
+}
