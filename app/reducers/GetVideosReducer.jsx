@@ -10,20 +10,23 @@ export const getVideosReducer = (state = '', action) => {
     case START_VIDEOS_FETCH:
       return {
         isLoading: true,
-        videoList: undefined,
-        error: undefined
+        videoList: state.videoList,
+        error: undefined,
+        totalPages: state.totalPages
       };
     case COMPLETE_VIDEOS_FETCH:
       return {
         isLoading: false,
         videoList: action.videos,
-        error: undefined
+        error: undefined,
+        totalPages: action.totalPages
       };
     case FAILED_VIDEOS_FETCH:
       return {
         isLoading: false,
         videoList: undefined,
-        error: action.errorMessage
+        error: action.errorMessage,
+        totalPages: state.totalPages
       };
     default:
       return state;

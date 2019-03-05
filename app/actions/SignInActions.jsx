@@ -18,8 +18,12 @@ export const signInAction = (inputJson) => {
     dispatch(startSignIn());
     getLoginToken.getToken(inputJson)
     .then((res) => {
-      sessionStorage.setItem('emptyVideoLoginToken', res.data.token);
-      sessionStorage.setItem('emptyVideoLoginSessionId', res.data.sessionId);
+      const userJson = {
+        user: res.data.user,
+        userToken: res.data.token,
+        userSessionId: res.data.sessionId
+      };
+      sessionStorage.setItem('empty-video-web-user-session', JSON.stringify(userJson));
       hashHistory.push('/');
       dispatch(completeSignIn(undefined));
     })

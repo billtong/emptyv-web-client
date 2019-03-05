@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 import { MdInput, MdEdit } from 'react-icons/md';
 import logoURL from '../../../asset/empty-video-logo.gif';
-
+import logoutApi from '../../api/postLogout';
 
 class Header extends React.Component {
   renderRightMenuList = () => {
-    const token = sessionStorage.getItem('emptyVideoLoginToken');
+    const token = sessionStorage.getItem('empty-video-web-user-session');
     //console.log(token);
     //console.log(!token || token.length <= 0);
     return (!token || token.length <= 0) ?
@@ -49,8 +49,14 @@ class Header extends React.Component {
 
   //这里如果改成es6的lamda格式，react会自己自动执行
   logout() {
-    sessionStorage.removeItem('emptyVideoLoginToken');
-    sessionStorage.removeItem('emptyVideoLoginSessionId');
+    const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
+    const inputJson = {
+      sessionId: userJSON.userSessionId,
+      userName: userJSON.user.userName,
+      token: userJSON.userToken
+    };
+    logoutApi.logout(inputJson);
+    sessionStorage.removeItem('empty-video-web-user-session');
   }
 
   render() {

@@ -30,7 +30,7 @@ class VideoBlock extends React.Component {
             {this.props.videoInfo.videoName}
         </div>
         <div className="video-view-num-section">
-            {this.props.videoInfo.videoViewNum}
+            {this.props.videoInfo.videoViewNum} views
         </div>
       </div>
     );

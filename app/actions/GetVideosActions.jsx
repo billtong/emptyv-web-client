@@ -9,9 +9,10 @@ export const startGetVideos = () => ({
   type: START_VIDEOS_FETCH
 });
 
-export const completeGetVideos = (videos) => ({
+export const completeGetVideos = (videos, totalPages) => ({
   type: COMPLETE_VIDEOS_FETCH,
-  videos
+  videos,
+  totalPages
 });
 
 export const failedGetVideos = (errorMessage) => ({
@@ -23,7 +24,7 @@ export const getVideosAction = (inputJson) => {
   return (dispatch) => {
     dispatch(startGetVideos());
     getVideoList.getVideoList(inputJson).then((res) => {
-      dispatch(completeGetVideos(res.data));
+      dispatch(completeGetVideos(res.data.videoList, res.data.totalPages));
     }).catch((err) => {
       dispatch(failedGetVideos(`Sorry...${err.message}`));
     });

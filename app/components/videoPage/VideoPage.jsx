@@ -14,14 +14,15 @@ class VideoPage extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
     const inputJson = {
       commentContent: this.refs.comment.value,
       videoId: this.props.location.query.videoId,
-      userId: '1'
+      userId: userJSON.user.userId
     };
     postComment.postComment(inputJson, 
-      sessionStorage.getItem('emptyVideoLoginToken'), 
-      sessionStorage.getItem('emptyVideoLoginSessionId')
+      userJSON.userToken,
+      userJSON.userSessionId
     ).then((res) => {
       window.location.reload();
     }).catch((err) => {
@@ -34,9 +35,8 @@ class VideoPage extends React.Component {
     console.log(this.props);
     const videoData = this.props.location.query;
     const uploadDate = formatDateTime(parseInt(videoData.videoDate));
-    const token = sessionStorage.getItem('emptyVideoLoginToken');
-    const sessionId = sessionStorage.getItem('emptyVideoLoginSessionId');
-    const commentUploadBox = ((token === undefined || token == null || token.length <= 0) && (sessionId === undefined || sessionId == null || sessionId.length <= 0)) ? ( 
+    const token = sessionStorage.getItem('empty-video-web-user-session');
+    const commentUploadBox = (!token || token.length <= 0) ? ( 
       <div className="sign-in-btn-section">
         <Link to="SignIn">Sign In To Leave a Comment</Link>
       </div>) : (

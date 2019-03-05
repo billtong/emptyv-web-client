@@ -4,7 +4,7 @@ import { BASE_URL } from './baseURL.jsx';
 
 module.exports = {
   getVideoList: (inputJson) => {
-    const deviceListURL = `${BASE_URL}api/video/random?offset=${inputJson.offset}`;
+    const deviceListURL = `${BASE_URL}api/video/random?currPage=${inputJson.currPage}`;
     return axios.get(deviceListURL, {
       headers: {
         'Content-Type': 'application/json',
@@ -12,9 +12,8 @@ module.exports = {
         'Accept': 'application/json'
       }
     }).then((res) => (res)
-    , (err) => {
-      throw new Error(err.message);
-    });
+    , (err) => (err)
+    );
   }
 };
 
