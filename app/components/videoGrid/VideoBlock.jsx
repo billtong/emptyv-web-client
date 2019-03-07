@@ -1,6 +1,5 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
-import { getVideo } from '../../api/getVideo.jsx';
 
 
 class VideoBlock extends React.Component {
@@ -16,7 +15,6 @@ class VideoBlock extends React.Component {
       pathname: '/VideoPage',
       query: data
     };
-    getVideo(this.props.videoInfo.videoId);
     hashHistory.push(path);
   }
 
