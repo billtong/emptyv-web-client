@@ -1,107 +1,182 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { MdThumbUp, MdThumbDown} from 'react-icons/md';
+import { MdThumbUp, MdThumbDown } from 'react-icons/md';
+import { connect } from 'react-redux';
 import { IoIosHeart } from 'react-icons/io';
+import { RingLoader } from 'react-spinners';
+
 import ReactPlayer from './VideoPlayer.jsx';
-import { formatDateTime } from '../../utils/dateTools.jsx';
 import CommentGrid from '../comment/CommentGrid.jsx';
-import postComment from '../../api/postComment.jsx';
+import { formatDateTime } from '../../utils/dateTools.jsx';
+import { getVideoActions } from '../../actions/getVideoActions.jsx';
+import videoAPI from '../../api/video.jsx';
 
 
 class VideoPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
+  state= {
+    hasLike: false,
+    hasUnlike: false,
+    hasFav: false,
+  }
+    
+  componentDidMount() {
+    this.props.getVideoActions(this.props.location.query.videoId);
   }
 
-  onSubmit(e) {
+  handleClickAction = (e, myAction) => {
     e.preventDefault();
     const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
+    if (!userJSON) {
+      alert('please login or sign up a new account');
+      return;
+    }
+
     const inputJson = {
-      commentContent: this.refs.comment.value,
-      videoId: this.props.location.query.videoId,
-      userId: userJSON.user.userId
+      action: myAction,
+      videoId: this.props.videoData.videoId,
+      userId: userJSON.user.userId,
+      token: userJSON.userToken,
+      sessionId: userJSON.userSessionId
     };
-    postComment.postComment(inputJson, 
-      userJSON.userToken,
-      userJSON.userSessionId
-    ).then((res) => {
-      window.location.reload();
-    }).catch((err) => {
-      alert(`failed post comment${err}`);
+
+    videoAPI.patchOtherNum(inputJson).then(() => {
+      switch (myAction) {
+        case 'like':
+          this.setState(prevState => ({
+            ...prevState,
+            hasLike: true,
+            hasUnlike: false
+          }));
+          break;
+        case 'unlike':
+          this.setState(prevState => ({
+            ...prevState,
+            hasUnlike: true,
+            hasLike: false
+          }));
+          break;
+        case 'favourite':
+          this.setState(prevState => ({
+            ...prevState,
+            hasFav: true
+          }));
+          break;
+        default:
+      }
+      console.log(this.state);
+    }).catch(() => {
+      alert('failed, pleas login or sign up');
     });
   }
-
+ 
   render() {
-    console.log(this.state);
-    console.log(this.props);
-    const videoData = this.props.location.query;
-    const uploadDate = formatDateTime(parseInt(videoData.videoDate));
-    const token = sessionStorage.getItem('empty-video-web-user-session');
-    const commentUploadBox = (!token || token.length <= 0) ? 
-      ( 
-        <Link to="SignIn">Sign In To Leave a Comment</Link>
-      ) : 
-      (
-        <div className="comment-box">
-          <input 
-            className="form-control comment-content"
-            id="exampleInputUsername1"
-            aria-describedby="usernameHelp"
-            placeholder="leave a comment"
-            ref="comment" 
-          />
-          <input
-            className="form-control comment-btn"
-            type="button"
-            value="shoot"
-            onClick={this.onSubmit}
-          />
+    const videoData = this.props.videoData;
+    const loadingIcon = this.props.isLoading ? (
+      <div className="loader">
+        <RingLoader color={'#d9d9d9'} /> 
+      </div>
+    ) : null;
+    const errText = (!this.props.error) ?
+      null : (
+        <div className="error">
+          <div className="badge badge-danger">
+            {this.props.error}
+          </div>
         </div>
+      );
+    const videoPlayer = this.props.videoData === undefined ? null : (
+      <ReactPlayer
+        className='react-player'
+        video={{
+          thumbnail_url: videoData.videoThumbnailImg,
+          video_url: videoData.videoSrc
+        }}
+      />
     );
+
+    const likeIcon = this.state.hasLike ? (
+      <div className='video-action-action actioned'>
+        <MdThumbUp />Good 
+      </div>
+    ) : (
+      <div className='video-action-action' onClick={e => this.handleClickAction(e, 'like')}>
+      <MdThumbUp />Good 
+    </div>
+    );
+
+    const unlikeIcon = this.state.hasUnlike ? (
+      <div className='video-action-action actioned'>
+        <MdThumbDown />
+      </div>
+    ) : (
+      <div className='video-action-action thumb-down-action' onClick={e => this.handleClickAction(e, 'unlike')}>
+        <MdThumbDown />
+      </div>
+    );
+
+    const favIcon = this.state.hasFav ? (
+      <div className='video-action-action love-action actioned'>
+        <IoIosHeart />
+      </div>
+    ) : (
+      <div className='video-action-action love-action' onClick={e => this.handleClickAction(e, 'favourite')}>
+        <IoIosHeart />
+      </div>
+    );
+
+    const videoTitle = this.props.videoData === undefined ? null : (
+      <div className='video-title'>
+        <h1>{videoData.videoName}</h1>
+        {likeIcon}
+        {unlikeIcon}
+        {favIcon}
+      </div>
+    );
+    const videoLittleTitle = this.props.videoData === undefined ? null : (
+      <div className='video-little-title-sectiton'>
+        <div className='video-view-num'>
+          {videoData.videoViewNum} views
+        </div>
+        <div className='video-like-num'>
+          {videoData.videoLikeNum}<MdThumbUp />
+        </div>
+        <div className='video-unlike-num'>
+          {videoData.videoUnlikeNum}<MdThumbDown />
+        </div>
+        <div className='video-fav-num'>
+          {videoData.videoFavouriteNum}<IoIosHeart />
+        </div>
+        <div className='video-upload-data'>
+          Published on {formatDateTime(parseInt(videoData.videoDate))}
+        </div>
+      </div>
+    );
+    const videoComment = this.props.videoData === undefined ? null : (
+      <CommentGrid videoId={videoData.videoId} />
+    );
+
     return (
       <div className="video-page-main-section">
+        {loadingIcon}
+        {errText}
         <div className="video-player-section">
-          <ReactPlayer
-            className='react-player'
-            video={{
-              thumbnail_url: 'https://video.safalnews.com/wp-content/plugins/video-thumbnails/default.jpg',
-              video_url: 'https://s1.sonkwo.com/ls-KzR9iZO8zIu3AtVvD0yeGJhZV'
-            }}
-          />
+          {videoPlayer}
           <div className='video-info-section'>
-            <div className='video-title'>
-              <h1>{videoData.videoName}</h1>
-              <div className='video-action-action thumb-up-section'>
-                <MdThumbUp />Good 
-              </div>
-              <div className='video-action-action thumb-down-action'>
-                <MdThumbDown />
-              </div>
-              <div className='video-action-action love-action'>
-                <IoIosHeart />
-              </div>
-            </div>
-            <div className='video-little-title-sectiton'>
-              <div className='video-view-num'>
-                {videoData.videoViewNum} views
-              </div>
-              <div className='video-upload-data'>
-                Published on {uploadDate}
-              </div>
-            </div>
+            {videoTitle}
+            {videoLittleTitle}
           </div>
         </div>
-        <div className="comment-section">
-          <div className="comment-write-block-section">
-            {commentUploadBox}
-          </div>
-          <CommentGrid videoId={videoData.videoId} />
-        </div>
+        {videoComment}
       </div>
     );
   }
 }
 
-module.exports = VideoPage;
+const mapStateToProps = ({ videoPage }) => {
+  const { videoData, isLoading, error } = videoPage;
+  return { videoData, isLoading, error };
+};
+
+module.exports = connect(
+  mapStateToProps, { getVideoActions }
+)(VideoPage);
 

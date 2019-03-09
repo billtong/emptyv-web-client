@@ -1,6 +1,6 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
-
+import videoAPI from '../../api/video.jsx';
 
 class VideoBlock extends React.Component {
   constructor(props) {
@@ -10,12 +10,9 @@ class VideoBlock extends React.Component {
 
   clickVideo = (e) => {
     e.preventDefault();
-    const data = this.props.videoInfo;
-    const path = {
-      pathname: '/VideoPage',
-      query: data
-    };
-    hashHistory.push(path);
+    const videoId = this.props.videoInfo.videoId;
+    videoAPI.patchView(videoId);
+    hashHistory.push(`VideoPage?videoId=${videoId}`);
   }
 
   render() {

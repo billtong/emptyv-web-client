@@ -1,12 +1,13 @@
 {
-  "name": "start-react",
+  "name": "empty-video-web",
   "version": "1.0.0",
-  "description": "",
+  "description": "a website system with DanMu",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
     "test": "jest"
   },
+  "repository": "https://github.com/billtong/empty-video-web.git",
   "author": "Bill Tong",
   "license": "ISC",
   "dependencies": {
@@ -18,7 +19,7 @@
     "react-player": "^1.8.0",
     "react-redux": "^5.0.6",
     "react-router": "^3.0.5",
-    "react-spinners": "^0.1.4",
+    "react-spinners": "^0.5.3",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "url-loader": "^1.1.2"

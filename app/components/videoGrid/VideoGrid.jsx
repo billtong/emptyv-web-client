@@ -15,13 +15,20 @@ class VideoGrid extends React.Component {
       error: undefined,
       //浏览的的开始位置是第0条，默认是20个pageSize
       currPage: 1,
-      totalPages: undefined
+      totalPages: undefined,
+      sizes: 20
     };
   }
 
   componentDidMount() {
       //输入input
-      const inputJson = { currPage: this.state.currPage };
+      console.log('did mount videoGrid');
+      const inputJson = { 
+        currPage: this.state.currPage,
+        sizes: this.state.sizes,
+        filter: this.props.filter,
+        word: this.props.word
+      };
       this.props.getVideosAction(inputJson);
   }
 
@@ -69,8 +76,8 @@ class VideoGrid extends React.Component {
   }
 }
 
-const mapStateToProps = ({ VideoGrid }) => {
-  const { isLoading, videoList, error, totalPages } = VideoGrid;
+const mapStateToProps = ({ videoGrid }) => {
+  const { isLoading, videoList, error, totalPages } = videoGrid;
   return { isLoading, videoList, error, totalPages };
 };
 

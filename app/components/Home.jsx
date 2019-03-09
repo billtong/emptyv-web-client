@@ -5,6 +5,10 @@ import AdImg from '../../asset/ad-test.jpg';
 
 
 class Home extends React.Component {
+  state = {
+    filter: 'date',
+    word: undefined
+  };
   render() {
     return (
       <div className="home-section">
@@ -13,7 +17,7 @@ class Home extends React.Component {
             <img src={AdImg} alt="ad-img" />
           </a>
         </div>
-        <VideoGrid />
+        <VideoGrid filter={this.state.filter} word={this.state.word} />
       </div>
     );
   }

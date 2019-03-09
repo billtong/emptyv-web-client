@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BarLoader } from 'react-spinners';
+import { RingLoader } from 'react-spinners';
 import { signInAction } from '../../actions/SignInActions.jsx';
 
 
@@ -21,12 +21,14 @@ class SignIn extends React.Component {
     };
     e.preventDefault();
     this.props.signInAction(inputJson);
+    this.refs.username.value = '';
+    this.refs.password.value = '';
   }
 
   render() {
     const loadingIcon = this.props.isLoading ? (
       <div className="loader">
-        <BarLoader color={'#d9d9d9'} /> 
+        <RingLoader color={'#d9d9d9'} /> 
       </div>
     ) : null;
     const errText = (this.props.error === undefined) ?

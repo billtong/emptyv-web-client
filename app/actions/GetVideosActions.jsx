@@ -3,7 +3,7 @@ import {
   COMPLETE_VIDEOS_FETCH,
   FAILED_VIDEOS_FETCH
 } from './types.jsx';
-import getVideoList from '../api/getVideos.jsx';
+import videoAPI from '../api/video';
 
 export const startGetVideos = () => ({
   type: START_VIDEOS_FETCH
@@ -23,10 +23,19 @@ export const failedGetVideos = (errorMessage) => ({
 export const getVideosAction = (inputJson) => {
   return (dispatch) => {
     dispatch(startGetVideos());
-    getVideoList.getVideoList(inputJson).then((res) => {
-      dispatch(completeGetVideos(res.data.videoList, res.data.totalPages));
-    }).catch((err) => {
-      dispatch(failedGetVideos(`Sorry...${err.message}`));
-    });
+    if (!inputJson.word) {
+      console.log(!inputJson.word);
+      videoAPI.getVideoList(inputJson).then((res) => {
+        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages));
+      }).catch((err) => {
+        dispatch(failedGetVideos(`Sorry...${err.statusCode}`));
+      });
+    } else {
+      videoAPI.searchVideoList(inputJson).then((res) => {
+        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages));
+      }).catch((err) => {
+        dispatch(failedGetVideos(`Sorry...${err.statusCode}`));
+      });
+    }
   };
 };

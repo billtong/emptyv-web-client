@@ -9,19 +9,19 @@ export const getCommentReducer = (state = '', action) => {
   switch (action.type) {
     case START_COMMENTS_FETCH:
       return {
-        isLoading: true,
+        isGetLoading: true,
         commentList: undefined,
         error: undefined
       };
     case COMPLETE_COMMENTS_FETCH:
       return {
-        isLoading: false,
+        isGetLoading: false,
         commentList: action.comments,
         error: undefined
       };
     case FAILED_COMMENTS_FETCH:
       return {
-        isLoading: false,
+        isGetLoading: false,
         commentList: undefined,
         error: action.errorMessage
       };

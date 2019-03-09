@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BarLoader } from 'react-spinners';
+import { RingLoader } from 'react-spinners';
 import { signUpAction } from '../../actions/SignUpActions.jsx';
 
 
@@ -18,7 +18,7 @@ class SignUp extends React.Component {
   }
 
   onSubmit(e) {
-    const {email, username, password1 } = this.refs;
+    const { email, username, password1, password2 } = this.refs;
     const inputJson = {
       userName: username.value,
       userPassword: password1.value,
@@ -26,12 +26,16 @@ class SignUp extends React.Component {
     };
     e.preventDefault();
     this.props.signUpAction(inputJson);
+    email.value = '';
+    username.value = '';
+    password1.value = '';
+    password2.value = '';
   }
 
   render() {
       const loadingIcon = this.props.isLoading ? (
         <div className="loader">
-          <BarLoader color={'#d9d9d9'} /> 
+          <RingLoader color={'#d9d9d9'} /> 
         </div>
       ) : null;
       const rsltMessage = (this.props.rslt === undefined) ? null : 

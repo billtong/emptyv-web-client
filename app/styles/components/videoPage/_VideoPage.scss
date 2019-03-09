@@ -15,6 +15,13 @@
         display: inline;
         padding-right: 1rem;
       } 
+      .video-action-action:hover{
+        cursor: pointer;
+      }
+      
+      .actioned {
+        color: orange;
+      }
     } 
   }
 }
