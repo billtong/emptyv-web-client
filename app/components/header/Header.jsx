@@ -16,18 +16,37 @@ class Header extends React.Component {
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
+  logout = () => {
+    const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
+    const inputJson = {
+      sessionId: userJSON.userSessionId,
+      userName: userJSON.user.userName,
+      token: userJSON.userToken
+    };
+    logoutApi.logout(inputJson);
+    sessionStorage.removeItem('empty-video-web-user-session');
+  }
+
   handleEnterKey=(e) => {
-    hashHistory.push('/');
     if (e.keyCode === 13) {
+      e.preventDefault();
+      hashHistory.push('/');
       const inputJson = { 
         currPage: 1,
-        sizes: 1,
+        sizes: 5,
         filter: 'date',
         word: this.refs.keyword.value
       };
       this.props.getVideosAction(inputJson);
     }
   };
+
+  handleClick=() => {
+    const searchInputElement = document.getElementsByClassName('search-input')[0];
+    if (searchInputElement.value !== '') {
+      
+    }
+  }
 
   renderRightMenuList = () => {
     const token = sessionStorage.getItem('empty-video-web-user-session');
@@ -54,7 +73,7 @@ class Header extends React.Component {
             <Link to="UserPage" activeClassName="active">User Page</Link>
           </li>
           <li className="desktop">
-            <Link to="/" activeClassName="active" onClick={this.logout.bind(this)}>Logout</Link>
+            <Link to="/" activeClassName="active" onClick={this.logout}>Logout</Link>
           </li>
         </ul>
       );
@@ -68,30 +87,23 @@ class Header extends React.Component {
             className="search-input"
             placeholder="press <ENTER> to search"
             ref="keyword"
-            onKeyPress={this.handleEnterKey}
+            onKeyPress={e => (this.handleEnterKey(e))}
           />
         </form>
       </li>
       <li className="desktop">
-        <Link to="/" activeClassName="active">Home</Link>
+        <Link
+          to="/"
+          activeClassName="active"
+          onClick={() => this.handleClick}
+        >Home
+        </Link>
       </li>
       <li className="desktop">
         <Link to="Donate" activeClassName="active">Donate Us</Link>
       </li>
     </ul>
   );
-
-  //这里如果改成es6的lamda格式，react会自己自动执行
-  logout() {
-    const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
-    const inputJson = {
-      sessionId: userJSON.userSessionId,
-      userName: userJSON.user.userName,
-      token: userJSON.userToken
-    };
-    logoutApi.logout(inputJson);
-    sessionStorage.removeItem('empty-video-web-user-session');
-  }
 
   render() {
     return (
@@ -112,7 +124,7 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = () => {};
+const mapStateToProps = (state) => (state);
 
 module.exports = connect(
   mapStateToProps, { getVideosAction }

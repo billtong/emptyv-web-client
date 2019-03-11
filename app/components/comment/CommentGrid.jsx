@@ -23,8 +23,7 @@ class CommentGrid extends React.Component {
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
-  onSubmit=(e) => {
-    e.preventDefault();
+  onSubmit=() => {
     const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
     const inputJson = {
       commentContent: this.refs.comment.value,
@@ -44,7 +43,8 @@ class CommentGrid extends React.Component {
 
   handleEnterKey=(e) => {
     if (e.keyCode === 13) {
-      this.onSubmit(e);
+      e.preventDefault();
+      this.onSubmit();
     }
   };
 

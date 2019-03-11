@@ -25,9 +25,15 @@
         display: inline-block;
         font-size: 0.5rem;
         padding-left: 1rem;
+        vertical-align: middle;
+        padding-top: 0.2rem;
         .usr-icon-action {
           vertical-align: -0.1rem;
           margin-right: 0.1rem;
+        }
+
+        .search-input {
+          width: 20rem;
         }
 
         a{

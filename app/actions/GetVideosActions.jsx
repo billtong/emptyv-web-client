@@ -5,21 +5,24 @@ import {
 } from './types.jsx';
 import videoAPI from '../api/video';
 
-export const startGetVideos = () => ({
-  type: START_VIDEOS_FETCH
+export const startGetVideos = (filter) => ({
+  type: START_VIDEOS_FETCH,
+  filter
 });
 
-export const completeGetVideos = (videos, totalPages, word) => ({
+export const completeGetVideos = (videos, totalPages, word, filter) => ({
   type: COMPLETE_VIDEOS_FETCH,
   videos,
   totalPages,
-  word
+  word,
+  filter
 });
 
-export const failedGetVideos = (errorMessage, word) => ({
+export const failedGetVideos = (errorMessage, word, filter) => ({
   type: FAILED_VIDEOS_FETCH,
   errorMessage,
-  word
+  word,
+  filter
 });
 
 export default function getVideosAction(inputJson) {
@@ -27,15 +30,16 @@ export default function getVideosAction(inputJson) {
     dispatch(startGetVideos());
     if (!inputJson.word) {
       videoAPI.getVideoList(inputJson).then((res) => {
-        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages, undefined));
+        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages, undefined, inputJson.filter));
       }).catch((err) => {
-        dispatch(failedGetVideos(`Sorry...${err.statusCode}`, undefined));
+        dispatch(failedGetVideos('Sorry...we ain\'t able to serve any videos rn', undefined, inputJson.filter));
       });
     } else {
       videoAPI.searchVideoList(inputJson).then((res) => {
-        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages, inputJson.word));
+        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages, inputJson.word, inputJson.filter));
       }).catch((err) => {
-        dispatch(failedGetVideos(`Sorry...${err.statusCode}`, inputJson.word));
+        console.log(err.response);
+        dispatch(failedGetVideos('Emm...I didn\'t find any video for U', inputJson.word, inputJson.filter));
       });
     }
   };

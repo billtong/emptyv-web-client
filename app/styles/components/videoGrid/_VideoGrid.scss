@@ -10,13 +10,23 @@
     text-align: center;
   }
 
+  .search-keyword-display {
+    font-size: 2rem;
+    margin: 1rem 4rem;
+  }
+
+  .filter-selecter-section {
+    margin: 1rem 4rem;
+  }
+
   .video-blocks-section {
-    display: flex;
-    flex-wrap: wrap;
-    width: 80%;
+    max-width: 70%;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     .video-block-section{
-      padding: 0.3rem 0.6rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
       .video-title-section {
         font-size: 1rem;
         line-height: 1.1rem;
@@ -29,6 +39,10 @@
         color: #888;
       }
     }
+    .video-block-section:hover {
+      cursor: pointer;
+    }
+
   }
 
   .pagination {

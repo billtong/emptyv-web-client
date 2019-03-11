@@ -7,9 +7,7 @@ module.exports = {
     const deviceListURL = `${BASE_URL}api/video/getVideo?videoId=${videoId}`;
     return axios.get(deviceListURL, {
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       }
     }).then((res) => (res)
     , (err) => {
@@ -21,9 +19,7 @@ module.exports = {
     const deviceListURL = `${BASE_URL}api/video/getVideoList?currPage=${inputJson.currPage}&filter=${inputJson.filter}&sizes=${inputJson.sizes}&word=`;
     return axios.get(deviceListURL, {
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       }
     }).then((res) => (res)
     , (err) => (err)
@@ -34,9 +30,7 @@ module.exports = {
     const deviceListURL = `${BASE_URL}api/video/getVideoList?currPage=${inputJson.currPage}&filter=${inputJson.filter}&sizes=${inputJson.sizes}&word=${inputJson.word}`;
     return axios.get(deviceListURL, {
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       }
     }).then((res) => (res)
     , (err) => (err)
@@ -47,14 +41,10 @@ module.exports = {
     const deviceListURL = `${BASE_URL}api/video/patchViewNum?videoId=${videoId}`;
     return axios.patch(deviceListURL, {
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       }
     }).then((res) => (res)
-    , (err) => {
-        throw new Error(err.message);
-    });
+    , (err) => (err));
   },
 
   patchOtherNum: (inputJson) => {

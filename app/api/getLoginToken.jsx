@@ -10,9 +10,7 @@ module.exports = {
       userPassword: inputJson.userPassword
     }, {
       headers:{
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       }
     })
     .then((res) => (res) 

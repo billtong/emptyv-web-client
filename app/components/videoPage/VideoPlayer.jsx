@@ -169,9 +169,9 @@ class VideoPlayer extends React.Component {
 			offVolume: scale === 0,
 			volumeProgress: Math.min(scale * 100, 100) + '%',
 			volume: Math.min(scale * 100, 100) + '%'
-		});s
+		});
 		myVideo.muted = scale === 0;
-		myVideo.volume = Math.min(scale, 1.0);
+    myVideo.volume = Math.min(scale, 1.0);
   }
   
 	f11Key() {
@@ -207,33 +207,25 @@ class VideoPlayer extends React.Component {
 		this.setState({ fullscreen: !this.state.fullscreen });
   }
   
-	toggleControlBar() {
-		let self = this;
-		if (self.state.showPlayBtn) {
-			self.setState({ showControlBar: false });
+	toggleControlBar = () => {
+		if (this.state.showPlayBtn) {
+			this.setState({ showControlBar: false });
 			return;
 		}
-		if (self.state.pause) {
+		if (this.state.pause) {
 			return;
 		}
-		if (!self.state.showControlBar) {
-			self.setState({ showControlBar: true });
+		if (!this.state.showControlBar) {
+			this.setState({ showControlBar: true });
 			return;
 		}
-		self.timeTask = setTimeout(() => {
-			if (!self.state.pause) {
-				self.setState({ showControlBar: false });
-			}
-			clearTimeout(self.timeTask);
-			self.timeTask = null;
-		}, 3000);
   }
   
 	render() {
     const { video } = this.props;
     const startControlIcon = this.state.progress === '100%' || this.state.pause ? <MdPlayArrow /> : <MdPause />;
     const volumnControlIcon = this.state.offVolume === true ? <MdVolumeMute /> : <MdVolumeUp />; 
-    const fullScreenControlIcon = this.state.fullscreen === true ? <MdFullscreen /> : <MdFullscreenExit />;
+    const fullScreenControlIcon = this.state.fullscreen === true ?  <MdFullscreenExit /> : <MdFullscreen />;
 		return (
 			<div className={this.state.fullscreen ? 'videos-player asset fullscreen' : 'videos-player asset'}>
         <video 

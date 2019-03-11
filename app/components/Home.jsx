@@ -11,7 +11,7 @@ class Home extends React.Component {
     filter: 'date',
     word: undefined,
     currPage: 1,
-    sizes: 1,
+    sizes: 5,
   };
 
   componentDidMount() {
@@ -38,7 +38,7 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = () => {};
+const mapStateToProps = (state) => (state);
 
 module.exports = connect(
   mapStateToProps, { getVideosAction }
