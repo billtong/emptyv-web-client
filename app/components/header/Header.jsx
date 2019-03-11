@@ -1,10 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { Link, hashHistory } from 'react-router';
 import { MdInput, MdEdit } from 'react-icons/md';
+
 import logoURL from '../../../asset/empty-video-logo.gif';
 import logoutApi from '../../api/postLogout';
+import getVideosAction from '../../actions/GetVideosActions';
 
 class Header extends React.Component {
+  componentWillMount() {
+    document.addEventListener('keypress', this.handleEnterKey);
+  }
+
+  componentDidMount() {
+    document.removeEventListener('keypress', this.handleEenterKey);
+  }
+
+  handleEnterKey=(e) => {
+    hashHistory.push('/');
+    if (e.keyCode === 13) {
+      const inputJson = { 
+        currPage: 1,
+        sizes: 1,
+        filter: 'date',
+        word: this.refs.keyword.value
+      };
+      this.props.getVideosAction(inputJson);
+    }
+  };
+
   renderRightMenuList = () => {
     const token = sessionStorage.getItem('empty-video-web-user-session');
     //console.log(token);
@@ -38,6 +62,16 @@ class Header extends React.Component {
 
   renderLeftMenuList = () => (
     <ul className="menu-left">
+      <li className="desktop">
+        <form className="searchBar">
+          <input
+            className="search-input"
+            placeholder="press <ENTER> to search"
+            ref="keyword"
+            onKeyPress={this.handleEnterKey}
+          />
+        </form>
+      </li>
       <li className="desktop">
         <Link to="/" activeClassName="active">Home</Link>
       </li>
@@ -78,4 +112,8 @@ class Header extends React.Component {
   }
 }
 
-module.exports = Header;
+const mapStateToProps = () => {};
+
+module.exports = connect(
+  mapStateToProps, { getVideosAction }
+)(Header);

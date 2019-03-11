@@ -9,32 +9,33 @@ export const startGetVideos = () => ({
   type: START_VIDEOS_FETCH
 });
 
-export const completeGetVideos = (videos, totalPages) => ({
+export const completeGetVideos = (videos, totalPages, word) => ({
   type: COMPLETE_VIDEOS_FETCH,
   videos,
-  totalPages
+  totalPages,
+  word
 });
 
-export const failedGetVideos = (errorMessage) => ({
+export const failedGetVideos = (errorMessage, word) => ({
   type: FAILED_VIDEOS_FETCH,
-  errorMessage
+  errorMessage,
+  word
 });
 
-export const getVideosAction = (inputJson) => {
+export default function getVideosAction(inputJson) {
   return (dispatch) => {
     dispatch(startGetVideos());
     if (!inputJson.word) {
-      console.log(!inputJson.word);
       videoAPI.getVideoList(inputJson).then((res) => {
-        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages));
+        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages, undefined));
       }).catch((err) => {
-        dispatch(failedGetVideos(`Sorry...${err.statusCode}`));
+        dispatch(failedGetVideos(`Sorry...${err.statusCode}`, undefined));
       });
     } else {
       videoAPI.searchVideoList(inputJson).then((res) => {
-        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages));
+        dispatch(completeGetVideos(res.data.videoList, res.data.totalPages, inputJson.word));
       }).catch((err) => {
-        dispatch(failedGetVideos(`Sorry...${err.statusCode}`));
+        dispatch(failedGetVideos(`Sorry...${err.statusCode}`, inputJson.word));
       });
     }
   };

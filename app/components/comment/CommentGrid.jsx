@@ -58,8 +58,6 @@ class CommentGrid extends React.Component {
         <div className="comment-box">
           <input 
             className="form-control comment-content"
-            id="exampleInputUsername1"
-            aria-describedby="usernameHelp"
             placeholder="Press <Enter> to leave a comment"
             onKeyPress={this.handleEnterKey}
             ref="comment" 
