@@ -88,7 +88,8 @@ class VideoPage extends React.Component {
         className='react-player'
         video={{
           thumbnail_url: videoData.videoThumbnailImg,
-          video_url: videoData.videoSrc
+          video_url: videoData.videoSrc,
+          video_id: videoData.videoId
         }}
       />
     );

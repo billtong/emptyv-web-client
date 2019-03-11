@@ -31,7 +31,7 @@ module.exports = {
   },
 
   searchVideoList: (inputJson) => {
-    const deviceListURL = `${BASE_URL}api/video/getVideoList?currPage=${inputJson.currPage}&filter=${inputJson.filter}&sizes=${inputJson.filter}&word=${inputJson.word}`;
+    const deviceListURL = `${BASE_URL}api/video/getVideoList?currPage=${inputJson.currPage}&filter=${inputJson.filter}&sizes=${inputJson.sizes}&word=${inputJson.word}`;
     return axios.get(deviceListURL, {
       headers: {
         'Content-Type': 'application/json',

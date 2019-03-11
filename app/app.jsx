@@ -11,12 +11,12 @@ import UserPage from './components/userPage/UserPage.jsx';
 import VideoPage from './components/videoPage/VideoPage.jsx';
 import DonatePage from './components/donatePage/DonatePage.jsx';
 
+require('style-loader!css-loader!sass-loader!applicationStyles');
 
 const store = configureStore.configure();
 store.subscribe(() => {
     //console.log('New state', store.getState());
 });
-require('style-loader!css-loader!sass-loader!applicationStyles');
 
 ReactDOM.render(
   <Provider store={store}>

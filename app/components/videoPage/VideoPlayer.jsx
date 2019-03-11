@@ -1,5 +1,8 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { MdPlayArrow, MdPause, MdVolumeMute, MdVolumeUp, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
+import videoAPI from '../../api/video.jsx';
+
 
 class VideoPlayer extends React.Component {
 	constructor(props) {
@@ -85,7 +88,10 @@ class VideoPlayer extends React.Component {
     const myVideo = document.getElementById('myVideo');
 		const self = this;
 		if (myVideo.paused) {
-			myVideo.play();
+      if (this.state.showPlayBtn) {
+        videoAPI.patchView(this.props.video.video_id);
+      }
+      myVideo.play();
 			self.setState({
 				showPlayBtn: false,
 				showControlBar: true,
@@ -121,18 +127,18 @@ class VideoPlayer extends React.Component {
   }
   
 	resetPlay(event) {
-    const diff = 4.839425; //网页上时间的误差
     const myVideo = document.getElementById('myVideo');
 		const self = this;
 		if (self.timer) {
 			clearInterval(self.timer);
 			self.timer = null;
-		}
-		const container = document.getElementsByClassName('videos-player')[0];
-	  const containerOffsetLeft = container.offsetLeft;
+    }
+   
+    const container = document.getElementsByClassName('videos-player')[0];
+	  const containerOffsetLeft = container.offsetLeft + container.offsetParent.offsetLeft;
 		const totalWidth = event.target.parentNode.offsetWidth;
 		const scale = (event.clientX - containerOffsetLeft) / totalWidth;
-    myVideo.currentTime = scale * myVideo.duration - diff;
+    myVideo.currentTime = scale * myVideo.duration;
 		self.timer = setInterval(() => {
 			self.setState({
 				currentTime: Math.floor((myVideo.currentTime) / 60) + ':' + ((myVideo.currentTime) % 60 / 100).toFixed(2).slice(-2),
@@ -145,25 +151,25 @@ class VideoPlayer extends React.Component {
 	handleVolume() {
     const myVideo = document.getElementById('myVideo');
 		this.setState({
-			volumeProgress: this.state.offVolume ? (this.state.volume.indexOf('%') > -1 ? this.state.volume :this.state.volume * 100 + '%'): '0',
+			volumeProgress: this.state.offVolume ? (this.state.volume.indexOf('%') > -1 ? this.state.volume :this.state.volume * 100 + '%') : '0',
 			offVolume: !this.state.offVolume
 		});
 		myVideo.muted = !this.state.offVolume;
-		myVideo.volume = this.state.offVolume === false ? '0': (this.state.volume.indexOf('%') > -1 ? this.state.volume.replace('%','')/100 :this.state.volume);
-  };
+		myVideo.volume = this.state.offVolume === false ? '0' : (this.state.volume.indexOf('%') > -1 ? this.state.volume.replace('%', '') / 100 : this.state.volume);
+  }
   
 	resetVolume(event) {
-    const diff = 1;   //由于css调整后的误差
     const myVideo = document.getElementById('myVideo');
 		const containerOffsetLeft = document.getElementsByClassName('vjs-volume-control')[0].offsetLeft;
-		const contentLeft = document.getElementsByClassName('videos-player')[0].offsetLeft;
+    const contentLeft = document.getElementsByClassName('videos-player')[0].offsetLeft;
+    const containerLeft = document.getElementsByClassName('videos-player')[0].offsetParent.offsetLeft;
     const totalWidth = event.currentTarget.offsetWidth;
-    const scale = ((event.clientX - containerOffsetLeft - contentLeft - 2) / totalWidth) - diff;
+    const scale = ((event.clientX - containerOffsetLeft - contentLeft - containerLeft) / totalWidth);
 		this.setState({
 			offVolume: scale === 0,
 			volumeProgress: Math.min(scale * 100, 100) + '%',
 			volume: Math.min(scale * 100, 100) + '%'
-		});
+		});s
 		myVideo.muted = scale === 0;
 		myVideo.volume = Math.min(scale, 1.0);
   }
