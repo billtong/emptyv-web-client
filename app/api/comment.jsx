@@ -3,8 +3,19 @@ import { BASE_URL } from './baseURL.jsx';
 
 
 module.exports = {
+  getComemtList: (inputJson) => {
+    const deviceListURL = `${BASE_URL}api/comment/load?videoId=${inputJson.videoId}`;
+    return axios.get(deviceListURL, {
+      headers: { 
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => (res)
+    , (err) => {
+      throw new Error(err.message);
+    });
+  },
+
   postComment: (inputJson, userToken, sessionId) => {
-    //这里不可空行，空行会被写入
     const deviceListURL = `${BASE_URL}api/comment/write?userId=${inputJson.userId}&token=${userToken}&sessionId=${sessionId}`;
     return axios.post(deviceListURL, {
       commentContent: inputJson.commentContent,
@@ -15,8 +26,7 @@ module.exports = {
         'Content-Type': 'application/json'
       }
     }).then((res) => (res)
-    , (err) => {
-      throw new Error(err.message);
-    });
+    , (err) => (err));
   }
 };
+

@@ -15,8 +15,7 @@ class VideoGrid extends React.Component {
   };
 
   componentWillUnmount() {
-    const searchInputElement = document.getElementsByClassName('search-input')[0];
-    searchInputElement.value = '';
+    document.getElementsByClassName('search-input')[0].value = '';
   }
 
   handleChange=(e) => {

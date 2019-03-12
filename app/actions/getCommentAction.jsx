@@ -3,7 +3,7 @@ import {
 	COMPLETE_COMMENTS_FETCH,
 	FAILED_COMMENTS_FETCH
 } from '../actions/types';
-import getComments from '../api/getComments.jsx';
+import getComments from '../api/comment.jsx';
 
 export const startGetComment = () => ({
 	type: START_COMMENTS_FETCH

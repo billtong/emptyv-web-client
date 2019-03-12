@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { RingLoader } from 'react-spinners';
 import CommentBlock from './CommentBlock.jsx';
 import { getCommentAction } from '../../actions/getCommentAction.jsx';
-import postComment from '../../api/postComment.jsx';
+import CommentAPI from '../../api/comment';
 
 
 class CommentGrid extends React.Component {
@@ -12,6 +12,8 @@ class CommentGrid extends React.Component {
     isGetLoading: false,
     commentList: undefined,
     error: undefined,
+    isBlur: true,
+    isForcus: false
   }
 
   componentWillMount() {
@@ -23,30 +25,44 @@ class CommentGrid extends React.Component {
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
-  onSubmit=() => {
-    const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
-    const inputJson = {
-      commentContent: this.refs.comment.value,
-      videoId: this.props.videoId,
-      userId: userJSON.user.userId
-    };
-    postComment.postComment(inputJson, 
-      userJSON.userToken,
-      userJSON.userSessionId
-    ).then(() => {
-      this.props.getCommentAction({ videoId: this.props.videoId });
-      this.refs.comment.value = '';
-    }).catch((err) => {
-      alert(`failed post comment${err}`);
-    });
-  }
-
+  //bug -> 这里refs为{},暂时还不知道原因
   handleEnterKey=(e) => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      this.onSubmit();
+    if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
+      const comment = e.target.value;
+      e.target.value = '';
+      const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
+      const inputJson = {
+        commentContent: comment,
+        videoId: this.props.videoId,
+        userId: userJSON.user.userId
+      };
+      CommentAPI.postComment(inputJson, 
+      userJSON.userToken,
+      userJSON.userSessionId)
+      .then(() => {
+        this.props.getCommentAction({ videoId: this.props.videoId });
+      })
+      .catch((err) => {
+        alert(`failed post comment${err}`);
+      });
     }
   };
+
+  ifForcus=() => {
+    this.setState(prevState => ({
+      ...prevState,
+      isForcus: true,
+      isBlur: false
+    }));
+  }
+
+  ifBlur=() => {
+    this.setState(prevState => ({
+      ...prevState,
+      isForcus: false,
+      isBlur: true
+    }));
+  }
 
   render() {
     const token = sessionStorage.getItem('empty-video-web-user-session');
@@ -59,7 +75,9 @@ class CommentGrid extends React.Component {
           <input 
             className="form-control comment-content"
             placeholder="Press <Enter> to leave a comment"
-            onKeyPress={this.handleEnterKey}
+            onKeyPress={e => this.handleEnterKey(e)}
+            onFocus={this.ifForcus}
+            onBlur={this.ifBlur}
             ref="comment" 
           />
         </div>

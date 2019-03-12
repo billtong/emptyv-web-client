@@ -36,11 +36,12 @@
           width: 20rem;
         }
 
-        a{
+        .header-menu {
           color: #d9d9d9
         }
-        a:hover {
-          text-decoration: none;
+
+        .header-menu:hover {
+          cursor: pointer;
           color: gray;
         }
       }
