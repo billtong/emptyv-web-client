@@ -5,9 +5,11 @@
 
   nav {
     background-color: #1f1f1f;
-    position: relative;
     max-height: 2rem;
     padding-left: 5%;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
     .logo-container {
       display: inline-block;
       vertical-align: top;
@@ -42,6 +44,7 @@
 
         .header-menu:hover {
           cursor: pointer;
+          text-decoration: none;
           color: gray;
         }
       }
