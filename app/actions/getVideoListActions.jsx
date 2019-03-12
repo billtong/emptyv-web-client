@@ -5,6 +5,7 @@ import {
 } from './types.jsx';
 import videoAPI from '../api/video';
 
+
 export const startGetVideos = (filter) => ({
   type: START_VIDEOS_FETCH,
   filter
@@ -25,7 +26,7 @@ export const failedGetVideos = (errorMessage, word, filter) => ({
   filter
 });
 
-export default function getVideosAction(inputJson) {
+export const getVideoListAction = (inputJson) => {
   return (dispatch) => {
     dispatch(startGetVideos());
     if (!inputJson.word) {

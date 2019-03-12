@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { IoIosHeart } from 'react-icons/io';
 import { RingLoader } from 'react-spinners';
 
-import ReactPlayer from './VideoPlayer.jsx';
-import CommentGrid from '../comment/CommentGrid.jsx';
+import ReactPlayer from '../accessories/VideoPlayer';
+import CommentGrid from '../accessories/comment/CommentGrid';
 import { formatDateTime } from '../../utils/dateTools.jsx';
 import { getVideoActions } from '../../actions/getVideoActions.jsx';
 import videoAPI from '../../api/video.jsx';
@@ -151,6 +151,8 @@ class VideoPage extends React.Component {
         </div>
       </div>
     );
+
+    
     const videoComment = this.props.videoData === undefined ? null : (
       <CommentGrid videoId={videoData.videoId} />
     );

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { RingLoader } from 'react-spinners';
 import CommentBlock from './CommentBlock.jsx';
-import { getCommentAction } from '../../actions/getCommentAction.jsx';
-import CommentAPI from '../../api/comment';
+import { getCommentListAction } from '../../../actions/getCommentListAction';
+import CommentAPI from '../../../api/comment';
 
 
 class CommentGrid extends React.Component {
@@ -21,7 +21,7 @@ class CommentGrid extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getCommentAction({ videoId: this.props.videoId });
+    this.props.getCommentListAction({ videoId: this.props.videoId });
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
@@ -40,7 +40,7 @@ class CommentGrid extends React.Component {
       userJSON.userToken,
       userJSON.userSessionId)
       .then(() => {
-        this.props.getCommentAction({ videoId: this.props.videoId });
+        this.props.getCommentListAction({ videoId: this.props.videoId });
       })
       .catch((err) => {
         alert(`failed post comment${err}`);
@@ -91,7 +91,9 @@ class CommentGrid extends React.Component {
       );
     const commentList = (this.props.commentList === undefined) ? null :
       this.props.commentList.map((comment) => {
-      return <CommentBlock key={comment.commentId} commentInfo={comment} />
+      return (
+        <CommentBlock key={comment.commentId} commentInfo={comment} />
+      );
     });
 
     return (
@@ -99,6 +101,7 @@ class CommentGrid extends React.Component {
         <div className="comment-write-block-section">
           {commentUploadBox}
         </div>
+
         <div className="comment-grid-section">
           <div className="loading-icon-sectiton">
             {getLoadingIcon}
@@ -121,5 +124,5 @@ const mapStateToProps = ({ commentGrid }) => {
 };
 
 module.exports = connect(
-  mapStateToProps, { getCommentAction }
+  mapStateToProps, { getCommentListAction }
 )(CommentGrid);

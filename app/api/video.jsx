@@ -58,6 +58,19 @@ module.exports = {
     , (err) => {
       throw new Error(err.message);
     });
-  }
+  },
+
+  patchTags: (inputJson) => {
+    //这里不可空行，空行会被写入
+    const deviceListURL = `${BASE_URL}api/video/patchTags?videoId=${inputJson.videoId}&tagJsonString=${inputJson.tagJsonString}&userId=${inputJson.userId}&token=${inputJson.token}&sessionId=${inputJson.sessionId}`;
+    return axios.patch(deviceListURL, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => (res)
+    , (err) => {
+      throw new Error(err.message);
+    });
+  },
 };
 

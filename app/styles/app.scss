@@ -1,12 +1,11 @@
-@import "components/Home";
-@import "components/videoPage/VideoPage";
-
-@import "components/header/Header";
-@import "components/userSign/Sign";
-@import "components/donatePage/Donate";
-@import "components/videoGrid/VideoGrid";
-@import "components/videoPage/VideoPlayer";
-@import "components/comment//Comment";
+@import "components/accessories/comment/Comment";
+@import "components/accessories/videoGrid/VideoGrid";
+@import "components/accessories/VideoPlayer";
+@import "components/layout/Header";
+@import "components/pages/DonatePage";
+@import "components/pages/HomePage";
+@import "components/pages/SignPage";
+@import "components/pages/VideoPage";
 
 body {
   background: #0d0d0d;

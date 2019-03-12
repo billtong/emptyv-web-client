@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BarLoader } from 'react-spinners';
-import getVideosAction from '../../actions/GetVideosActions';
+import { getVideoListAction } from '../../../actions/getVideoListActions';
 import VideoBlock from './VideoBlock';
+import Pagination from '../Pagination';
 
 
 class VideoGrid extends React.Component {
@@ -26,7 +27,7 @@ class VideoGrid extends React.Component {
       filter: e.target.value,
       word: this.props.word
     };
-    this.props.getVideosAction(inputJson);
+    this.props.getVideoListAction(inputJson);
   }
 
   render() {
@@ -45,31 +46,6 @@ class VideoGrid extends React.Component {
     const searchKeywordText = (this.props.word === undefined) ? null : (
       <div className="search-keyword-display">Search Result for: {this.props.word}</div>
     );
-
-    const pagination = (this.props.videoList === undefined || this.props.totalPages === undefined) ? null : 
-      Array.apply(null, { length: this.props.totalPages }).map((value, index) => {
-        const changePage = (e) => {
-          e.preventDefault();
-          this.setState(prevState => ({
-            ...prevState,
-            videoList: undefined,
-            currPage: (index + 1)
-          }));
-          const inputJson = { 
-            currPage: (index + 1),
-            sizes: this.props.sizes,
-            filter: this.props.filter,
-            word: this.props.word
-          };
-          this.props.getVideosAction(inputJson);
-          document.documentElement.scrollTop = 0;  //back to top
-        };
-        return ((index + 1) === this.state.currPage) ? (
-            <div key={index} className="index-text currPage-index-text">[{index + 1}]</div> 
-          ) : ( 
-            <div key={index} className="index-text" onClick={changePage}>{index + 1}</div> 
-          );
-      });
     return (
       <div className="video-grid-container">
         {searchKeywordText}
@@ -82,7 +58,13 @@ class VideoGrid extends React.Component {
           </select>
         </div>
         <div className="video-blocks-section">{videosBlocks}</div>
-        <div className="pagination">{pagination}</div>
+        <Pagination 
+          list={this.props.videoList}
+          totalPages={this.props.totalPages}
+          word={this.props.word}
+          filter={this.props.filter}
+          sizes={this.props.sizes}
+        />
         <div className="loader" >{loadingIcon}</div>
         <div className="error-text-section">{errText}</div>
       </div>
@@ -90,11 +72,12 @@ class VideoGrid extends React.Component {
   }
 }
 
+
 const mapStateToProps = ({ videoGrid }) => {
   const { isLoading, videoList, error, totalPages, word, filter } = videoGrid;
   return { isLoading, videoList, error, totalPages, word, filter };
 };
 
 module.exports = connect(
-  mapStateToProps, { getVideosAction }
+  mapStateToProps, { getVideoListAction }
 )(VideoGrid);

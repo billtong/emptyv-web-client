@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { } from 'react-router';
-import VideoGrid from './videoGrid/VideoGrid.jsx';
-import AdImg from '../../asset/ad-test.jpg';
-import getVideosAction from '../actions/GetVideosActions';
+import VideoGrid from '../accessories/videoGrid/VideoGrid';
+import AdImg from '../../../asset/ad-test.jpg';
+import { getVideoListAction } from '../../actions/getVideoListActions';
 
 
 class Home extends React.Component {
@@ -21,7 +20,7 @@ class Home extends React.Component {
       filter: this.state.filter,
       word: this.state.word
     };
-    this.props.getVideosAction(inputJson);
+    this.props.getVideoListAction(inputJson);
   }
 
   render() {
@@ -41,6 +40,6 @@ class Home extends React.Component {
 const mapStateToProps = (state) => (state);
 
 module.exports = connect(
-  mapStateToProps, { getVideosAction }
+  mapStateToProps, { getVideoListAction }
 )(Home);
 

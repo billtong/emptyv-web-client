@@ -5,16 +5,16 @@ import {
 } from '../actions/types.jsx';
 
 
-export const getVideosReducer = (state = '', action) => {
+export const getVideoListReducer = (state = '', action) => {
   switch (action.type) {
     case START_VIDEOS_FETCH:
       return {
         isLoading: true,
-        videoList: state.videoList,
+        videoList: undefined,
         error: undefined,
-        totalPages: state.totalPages,
+        totalPages: undefined,
         word: undefined,
-        filter: state.filter
+        filter: 'date'
       };
     case COMPLETE_VIDEOS_FETCH:
       return {
@@ -23,16 +23,16 @@ export const getVideosReducer = (state = '', action) => {
         error: undefined,
         totalPages: action.totalPages,
         word: action.word,
-        filter: state.filter
+        filter: action.filter
       };
     case FAILED_VIDEOS_FETCH:
       return {
         isLoading: false,
         videoList: undefined,
         error: action.errorMessage,
-        totalPages: state.totalPages,
+        totalPages: undefined,
         word: action.word,
-        filter: state.filter
+        filter: action.filter
       };
     default:
       return state;

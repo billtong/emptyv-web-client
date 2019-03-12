@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route, Router, IndexRoute, hashHistory } from 'react-router';
 import * as configureStore from './store/configureStore.jsx';
-import Main from './components/Main.jsx';
-import SignIn from './components/userSign/SignIn.jsx';
-import SignUp from './components/userSign/SignUp.jsx';
-import Home from './components/Home.jsx';
-import UserPage from './components/userPage/UserPage.jsx';
-import VideoPage from './components/videoPage/VideoPage.jsx';
-import DonatePage from './components/donatePage/DonatePage.jsx';
+import Main from './components/layout/Main';
+import SignIn from './components/pages/SignInPage';
+import SignUp from './components/pages/SignUpPage';
+import Home from './components/pages/HomePage';
+import UserPage from './components/pages/UserPage';
+import VideoPage from './components/pages/VideoPage';
+import DonatePage from './components/pages/DonatePage';
 
 require('style-loader!css-loader!sass-loader!applicationStyles');
 

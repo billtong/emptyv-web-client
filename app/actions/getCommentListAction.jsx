@@ -2,8 +2,9 @@ import {
 	START_COMMENTS_FETCH,
 	COMPLETE_COMMENTS_FETCH,
 	FAILED_COMMENTS_FETCH
-} from '../actions/types';
+} from './types';
 import getComments from '../api/comment.jsx';
+
 
 export const startGetComment = () => ({
 	type: START_COMMENTS_FETCH
@@ -19,7 +20,7 @@ export const failedGetComment = (errorMessage) => ({
   errorMessage 
 });
 
-export const getCommentAction = (inputJson) => {
+export const getCommentListAction = (inputJson) => {
 	return (dispatch) => {
 		dispatch(startGetComment);
 		getComments.getComemtList(inputJson).then((res) => {

@@ -6,7 +6,7 @@ import { ClipLoader } from 'react-spinners';
 
 import logoURL from '../../../asset/empty-video-logo.gif';
 import logoutApi from '../../api/postLogout';
-import getVideosAction from '../../actions/GetVideosActions';
+import { getVideoListAction } from '../../actions/getVideoListActions';
 
 class Header extends React.Component {
   state = {
@@ -48,7 +48,7 @@ class Header extends React.Component {
         filter: 'date',
         word: this.refs.keyword.value
       };
-      this.props.getVideosAction(inputJson);
+      this.props.getVideoListAction(inputJson);
     }
   };
 
@@ -61,7 +61,7 @@ class Header extends React.Component {
         filter: 'date',
         word: undefined
       };
-      this.props.getVideosAction(inputJson);
+      this.props.getVideoListAction(inputJson);
       document.getElementsByClassName('search-input')[0].value = '';
     }
   }
@@ -168,5 +168,5 @@ class Header extends React.Component {
 const mapStateToProps = (state) => (state);
 
 module.exports = connect(
-  mapStateToProps, { getVideosAction }
+  mapStateToProps, { getVideoListAction }
 )(Header);

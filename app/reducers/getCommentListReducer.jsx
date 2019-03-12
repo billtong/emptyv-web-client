@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 
-export const getCommentReducer = (state = '', action) => {
+export const getCommentListReducer = (state = '', action) => {
   switch (action.type) {
     case START_COMMENTS_FETCH:
       return {
