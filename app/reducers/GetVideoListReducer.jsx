@@ -14,7 +14,8 @@ export const getVideoListReducer = (state = '', action) => {
         error: undefined,
         totalPages: undefined,
         word: undefined,
-        filter: 'date'
+        filter: action.filter,
+        currPage: action.currPage
       };
     case COMPLETE_VIDEOS_FETCH:
       return {
@@ -23,7 +24,8 @@ export const getVideoListReducer = (state = '', action) => {
         error: undefined,
         totalPages: action.totalPages,
         word: action.word,
-        filter: action.filter
+        filter: action.filter,
+        currPage: action.currPage
       };
     case FAILED_VIDEOS_FETCH:
       return {
@@ -32,7 +34,8 @@ export const getVideoListReducer = (state = '', action) => {
         error: action.errorMessage,
         totalPages: undefined,
         word: action.word,
-        filter: action.filter
+        filter: action.filter,
+        currPage: action.currPage
       };
     default:
       return state;

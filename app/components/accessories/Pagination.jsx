@@ -3,17 +3,12 @@ import { connect } from 'react-redux';
 import { getVideoListAction } from '../../actions/getVideoListActions';
 
 class Pagination extends React.Component {
-  state = {
-    currPage: 1
-  }
+
   render() {
     const pagination = (this.props.list === undefined || this.props.totalPages === undefined) ? null : 
     Array(...{ length: this.props.totalPages }).map((value, index) => {
       const changePage = (e) => {
         e.preventDefault();
-        this.setState({
-          currPage: (index + 1)
-        });
         const inputJson = { 
           currPage: (index + 1),
           sizes: this.props.sizes,

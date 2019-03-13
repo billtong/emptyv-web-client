@@ -7,14 +7,6 @@ import Pagination from '../Pagination';
 
 
 class VideoGrid extends React.Component {
-  state = {
-    isLoading: false,
-    videoList: undefined,
-    error: undefined,
-    currPage: this.props.currPage,  //这里的currPage初始为1，paginate回自动生成相应的pageNum
-    totalPages: undefined
-  };
-
   componentWillUnmount() {
     document.getElementsByClassName('search-input')[0].value = '';
   }
@@ -22,7 +14,7 @@ class VideoGrid extends React.Component {
   handleChange=(e) => {
     e.preventDefault();
     const inputJson = {
-      currPage: this.state.currPage,
+      currPage: this.props.currPage,
       sizes: this.props.sizes,
       filter: e.target.value,
       word: this.props.word
@@ -64,6 +56,7 @@ class VideoGrid extends React.Component {
           word={this.props.word}
           filter={this.props.filter}
           sizes={this.props.sizes}
+          currPage={this.props.currPage}
         />
         <div className="loader" >{loadingIcon}</div>
         <div className="error-text-section">{errText}</div>
@@ -74,8 +67,8 @@ class VideoGrid extends React.Component {
 
 
 const mapStateToProps = ({ videoGrid }) => {
-  const { isLoading, videoList, error, totalPages, word, filter } = videoGrid;
-  return { isLoading, videoList, error, totalPages, word, filter };
+  const { isLoading, videoList, error, totalPages, word, filter, currPage } = videoGrid;
+  return { isLoading, videoList, error, totalPages, word, filter, currPage };
 };
 
 module.exports = connect(
