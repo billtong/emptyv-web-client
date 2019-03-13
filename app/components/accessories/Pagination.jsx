@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getVideoListAction } from '../../actions/getVideoListActions';
 
 class Pagination extends React.Component {
-
   render() {
     const pagination = (this.props.list === undefined || this.props.totalPages === undefined) ? null : 
     Array(...{ length: this.props.totalPages }).map((value, index) => {

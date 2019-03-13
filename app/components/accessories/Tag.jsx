@@ -21,8 +21,18 @@ class Tag extends React.Component {
       tagList: this.props.tagList,
       isTagAdd: false,
       isTagBlur: true,
-      isTagForcus: false
+      isTagForcus: false,
+      hasChanged: false
     });
+  }
+
+  componentWillUnmount = () => {
+    if (this.state.hasChanged) {
+      videoAPI.patchTags({
+        videoId: this.props.videoId,
+        tagJsonString: this.state.tagList
+      });
+    } 
   }
 
   handleEnterKey=(e) => {
@@ -37,25 +47,14 @@ class Tag extends React.Component {
       e.preventDefault();
       const newTagList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
       newTagList.push(tag);
-
       this.setState(prevState => ({
         ...prevState,
         isTagAdd: false,
         isTagForcus: false,
         isTagBlur: true,
+        hasChanged: true,
+        tagList: newTagList.join(',')
       }));
-
-      videoAPI.patchTags({
-        videoId: this.props.videoId,
-        tagJsonString: newTagList.join(',')
-      }).then(()=>{
-        this.setState(prevState => ({
-          ...prevState,
-          tagList: newTagList.join(',')
-        }));
-      }).catch(()=>{
-        alert('failed add tag');
-      });
     }
   };
 
