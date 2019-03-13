@@ -1,13 +1,20 @@
 .video-page-main-section {
-  padding-top:10rem;
+  padding-top: 3rem;
   .video-player-section{
     border: 1px solid #313131;
     border-radius: 4px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     position: relative;
-    max-width: 75rem;
+    max-width: 80rem;
     margin-left: 5rem;
     margin-top: 5rem;
+    .videos-player{
+      position: relative;
+      max-width: 80rem;
+      max-height: 50rem;
+      margin: 0.5rem;
+    }
+
     .video-info-section {
       .video-title {
         background-color: #313131;
@@ -22,7 +29,13 @@
         .actioned {
           color: orange;
         }
-      } 
+      }
+      
+      .video-little-title-sectiton {
+        .num {
+          display: inline-block;
+        }
+      }
     }
   }
   

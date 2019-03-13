@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from './baseURL.jsx';
+import { getTokenParamURL } from './apiHelper';
 
 
 module.exports = {
@@ -15,8 +16,8 @@ module.exports = {
     });
   },
 
-  postComment: (inputJson, userToken, sessionId) => {
-    const deviceListURL = `${BASE_URL}api/comment/write?userId=${inputJson.userId}&token=${userToken}&sessionId=${sessionId}`;
+  postComment: (inputJson) => {
+    const deviceListURL = `${BASE_URL}api/comment/write?${getTokenParamURL()}`;
     return axios.post(deviceListURL, {
       commentContent: inputJson.commentContent,
       videoId: inputJson.videoId,

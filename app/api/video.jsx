@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from './baseURL.jsx';
-
+import { getTokenParamURL } from './apiHelper';
 
 module.exports = {
   getVideo: (videoId) => {
@@ -49,7 +49,7 @@ module.exports = {
 
   patchOtherNum: (inputJson) => {
     //这里不可空行，空行会被写入
-    const deviceListURL = `${BASE_URL}api/video/patchOtherNum?videoId=${inputJson.videoId}&action=${inputJson.action}&userId=${inputJson.userId}&token=${inputJson.token}&sessionId=${inputJson.sessionId}`;
+    const deviceListURL = `${BASE_URL}api/video/patchOtherNum?videoId=${inputJson.videoId}&action=${inputJson.action}&${getTokenParamURL()}`;
     return axios.patch(deviceListURL, {
       headers: {
         'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ module.exports = {
 
   patchTags: (inputJson) => {
     //这里不可空行，空行会被写入
-    const deviceListURL = `${BASE_URL}api/video/patchTags?videoId=${inputJson.videoId}&tagJsonString=${inputJson.tagJsonString}&userId=${inputJson.userId}&token=${inputJson.token}&sessionId=${inputJson.sessionId}`;
+    const deviceListURL = `${BASE_URL}api/video/patchTags?videoId=${inputJson.videoId}&tagJsonString=${inputJson.tagJsonString}&${getTokenParamURL()}`;
     return axios.patch(deviceListURL, {
       headers: {
         'Content-Type': 'application/json'

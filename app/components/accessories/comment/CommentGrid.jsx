@@ -5,6 +5,7 @@ import { RingLoader } from 'react-spinners';
 import CommentBlock from './CommentBlock.jsx';
 import { getCommentListAction } from '../../../actions/getCommentListAction';
 import CommentAPI from '../../../api/comment';
+import { getSessionTokenJson } from '../../../api/apiHelper';
 
 
 class CommentGrid extends React.Component {
@@ -25,20 +26,16 @@ class CommentGrid extends React.Component {
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
-  //bug -> 这里refs为{},暂时还不知道原因
   handleEnterKey=(e) => {
     if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
-      const comment = e.target.value;
-      e.target.value = '';
-      const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
+      const comment = this.refs.comment.value;
+      this.refs.comment.value = '';
       const inputJson = {
         commentContent: comment,
         videoId: this.props.videoId,
-        userId: userJSON.user.userId
+        userId: getSessionTokenJson().user.userId
       };
-      CommentAPI.postComment(inputJson, 
-      userJSON.userToken,
-      userJSON.userSessionId)
+      CommentAPI.postComment(inputJson)
       .then(() => {
         this.props.getCommentListAction({ videoId: this.props.videoId });
       })
@@ -74,7 +71,9 @@ class CommentGrid extends React.Component {
         <div className="comment-box">
           <input 
             className="form-control comment-content"
+            id="comment-box"
             placeholder="Press <Enter> to leave a comment"
+            type="text"
             onKeyPress={e => this.handleEnterKey(e)}
             onFocus={this.ifForcus}
             onBlur={this.ifBlur}

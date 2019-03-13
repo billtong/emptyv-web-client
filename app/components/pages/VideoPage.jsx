@@ -6,6 +6,7 @@ import { RingLoader } from 'react-spinners';
 
 import ReactPlayer from '../accessories/VideoPlayer';
 import CommentGrid from '../accessories/comment/CommentGrid';
+import Tag from '../accessories/Tag';
 import { formatDateTime } from '../../utils/dateTools.jsx';
 import { getVideoActions } from '../../actions/getVideoActions.jsx';
 import videoAPI from '../../api/video.jsx';
@@ -62,7 +63,6 @@ class VideoPage extends React.Component {
           break;
         default:
       }
-      console.log(this.state);
     }).catch(() => {
       alert('failed, pleas login or sign up');
     });
@@ -93,7 +93,6 @@ class VideoPage extends React.Component {
         }}
       />
     );
-
     const likeIcon = this.state.hasLike ? (
       <div className='video-action-action actioned'>
         <MdThumbUp />Good 
@@ -103,7 +102,6 @@ class VideoPage extends React.Component {
       <MdThumbUp />Good 
     </div>
     );
-
     const unlikeIcon = this.state.hasUnlike ? (
       <div className='video-action-action actioned'>
         <MdThumbDown />
@@ -113,7 +111,6 @@ class VideoPage extends React.Component {
         <MdThumbDown />
       </div>
     );
-
     const favIcon = this.state.hasFav ? (
       <div className='video-action-action love-action actioned'>
         <IoIosHeart />
@@ -123,7 +120,6 @@ class VideoPage extends React.Component {
         <IoIosHeart />
       </div>
     );
-
     const videoTitle = this.props.videoData === undefined ? null : (
       <div className='video-title'>
         <h1>{videoData.videoName}</h1>
@@ -132,31 +128,32 @@ class VideoPage extends React.Component {
         {favIcon}
       </div>
     );
+    const tagList = this.props.videoData === undefined ? null : (
+      <Tag tagList={this.props.videoData.videoTag} videoId={this.props.videoData.videoId} />
+    );
     const videoLittleTitle = this.props.videoData === undefined ? null : (
       <div className='video-little-title-sectiton'>
         <div className='video-view-num'>
           {videoData.videoViewNum} views
         </div>
-        <div className='video-like-num'>
+        <div className='num video-like-num'>
           {videoData.videoLikeNum}<MdThumbUp />
         </div>
-        <div className='video-unlike-num'>
+        <div className='num video-unlike-num'>
           {videoData.videoUnlikeNum}<MdThumbDown />
         </div>
-        <div className='video-fav-num'>
+        <div className='num video-fav-num'>
           {videoData.videoFavouriteNum}<IoIosHeart />
         </div>
         <div className='video-upload-data'>
           Published on {formatDateTime(parseInt(videoData.videoDate))}
         </div>
+        {tagList}
       </div>
     );
-
-    
     const videoComment = this.props.videoData === undefined ? null : (
       <CommentGrid videoId={videoData.videoId} />
     );
-
     return (
       <div className="video-page-main-section">
         {loadingIcon}
