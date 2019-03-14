@@ -92,6 +92,7 @@ class VideoPage extends React.Component {
       };
       CommentAPI.postComment(inputJson)
       .then(() => {
+        this.props.completeGetComment();    //先让commentList清零来重新加载commentlist
         this.props.getCommentListAction({ videoId: this.props.location.query.videoId });
       })
       .catch((err) => {
@@ -236,11 +237,14 @@ class VideoPage extends React.Component {
             {videoLittleTitle}
           </div>
         </div>
-        <div className="comment-write-block-section">
-          {commentUploadBox}
-        </div>
+
+        <div className="comment-section">
+          <div className="comment-write-block-section">
+            {commentUploadBox}
+          </div>
         <CommentGrid videoId={this.props.location.query.videoId} />
         {commentPagination}
+        </div>
       </div>
     );
   }

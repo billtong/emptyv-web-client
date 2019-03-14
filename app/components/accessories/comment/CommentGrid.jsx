@@ -24,8 +24,7 @@ class CommentGrid extends React.Component {
     });
 
     return (
-      <div className="comment-section">
-        <div className="comment-grid-section">
+      <div className="comment-grid-section">
           <div className="loading-icon-sectiton">
             {getLoadingIcon}
           </div>
@@ -36,7 +35,6 @@ class CommentGrid extends React.Component {
             {commentList}
           </div>
         </div>
-      </div>
     );
   }
 }
