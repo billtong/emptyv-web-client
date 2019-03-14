@@ -38,5 +38,30 @@
       }
     }
   }
-  
+  .comment-write-block-section{
+    margin-top: 2rem;
+    padding-left: 5rem;
+    a {
+      color: #ed2133;
+      margin-left: 1rem;
+    }
+    a:hover {
+      text-decoration: none;
+      color: red;
+    }
+
+    .comment-box{
+      .comment-content {
+        width: 90%;
+        height: 2rem;
+        display: inline-block;
+      }
+      .comment-btn {
+        width: 4rem;
+        height: 2rem;
+        padding: 0 0;
+        display: inline-block;
+      }
+    }
+  } 
 }

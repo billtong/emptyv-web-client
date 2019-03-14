@@ -22,8 +22,8 @@ class Header extends React.Component {
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
-  logout = (e) => {
-    e.preventDefault();
+  logout = () => {
+    this.handleMenuClick();
     const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
     const inputJson = {
       sessionId: userJSON.userSessionId,
@@ -34,6 +34,8 @@ class Header extends React.Component {
       sessionStorage.removeItem('empty-video-web-user-session');
       this.setState({ isLoading: false });
       hashHistory.push('/');
+    }).catch(() => {
+      alert('logout failed');
     });
     this.setState({ isLoading: true });
   }
@@ -42,28 +44,24 @@ class Header extends React.Component {
     if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
       e.preventDefault();
       hashHistory.push('/');
-      const inputJson = { 
-        currPage: 1,
-        sizes: 5,
-        filter: 'date',
-        word: this.refs.keyword.value
-      };
-      this.props.getVideoListAction(inputJson);
+      this.props.getVideoListAction({ 
+        currPage: this.props.currPage,
+        sizes: this.props.sizes,
+        filter: this.props.filter,
+        word: this.refs.keyword.value,
+      });
     }
   };
 
-  handleClick=() => {
-    const searchInputElement = document.getElementsByClassName('search-input')[0];
-    if (searchInputElement.value !== '') {
-      const inputJson = { 
-        currPage: 1,
-        sizes: 5,
-        filter: 'date',
-        word: undefined
-      };
-      this.props.getVideoListAction(inputJson);
-      document.getElementsByClassName('search-input')[0].value = '';
-    }
+  //点击home见刷新videolist
+  handleMenuClick=() => {
+    this.refs.keyword.value = '';
+    this.props.getVideoListAction({ 
+      currPage: this.props.currPage,
+      sizes: this.props.sizes,
+      filter: this.props.filter,
+      word: undefined,
+    });
   }
 
   ifForcus=() => {
@@ -97,12 +95,12 @@ class Header extends React.Component {
         </form>
       </li>
       <li className="desktop">
-        <Link to="/" className="header-menu" onClick={() => this.handleClick()}>
+        <Link to="/" className="header-menu" onClick={() => this.handleMenuClick()}>
           Home
         </Link>
       </li>
       <li className="desktop">
-        <Link to="Donate" className="header-menu">Donate Us</Link>
+        <Link to="Donate" className="header-menu" onClick={() => this.handleMenuClick()}>Donate Us</Link>
       </li>
     </ul>
   );
@@ -118,12 +116,12 @@ class Header extends React.Component {
       (
         <ul className="menu-right">
           <li className="desktop">
-            <Link to="SignIn" className="header-menu">
+            <Link to="SignIn" className="header-menu" onClick={() => this.handleMenuClick()}>
               <MdInput className="usr-icon-action" />Sign In
             </Link>
           </li>
           <li className="desktop">
-            <Link to="SignUp" className="header-menu">
+            <Link to="SignUp" className="header-menu" onClick={() => this.handleMenuClick()}>
               <MdEdit className="usr-icon-action" />Sign Up
             </Link>
           </li>
@@ -131,13 +129,13 @@ class Header extends React.Component {
       ) : 
       (
         <ul className="menu-right">
-          <li className="desktop">
+          <li className="desktop" onClick={() => this.handleMenuClick()}>
             <Link to="UserPage" className="header-menu">
               User Page
             </Link>
           </li>
           <li className="desktop">
-            <div to="/" className="header-menu" onClick={e => this.logout(e)}>
+            <div to="/" className="header-menu" onClick={() => this.logout()}>
               Logout
             </div>
           </li>
@@ -151,7 +149,7 @@ class Header extends React.Component {
       <div className="header-section">
         <nav role="navigation">
           <div className="logo-container">
-            <Link to="/" activeClassName="active">
+            <Link to="/" activeClassName="active" onClick={() => this.handleMenuClick()}>
               <img width="20px" height="23px" src={logoURL} alt="logo" />
             </Link>
           </div>
@@ -165,7 +163,10 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => (state);
+const mapStateToProps = ({ videoGrid }) => {
+  const { filter, currPage, sizes } = videoGrid;
+  return { filter, currPage, sizes };
+};
 
 module.exports = connect(
   mapStateToProps, { getVideoListAction }

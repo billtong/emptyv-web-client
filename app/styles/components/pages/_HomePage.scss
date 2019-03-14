@@ -18,4 +18,20 @@
       border-style: none; 
     }
   }
+  .search-keyword-display {
+    font-size: 2rem;
+    margin: 1rem 4rem;
+  }
+
+  .filter-selecter-section {
+    margin: 1rem 4rem;
+    .select-section {
+      color: #d9d9d9;
+      background: #0d0d0d;
+      border: #0d0d0d;
+    }
+    .select-section:visited {
+      outline: none;
+    }
+  }
 }

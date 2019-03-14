@@ -16,7 +16,7 @@ module.exports = {
   },
 
   getVideoList: (inputJson) => {
-    const deviceListURL = `${BASE_URL}api/video/getVideoList?currPage=${inputJson.currPage}&filter=${inputJson.filter}&sizes=${inputJson.sizes}&word=`;
+    const deviceListURL = `${BASE_URL}api/video/getVideoList?filter=${inputJson.filter}&word=`;
     return axios.get(deviceListURL, {
       headers: {
         'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ module.exports = {
   },
 
   searchVideoList: (inputJson) => {
-    const deviceListURL = `${BASE_URL}api/video/getVideoList?currPage=${inputJson.currPage}&filter=${inputJson.filter}&sizes=${inputJson.sizes}&word=${inputJson.word}`;
+    const deviceListURL = `${BASE_URL}api/video/getVideoList?filter=${inputJson.filter}&word=${inputJson.word}`;
     return axios.get(deviceListURL, {
       headers: {
         'Content-Type': 'application/json'

@@ -6,33 +6,6 @@
   margin-right: 5rem;
   padding-bottom: 4rem;
   width: 65rem;
-  .comment-write-block-section{
-    margin-top: 1rem;
-    a {
-      color: #ed2133;
-      margin-left: 1rem;
-    }
-    a:hover {
-      text-decoration: none;
-      color: red;
-    }
-
-    .comment-box{
-      padding-bottom: 2rem;
-      .comment-content {
-        width: 90%;
-        height: 2rem;
-        display: inline-block;
-      }
-      .comment-btn {
-        width: 4rem;
-        height: 2rem;
-        padding: 0 0;
-        display: inline-block;
-      }
-    }
-  } 
-
   .comment-grid-section {
     .comment-list-section {
       .comment-block-section {

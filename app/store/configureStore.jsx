@@ -13,7 +13,7 @@ export const configure = () => {
     signUp: signUpReducer,
     videoGrid: getVideoListReducer,
     videoPage: getVideoReducer,
-    commentGrid: getCommentListReducer
+    commentGrid: getCommentListReducer,
   });
   const store = redux.createStore(reducer, redux.compose(
     redux.applyMiddleware(thunkMiddleware),

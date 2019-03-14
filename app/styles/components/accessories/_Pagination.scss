@@ -1,0 +1,19 @@
+.pagination {
+  margin: 0 auto;
+  display: flex;
+  width: 10rem;
+  list-style: none;
+  padding-bottom: 1rem;
+  .currPage-index-text {
+    font-size: 1.1rem;
+  }
+
+  .index-text{
+    font-size: 1rem;
+    padding-right: 1rem;
+  }
+  .index-text:hover {
+    cursor: pointer;
+    color: #888;
+  }
+}

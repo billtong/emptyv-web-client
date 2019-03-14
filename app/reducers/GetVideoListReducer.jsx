@@ -1,43 +1,42 @@
 import {
     START_VIDEOS_FETCH,
     COMPLETE_VIDEOS_FETCH,
-    FAILED_VIDEOS_FETCH
+    FAILED_VIDEOS_FETCH,
+    COMPELETE_UPDATE_VIDEO_PAGES,
 } from '../actions/types.jsx';
 
-
 export const getVideoListReducer = (state = '', action) => {
+  console.log(action.type);
   switch (action.type) {
     case START_VIDEOS_FETCH:
       return {
         isLoading: true,
-        videoList: undefined,
         error: undefined,
-        totalPages: undefined,
-        word: undefined,
+        videoList: undefined,
+        word: action.word,
         filter: action.filter,
-        currPage: action.currPage
       };
     case COMPLETE_VIDEOS_FETCH:
       return {
+        ...state,
         isLoading: false,
-        videoList: action.videos,
         error: undefined,
-        totalPages: action.totalPages,
-        word: action.word,
-        filter: action.filter,
-        currPage: action.currPage
+        videoList: action.videos,
       };
     case FAILED_VIDEOS_FETCH:
       return {
+        ...state,
         isLoading: false,
         videoList: undefined,
         error: action.errorMessage,
-        totalPages: undefined,
-        word: action.word,
-        filter: action.filter,
-        currPage: action.currPage
+      };
+    case COMPELETE_UPDATE_VIDEO_PAGES:
+      return {
+        ...state,
+        currPage: action.currPage,
+        sizes: action.sizes,
       };
     default:
       return state;
-  }
+    }
 };

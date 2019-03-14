@@ -1,7 +1,8 @@
 import {
 	START_COMMENTS_FETCH,
 	COMPLETE_COMMENTS_FETCH,
-	FAILED_COMMENTS_FETCH
+  FAILED_COMMENTS_FETCH,
+  COMPELETE_UPDATE_COMMENT_PAGES
 } from './types';
 import getComments from '../api/comment.jsx';
 
@@ -19,6 +20,16 @@ export const failedGetComment = (errorMessage) => ({
   type: FAILED_COMMENTS_FETCH,
   errorMessage 
 });
+
+export const updateCommentPageAction = (currPage, sizes) => {
+  return (dispatch) => {
+    dispatch({
+      type: COMPELETE_UPDATE_COMMENT_PAGES,
+      currPage,
+      sizes
+    });
+  };
+};
 
 export const getCommentListAction = (inputJson) => {
 	return (dispatch) => {

@@ -10,23 +10,6 @@
     text-align: center;
   }
 
-  .search-keyword-display {
-    font-size: 2rem;
-    margin: 1rem 4rem;
-  }
-
-  .filter-selecter-section {
-    margin: 1rem 4rem;
-    .select-section {
-      color: #d9d9d9;
-      background: #0d0d0d;
-      border: #0d0d0d;
-    }
-    .select-section:visited {
-      outline: none;
-    }
-  }
-
   .video-blocks-section {
     max-width: 70%;
     margin: 0 auto;
@@ -51,26 +34,6 @@
       cursor: pointer;
     }
 
-  }
-
-  .pagination {
-    margin: 0 auto;
-    display: flex;
-    width: 10rem;
-    list-style: none;
-    padding-bottom: 1rem;
-    .currPage-index-text {
-      font-size: 1.1rem;
-    }
-
-    .index-text{
-      font-size: 1rem;
-      padding-right: 1rem;
-    }
-    .index-text:hover {
-      cursor: pointer;
-      color: #888;
-    }
   }
 }
  

@@ -3,42 +3,55 @@ import { MdThumbUp, MdThumbDown } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { IoIosHeart } from 'react-icons/io';
 import { RingLoader } from 'react-spinners';
+import { Link } from 'react-router';
 
 import ReactPlayer from '../accessories/VideoPlayer';
+import Pagination from '../accessories/Pagination';
 import CommentGrid from '../accessories/comment/CommentGrid';
 import Tag from '../accessories/Tag';
 import { formatDateTime } from '../../utils/dateTools.jsx';
 import { getVideoActions } from '../../actions/getVideoActions.jsx';
+import { getCommentListAction, completeGetComment } from '../../actions/getCommentListAction';
+import { getSessionTokenJson } from '../../api/apiHelper';
 import videoAPI from '../../api/video.jsx';
-
+import CommentAPI from '../../api/comment';
 
 class VideoPage extends React.Component {
   state= {
     hasLike: false,
     hasUnlike: false,
     hasFav: false,
+    isBlur: true,
+    isForcus: false
   }
     
+  componentWillMount() {
+    document.addEventListener('keypress', this.handleEnterKey);
+  }
+
   componentDidMount() {
+    this.props.getCommentListAction({ videoId: this.props.location.query.videoId });
     this.props.getVideoActions(this.props.location.query.videoId);
+    document.removeEventListener('keypress', this.handleEenterKey);
+  }
+
+  //将comment回复成undefined状态
+  componentWillUnmount() {
+    this.props.completeGetComment();
   }
 
   handleClickAction = (e, myAction) => {
     e.preventDefault();
-    const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
+    const userJSON = getSessionTokenJson();
     if (!userJSON) {
       alert('please login or sign up a new account');
       return;
     }
-
     const inputJson = {
       action: myAction,
-      videoId: this.props.videoData.videoId,
+      videoId: this.props.location.query.videoId,
       userId: userJSON.user.userId,
-      token: userJSON.userToken,
-      sessionId: userJSON.userSessionId
     };
-
     videoAPI.patchOtherNum(inputJson).then(() => {
       switch (myAction) {
         case 'like':
@@ -67,7 +80,42 @@ class VideoPage extends React.Component {
       alert('failed, pleas login or sign up');
     });
   }
+
+  handleEnterKey=(e) => {
+    if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
+      const comment = this.refs.comment.value;
+      this.refs.comment.value = '';
+      const inputJson = {
+        commentContent: comment,
+        videoId: this.props.location.query.videoId,
+        userId: getSessionTokenJson().user.userId
+      };
+      CommentAPI.postComment(inputJson)
+      .then(() => {
+        this.props.getCommentListAction({ videoId: this.props.location.query.videoId });
+      })
+      .catch((err) => {
+        alert(`failed post comment${err}`);
+      });
+    }
+  };
  
+  ifForcus=() => {
+    this.setState(prevState => ({
+      ...prevState,
+      isForcus: true,
+      isBlur: false
+    }));
+  }
+
+  ifBlur=() => {
+    this.setState(prevState => ({
+      ...prevState,
+      isForcus: false,
+      isBlur: true
+    }));
+  }
+
   render() {
     const videoData = this.props.videoData;
     const loadingIcon = this.props.isLoading ? (
@@ -151,8 +199,31 @@ class VideoPage extends React.Component {
         {tagList}
       </div>
     );
-    const videoComment = this.props.videoData === undefined ? null : (
-      <CommentGrid videoId={videoData.videoId} />
+    const token = sessionStorage.getItem('empty-video-web-user-session');
+    const commentUploadBox = (!token || token.length <= 0) ? 
+      ( 
+        <Link to="SignIn">Sign In To Leave a Comment</Link>
+      ) : 
+      (
+        <div className="comment-box">
+          <input 
+            className="form-control comment-content"
+            id="comment-box"
+            placeholder="Press <Enter> to leave a comment"
+            type="text"
+            onKeyPress={e => this.handleEnterKey(e)}
+            onFocus={this.ifForcus}
+            onBlur={this.ifBlur}
+            ref="comment" 
+          />
+        </div>
+      );
+    
+    const commentPagination = (!this.props.commentList) ? null : (
+      <Pagination 
+        list={this.props.commentList}
+        tag="comment"
+      />
     );
     return (
       <div className="video-page-main-section">
@@ -165,18 +236,23 @@ class VideoPage extends React.Component {
             {videoLittleTitle}
           </div>
         </div>
-        {videoComment}
+        <div className="comment-write-block-section">
+          {commentUploadBox}
+        </div>
+        <CommentGrid videoId={this.props.location.query.videoId} />
+        {commentPagination}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ videoPage }) => {
+const mapStateToProps = ({ videoPage, commentGrid }) => {
   const { videoData, isLoading, error } = videoPage;
-  return { videoData, isLoading, error };
+  const commentList = commentGrid.commentList;
+  return { videoData, isLoading, error, commentList };
 };
 
 module.exports = connect(
-  mapStateToProps, { getVideoActions }
+  mapStateToProps, { getVideoActions, getCommentListAction, completeGetComment }
 )(VideoPage);
 
