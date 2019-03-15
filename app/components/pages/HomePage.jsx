@@ -66,8 +66,8 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = ({ videoGrid }) => {
-  const { word, videoList } = videoGrid;
+const mapStateToProps = ({ getVideoListReducer }) => {
+  const { word, videoList } = getVideoListReducer;
   return { word, videoList };
 };
 

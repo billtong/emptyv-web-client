@@ -163,8 +163,8 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = ({ videoGrid }) => {
-  const { filter, currPage, sizes } = videoGrid;
+const mapStateToProps = ({ getVideoListReducer }) => {
+  const { filter, currPage, sizes } = getVideoListReducer;
   return { filter, currPage, sizes };
 };
 

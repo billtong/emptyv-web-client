@@ -88,8 +88,8 @@ class SignUp extends React.Component {
   }
 }
 
-const mapStateToProps = ({ signUp }) => {
-    const { isLoading, rslt } = signUp;
+const mapStateToProps = ({ signUpReducer }) => {
+    const { isLoading, rslt } = signUpReducer;
     return { isLoading, rslt };
 };
 

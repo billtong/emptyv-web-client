@@ -70,8 +70,8 @@ class SignIn extends React.Component {
 
 }
 
-const mapStateToProps = ({ signIn }) => {
-  const { isLoading, error } = signIn;
+const mapStateToProps = ({ signInReducer }) => {
+  const { isLoading, error } = signInReducer;
   return { isLoading, error };
 };
 

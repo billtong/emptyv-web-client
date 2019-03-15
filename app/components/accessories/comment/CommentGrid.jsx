@@ -39,8 +39,8 @@ class CommentGrid extends React.Component {
   }
 }
 
-const mapStateToProps = ({ commentGrid }) => {
-  const { isGetLoading, commentList, error, currPage, sizes } = commentGrid;
+const mapStateToProps = ({ getCommentListReducer }) => {
+  const { isGetLoading, commentList, error, currPage, sizes } = getCommentListReducer;
   return { isGetLoading, commentList, error, currPage, sizes };
 };
 

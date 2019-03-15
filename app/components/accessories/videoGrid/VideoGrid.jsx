@@ -29,8 +29,8 @@ class VideoGrid extends React.Component {
   }
 }
 
-const mapStateToProps = ({ videoGrid }) => {
-  const { isLoading, videoList, error, currPage, sizes } = videoGrid;
+const mapStateToProps = ({ getVideoListReducer }) => {
+  const { isLoading, videoList, error, currPage, sizes } = getVideoListReducer;
   return { isLoading, videoList, error, currPage, sizes };
 };
 

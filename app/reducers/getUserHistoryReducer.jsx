@@ -4,7 +4,7 @@ import {
   FAILED_GET_USER_HISTORY 
 } from '../actions/types.jsx';
 
-export const signInReducer = (state = '', action) => {
+export const getUserHistoryReducer = (state = '', action) => {
   switch (action.type) {
     case START_GET_USER_HISTORY:
       return {

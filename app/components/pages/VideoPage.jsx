@@ -250,9 +250,9 @@ class VideoPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ videoPage, commentGrid }) => {
-  const { videoData, isLoading, error } = videoPage;
-  const commentList = commentGrid.commentList;
+const mapStateToProps = ({ getVideoReducer, getCommentListReducer }) => {
+  const { videoData, isLoading, error } = getVideoReducer;
+  const commentList = getCommentListReducer.commentList;
   return { videoData, isLoading, error, commentList };
 };
 
