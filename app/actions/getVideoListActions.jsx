@@ -4,7 +4,7 @@ import {
   FAILED_VIDEOS_FETCH,
   COMPELETE_UPDATE_VIDEO_PAGES,
 } from './types.jsx';
-import videoAPI from '../api/video';
+import { getVideoList } from '../api/video';
 
 
 export const startGetVideos = (filter, currPage, word, sizes) => ({
@@ -25,6 +25,17 @@ export const failedGetVideos = (errorMessage) => ({
   errorMessage,
 });
 
+export const getVideoListAction = (inputJson) => {
+  return (dispatch) => {
+    dispatch(startGetVideos(inputJson.filter, inputJson.currPage, inputJson.word, inputJson.sizes));
+    getVideoList(inputJson).then((res) => {
+      dispatch(completeGetVideos(res.data.videoList));
+    }).catch(() => {
+      dispatch(failedGetVideos('Sorry...we ain\'t able to serve any videos rn'));
+    });
+  };
+};
+
 export const updateVideoPageAction = (currPage, sizes) => {
   return (dispatch) => {
     dispatch({
@@ -32,24 +43,5 @@ export const updateVideoPageAction = (currPage, sizes) => {
       currPage,
       sizes
     });
-  };
-};
-
-export const getVideoListAction = (inputJson) => {
-  return (dispatch) => {
-    dispatch(startGetVideos(inputJson.filter, inputJson.currPage, inputJson.word, inputJson.sizes));
-    if (!inputJson.word) {
-      videoAPI.getVideoList(inputJson).then((res) => {
-        dispatch(completeGetVideos(res.data.videoList));
-      }).catch((err) => {
-        dispatch(failedGetVideos('Sorry...we ain\'t able to serve any videos rn'));
-      });
-    } else {
-      videoAPI.searchVideoList(inputJson).then((res) => {
-        dispatch(completeGetVideos(res.data.videoList));
-      }).catch((err) => {
-        dispatch(failedGetVideos('Emm...I didn\'t find any video for U'));
-      });
-    }
   };
 };

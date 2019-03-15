@@ -4,7 +4,7 @@ import {
   FAILED_COMMENTS_FETCH,
   COMPELETE_UPDATE_COMMENT_PAGES
 } from './types';
-import getComments from '../api/comment.jsx';
+import { getComemtList } from '../api/comment';
 
 
 export const startGetComment = () => ({
@@ -34,7 +34,7 @@ export const updateCommentPageAction = (currPage, sizes) => {
 export const getCommentListAction = (inputJson) => {
 	return (dispatch) => {
 		dispatch(startGetComment);
-		getComments.getComemtList(inputJson).then((res) => {
+		getComemtList(inputJson).then((res) => {
 			dispatch(completeGetComment(res.data));
 		}).catch((err) => {
 			dispatch(failedGetComment(`Sorry...${err.message}`));

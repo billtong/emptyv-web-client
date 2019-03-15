@@ -13,8 +13,8 @@ import { formatDateTime } from '../../utils/dateTools.jsx';
 import { getVideoActions } from '../../actions/getVideoActions.jsx';
 import { getCommentListAction, completeGetComment } from '../../actions/getCommentListAction';
 import { getSessionTokenJson } from '../../api/apiHelper';
-import videoAPI from '../../api/video.jsx';
-import CommentAPI from '../../api/comment';
+import { patchOtherNum } from '../../api/video.jsx';
+import { postComment } from '../../api/comment';
 
 class VideoPage extends React.Component {
   state= {
@@ -52,7 +52,7 @@ class VideoPage extends React.Component {
       videoId: this.props.location.query.videoId,
       userId: userJSON.user.userId,
     };
-    videoAPI.patchOtherNum(inputJson).then(() => {
+    patchOtherNum(inputJson).then(() => {
       switch (myAction) {
         case 'like':
           this.setState(prevState => ({
@@ -90,7 +90,7 @@ class VideoPage extends React.Component {
         videoId: this.props.location.query.videoId,
         userId: getSessionTokenJson().user.userId
       };
-      CommentAPI.postComment(inputJson)
+      postComment(inputJson)
       .then(() => {
         this.props.completeGetComment();    //先让commentList清零来重新加载commentlist
         this.props.getCommentListAction({ videoId: this.props.location.query.videoId });

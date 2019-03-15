@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { MdPlayArrow, MdPause, MdVolumeMute, MdVolumeUp, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
-import videoAPI from '../../api/video.jsx';
+import { patchView } from '../../api/video.jsx';
 
 
 class VideoPlayer extends React.Component {
@@ -89,7 +89,7 @@ class VideoPlayer extends React.Component {
 		const self = this;
 		if (myVideo.paused) {
       if (this.state.showPlayBtn) {
-        videoAPI.patchView(this.props.video.video_id);
+        patchView(this.props.video.video_id);
       }
       myVideo.play();
 			self.setState({

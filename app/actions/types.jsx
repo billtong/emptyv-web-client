@@ -1,9 +1,14 @@
 //sign in actions type
 export const START_SIGN_IN_ERR_FETCH = 'start_login_err_fetch';
 export const COMPLETE_SIGN_IN_ERR_FETCH = 'complete_login_err_fetch';
+export const FAIL_SIGN_IN_ERR_FETCH = 'fail_sign_in_err_fetch';
 //sign up actions type
 export const START_SIGN_UP_RSLT_FETCH = 'start_signup_rslt_fetch';
 export const COMPLETE_SIGN_UP_RSLT_FETCH = 'complete_signup_rslt_fetch';
+//get user history
+export const START_GET_USER_HISTORY = 'start_get_user_history';
+export const COMPELETE_GET_USER_HISTORY = 'compelete_get_user_history';
+export const FAILED_GET_USER_HISTORY = 'failed_get_user_history';
 
 //get videolist type
 export const START_VIDEOS_FETCH = 'start_videos_fetch';

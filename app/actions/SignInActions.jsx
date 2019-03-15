@@ -1,22 +1,30 @@
 import { hashHistory } from 'react-router';
-import { START_SIGN_IN_ERR_FETCH, COMPLETE_SIGN_IN_ERR_FETCH } from './types.jsx';
+import { START_SIGN_IN_ERR_FETCH, 
+  COMPLETE_SIGN_IN_ERR_FETCH,
+  FAIL_SIGN_IN_ERR_FETCH
+} from './types.jsx';
 import { checkRedirect } from '../api/errorHandling.jsx';
-import getLoginToken from '../api/getLoginToken.jsx';
+import { getToken } from '../api/user';
 
 
 export const startSignIn = () => ({
   type: START_SIGN_IN_ERR_FETCH
 });
 
-export const completeSignIn = (error) => ({
+export const completeSignIn = (user) => ({
   type: COMPLETE_SIGN_IN_ERR_FETCH,
+  user
+});
+
+export const faileSignIn = (error) => ({
+  type: FAIL_SIGN_IN_ERR_FETCH,
   error
 });
 
 export const signInAction = (inputJson) => {
   return (dispatch) => {
     dispatch(startSignIn());
-    getLoginToken.getToken(inputJson)
+    getToken(inputJson)
     .then((res) => {
       const userJson = {
         user: res.data.user,
@@ -24,11 +32,11 @@ export const signInAction = (inputJson) => {
         userSessionId: res.data.sessionId
       };
       sessionStorage.setItem('empty-video-web-user-session', JSON.stringify(userJson));
+      dispatch(completeSignIn(res.data.user));
       hashHistory.push('/');
-      dispatch(completeSignIn(undefined));
     })
     .catch((err) => {
-      dispatch(completeSignIn(`Sign in Failed: ${err.message}`));
+      dispatch(faileSignIn(`Sign in Failed: ${err.message}`));
       checkRedirect(err);
     });
   };

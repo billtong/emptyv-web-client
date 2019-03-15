@@ -5,7 +5,7 @@ import { MdInput, MdEdit } from 'react-icons/md';
 import { ClipLoader } from 'react-spinners';
 
 import logoURL from '../../../asset/empty-video-logo.gif';
-import logoutApi from '../../api/postLogout';
+import { logout } from '../../api/user';
 import { getVideoListAction } from '../../actions/getVideoListActions';
 
 class Header extends React.Component {
@@ -30,7 +30,7 @@ class Header extends React.Component {
       userName: userJSON.user.userName,
       token: userJSON.userToken
     };
-    logoutApi.logout(inputJson).then(() => {
+    logout(inputJson).then(() => {
       sessionStorage.removeItem('empty-video-web-user-session');
       this.setState({ isLoading: false });
       hashHistory.push('/');

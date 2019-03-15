@@ -3,7 +3,7 @@ import {
   COMPLETE_VIDEO_FETCH,
   FAILED_VIDEO_FETCH
 } from './types.jsx';
-import videoAPI from '../api/video.jsx';
+import { getVideo } from '../api/video.jsx';
 
 
 export const startGetVideo = () => ({
@@ -23,7 +23,7 @@ export const failedGetVideo = (error) => ({
 export const getVideoActions = (videoId) => {
   return (dispatch) => {
     dispatch(startGetVideo());
-    videoAPI.getVideo(videoId).then((res) => {
+    getVideo(videoId).then((res) => {
       dispatch(completeGetVideo(res.data));
     }).catch((err) => {
       dispatch(failedGetVideo(`Sorry...${err.statusCode}`));

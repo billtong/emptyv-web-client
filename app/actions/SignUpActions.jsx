@@ -2,7 +2,7 @@ import {
 	START_SIGN_UP_RSLT_FETCH,
 	COMPLETE_SIGN_UP_RSLT_FETCH
 } from './types.jsx';
-import postRegister from '../api/postRegister.jsx';
+import { postRegister } from '../api/user';
 
 
 export const startSignUp = () => ({
@@ -17,7 +17,7 @@ export const completeSignUp = (rslt) => ({
 export const signUpAction = (inputJson) => {
 	return (dispatch) => {
 		dispatch(startSignUp());
-		postRegister.postRegister(inputJson)
+		postRegister(inputJson)
 			.then((res) => {
 				dispatch(completeSignUp(`${res.data.message}`));
 			})

@@ -6,7 +6,7 @@ import { updateCommentPageAction } from '../../actions/getCommentListAction';
 class Pagination extends React.Component {
   state = {
     currPage: 1,
-    sizes: 10,
+    sizes: 8,
   }
 
   componentDidMount() {

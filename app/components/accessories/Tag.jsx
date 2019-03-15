@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdAdd } from 'react-icons/md';
-import videoAPI from '../../api/video';
+import { patchTags } from '../../api/video';
 import { getSessionTokenJson } from '../../api/apiHelper';
 
 class Tag extends React.Component {
@@ -28,7 +28,7 @@ class Tag extends React.Component {
 
   componentWillUnmount = () => {
     if (this.state.hasChanged) {
-      videoAPI.patchTags({
+      patchTags({
         videoId: this.props.videoId,
         tagJsonString: this.state.tagList
       });
