@@ -24,7 +24,7 @@ export const getUserHistoryAction = () => {
   return (dispatch) => {
     getUserHistory()
     .then((res) => {
-      compeleteGetUserHistory(res.data);
+      dispatch(compeleteGetUserHistory(res.data));
     }).catch((err) => {
         dispatch(failedGetUserHistory(`failed get${err.message}`));
     });

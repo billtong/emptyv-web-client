@@ -9,7 +9,7 @@ export const signUpReducer = (state = '', action) => {
     case START_SIGN_UP_RSLT_FETCH:
       return {
         isLoading: true,
-        rslt: undefined
+        rslt: undefined,
       };
     case COMPLETE_SIGN_UP_RSLT_FETCH:
       return {

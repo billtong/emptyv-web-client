@@ -12,6 +12,5 @@ export const getSessionTokenJson = () => {
 //将它加在url的最后就能完成用户身份检验了
 export const getTokenParamURL = () => {
   const userJson = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
-  console.log(userJson);
   return (!userJson || !userJson.user || !userJson.userToken || !userJson.userSessionId) ? null : `userId=${userJson.user.userId}&token=${userJson.userToken}&sessionId=${userJson.userSessionId}`;
 };

@@ -16,7 +16,7 @@ class VideoGrid extends React.Component {
     this.props.videoList.map((video, index) => {
       const { currPage, sizes } = this.props;
       if (index >= (currPage - 1) * sizes && index < currPage * sizes) {
-        return (<VideoBlock key={video.videoId} videoInfo={video} />);
+        return (<VideoBlock key={index} videoInfo={video} />);
       }
     });
     return (

@@ -6,7 +6,6 @@ import { START_SIGN_IN_ERR_FETCH,
 import { checkRedirect } from '../api/errorHandling.jsx';
 import { getToken } from '../api/user';
 
-
 export const startSignIn = () => ({
   type: START_SIGN_IN_ERR_FETCH
 });

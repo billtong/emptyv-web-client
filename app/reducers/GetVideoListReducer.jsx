@@ -6,7 +6,6 @@ import {
 } from '../actions/types.jsx';
 
 export const getVideoListReducer = (state = '', action) => {
-  console.log(action.type);
   switch (action.type) {
     case START_VIDEOS_FETCH:
       return {

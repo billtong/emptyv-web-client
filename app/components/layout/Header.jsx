@@ -6,7 +6,7 @@ import { ClipLoader } from 'react-spinners';
 
 import logoURL from '../../../asset/empty-video-logo.gif';
 import { logout } from '../../api/user';
-import { getVideoListAction } from '../../actions/getVideoListActions';
+import { getVideoListAction, startGetVideos } from '../../actions/getVideoListActions';
 
 class Header extends React.Component {
   state = {
@@ -22,8 +22,8 @@ class Header extends React.Component {
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
-  logout = () => {
-    this.handleMenuClick();
+  logout = (e, isHome) => {
+    this.handleMenuClick(e, isHome);
     const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
     const inputJson = {
       sessionId: userJSON.userSessionId,
@@ -54,14 +54,14 @@ class Header extends React.Component {
   };
 
   //点击home见刷新videolist
-  handleMenuClick=() => {
+  handleMenuClick=(e, isRemainVideoList) => {
     this.refs.keyword.value = '';
-    this.props.getVideoListAction({ 
-      currPage: this.props.currPage,
-      sizes: this.props.sizes,
-      filter: this.props.filter,
-      word: undefined,
-    });
+    if (isRemainVideoList) {
+      window.location.reload();
+    } else {
+      this.props.startGetVideos(this.props.filter, this.props.currPage, undefined, this.props.sizes);
+    }
+    
   }
 
   ifForcus=() => {
@@ -95,12 +95,12 @@ class Header extends React.Component {
         </form>
       </li>
       <li className="desktop">
-        <Link to="/" className="header-menu" onClick={() => this.handleMenuClick()}>
+        <Link to="/" className="header-menu" onClick={(e) => this.handleMenuClick(e, true)}>
           Home
         </Link>
       </li>
       <li className="desktop">
-        <Link to="Donate" className="header-menu" onClick={() => this.handleMenuClick()}>Donate Us</Link>
+        <Link to="Donate" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>Donate Us</Link>
       </li>
     </ul>
   );
@@ -116,12 +116,12 @@ class Header extends React.Component {
       (
         <ul className="menu-right">
           <li className="desktop">
-            <Link to="SignIn" className="header-menu" onClick={() => this.handleMenuClick()}>
+            <Link to="SignIn" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>
               <MdInput className="usr-icon-action" />Sign In
             </Link>
           </li>
           <li className="desktop">
-            <Link to="SignUp" className="header-menu" onClick={() => this.handleMenuClick()}>
+            <Link to="SignUp" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>
               <MdEdit className="usr-icon-action" />Sign Up
             </Link>
           </li>
@@ -129,13 +129,13 @@ class Header extends React.Component {
       ) : 
       (
         <ul className="menu-right">
-          <li className="desktop" onClick={() => this.handleMenuClick()}>
+          <li className="desktop" onClick={(e) => this.handleMenuClick(e, true)}>
             <Link to="UserPage" className="header-menu">
               User Page
             </Link>
           </li>
           <li className="desktop">
-            <div to="/" className="header-menu" onClick={() => this.logout()}>
+            <div to="/" className="header-menu" onClick={(e) => this.logout(e, true)}>
               Logout
             </div>
           </li>
@@ -149,7 +149,7 @@ class Header extends React.Component {
       <div className="header-section">
         <nav role="navigation">
           <div className="logo-container">
-            <Link to="/" activeClassName="active" onClick={() => this.handleMenuClick()}>
+            <Link to="/" activeClassName="active" onClick={(e) => this.handleMenuClick(e, true)}>
               <img width="20px" height="23px" src={logoURL} alt="logo" />
             </Link>
           </div>
@@ -169,5 +169,5 @@ const mapStateToProps = ({ getVideoListReducer }) => {
 };
 
 module.exports = connect(
-  mapStateToProps, { getVideoListAction }
+  mapStateToProps, { getVideoListAction, startGetVideos }
 )(Header);

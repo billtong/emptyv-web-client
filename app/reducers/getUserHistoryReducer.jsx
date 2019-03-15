@@ -5,6 +5,7 @@ import {
 } from '../actions/types.jsx';
 
 export const getUserHistoryReducer = (state = '', action) => {
+  console.log(action.type);
   switch (action.type) {
     case START_GET_USER_HISTORY:
       return {
