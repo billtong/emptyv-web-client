@@ -22,7 +22,29 @@ class Pagination extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps, nextState) {
+    console.log(this.state.currPage);
+    //如果改变了videoLit就初始化currPage为1
+    if (this.props.list !== nextProps.list) {
+      switch (this.props.tag) {
+        case 'comment':
+          this.props.updateCommentPageAction(1, this.state.sizes);
+          break;
+        case 'video' :
+          this.props.updateVideoPageAction(1, this.state.sizes);
+          break;
+        default :
+          break;
+      }
+      this.setState(prevState => ({
+        ...prevState,
+        currPage: 1
+      }));
+    } 
+  }
+
   render() {
+    console.log(this.state.currPage);
     const list = this.props.list;
     const sizes = this.state.sizes;
     const pagination = (!list) ? null : 

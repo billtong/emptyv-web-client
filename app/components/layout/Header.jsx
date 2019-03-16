@@ -60,8 +60,7 @@ class Header extends React.Component {
       window.location.reload();
     } else {
       this.props.startGetVideos(this.props.filter, this.props.currPage, undefined, this.props.sizes);
-    }
-    
+    } 
   }
 
   ifForcus=() => {
