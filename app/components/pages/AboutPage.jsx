@@ -27,15 +27,15 @@ class AboutPage extends React.Component {
           <section>
             <span>
               <h2>Join Us</h2>
-              <li>Language: JavaScript,H5,<p>CSS</p>,<p>Python</p>,Java,</li>
-              <li>Framworks: <p>React.JS</p>,Spring,SpringMVC,Mybatis</li>
+              <li>Language: JavaScript, H5, <p>CSS</p>, <p>Python</p>, Java</li>
+              <li>Framworks: <p>React.JS</p>, Spring, SpringMVC, Mybatis</li>
               <li>Email: <p>emptyvideos@outlook.com</p></li>
               <li>QQ: <p>2723230945</p></li>
             </span>
           </section>
           <div className="foot-text">
           <div>we create a free WORLD</div>
-          <div>-emptyvideo team</div>
+          <div> — emptyvideo team</div>
           </div>
         </div>
       </div>
