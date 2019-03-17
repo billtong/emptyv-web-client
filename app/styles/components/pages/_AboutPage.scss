@@ -1,0 +1,38 @@
+.about-us-page {
+  height: auto;
+  padding: 5rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  text-align: left;
+  .about-us-container{
+    padding-left: 3rem;
+    border-bottom: 1px solid #333;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #1f1f1f;
+    li{
+      margin: 0.9rem;
+      font-size: 1.3rem;
+    }
+    section{
+      padding-left: 3rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 3rem;
+      padding-block-start: 1rem;
+    }
+    p{
+      color: orangered;
+      display: inline;
+    }
+    .title-text {
+      text-align: center;
+      font-weight: 800;
+    }
+    .foot-text {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-top: 1rem;
+    }
+  }
+}

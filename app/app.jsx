@@ -10,6 +10,7 @@ import Home from './components/pages/HomePage';
 import UserPage from './components/pages/UserPage';
 import VideoPage from './components/pages/VideoPage';
 import DonatePage from './components/pages/DonatePage';
+import AboutPage from './components/pages/AboutPage';
 
 require('style-loader!css-loader!sass-loader!applicationStyles');
 
@@ -28,6 +29,7 @@ ReactDOM.render(
         <Route path="UserPage" component={UserPage} />
         <Route path="VideoPage" component={VideoPage} />
         <Route path="Donate" component={DonatePage} />
+        <Route path="About" component={AboutPage} />
       </Route>
     </Router>
   </Provider>,
