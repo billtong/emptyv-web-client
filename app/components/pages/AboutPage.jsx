@@ -31,6 +31,7 @@ class AboutPage extends React.Component {
               <li>Framworks: <p>React.JS</p>, Spring, SpringMVC, Mybatis</li>
               <li>Email: <p>emptyvideos@outlook.com</p></li>
               <li>QQ: <p>2723230945</p></li>
+              <li>FollowMe: <p><a href="https://github.com/billtong">GitHub Account</a></p></li>
             </span>
           </section>
           <div className="foot-text">
