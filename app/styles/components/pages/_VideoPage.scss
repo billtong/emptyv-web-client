@@ -33,6 +33,26 @@
           margin: 0 auto;
           width: 3.6rem;
         }
+        .fav-dialog {
+          .fav-list-table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1rem 1rem auto;
+            margin-bottom: 1rem;
+            .check-box-section {
+              height: 1.5rem;
+              width: 1.5rem;
+            }
+            .fav-list-name {
+              font-size: 1.5rem;
+              font-weight: 400;
+            }
+            .fav-list-num {
+              font-size: 1.5rem;
+              font-weight: 200;
+            }
+          }
+        }
       }
       
       .video-little-title-sectiton {

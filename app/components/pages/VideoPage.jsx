@@ -16,17 +16,19 @@ import { getUserHistoryAction } from '../../actions/getUserHistoryAction';
 import { getSessionTokenJson } from '../../api/apiHelper';
 import { patchOtherNum } from '../../api/video.jsx';
 import { postComment } from '../../api/comment';
+import { getFavList, patchFavList, postFavList } from '../../api/fav';
 
 class VideoPage extends React.Component {
   state= {
     hasLike: false,
     hasUnlike: false,
     hasFav: false,
-    favDialogCss: 'notShowDialog',
+    favDialogCss: 'notShowDialog', //showDialog and notShowDialog
     isNewFavList: false,
     isBlur: true,
     isForcus: false,
-    favList: undefined
+    favList: [],
+    changedFavList: [],
   }
     
   componentWillMount() {
@@ -92,6 +94,18 @@ class VideoPage extends React.Component {
       alert('please login or sign up a new account');
       return;
     }
+    if (myAction === 'favourite') {
+      getFavList().then(res => {
+        this.setState(prevState => (
+          {
+            ...prevState,
+            favList: res.data
+          }
+        ));
+      }).catch((err) => {
+        alert(err);
+      });
+    }
     const inputJson = {
       action: myAction,
       videoId: this.props.location.query.videoId,
@@ -130,8 +144,42 @@ class VideoPage extends React.Component {
   //这个是收藏栏的提交
   //输入text了新的favlist 就post
   //点了checkbox的 就patch
-  submitFavList=() => {
-
+  sendChangedFavList=(e) => {
+    e.preventDefault();
+    console.log(this.state.changedFavList);
+    if (this.state.changedFavList.length > 0) {
+      this.state.changedFavList.forEach((value, index) => {
+        //将来最好变成一次传输，这样太浪费
+        if (!value.favId) {
+          postFavList({
+            favList: value.favList,
+            favName: value.favName,
+            userId: value.userId
+          }).then(() => {
+            if ((index + 1) >= this.state.changedFavList.length) {
+              this.setState(prevState => ({
+                ...prevState,
+                favDialogCss: 'notShowDialog'
+              }));
+            }
+          }).catch();
+        } else {
+          patchFavList({
+            favId: value.favId,
+            favList: value.favList,
+            favName: value.favName,
+            userId: value.userId
+          }).then(() => {
+            if ((index + 1) >= this.state.changedFavList.length) {
+              this.setState(prevState => ({
+                ...prevState,
+                favDialogCss: 'notShowDialog'
+              }));
+            }
+          }).catch();
+        }
+      });
+    }
   }
 
   //这个是comment的输入栏的提交法方法
@@ -207,45 +255,139 @@ class VideoPage extends React.Component {
         <IoIosHeart data-toggle="modal" />
       </div>
     );
+
+    const favCheckList = this.state.favList.length === 0 ? null : this.state.favList.map((value, index) => {
+      const videoIdArr = value.favList.split(',');
+      let isCheck = false;
+      videoIdArr.forEach(videoId => {
+        if (this.props.location.query.videoId === videoId) {
+          isCheck = true;
+        }
+      });
+      return (
+        <tr key={index}>
+          <td>
+            <input 
+              className="check-box-section" 
+              type="checkbox" 
+              defaultChecked={isCheck}
+              ref={`${index}-checkbox`}
+              onChange={() => {
+                const newChangedFavList = this.state.changedFavList;
+                if (this.refs[`${index}-checkbox`].checked) {
+                  let newFavList = value.favList;
+                  newFavList = `${newFavList},${this.props.location.query.videoId}`;
+                  newChangedFavList.push({
+                    favId: value.favId,
+                    favList: `${newFavList}`,
+                    favName: `${value.favName}`,
+                    userId: getSessionTokenJson().user.userId,
+                  });
+                }
+                if (!this.refs[`${index}-checkbox`].checked && !isCheck) {
+                  let start;
+                  newChangedFavList.forEach((value1, index1) => {
+                    if (value1.favName === value.favName) {
+                      start = index1;
+                      console.log(index);
+                      newChangedFavList.splice(start, 1);
+                      console.log(newChangedFavList);
+                      return;
+                    }
+                  });
+                }
+                if (!this.refs[`${index}-checkbox`].checked && isCheck) {
+                  //需要减去（从ture变成false，且最开始是ture）
+                  //等高人
+
+                  //需要先找到原来的位置，用正则可能更好
+                }
+                this.setState(prevState => ({
+                  ...prevState,
+                  changedFavList: newChangedFavList
+                }));
+              }} 
+            />
+          </td>
+        <td> 
+          <div className="fav-list-name">
+            {value.favName}
+          </div>
+        </td>
+        <td>
+          <div className="fav-list-num">
+            {videoIdArr.length}/100
+          </div>
+        </td>
+      </tr>
+      );
+    });
     const addNewFavList = this.state.isNewFavList ? (
-      <div>
-        <input 
-          className="form-control" 
-          type="text"
-          autoFocus="true"
-          ref="favName"
-        />
-        <input 
-          type="button" 
-          className="form-control"
-          value="add"
-          onClick={()=>{
-            //改变favlist的state状态，把这个也放到favlist里面并赋值为 1
-          }}
-        />
-      </div>
+      <tbody className="add-new-fav-list-section">
+        <tr>
+          <td>
+            <input 
+              className="new-fav-input" 
+              type="text"
+              autoFocus="true"
+              ref="favName"
+            />
+          </td>
+          <td>
+            <input 
+              type="button" 
+              className="confirm-add-btn"
+              value="add"
+              onClick={() => {
+                //改变favlist的state状态，将name和该videoId放进去
+                const newItem = {
+                  favList: `${this.props.location.query.videoId}`,
+                  favName: this.refs.favName.value,
+                  userId: getSessionTokenJson().user.userId,
+                };
+                const newFavList = this.state.favList;
+                const newChangedFavList = this.state.changedFavList;
+                newFavList.push(newItem);
+                newChangedFavList.push(newItem);
+                this.setState(prevState => ({
+                  ...prevState,
+                  favList: newFavList,
+                  changedFavList: newChangedFavList,
+                  isNewFavList: false
+                }));
+              }}
+            />
+          </td>
+        </tr>
+      </tbody>
     ) : (
-      <div className="add-new-fav-list-section">
-        <div 
-          className="add-btn" 
-          onClick={(e) => {
-            e.preventDefault();
-            this.setState(prevState => ({
-              ...prevState,
-              isNewFavList: true
-            }));
-          }}
-        >
-          <MdAdd className="add-icon" />
-        </div>make a new favourite list
-      </div>
+      <tbody className="add-new-fav-list-section">
+        <tr>
+          <td>
+            <div className="add-new-fav-list-section">
+              <div 
+              className="add-btn" 
+              onClick={(e) => {
+                e.preventDefault();
+                this.setState(prevState => ({
+                  ...prevState,
+                  isNewFavList: true
+                }));
+              }}
+              >
+                <MdAdd className="add-icon" />
+              </div>make a new favourite list
+            </div>
+          </td>
+        </tr>
+      </tbody>
     );
-    const addFavDialog = !this.state.favList ? (
+    const addFavDialog = this.state.favList.length === 0 ? (
       <div className="favlist-loader">
         <PulseLoader color={'#d9d9d9'} />
       </div>
     ) : (
-      <div className="modal-dialog modal-lg">
+      <div className="modal-dialog modal-lg fav-dialog">
           <div className="modal-content">
             <div className="modal-header">
             <h4 className="modal-title">Add to Favourite List</h4>
@@ -255,10 +397,13 @@ class VideoPage extends React.Component {
             </div>
             <div className="modal-body">
               <form role="form">
-                <input className="form-control" type="checkbox" />
-                <input className="form-control" type="checkbox" />
-                {addNewFavList}
-                <input className="form-control" type="button" value="submit" />
+                <table className="fav-list-table">
+                  <tbody>
+                  {favCheckList}
+                  </tbody>
+                  {addNewFavList}
+                </table>
+                <input className="form-control" type="button" value="submit" onClick={(e) => this.sendChangedFavList(e)} />
               </form>
             </div>
           </div>
