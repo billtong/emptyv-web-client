@@ -115,8 +115,11 @@ class Tag extends React.Component {
         />
       </div>
     ) : (
-      <div className="add-btn" onClick={e => this.handleClick(e)}>
-        <MdAdd className="add-icon" />
+      <div>
+        <div className="add-btn" onClick={e => this.handleClick(e)}>
+          <MdAdd className="add-icon" />
+        </div>
+        Add New Tags
       </div>
     );
 

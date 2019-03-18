@@ -1,8 +1,8 @@
 import React from 'react';
-import { MdThumbUp, MdThumbDown } from 'react-icons/md';
+import { MdThumbUp, MdThumbDown, MdAdd } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { IoIosHeart } from 'react-icons/io';
-import { RingLoader } from 'react-spinners';
+import { RingLoader, PulseLoader } from 'react-spinners';
 import { Link } from 'react-router';
 
 import ReactPlayer from '../accessories/VideoPlayer';
@@ -22,8 +22,11 @@ class VideoPage extends React.Component {
     hasLike: false,
     hasUnlike: false,
     hasFav: false,
+    favDialogCss: 'notShowDialog',
+    isNewFavList: false,
     isBlur: true,
-    isForcus: false
+    isForcus: false,
+    favList: undefined
   }
     
   componentWillMount() {
@@ -40,6 +43,7 @@ class VideoPage extends React.Component {
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
+  //如果有历史记录，获取历史记录来决定操作键的状态
   componentWillReceiveProps=(nextProps) => {
     if (nextProps.history !== undefined && nextProps.history.length > 0) {
       nextProps.history.forEach(item => {
@@ -73,11 +77,14 @@ class VideoPage extends React.Component {
     }
   }
 
-  //将comment回复成undefined状态
+  //将comment回复成undefined状态，方便刷新
   componentWillUnmount() {
     this.props.completeGetComment();
   }
 
+  //点击视频操作键的提交方法
+  //切换点赞，差评按钮的状态，可以点和不能点, 
+  ///收藏键一直都能点，因为用户可能回想要改变fav list，点击后还会弹出操作窗口
   handleClickAction = (e, myAction) => {
     e.preventDefault();
     const userJSON = getSessionTokenJson();
@@ -109,7 +116,8 @@ class VideoPage extends React.Component {
         case 'favourite':
           this.setState(prevState => ({
             ...prevState,
-            hasFav: true
+            hasFav: true,
+            favDialogCss: 'showDialog'
           }));
           break;
         default:
@@ -119,6 +127,14 @@ class VideoPage extends React.Component {
     });
   }
 
+  //这个是收藏栏的提交
+  //输入text了新的favlist 就post
+  //点了checkbox的 就patch
+  submitFavList=() => {
+
+  }
+
+  //这个是comment的输入栏的提交法方法
   handleEnterKey=(e) => {
     if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
       const comment = this.refs.comment.value;
@@ -138,22 +154,6 @@ class VideoPage extends React.Component {
       });
     }
   };
- 
-  ifForcus=() => {
-    this.setState(prevState => ({
-      ...prevState,
-      isForcus: true,
-      isBlur: false
-    }));
-  }
-
-  ifBlur=() => {
-    this.setState(prevState => ({
-      ...prevState,
-      isForcus: false,
-      isBlur: true
-    }));
-  }
 
   render() {
     const videoData = this.props.videoData;
@@ -200,12 +200,69 @@ class VideoPage extends React.Component {
     );
     const favIcon = this.state.hasFav ? (
       <div className='video-action-action love-action actioned'>
-        <IoIosHeart />
+        <IoIosHeart onClick={e => this.handleClickAction(e, 'favourite')} />
       </div>
     ) : (
       <div className='video-action-action love-action' onClick={e => this.handleClickAction(e, 'favourite')}>
-        <IoIosHeart />
+        <IoIosHeart data-toggle="modal" />
       </div>
+    );
+    const addNewFavList = this.state.isNewFavList ? (
+      <div>
+        <input 
+          className="form-control" 
+          type="text"
+          autoFocus="true"
+          ref="favName"
+        />
+        <input 
+          type="button" 
+          className="form-control"
+          value="add"
+          onClick={()=>{
+            //改变favlist的state状态，把这个也放到favlist里面并赋值为 1
+          }}
+        />
+      </div>
+    ) : (
+      <div className="add-new-fav-list-section">
+        <div 
+          className="add-btn" 
+          onClick={(e) => {
+            e.preventDefault();
+            this.setState(prevState => ({
+              ...prevState,
+              isNewFavList: true
+            }));
+          }}
+        >
+          <MdAdd className="add-icon" />
+        </div>make a new favourite list
+      </div>
+    );
+    const addFavDialog = !this.state.favList ? (
+      <div className="favlist-loader">
+        <PulseLoader color={'#d9d9d9'} />
+      </div>
+    ) : (
+      <div className="modal-dialog modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+            <h4 className="modal-title">Add to Favourite List</h4>
+              <button type="button" className="close" data-dismiss="modal" onClick={(e) => {e.preventDefault();this.setState(prevState => ({...prevState,favDialogCss: 'notShowDialog',isNewFavList: false}));}}>
+                  &times;
+              </button>
+            </div>
+            <div className="modal-body">
+              <form role="form">
+                <input className="form-control" type="checkbox" />
+                <input className="form-control" type="checkbox" />
+                {addNewFavList}
+                <input className="form-control" type="button" value="submit" />
+              </form>
+            </div>
+          </div>
+        </div>
     );
     const videoTitle = this.props.videoData === undefined ? null : (
       <div className='video-title'>
@@ -213,6 +270,9 @@ class VideoPage extends React.Component {
         {likeIcon}
         {unlikeIcon}
         {favIcon}
+        <div className={this.state.favDialogCss} role="dialog">
+          {addFavDialog}
+        </div>
       </div>
     );
     const tagList = this.props.videoData === undefined ? null : (
@@ -251,8 +311,20 @@ class VideoPage extends React.Component {
             placeholder="Press <Enter> to leave a comment"
             type="text"
             onKeyPress={e => this.handleEnterKey(e)}
-            onFocus={this.ifForcus}
-            onBlur={this.ifBlur}
+            onFocus={() => {
+              this.setState(prevState => ({
+                ...prevState,
+                isForcus: true,
+                isBlur: false
+              }));
+            }}
+            onBlur={() => {
+              this.setState(prevState => ({
+                ...prevState,
+                isForcus: false,
+                isBlur: true
+              }));
+            }}
             ref="comment" 
           />
         </div>

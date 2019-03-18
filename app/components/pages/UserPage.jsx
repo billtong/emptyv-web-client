@@ -16,7 +16,6 @@ class UserPage extends React.Component {
   }
 
   componentDidMount=() => {
-    console.log('did mount');
     //如果user state被刷新掉的话，从新从session中加上
     if (!this.props.user) {
       this.props.completeSignIn(getSessionTokenJson().user);
@@ -58,9 +57,6 @@ class UserPage extends React.Component {
 
   render() {
     const { user, history, isHistoryLoading, historyError } = this.props;
-    console.log(user);
-    console.log(this.state.videoList);
-    console.log(this.props.history);
     //初始化videoList
     if (history !== undefined && !this.state.videoList) {
       this.generateVideoList(history, this.state.action);

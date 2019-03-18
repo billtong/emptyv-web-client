@@ -1,22 +1,15 @@
 .tag-section{
   .tag-ul{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     .tag-li{
       display: inline-block;
       padding-right: .5rem;
-    }
-  }
-  .add-btn{
-    float: left;
-    clear: both;
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    .add-icon{
-      width: 1.25rem;
-      height: 1.25rem;
-      border-radius: 50%;
-      background-color: #ECAA03;
-      color: #fff;
+      border: 0.15rem solid #d9d9d9;
+      border-radius: 1rem;
+      padding: 0 1rem;
+      margin: 0 10px 8px 0;
+      font-weight: 500;
     }
   }
 }

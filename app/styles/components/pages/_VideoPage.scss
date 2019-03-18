@@ -29,6 +29,10 @@
         .actioned {
           color: orange;
         }
+        .favlist-loader {
+          margin: 0 auto;
+          width: 3.6rem;
+        }
       }
       
       .video-little-title-sectiton {
@@ -63,5 +67,9 @@
         display: inline-block;
       }
     }
+  } 
+
+  .close {
+    display: inline;
   } 
 }
