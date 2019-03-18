@@ -27,7 +27,7 @@ class VideoPage extends React.Component {
     isNewFavList: false,
     isBlur: true,
     isForcus: false,
-    favList: [],
+    favList: undefined,
     changedFavList: [],
   }
     
@@ -256,7 +256,7 @@ class VideoPage extends React.Component {
       </div>
     );
 
-    const favCheckList = this.state.favList.length === 0 ? null : this.state.favList.map((value, index) => {
+    const favCheckList = !this.state.favList || this.state.favList.length === 0 ? null : this.state.favList.map((value, index) => {
       const videoIdArr = value.favList.split(',');
       let isCheck = false;
       videoIdArr.forEach(videoId => {
@@ -382,7 +382,7 @@ class VideoPage extends React.Component {
         </tr>
       </tbody>
     );
-    const addFavDialog = this.state.favList.length === 0 ? (
+    const addFavDialog = !this.state.favList ? (
       <div className="favlist-loader">
         <PulseLoader color={'#d9d9d9'} />
       </div>
