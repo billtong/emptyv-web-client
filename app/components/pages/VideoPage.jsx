@@ -12,6 +12,7 @@ import Tag from '../accessories/Tag';
 import { formatDateTime } from '../../utils/dateTools.jsx';
 import { getVideoActions } from '../../actions/getVideoActions.jsx';
 import { getCommentListAction, completeGetComment } from '../../actions/getCommentListAction';
+import { getUserHistoryAction } from '../../actions/getUserHistoryAction';
 import { getSessionTokenJson } from '../../api/apiHelper';
 import { patchOtherNum } from '../../api/video.jsx';
 import { postComment } from '../../api/comment';
@@ -30,9 +31,46 @@ class VideoPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getCommentListAction({ videoId: this.props.location.query.videoId });
+    //如果有历史记录需要读一下该视频like/unLike/Fav的情况，这里先调取历史记录
+    if (getSessionTokenJson() !== null) {
+      this.props.getUserHistoryAction();
+    }
     this.props.getVideoActions(this.props.location.query.videoId);
+    this.props.getCommentListAction({ videoId: this.props.location.query.videoId });
     document.removeEventListener('keypress', this.handleEenterKey);
+  }
+
+  componentWillReceiveProps=(nextProps) => {
+    if (nextProps.history !== undefined && nextProps.history.length > 0) {
+      nextProps.history.forEach(item => {
+        if (item.videoId === parseInt(this.props.location.query.videoId, 0)) {
+          switch (parseInt(item.action, 0)) {
+            case 2:
+              this.setState(prevState => ({
+              ...prevState,
+              hasLike: true,
+              hasUnlike: false
+              }));
+              break;
+            case 3:
+              this.setState(prevState => ({
+                ...prevState,
+                hasLike: false,
+                hasUnlike: true
+              }));
+              break;
+            case 4:
+              this.setState(prevState => ({
+                ...prevState,
+                hasFav: true
+              }));
+              break;
+            default:
+              break;
+          }
+        }
+      });
+    }
   }
 
   //将comment回复成undefined状态
@@ -119,19 +157,19 @@ class VideoPage extends React.Component {
 
   render() {
     const videoData = this.props.videoData;
-    const loadingIcon = this.props.isLoading ? (
+    const loadingIcon = (this.props.isLoading) ? (
       <div className="loader">
         <RingLoader color={'#d9d9d9'} /> 
       </div>
     ) : null;
     const errText = (!this.props.error) ?
       null : (
-        <div className="error">
-          <div className="badge badge-danger">
-            {this.props.error}
-          </div>
+      <div className="error">
+        <div className="badge badge-danger">
+          {this.props.error}
         </div>
-      );
+      </div>
+    );
     const videoPlayer = this.props.videoData === undefined ? null : (
       <ReactPlayer
         className='react-player'
@@ -195,7 +233,7 @@ class VideoPage extends React.Component {
           {videoData.videoFavouriteNum}<IoIosHeart />
         </div>
         <div className='video-upload-data'>
-          Published on {formatDateTime(parseInt(videoData.videoDate))}
+          Published on {formatDateTime(parseInt(videoData.videoDate, 0))}
         </div>
         {tagList}
       </div>
@@ -250,13 +288,19 @@ class VideoPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ getVideoReducer, getCommentListReducer }) => {
+const mapStateToProps = ({ getVideoReducer, getCommentListReducer, getUserHistoryReducer }) => {
   const { videoData, isLoading, error } = getVideoReducer;
-  const commentList = getCommentListReducer.commentList;
-  return { videoData, isLoading, error, commentList };
+  const { commentList } = getCommentListReducer;
+  const { history } = getUserHistoryReducer;
+  return { videoData, isLoading, error, commentList, history };
 };
 
 module.exports = connect(
-  mapStateToProps, { getVideoActions, getCommentListAction, completeGetComment }
+  mapStateToProps, { 
+    getVideoActions, 
+    getCommentListAction, 
+    completeGetComment, 
+    getUserHistoryAction 
+  }
 )(VideoPage);
 

@@ -34,7 +34,6 @@ class VideoPlayer extends React.Component {
   
 	componentWillReceiveProps(nextProps) {
     const myVideo = document.getElementById('myVideo');
-    console.log(this.state);
 		if (this.props.video.video_url !== nextProps.video.video_url) {
 			if (!myVideo.paused) {
 				myVideo.pause();

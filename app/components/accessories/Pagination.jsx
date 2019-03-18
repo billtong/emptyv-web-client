@@ -22,8 +22,7 @@ class Pagination extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
-    console.log(this.state.currPage);
+  componentWillReceiveProps(nextProps) {
     //如果改变了videoLit就初始化currPage为1
     if (this.props.list !== nextProps.list) {
       switch (this.props.tag) {
@@ -44,7 +43,6 @@ class Pagination extends React.Component {
   }
 
   render() {
-    console.log(this.state.currPage);
     const list = this.props.list;
     const sizes = this.state.sizes;
     const pagination = (!list) ? null : 
