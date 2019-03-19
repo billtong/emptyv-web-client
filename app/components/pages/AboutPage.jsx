@@ -6,7 +6,8 @@ class AboutPage extends React.Component {
     return (
       <div className="about-us-page">
         <div className="about-us-container">
-          <h1 className="title-text">Empty Video v1.0.0</h1>
+          <h1 className="title-text">Empty Video</h1>
+          <h4 className="title-text">1.0.0320</h4>
           <section>
             <h2>Accounts Privileges</h2>
             <ul>
@@ -17,7 +18,7 @@ class AboutPage extends React.Component {
             </ul>
           </section>
           <section>
-            <h2>New Features Upcomming <p>(´• ω •`)ﾉ</p></h2>
+            <h2>New Features Upcomming</h2>
             <ul>
               <li>share your own videos</li>
               <li><p>DanMu</p> comment on the video</li>

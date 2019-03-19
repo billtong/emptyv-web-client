@@ -146,7 +146,6 @@ class VideoPage extends React.Component {
   //点了checkbox的 就patch
   sendChangedFavList=(e) => {
     e.preventDefault();
-    console.log(this.state.changedFavList);
     if (this.state.changedFavList.length > 0) {
       this.state.changedFavList.forEach((value, index) => {
         //将来最好变成一次传输，这样太浪费
@@ -274,9 +273,10 @@ class VideoPage extends React.Component {
               ref={`${index}-checkbox`}
               onChange={() => {
                 const newChangedFavList = this.state.changedFavList;
+                let newFavList = value.favList;
+                const localVideoId = this.props.location.query.videoId;
                 if (this.refs[`${index}-checkbox`].checked) {
-                  let newFavList = value.favList;
-                  newFavList = `${newFavList},${this.props.location.query.videoId}`;
+                  newFavList = `${newFavList},${localVideoId}`;
                   newChangedFavList.push({
                     favId: value.favId,
                     favList: `${newFavList}`,
@@ -285,23 +285,32 @@ class VideoPage extends React.Component {
                   });
                 }
                 if (!this.refs[`${index}-checkbox`].checked && !isCheck) {
-                  let start;
                   newChangedFavList.forEach((value1, index1) => {
                     if (value1.favName === value.favName) {
-                      start = index1;
-                      console.log(index);
-                      newChangedFavList.splice(start, 1);
-                      console.log(newChangedFavList);
+                      newChangedFavList.splice(index1, 1);
                       return;
                     }
                   });
                 }
                 if (!this.refs[`${index}-checkbox`].checked && isCheck) {
                   //需要减去（从ture变成false，且最开始是ture）
-                  //等高人
-                  //‘112，132，2，23，1，21’ （2）
-
-                  //需要先找到原来的位置，用正则可能更好
+                  if (value.favList === localVideoId) {
+                    alert('the favlist should at least have one video');
+                    this.refs[`${index}-checkbox`].checked = true;
+                    return;
+                  } else if (value.favList.match(eval(`/^${localVideoId},/g`)) != null) {
+                    newFavList = newFavList.replace(eval(`/^${localVideoId},/g`), '');             
+                  } else if (value.favList.match(eval(`/,${localVideoId}$/g`)) != null) {
+                    newFavList = newFavList.replace(eval(`/,${localVideoId}$/g`), '');
+                  } else if (value.favList.indexOf(`,${localVideoId},`) !== -1) {
+                    newFavList = newFavList.replace(`,${localVideoId},`, ',');
+                  }
+                  newChangedFavList.push({
+                    favId: value.favId,
+                    favList: `${newFavList}`,
+                    favName: `${value.favName}`,
+                    userId: getSessionTokenJson().user.userId,
+                  });
                 }
                 this.setState(prevState => ({
                   ...prevState,

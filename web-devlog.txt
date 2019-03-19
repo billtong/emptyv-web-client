@@ -1,19 +1,21 @@
-#------------------------------------------------------------------------------------------#
-带修理的bug
-#------------------------------------------------------------------------------------------#
-up comming task
+danmu功能设计
 
-a>
-1. header 上添加search bar
-2. video page上添加filter组件
+dan表
 
-b>
-1.videoPage处添加tag功能, 收藏功能和喜欢等
-2.设计userPage，在里面加上收藏的list
+dan_id          (int) auto  
+dan_send_time   (timestamp)      current  
+dan_start_time  (str)       10        |    59(60分):59(60分):59（60秒）
+dan_value       (str)       255
+dan_style       (str)       255
 
-c>
-comment组件处添加页数符号
+{
+  color,
+  spead,
+}
 
-d>在视频上加弹幕
+video_id        (int)
+user_id         (int)
 
-3月20号
+dan endpoints
+1.getDan(videoId, token三件套)
+2.postDan（）
