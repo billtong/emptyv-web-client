@@ -12,7 +12,7 @@ class AboutPage extends React.Component {
             <ul>
               <li>comment to a video</li>
               <li>like/unlike a video</li>
-              <li>add video to your <p>fav list</p></li>
+              <li>add video to your <p>favourite list</p></li>
               <li>record your history</li>
             </ul>
           </section>
@@ -21,7 +21,6 @@ class AboutPage extends React.Component {
             <ul>
               <li>share your own videos</li>
               <li><p>DanMu</p> comment on the video</li>
-              <li>favourite list</li>
             </ul>
           </section>
           <section>
@@ -35,7 +34,7 @@ class AboutPage extends React.Component {
             </span>
           </section>
           <div className="foot-text">
-          <div>we create a free WORLD</div>
+          <div>we create a free WRLD</div>
           <div> — emptyvideo team</div>
           </div>
         </div>

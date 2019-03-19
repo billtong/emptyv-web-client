@@ -1,6 +1,8 @@
 .video-grid-container {
   box-sizing: border-box;
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   .loader {
     margin: 1rem auto;
     width: 6.25rem;
@@ -11,13 +13,13 @@
   }
 
   .video-blocks-section {
-    max-width: 70%;
+    max-width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     .video-block-section{
-      padding-top: 1rem;
       padding-bottom: 1rem;
+      margin: 2rem auto;
       .video-title-section {
         font-size: 1rem;
         line-height: 1.1rem;

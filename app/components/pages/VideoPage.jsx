@@ -299,6 +299,7 @@ class VideoPage extends React.Component {
                 if (!this.refs[`${index}-checkbox`].checked && isCheck) {
                   //需要减去（从ture变成false，且最开始是ture）
                   //等高人
+                  //‘112，132，2，23，1，21’ （2）
 
                   //需要先找到原来的位置，用正则可能更好
                 }
@@ -520,4 +521,3 @@ module.exports = connect(
     getUserHistoryAction 
   }
 )(VideoPage);
-
