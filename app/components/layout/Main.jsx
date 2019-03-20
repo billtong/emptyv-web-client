@@ -7,7 +7,9 @@ class Main extends React.Component {
     return (
       <div className="main-section">
         <Header />
-        {this.props.children}
+        <div className="main-bodey-container">
+          {this.props.children}
+        </div>
       </div>
     );
   }

@@ -8,6 +8,7 @@ import { Link } from 'react-router';
 import ReactPlayer from '../accessories/VideoPlayer';
 import Pagination from '../accessories/Pagination';
 import CommentGrid from '../accessories/comment/CommentGrid';
+import VideoTitle from './VideoPage/VideoTitle';
 import Tag from '../accessories/Tag';
 import { formatDateTime } from '../../utils/dateTools.jsx';
 import { getVideoActions } from '../../actions/getVideoActions.jsx';
@@ -25,10 +26,10 @@ class VideoPage extends React.Component {
     hasFav: false,
     favDialogCss: 'notShowDialog', //showDialog and notShowDialog
     isNewFavList: false,
-    isBlur: true,
-    isForcus: false,
     favList: undefined,
     changedFavList: [],
+    isBlur: true,
+    isForcus: false,
   }
     
   componentWillMount() {
@@ -227,34 +228,6 @@ class VideoPage extends React.Component {
         }}
       />
     );
-    const likeIcon = this.state.hasLike ? (
-      <div className='video-action-action actioned'>
-        <MdThumbUp />Good 
-      </div>
-    ) : (
-      <div className='video-action-action' onClick={e => this.handleClickAction(e, 'like')}>
-      <MdThumbUp />Good 
-    </div>
-    );
-    const unlikeIcon = this.state.hasUnlike ? (
-      <div className='video-action-action actioned'>
-        <MdThumbDown />
-      </div>
-    ) : (
-      <div className='video-action-action thumb-down-action' onClick={e => this.handleClickAction(e, 'unlike')}>
-        <MdThumbDown />
-      </div>
-    );
-    const favIcon = this.state.hasFav ? (
-      <div className='video-action-action love-action actioned'>
-        <IoIosHeart onClick={e => this.handleClickAction(e, 'favourite')} />
-      </div>
-    ) : (
-      <div className='video-action-action love-action' onClick={e => this.handleClickAction(e, 'favourite')}>
-        <IoIosHeart data-toggle="modal" />
-      </div>
-    );
-
     const favCheckList = !this.state.favList || this.state.favList.length === 0 ? null : this.state.favList.map((value, index) => {
       const videoIdArr = value.favList.split(',');
       let isCheck = false;
@@ -401,7 +374,7 @@ class VideoPage extends React.Component {
           <div className="modal-content">
             <div className="modal-header">
             <h4 className="modal-title">Add to Favourite List</h4>
-              <button type="button" className="close" data-dismiss="modal" onClick={(e) => {e.preventDefault();this.setState(prevState => ({...prevState,favDialogCss: 'notShowDialog',isNewFavList: false}));}}>
+              <button type="button" className="close" data-dismiss="modal" onClick={(e) => {e.preventDefault(); this.setState(prevState => ({ ...prevState, favDialogCss: 'notShowDialog', isNewFavList: false })); }}>
                   &times;
               </button>
             </div>
@@ -418,17 +391,6 @@ class VideoPage extends React.Component {
             </div>
           </div>
         </div>
-    );
-    const videoTitle = this.props.videoData === undefined ? null : (
-      <div className='video-title'>
-        <h1>{videoData.videoName}</h1>
-        {likeIcon}
-        {unlikeIcon}
-        {favIcon}
-        <div className={this.state.favDialogCss} role="dialog">
-          {addFavDialog}
-        </div>
-      </div>
     );
     const tagList = this.props.videoData === undefined ? null : (
       <Tag tagList={this.props.videoData.videoTag} videoId={this.props.videoData.videoId} />
@@ -498,11 +460,19 @@ class VideoPage extends React.Component {
         <div className="video-player-section">
           {videoPlayer}
           <div className='video-info-section'>
-            {videoTitle}
+            <VideoTitle 
+              hasLike={this.state.hasLike}
+              hasUnlike={this.state.hasUnlike}
+              hasFav={this.state.hasFav}
+              videoData={this.props.videoData}
+              handleClickAction={this.handleClickAction}
+            />
+            <div className={this.state.favDialogCss} role="dialog">
+              {addFavDialog}
+            </div>
             {videoLittleTitle}
           </div>
         </div>
-
         <div className="comment-section">
           <div className="comment-write-block-section">
             {commentUploadBox}

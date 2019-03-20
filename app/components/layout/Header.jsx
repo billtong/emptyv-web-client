@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, hashHistory } from 'react-router';
-import { MdInput, MdEdit } from 'react-icons/md';
+import { MdInput, MdEdit, MdSearch } from 'react-icons/md';
 import { ClipLoader } from 'react-spinners';
 
 import logoURL from '../../../asset/empty-video-logo.gif';
@@ -12,7 +12,8 @@ class Header extends React.Component {
   state = {
     isLoading: false,
     isBlur: true,
-    isForcus: false
+    isForcus: false,
+    isSearch: false,
   }
   componentWillMount() {
     document.addEventListener('keypress', this.handleEnterKey);
@@ -82,6 +83,14 @@ class Header extends React.Component {
   renderLeftMenuList = () => (
     <ul className="menu-left">
       <li className="desktop">
+        <Link to="/" className="header-menu" onClick={(e) => this.handleMenuClick(e, true)}>
+          Home
+        </Link>
+      </li>
+      <li className="desktop">
+        <Link to="About" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>About Us</Link>
+      </li>
+      <li className="desktop">
         <form className="searchBar">
           <input
             className="search-input"
@@ -92,14 +101,6 @@ class Header extends React.Component {
             onBlur={this.ifBlur}
           />
         </form>
-      </li>
-      <li className="desktop">
-        <Link to="/" className="header-menu" onClick={(e) => this.handleMenuClick(e, true)}>
-          Home
-        </Link>
-      </li>
-      <li className="desktop">
-        <Link to="About" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>About Us</Link>
       </li>
     </ul>
   );
@@ -147,11 +148,6 @@ class Header extends React.Component {
     return (
       <div className="header-section">
         <nav role="navigation">
-          <div className="logo-container">
-            <Link to="/" activeClassName="active" onClick={(e) => this.handleMenuClick(e, true)}>
-              <img width="20px" height="23px" src={logoURL} alt="logo" />
-            </Link>
-          </div>
           <div className="menu-container">
             {this.renderLeftMenuList()}
             {this.renderRightMenuList()}
