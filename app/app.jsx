@@ -9,14 +9,13 @@ import SignUp from './components/pages/SignUpPage';
 import Home from './components/pages/HomePage';
 import UserPage from './components/pages/UserPage';
 import VideoPage from './components/pages/VideoPage';
-import DonatePage from './components/pages/DonatePage';
 import AboutPage from './components/pages/AboutPage';
 
 require('style-loader!css-loader!sass-loader!applicationStyles');
 
 const store = configureStore.configure();
 store.subscribe(() => {
-    //console.log('New state', store.getState());
+    console.log('New state', store.getState());
 });
 
 ReactDOM.render(
@@ -28,7 +27,6 @@ ReactDOM.render(
         <Route path="SignUp" component={SignUp} />
         <Route path="UserPage" component={UserPage} />
         <Route path="VideoPage" component={VideoPage} />
-        <Route path="Donate" component={DonatePage} />
         <Route path="About" component={AboutPage} />
       </Route>
     </Router>

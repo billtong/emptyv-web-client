@@ -99,9 +99,6 @@ class Header extends React.Component {
         </Link>
       </li>
       <li className="desktop">
-        <Link to="Donate" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>Donate Us</Link>
-      </li>
-      <li className="desktop">
         <Link to="About" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>About Us</Link>
       </li>
     </ul>
