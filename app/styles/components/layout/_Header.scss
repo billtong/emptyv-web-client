@@ -38,9 +38,12 @@
           margin-top: 0.4rem;
           margin-left: 2rem;
         }
+        .search-btn:hover {
+          cursor: pointer;
+        }
         .search-input {
+          outline: none;
           max-width: 30rem;
-          border: 1rem;
           vertical-align: middle;
           padding-left: 1rem;
           padding-right: 2rem;
