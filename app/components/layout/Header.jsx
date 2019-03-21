@@ -4,7 +4,6 @@ import { Link, hashHistory } from 'react-router';
 import { MdInput, MdEdit, MdSearch } from 'react-icons/md';
 import { ClipLoader } from 'react-spinners';
 
-import logoURL from '../../../asset/empty-video-logo.gif';
 import { logout } from '../../api/user';
 import { getVideoListAction, startGetVideos } from '../../actions/getVideoListActions';
 
@@ -76,11 +75,39 @@ class Header extends React.Component {
     this.setState(prevState => ({
       ...prevState,
       isForcus: false,
-      isBlur: true
+      isBlur: true,
+      isSearch: false
     }));
   }
 
-  renderLeftMenuList = () => (
+  renderLeftMenuList = () => {
+    const searchSec = !this.state.isSearch ? (
+      <div 
+        className="search-btn" 
+        onClick={e => {
+          e.preventDefault();
+          this.setState(prevState => ({
+            ...prevState,
+            isSearch: true
+          }));
+        }}
+      >  
+        <MdSearch color={'#d9d9d9'} />
+      </div>
+    ) : (
+      <form className="searchBar">
+        <input
+          className="search-input"
+          placeholder="press <ENTER> to search"
+          ref="keyword"
+          onKeyPress={e => (this.handleEnterKey(e))}
+          autoFocus="true"
+          onFocus={this.ifForcus}
+          onBlur={this.ifBlur}
+        />
+      </form>
+    );
+    return ( 
     <ul className="menu-left">
       <li className="desktop">
         <Link to="/" className="header-menu" onClick={(e) => this.handleMenuClick(e, true)}>
@@ -91,19 +118,11 @@ class Header extends React.Component {
         <Link to="About" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>About Us</Link>
       </li>
       <li className="desktop">
-        <form className="searchBar">
-          <input
-            className="search-input"
-            placeholder="press <ENTER> to search"
-            ref="keyword"
-            onKeyPress={e => (this.handleEnterKey(e))}
-            onFocus={this.ifForcus}
-            onBlur={this.ifBlur}
-          />
-        </form>
+       {searchSec}
       </li>
     </ul>
   );
+  }
 
   renderRightMenuList = () => {
     const token = sessionStorage.getItem('empty-video-web-user-session');
