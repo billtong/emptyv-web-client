@@ -64,7 +64,7 @@ class Header extends React.Component {
     }
     if (url === `/${to}`) {
       if (to === 'UserPage') {
-        this.props.getUserHistoryAction();
+        location.reload();
       }
     }
   } 
