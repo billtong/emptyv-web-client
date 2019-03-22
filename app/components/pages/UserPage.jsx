@@ -21,16 +21,15 @@ class UserPage extends React.Component {
   }
 
   componentDidMount=() => {
-    //如果user state被刷新掉的话，从新从session中加上
+    //if user state is deleted by refreshing，a new one need to be added
     if (!this.props.user) {
       this.props.completeSignIn(getSessionTokenJson().user);
     }
+    //get history action
     if (!this.props.history) {
       this.props.getUserHistoryAction();
     }
-    if (this.props.history !== undefined) {
-      this.generateHistoryVideoList(this.props.history, this.state.action);
-    }
+    //get favList
     if (!this.props.favList) {
       getFavList().then(res => {
         this.setState(prevState => (
@@ -43,9 +42,14 @@ class UserPage extends React.Component {
         alert(err);
       });
     }
-
-    this.props.completeGetVideos(this.state.videoList);
   };
+
+  //redux update component
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.history !== undefined) {
+      this.generateHistoryVideoList(nextProps.history, this.state.action);
+    }
+  }
 
   //数据复原,方便刷新
   componentWillUnmount() {
@@ -68,10 +72,7 @@ class UserPage extends React.Component {
 
   render() {
     const { user, history, isHistoryLoading, historyError } = this.props;
-    //初始化videoList
-    if (history !== undefined && !this.state.videoList) {
-      this.generateHistoryVideoList(history, this.state.action);
-    }
+  
     //更新videoList(props)
     if (this.state.videoList !== undefined) {
       this.props.completeGetVideos(this.state.videoList);
@@ -87,7 +88,7 @@ class UserPage extends React.Component {
       </div>
     );
 
-    const menuArr = ['I view', 'I like', 'I unlike', 'I fav'];
+    const menuArr = ['I view', 'I like', 'I unlike'];
     const historyMenuList = menuArr.map((value, index) => {
       const handleMenuClick = (e, newAction) => {
         e.preventDefault();

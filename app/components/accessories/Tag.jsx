@@ -59,6 +59,11 @@ class Tag extends React.Component {
   };
 
   handleClick=(e) => {
+    const userJSON = getSessionTokenJson();
+    if (!userJSON) {
+      alert('please login or sign up a new account');
+      return 0;
+    }
     e.preventDefault();
     this.setState(prevState => ({
       ...prevState,

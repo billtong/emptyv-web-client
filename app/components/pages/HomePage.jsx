@@ -50,7 +50,8 @@ class Home extends React.Component {
           Sort By&nbsp;&nbsp;
           <select 
             className="select-section" 
-            value={this.state.filter} 
+            //here the props.filter will be injected by when user clicked home nav at header more than once
+            value={typeof this.props.filter === undefined ? this.state.filter : this.props.filter} 
             onChange={e => this.handleChange(e)}
             ref="filter"
           >
@@ -67,8 +68,8 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = ({ getVideoListReducer }) => {
-  const { word, videoList } = getVideoListReducer;
-  return { word, videoList };
+  const { word, videoList, filter } = getVideoListReducer;
+  return { word, videoList, filter };
 };
 
 module.exports = connect(

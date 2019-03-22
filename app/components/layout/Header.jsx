@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Link, hashHistory } from 'react-router';
 import { MdInput, MdEdit, MdSearch } from 'react-icons/md';
 import { ClipLoader } from 'react-spinners';
-
 import { logout } from '../../api/user';
-import { getVideoListAction, startGetVideos } from '../../actions/getVideoListActions';
+import { getVideoListAction } from '../../actions/getVideoListActions';
+import { getUserHistoryAction } from '../../actions/getUserHistoryAction';
 
 class Header extends React.Component {
   state = {
@@ -22,8 +22,7 @@ class Header extends React.Component {
     document.removeEventListener('keypress', this.handleEenterKey);
   }
 
-  logout = (e, isHome) => {
-    this.handleMenuClick(e, isHome);
+  logout = (e) => {
     const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
     const inputJson = {
       sessionId: userJSON.userSessionId,
@@ -53,15 +52,22 @@ class Header extends React.Component {
     }
   };
 
-  //点击home见刷新videolist
-  handleMenuClick=(e, isRemainVideoList) => {
-    this.refs.keyword.value = '';
-    if (isRemainVideoList) {
-      this.forceUpdate();
-    } else {
-      this.props.startGetVideos(this.props.filter, this.props.currPage, undefined, this.props.sizes);
-    } 
-  }
+  //handle restart conditions
+  handleMenuClick=(e, to) => {
+    const url = document.location.toString().split('#')[1];
+    if (url === to && to === '/') {
+      this.props.getVideoListAction({ 
+        currPage: 1,
+        sizes: this.props.sizes,
+        filter: 'date',
+      });
+    }
+    if (url === `/${to}`) {
+      if (to === 'UserPage') {
+        this.props.getUserHistoryAction();
+      }
+    }
+  } 
 
   ifForcus=() => {
     this.setState(prevState => ({
@@ -110,12 +116,12 @@ class Header extends React.Component {
     return ( 
     <ul className="menu-left">
       <li className="desktop">
-        <Link to="/" className="header-menu" onClick={(e) => this.handleMenuClick(e, true)}>
+        <Link to="/" className="header-menu" onClick={(e) => this.handleMenuClick(e, '/')}>
           Home
         </Link>
       </li>
       <li className="desktop">
-        <Link to="About" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>About Us</Link>
+        <Link to="About" className="header-menu" onClick={(e) => this.handleMenuClick(e, 'About')}>About Us</Link>
       </li>
       <li className="desktop">
        {searchSec}
@@ -135,12 +141,12 @@ class Header extends React.Component {
       (
         <ul className="menu-right">
           <li className="desktop">
-            <Link to="SignIn" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>
+            <Link to="SignIn" className="header-menu" onClick={(e) => this.handleMenuClick(e, 'SignIn')}>
               <MdInput className="usr-icon-action" />Sign In
             </Link>
           </li>
           <li className="desktop">
-            <Link to="SignUp" className="header-menu" onClick={(e) => this.handleMenuClick(e, false)}>
+            <Link to="SignUp" className="header-menu" onClick={(e) => this.handleMenuClick(e, 'SignUp')}>
               <MdEdit className="usr-icon-action" />Sign Up
             </Link>
           </li>
@@ -148,13 +154,13 @@ class Header extends React.Component {
       ) : 
       (
         <ul className="menu-right">
-          <li className="desktop" onClick={(e) => this.handleMenuClick(e, true)}>
-            <Link to="UserPage" className="header-menu">
+          <li className="desktop">
+            <Link to="UserPage" className="header-menu" onClick={(e) => this.handleMenuClick(e, 'UserPage')}>
               User Page
             </Link>
           </li>
           <li className="desktop">
-            <div to="/" className="header-menu" onClick={(e) => this.logout(e, true)}>
+            <div to="/" className="header-menu" onClick={(e) => this.logout(e)}>
               Logout
             </div>
           </li>
@@ -183,5 +189,5 @@ const mapStateToProps = ({ getVideoListReducer }) => {
 };
 
 module.exports = connect(
-  mapStateToProps, { getVideoListAction, startGetVideos }
+  mapStateToProps, { getVideoListAction, getUserHistoryAction }
 )(Header);

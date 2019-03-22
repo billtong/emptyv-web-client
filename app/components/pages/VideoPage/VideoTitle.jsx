@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdThumbUp, MdThumbDown } from 'react-icons/md';
-import { IoIosHeart } from 'react-icons/io';
+import Fav from '../../accessories/Fav';
 
 class VideoTitle extends React.Component {
   render = () => {
@@ -22,21 +22,16 @@ class VideoTitle extends React.Component {
         <MdThumbDown />
       </div>
     );
-    const favIcon = this.props.hasFav ? (
-      <div className='video-action-action love-action actioned' onClick={e => this.props.handleClickAction(e, 'favourite')}>
-        <IoIosHeart />
-      </div>
-    ) : (
-      <div className='video-action-action love-action' onClick={e => this.props.handleClickAction(e, 'favourite')}>
-        <IoIosHeart data-toggle="modal" />
-      </div>
-    );
     const videoTitle = this.props.videoData === undefined ? null : (
       <div className='video-title'>
         <h1>{ this.props.videoData.videoName}</h1>
         {likeIcon}
         {unlikeIcon}
-        {favIcon}
+        <Fav 
+          hasFav={this.props.hasFav}
+          videoId={this.props.videoId}
+          handleClickAction={this.props.handleClickAction}
+        />
       </div>
     );
     return (

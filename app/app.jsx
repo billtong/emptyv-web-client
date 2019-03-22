@@ -8,7 +8,7 @@ import SignIn from './components/pages/SignInPage';
 import SignUp from './components/pages/SignUpPage';
 import Home from './components/pages/HomePage';
 import UserPage from './components/pages/UserPage';
-import VideoPage from './components/pages/VideoPage';
+import VideoPage from './components/pages/VideoPage/VideoPage';
 import AboutPage from './components/pages/AboutPage';
 
 require('style-loader!css-loader!sass-loader!applicationStyles');
