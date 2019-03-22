@@ -9,8 +9,8 @@ class VideoPlayer extends React.Component {
 		super(props);
 		this.state = {
 			pause: true,
-			currentTime: '0:00',
-			duration: '0:00',
+			currentTime: '0:00:00',
+			duration: '0:00:00',
 			volume: '1.0',
 			progress: '0',
 			headPos: '0',
@@ -52,8 +52,8 @@ class VideoPlayer extends React.Component {
 			myVideo.muted = false;
 			this.setState({
 				pause: true,
-				currentTime:'0:00',
-				duration: '0:00',
+				currentTime: '0:00:00',
+				duration: '0:00:00',
 				volume: '1.0',
 				progress: '0',
 				headPos: '0',
@@ -95,7 +95,7 @@ class VideoPlayer extends React.Component {
 				showPlayBtn: false,
 				showControlBar: true,
 				pause: false,
-				duration: Math.floor((myVideo.duration)/60)+":"+((myVideo.duration)%60/100).toFixed(2).slice(-2)
+				duration: Math.floor((myVideo.duration) / 3600) + ':' + ((Math.floor((myVideo.duration) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.duration) % 60) / 100).toFixed(2).slice(-2)
 			});
 			self.timeTask = setTimeout(() => {
 				self.setState({ showControlBar: false });
@@ -105,9 +105,9 @@ class VideoPlayer extends React.Component {
 			self.timer = setInterval(() => {
 				if (myVideo) {
 					self.setState({
-						currentTime: Math.floor((myVideo.currentTime)/60)+":"+((myVideo.currentTime)%60/100).toFixed(2).slice(-2),
-						progress: (myVideo.currentTime / myVideo.duration) * 100 + '%',
-						headPos: (myVideo.currentTime / myVideo.duration) * 100 - 0.45 + '%'
+						currentTime: Math.floor((myVideo.currentTime) / 3600) + ':' +((Math.floor((myVideo.currentTime) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.currentTime) % 60) / 100).toFixed(2).slice(-2),
+						progress: ((myVideo.currentTime / myVideo.duration) * 100) + '%',
+						headPos: (((myVideo.currentTime / myVideo.duration) * 100) - 0.45) + '%'
 					});
 				}
 			}, 50);
@@ -140,9 +140,9 @@ class VideoPlayer extends React.Component {
     myVideo.currentTime = scale * myVideo.duration;
 		self.timer = setInterval(() => {
 			self.setState({
-				currentTime: Math.floor((myVideo.currentTime) / 60) + ':' + ((myVideo.currentTime) % 60 / 100).toFixed(2).slice(-2),
-				progress: Math.min((myVideo.currentTime / myVideo.duration) * 100 , 100) + '%',
-				headPos: (myVideo.currentTime / myVideo.duration) * 100 - 0.45 + '%'
+				currentTime: Math.floor(myVideo.currentTime / 3600) + ':' + ((Math.floor((myVideo.currentTime) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.currentTime) % 60) / 100).toFixed(2).slice(-2),
+				progress: Math.min((myVideo.currentTime / myVideo.duration) * 100, 100) + '%',
+				headPos: (((myVideo.currentTime / myVideo.duration) * 100) - 0.45) + '%'
 			});
     }, 50);
   }

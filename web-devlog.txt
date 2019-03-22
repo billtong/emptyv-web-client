@@ -5,7 +5,7 @@ dan表
 dan_id          (int) auto  
 dan_send_time   (timestamp)      current  
 dan_start_time  (str)       10        |    59(60分):59(60分):59（60秒）
-dan_value       (str)       255
+dan_content       (str)       255
 dan_style       (str)       255
 
 {
