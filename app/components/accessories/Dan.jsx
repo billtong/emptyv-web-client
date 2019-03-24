@@ -29,7 +29,27 @@ class Dan extends React.Component {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       return;
     } 
-    if (this.props.displayDanList !== nextProps.displayDanList) {
+    let isNew = false;
+    if (this.props.displayDanList.length !== nextProps.displayDanList.length) {
+      isNew = true;
+    } else if (nextProps.displayDanList.length > 0) {
+      nextProps.displayDanList.forEach((value, index) => {
+        if (value.danId !== this.props.displayDanList[index].danId) {
+          isNew = true;
+          return;
+        }
+        if (value.currentTime !== this.props.displayDanList[index].currentTime) {
+          isNew = true;
+          return;
+        }
+        if (value.userId !== this.props.displayDanList[index].userId) {
+          isNew = true;
+          return;
+        }
+      });
+    }
+
+    if (isNew) {
       const canvas = this.myCanvas.current;
       const displayDanList = nextProps.displayDanList;
       const newNumArrT1 = this.state.numArrT;
@@ -44,11 +64,12 @@ class Dan extends React.Component {
       Array.prototype.push.apply(newColorArr, Array(displayDanList.length).fill('#FFFFFF'));
       const newSpeedArr = this.state.speedArr;
       const newSpeedArr2 = displayDanList.map((value) => {
-        return (value.danContent.length / 10) + 1;
+        return (value.danContent.length / 10);
       });
       Array.prototype.push.apply(newSpeedArr, newSpeedArr2);
       const newDisplayDanList = this.state.displayDanList;
       Array.prototype.push.apply(newDisplayDanList, displayDanList);
+      console.log(newDisplayDanList); 
       this.setState({
         numArrT: newNumArrT1,
         numArrL: newNumArrL,
@@ -62,13 +83,10 @@ class Dan extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-  }
-
   drawDanList=() => {
     const canvas = this.myCanvas.current;
     const ctx = this.myCanvas.current.getContext('2d');
-    ctx.font = '18px Georgia';
+    ctx.font = '25px Georgia';
     ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.save();
       this.state.displayDanList.forEach((dan, index) => {

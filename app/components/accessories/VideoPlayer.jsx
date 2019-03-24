@@ -2,8 +2,9 @@
 import React from 'react';
 import { MdPlayArrow, MdPause, MdVolumeMute, MdVolumeUp, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
 import Dan from '../accessories/Dan';
+import { getSessionTokenJson } from '../../api/apiHelper';
 import { patchView } from '../../api/video.jsx';
-import { getDanList } from '../../api/dan';
+import { getDanList, postDan } from '../../api/dan';
 
 
 class VideoPlayer extends React.Component {
@@ -23,8 +24,7 @@ class VideoPlayer extends React.Component {
       showControlBar: false,
       danList: [],
       danHasDisplayed: null, //储存上一个弹幕ID，防止重复打印
-      displayDanList: [],
-      currentDanList: [],
+      currentDanList: [],   //当前这个时间的弹幕list
       resetDan: false
     };
     this.timer = null;
@@ -94,7 +94,7 @@ class VideoPlayer extends React.Component {
 		}
   }
 
-  //让Dan组件中的弹幕清零
+  //让Dan组件中的弹幕清零,可用于关闭弹幕功能
   setResetDan=(bool) => {
     this.setState({
       resetDan: bool
@@ -115,22 +115,25 @@ class VideoPlayer extends React.Component {
   
   //在timer里跑,将该打印的弹幕放进去
   loadCurrentDanList=(myVideo) => {
+    const newDispalyDanList = [];
     if (this.state.danList.length > 0) {
-      const newDispalyDanList = [];
+      //把要展示的给放进去
       this.state.danList.forEach((dan) => {
         if (this.state.danHasDisplayed !== dan.danId && dan.danCurrTime === (Math.floor((myVideo.currentTime)))) {
-          //把要展示的给放进去
           newDispalyDanList.push(dan);
           this.setState({
             danHasDisplayed: dan.danId
           });
         }
       });
+      let isNew = false;
       if (newDispalyDanList.length > 0) {
-        let isNew = false;
-        if (newDispalyDanList.length === this.state.displayDanList.length) {
+        if (newDispalyDanList.length === this.state.currentDanList.length) {
           newDispalyDanList.forEach((value, index) => {
-            if (value.danId !== this.state.displayDanList[index].danId) {
+            if (value.danId !== this.state.currentDanList[index].danId) {
+              isNew = true;
+            }
+            if (value.userId !== this.state.currentDanList[index].userId) {
               isNew = true;
             }
           });
@@ -144,9 +147,6 @@ class VideoPlayer extends React.Component {
           });
         }
       }
-      this.setState({
-        displayDanList: newDispalyDanList
-      });
     }
   }
 
@@ -178,7 +178,7 @@ class VideoPlayer extends React.Component {
       }, 1000);
       self.timer = setInterval(() => {
         this.updateVideoTime(myVideo);
-      }, 50);
+      }, 0);
 		} else {
       myVideo.pause();
       if (self.timer) {
@@ -286,6 +286,37 @@ class VideoPlayer extends React.Component {
 			return;
 		}
   }
+
+  submitDan=(e) => {
+    e.preventDefault();
+    if (getSessionTokenJson() !== null) {
+      const myVideo = document.getElementById('myVideo');
+      //假的，未了让用户看到伪造一个id和currentTIme+1
+      const newDanItem = {
+        danId: -Math.floor(myVideo.currentTime),
+        danContent: this.refs.danContent.value,
+        danCurrTime: Math.floor(myVideo.currentTime) + 1,
+        danStyle: 'default',
+        videoId: this.props.video.video_id
+      };
+      const newDanList = this.state.danList;
+      newDanList.push(newDanItem);
+      this.setState({
+        danList: newDanList
+      });
+      //真的
+      postDan({
+        danContent: this.refs.danContent.value,
+        danCurrTime: Math.floor(myVideo.currentTime),
+        danStyle: 'default',
+        videoId: this.props.video.video_id
+      }).then().catch(err=>{
+        console.log(err);
+      });
+    } else {
+      alert('please login or sign up first');
+    }
+  }
   
 	render() {
     const { video } = this.props;
@@ -341,6 +372,16 @@ class VideoPlayer extends React.Component {
 					<div className="vjs-duration-time vjs-time-controls vjs-control">
 						<span>{this.state.duration}</span>
 					</div>
+          <div className="vjs-dan-input vjs-control">
+          <input 
+            className="dan-input"
+            type="text" 
+            ref="danContent"
+            placeholder="leave a comment on the video"
+          />
+          </div>
+          <div className="vjs-dan-btn vjs-control" onClick={(e) => this.submitDan(e)}>go</div>
+
 					<div className="vjs-progress-control vjs-control" >
 						<div className="vjs-progress-holder vjs-slider" onClick={this.resetPlay.bind(this)}>
 							<div className="vjs-play-progress" style={{ width: this.state.progress }} />
