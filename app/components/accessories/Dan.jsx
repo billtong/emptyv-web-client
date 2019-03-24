@@ -3,17 +3,18 @@ import React from 'react';
 class Dan extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      numArrT: [],
-      numArrL: [],
-      colorArr: [],
-      speedArr: [],
-      displayDanList: [],
+    this.state = {         //这几个数组的index应该一直是完全对应的
+      numArrT: [],        //弹幕距离top的数组
+      numArrL: [],        //弹幕距离左边的数组
+      colorArr: [],       //弹幕的颜色的数组
+      speedArr: [],       //弹幕的速度数组
+      displayDanList: [], //目前需要在屏幕上展示的全部弹幕
     };
     this.myCanvas = React.createRef();
   } 
 
-   //打印传进来的这部分displayDanList
+   //处理从videoPlayer传进来的新的currentDanlist，放到五个state数组里
+   //不断的画出现在的情况
   componentWillReceiveProps=(nextProps) => {
     if (nextProps.resetDan === true) {
       this.setState({
@@ -48,7 +49,6 @@ class Dan extends React.Component {
         }
       });
     }
-
     if (isNew) {
       const canvas = this.myCanvas.current;
       const displayDanList = nextProps.displayDanList;
@@ -83,6 +83,7 @@ class Dan extends React.Component {
     }
   }
 
+  //画出当前时间的全部数组，出了canvas的做删除处理
   drawDanList=() => {
     const canvas = this.myCanvas.current;
     const ctx = this.myCanvas.current.getContext('2d');
