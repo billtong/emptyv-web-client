@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { MdPlayArrow, MdPause, MdVolumeMute, MdVolumeUp, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
+import Dan from '../accessories/Dan';
 import { patchView } from '../../api/video.jsx';
+import { getDanList } from '../../api/dan';
 
 
 class VideoPlayer extends React.Component {
@@ -18,16 +20,29 @@ class VideoPlayer extends React.Component {
 			volumeProgress: '100%',
 			fullscreen: false,
 			showPlayBtn: true,
-			showControlBar: false
-		};
+      showControlBar: false,
+      danList: [],
+      danHasDisplayed: null, //储存上一个弹幕ID，防止重复打印
+      displayDanList: [],
+      currentDanList: [],
+      resetDan: false
+    };
+    this.timer = null;
+    this.timerArr = [];
   }
   
-	componentDidMount() {
-		let self = this;
-		self.timer = null;
+	componentDidMount=() => {
+    getDanList(this.props.video.video_id).then(res => {
+      this.setState(prevState => ({
+        ...prevState,
+        danList: res.data,
+      }));
+    }).catch(err => {
+      console.log(err);
+    });
 		window.onresize = () => {
-			if (!self.checkFull() && self.state.fullscreen) {
-				self.f11Key();
+			if (!this.checkFull() && this.state.fullscreen) {
+				this.f11Key();
 			}
 		};
   }
@@ -37,13 +52,13 @@ class VideoPlayer extends React.Component {
 		if (this.props.video.video_url !== nextProps.video.video_url) {
 			if (!myVideo.paused) {
 				myVideo.pause();
-			}
-			if (this.timer) {
-				clearInterval(this.timer);
-				this.timer = null;
-			}
+      }
+      if (this.timer) {
+        clearInterval(this.timer);
+        this.timer = null;
+      }
 			if (this.timeTask) {
-				clearTimeout(this.timeTask);
+        clearTimeout(this.timeTask);
 				this.timeTask = null;
 			}
 			// reset the player
@@ -61,13 +76,15 @@ class VideoPlayer extends React.Component {
 				volumeProgress: '100%',
 				fullscreen: false,
 				showPlayBtn: true,
-				showControlBar: false
+        showControlBar: false,
+        danList: [],
+        realCurrentTime: 0
 			});
 		}
   }
   
 	componentWillUnmount() {
-		if (this.timer) {
+    if (this.timer) {
 			clearInterval(this.timer);
 			this.timer = null;
     }
@@ -76,7 +93,63 @@ class VideoPlayer extends React.Component {
 			this.timeTask = null;
 		}
   }
+
+  //让Dan组件中的弹幕清零
+  setResetDan=(bool) => {
+    this.setState({
+      resetDan: bool
+    });
+  }
+
+  //更新时间+更新该时间点的弹幕
+  updateVideoTime=(myVideo) => {
+    if (myVideo) {
+      this.loadCurrentDanList(myVideo);
+      this.setState({
+        currentTime: Math.floor((myVideo.currentTime) / 3600) + ':' + ((Math.floor((myVideo.currentTime) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.currentTime) % 60) / 100).toFixed(2).slice(-2),
+        progress: ((myVideo.currentTime / myVideo.duration) * 100) + '%',
+        headPos: (((myVideo.currentTime / myVideo.duration) * 100) - 0.45) + '%'
+      });
+    }
+  }
   
+  //在timer里跑,将该打印的弹幕放进去
+  loadCurrentDanList=(myVideo) => {
+    if (this.state.danList.length > 0) {
+      const newDispalyDanList = [];
+      this.state.danList.forEach((dan) => {
+        if (this.state.danHasDisplayed !== dan.danId && dan.danCurrTime === (Math.floor((myVideo.currentTime)))) {
+          //把要展示的给放进去
+          newDispalyDanList.push(dan);
+          this.setState({
+            danHasDisplayed: dan.danId
+          });
+        }
+      });
+      if (newDispalyDanList.length > 0) {
+        let isNew = false;
+        if (newDispalyDanList.length === this.state.displayDanList.length) {
+          newDispalyDanList.forEach((value, index) => {
+            if (value.danId !== this.state.displayDanList[index].danId) {
+              isNew = true;
+            }
+          });
+        } else {
+          isNew = true;
+        }
+        
+        if (isNew) {
+          this.setState({
+            currentDanList: newDispalyDanList
+          });
+        }
+      }
+      this.setState({
+        displayDanList: newDispalyDanList
+      });
+    }
+  }
+
 	checkFull() {
 		let isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
 		if (isFull === undefined) isFull = false;
@@ -85,8 +158,9 @@ class VideoPlayer extends React.Component {
   
 	playPause() {
     const myVideo = document.getElementById('myVideo');
-		const self = this;
+    const self = this;
 		if (myVideo.paused) {
+      //第一次点击时，myvideo已暂停且showPlayBtn还在
       if (this.state.showPlayBtn) {
         patchView(this.props.video.video_id);
       }
@@ -99,22 +173,15 @@ class VideoPlayer extends React.Component {
 			});
 			self.timeTask = setTimeout(() => {
 				self.setState({ showControlBar: false });
-				clearTimeout(self.timeTask);
+        clearTimeout(self.timeTask);
 				self.timeTask = null;
-			}, 3000);
-			self.timer = setInterval(() => {
-				if (myVideo) {
-					self.setState({
-						currentTime: Math.floor((myVideo.currentTime) / 3600) + ':' +((Math.floor((myVideo.currentTime) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.currentTime) % 60) / 100).toFixed(2).slice(-2),
-						progress: ((myVideo.currentTime / myVideo.duration) * 100) + '%',
-						headPos: (((myVideo.currentTime / myVideo.duration) * 100) - 0.45) + '%'
-					});
-				}
-			}, 50);
-
+      }, 1000);
+      self.timer = setInterval(() => {
+        this.updateVideoTime(myVideo);
+      }, 50);
 		} else {
-			myVideo.pause();
-			if (self.timer) {
+      myVideo.pause();
+      if (self.timer) {
 				clearInterval(self.timer);
 				self.timer = null;
 			}
@@ -125,26 +192,26 @@ class VideoPlayer extends React.Component {
 		}
   }
   
-	resetPlay(event) {
+	resetPlay=(event) => {
     const myVideo = document.getElementById('myVideo');
-		const self = this;
-		if (self.timer) {
+    if (self.timer) {
 			clearInterval(self.timer);
 			self.timer = null;
     }
-   
     const container = document.getElementsByClassName('videos-player')[0];
 	  const containerOffsetLeft = container.offsetLeft + container.offsetParent.offsetLeft;
 		const totalWidth = event.target.parentNode.offsetWidth;
-		const scale = (event.clientX - containerOffsetLeft) / totalWidth;
+    const scale = (event.clientX - containerOffsetLeft) / totalWidth;
     myVideo.currentTime = scale * myVideo.duration;
-		self.timer = setInterval(() => {
-			self.setState({
-				currentTime: Math.floor(myVideo.currentTime / 3600) + ':' + ((Math.floor((myVideo.currentTime) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.currentTime) % 60) / 100).toFixed(2).slice(-2),
-				progress: Math.min((myVideo.currentTime / myVideo.duration) * 100, 100) + '%',
-				headPos: (((myVideo.currentTime / myVideo.duration) * 100) - 0.45) + '%'
-			});
+    self.timer = setInterval(() => {
+      this.updateVideoTime(myVideo);
     }, 50);
+    this.setResetDan(true);
+    this.timeTask = setTimeout(() => {
+      this.setState({ showControlBar: false });
+      clearTimeout(this.timeTask);
+      this.timeTask = null;
+    }, 100);
   }
   
 	handleVolume() {
@@ -227,6 +294,13 @@ class VideoPlayer extends React.Component {
     const fullScreenControlIcon = this.state.fullscreen === true ?  <MdFullscreenExit /> : <MdFullscreen />;
 		return (
 			<div className={this.state.fullscreen ? 'videos-player asset fullscreen' : 'videos-player asset'}>
+        <Dan 
+          displayDanList={this.state.currentDanList}
+          pause={this.state.pause}
+          resetDan={this.state.resetDan}
+          setResetDan={this.setResetDan}
+          currentTime={!document.getElementById('myVideo') ? 0 : document.getElementById('myVideo').currentTime}
+        />
         <video 
           width="100%" 
           height="100%" 
