@@ -175,7 +175,7 @@ class VideoPlayer extends React.Component {
 				self.setState({ showControlBar: false });
         clearTimeout(self.timeTask);
 				self.timeTask = null;
-      }, 1000);
+      }, 3000);
       self.timer = setInterval(() => {
         this.updateVideoTime(myVideo);
       }, 0);
@@ -211,7 +211,7 @@ class VideoPlayer extends React.Component {
       this.setState({ showControlBar: false });
       clearTimeout(this.timeTask);
       this.timeTask = null;
-    }, 100);
+    }, 3000);
   }
   
 	handleVolume() {
