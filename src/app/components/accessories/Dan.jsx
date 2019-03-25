@@ -131,4 +131,4 @@ class Dan extends React.Component {
   }
 }
 
-module.exports = Dan;
+export default Dan;

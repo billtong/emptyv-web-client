@@ -142,7 +142,7 @@ class Tag extends React.Component {
   }
 }
 
-export default  Tag;
+export default Tag;
 
 /*get的video tag string形式
   "xx,xxx,xxx,xxx"

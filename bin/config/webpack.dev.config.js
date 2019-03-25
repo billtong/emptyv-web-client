@@ -11,7 +11,7 @@ module.exports = merge(webpackConfig, {
   entry: [
     '@babel/polyfill',
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:4096',
+    'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
     path.resolve(__dirname, '../../src/index.js'),
   ],

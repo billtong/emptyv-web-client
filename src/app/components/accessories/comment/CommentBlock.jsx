@@ -1,7 +1,5 @@
 import React from 'react';
 import { formatDateTime } from '../../../utils/dateTools';
-import {connect} from "react-redux";
-
 
 class CommentBlock extends React.Component {
     render() {

@@ -11,7 +11,7 @@ const server = new WebpackDevServer(compiler, {
     contentBase: path.resolve(__dirname, '../public'), // Default root
     stats: "errors-only", // Display Error Only in Console Log
     host:'localhost',
-    port:'4096',
+    port:'3000',
     open:true, // Open Browser Automatically
     hot:true, //Hot Loading
     hotOnly:true,
@@ -20,6 +20,6 @@ const server = new WebpackDevServer(compiler, {
     publicPath: "/",
     compress: true // Compress with gzip
 });
-server.listen(4096, 'localhost', function (err) {
-    if (err) throw err
+server.listen(3000, 'localhost', function (err) {
+    if (err) throw err;
 });

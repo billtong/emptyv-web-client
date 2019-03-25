@@ -4,7 +4,6 @@ import * as serviceWorker from "./app/utils/serviceWorker";
 import App from "./app/App";
 import * as configureStore from "./app/store/configureStore";
 import {Provider} from "react-redux";
-import {hashHistory, Router} from "react-router";
 
 require('style-loader!css-loader!sass-loader!applicationStyles');
 const store = configureStore.configure();
@@ -13,10 +12,10 @@ store.subscribe(() => {
 });
 const root = document.getElementById('app');
 if(root !== null){
-    ReactDOM.render(
-        <Provider store={store}>
-                <App/>
-        </Provider>
-        , root);
+  ReactDOM.render(
+    <Provider store={store}>
+            <App/>
+    </Provider>
+    , root);
 }
 serviceWorker.register();

@@ -8,24 +8,24 @@ import UserPage from './components/pages/UserPage';
 import VideoPage from './components/pages/VideoPage/VideoPage';
 import AboutPage from './components/pages/AboutPage';
 
-
 class App extends Component{
-    render() {
-        return (
-            <Fragment>
-                <Router history={hashHistory}>
-                    <Route path="/" component={Main}>
-                        <IndexRoute component={Home} />
-                        <Route path="SignIn" component={SignIn} />
-                        <Route path="SignUp" component={SignUp} />
-                        <Route path="UserPage" component={UserPage} />
-                        <Route path="VideoPage" component={VideoPage} />
-                        <Route path="About" component={AboutPage} />
-                    </Route>
-                </Router>
-            </Fragment>
-        );
-    }
+  render() {
+    return (
+      <Fragment>
+        <Router history={hashHistory}>
+          <Route path="/" component={Main}>
+            <IndexRoute component={Home} />
+            <Route path="SignIn" component={SignIn} />
+            <Route path="SignUp" component={SignUp} />
+            <Route path="UserPage" component={UserPage} />
+            <Route path="VideoPage" component={VideoPage} />
+            <Route path="About" component={AboutPage} />
+          </Route>
+        </Router>
+      </Fragment>
+    );
+  }
 }
 
-export default App
+export default App;
+
