@@ -11,26 +11,27 @@ class VideoPlayer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			pause: true,
-			currentTime: '0:00:00',
-			duration: '0:00:00',
-			volume: '1.0',
-			progress: '0',
-			headPos: '0',
-			offVolume: false,
+			pause: true,              //记录视频是否暂停
+			currentTime: '0:00:00',   //记录视频现在展示给用户的时间
+			duration: '0:00:00',      //记录视频展现给用户的总时间
+			volume: '1.0',            //记录音量大小 （0-1)
+			progress: '0',            //记录播放进度
+			headPos: '0',              //??
+			offVolume: false,         //记录是否静音
 			volumeProgress: '100%',
 			fullscreen: false,
 			showPlayBtn: true,
       showControlBar: false,
-      danList: [],
-      danHasDisplayed: null, //储存上一个弹幕ID，防止重复打印
-      currentDanList: [],   //当前这个时间的弹幕list
-      resetDan: false
+      danList: [],              //储存从后台传过来的该视频的全部弹幕列表
+      danHasDisplayed: null,    //储存上一个弹幕ID，防止Interval里重复打印
+      currentDanList: [],       //储存video.currentTime的全部弹幕列表，传给Dan组件展示出来
+      resetDan: false           //记录Dan组件里当前展示的弹幕是否清空
     };
-    this.timer = null;
-    this.timerArr = [];
+    this.timer = null;          //储存interval的key，刷新视频
+    this.timerTask = null;      //储存timeouot的key，定时controlbar的出现和消失
   }
   
+  //从后台获取全部弹幕list，确定视频是否全屏
 	componentDidMount=() => {
     getDanList(this.props.video.video_id).then(res => {
       this.setState(prevState => ({
@@ -47,6 +48,7 @@ class VideoPlayer extends React.Component {
 		};
   }
   
+  //更新VideoPlayer里的视频，目前还没用过。需要加入dan的相关state
 	componentWillReceiveProps(nextProps) {
     const myVideo = document.getElementById('myVideo');
 		if (this.props.video.video_url !== nextProps.video.video_url) {
@@ -61,7 +63,6 @@ class VideoPlayer extends React.Component {
         clearTimeout(this.timeTask);
 				this.timeTask = null;
 			}
-			// reset the player
 			myVideo.src = nextProps.video.video_url;
 			myVideo.volume = 1.0;
 			myVideo.muted = false;
@@ -83,6 +84,7 @@ class VideoPlayer extends React.Component {
 		}
   }
   
+  //清空timeout和interval
 	componentWillUnmount() {
     if (this.timer) {
 			clearInterval(this.timer);
@@ -94,14 +96,14 @@ class VideoPlayer extends React.Component {
 		}
   }
 
-  //让Dan组件中的弹幕清零,可用于关闭弹幕功能
+  //让Dan组件中的弹幕清零,可用于关闭弹幕功能，被dan组件调用
   setResetDan=(bool) => {
     this.setState({
       resetDan: bool
     });
   }
 
-  //更新时间+更新该时间点的弹幕
+  //更新时间+更新该时间点的弹幕(详见loadCurrentDanList)
   updateVideoTime=(myVideo) => {
     if (myVideo) {
       this.loadCurrentDanList(myVideo);
@@ -113,11 +115,10 @@ class VideoPlayer extends React.Component {
     }
   }
   
-  //在timer里跑,将该打印的弹幕放进去
+  //在timer里跑, 过滤danList中不是该时间点的弹幕，将该打印的弹幕放进去
   loadCurrentDanList=(myVideo) => {
     const newDispalyDanList = [];
     if (this.state.danList.length > 0) {
-      //把要展示的给放进去
       this.state.danList.forEach((dan) => {
         if (this.state.danHasDisplayed !== dan.danId && dan.danCurrTime === (Math.floor((myVideo.currentTime)))) {
           newDispalyDanList.push(dan);
@@ -140,7 +141,6 @@ class VideoPlayer extends React.Component {
         } else {
           isNew = true;
         }
-        
         if (isNew) {
           this.setState({
             currentDanList: newDispalyDanList
@@ -150,40 +150,46 @@ class VideoPlayer extends React.Component {
     }
   }
 
+  //检查是否全屏状态
 	checkFull() {
 		let isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
 		if (isFull === undefined) isFull = false;
 		return isFull;
   }
   
-	playPause() {
+  /**
+   * 视频暂停和视频开始，点击视频时会执行
+   * 1. 控制controlbar是否display
+   * 2. 不断刷新currentTime state
+   * 3. 不断刷新currentDanList state
+   */
+	playPause=() => {
     const myVideo = document.getElementById('myVideo');
-    const self = this;
 		if (myVideo.paused) {
       //第一次点击时，myvideo已暂停且showPlayBtn还在
       if (this.state.showPlayBtn) {
         patchView(this.props.video.video_id);
       }
       myVideo.play();
-			self.setState({
+			this.setState({
 				showPlayBtn: false,
 				showControlBar: true,
 				pause: false,
 				duration: Math.floor((myVideo.duration) / 3600) + ':' + ((Math.floor((myVideo.duration) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.duration) % 60) / 100).toFixed(2).slice(-2)
 			});
-			self.timeTask = setTimeout(() => {
-				self.setState({ showControlBar: false });
-        clearTimeout(self.timeTask);
-				self.timeTask = null;
+			this.timeTask = setTimeout(() => {
+				this.setState({ showControlBar: false });
+        clearTimeout(this.timeTask);
+				this.timeTask = null;
       }, 3000);
-      self.timer = setInterval(() => {
+      this.timer = setInterval(() => {
         this.updateVideoTime(myVideo);
       }, 0);
 		} else {
       myVideo.pause();
-      if (self.timer) {
-				clearInterval(self.timer);
-				self.timer = null;
+      if (this.timer) {
+				clearInterval(this.timer);
+				this.timer = null;
 			}
 			this.setState({ 
         pause: true, 
@@ -192,20 +198,24 @@ class VideoPlayer extends React.Component {
 		}
   }
   
+  /**
+   * 改变currentTime,即当你点击controlbar时
+   * 清理掉之前的那个timer，添加新的timer
+   */
 	resetPlay=(event) => {
     const myVideo = document.getElementById('myVideo');
-    if (self.timer) {
-			clearInterval(self.timer);
-			self.timer = null;
+    if (this.timer) {
+			clearInterval(this.timer);
+			this.timer = null;
     }
     const container = document.getElementsByClassName('videos-player')[0];
 	  const containerOffsetLeft = container.offsetLeft + container.offsetParent.offsetLeft;
 		const totalWidth = event.target.parentNode.offsetWidth;
     const scale = (event.clientX - containerOffsetLeft) / totalWidth;
     myVideo.currentTime = scale * myVideo.duration;
-    self.timer = setInterval(() => {
+    this.timer = setInterval(() => {
       this.updateVideoTime(myVideo);
-    }, 50);
+    }, 0);
     this.setResetDan(true);
     this.timeTask = setTimeout(() => {
       this.setState({ showControlBar: false });
@@ -214,6 +224,7 @@ class VideoPlayer extends React.Component {
     }, 3000);
   }
   
+  //改变volume条状态
 	handleVolume() {
     const myVideo = document.getElementById('myVideo');
 		this.setState({
@@ -224,6 +235,7 @@ class VideoPlayer extends React.Component {
 		myVideo.volume = this.state.offVolume === false ? '0' : (this.state.volume.indexOf('%') > -1 ? this.state.volume.replace('%', '') / 100 : this.state.volume);
   }
   
+  //处理点击音量条事件
 	resetVolume(event) {
     const myVideo = document.getElementById('myVideo');
 		const containerOffsetLeft = document.getElementsByClassName('vjs-volume-control')[0].offsetLeft;
@@ -240,6 +252,7 @@ class VideoPlayer extends React.Component {
     myVideo.volume = Math.min(scale, 1.0);
   }
   
+  //点击f11全屏
 	f11Key() {
 		if (this.state.fullscreen) {
 			this.setState({ fullscreen: false });
@@ -273,6 +286,7 @@ class VideoPlayer extends React.Component {
 		this.setState({ fullscreen: !this.state.fullscreen });
   }
   
+  //改变controlbar的状态
 	toggleControlBar = () => {
 		if (this.state.showPlayBtn) {
 			this.setState({ showControlBar: false });
@@ -287,6 +301,11 @@ class VideoPlayer extends React.Component {
 		}
   }
 
+  /**
+   * 提交用户弹幕
+   * 把这个dan时间延后1s，加个唯一的假id放到danList里面，
+   * 再把正确的post到后端 
+   */
   submitDan=(e) => {
     e.preventDefault();
     if (getSessionTokenJson() !== null) {

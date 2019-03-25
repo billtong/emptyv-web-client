@@ -6,10 +6,10 @@ import {connect} from "react-redux";
 
 class Tag extends React.Component {
   state = {
-    tagList: this.props.tagList,
-    isTagAdd: false,
-    isTagBlur: true,
-    isTagForcus: false
+    tagList: this.props.tagList,  //用于记录改变的tagList
+    isTagAdd: false,              //用于记录btn和input的状态改变
+    isTagBlur: true,              //blur和focus是防止被其他input的enter提交给影响
+    isTagForcus: false            //blur和focus是防止被其他input的enter提交给影响
   }
 
   componentWillMount=() => {
@@ -27,6 +27,7 @@ class Tag extends React.Component {
     });
   }
 
+  //在退出这个页面的时候将改变的tag提交上去，（这个tagJsonString仅仅是个string而已不是json）
   componentWillUnmount = () => {
     if (this.state.hasChanged) {
       patchTags({
@@ -36,6 +37,7 @@ class Tag extends React.Component {
     }
   }
 
+  //点击Enter键提交这个tag
   handleEnterKey=(e) => {
     if (e.keyCode === 13 && this.state.isTagForcus && !this.state.isTagBlur) {
       if (getSessionTokenJson === null) {
@@ -59,6 +61,7 @@ class Tag extends React.Component {
     }
   };
 
+  //点击tag按钮
   handleClick=(e) => {
     const userJSON = getSessionTokenJson();
     if (!userJSON) {
@@ -74,6 +77,7 @@ class Tag extends React.Component {
     }));
   }
 
+  //监听tag输入筐的focus状态
   ifTagForcus=() => {
     this.setState(prevState => ({
       ...prevState,
@@ -82,6 +86,7 @@ class Tag extends React.Component {
     }));
   }
 
+  //监听tag输入框的blur状态
   ifTagBlur=() => {
     this.setState(prevState => ({
       ...prevState,
@@ -90,7 +95,6 @@ class Tag extends React.Component {
       isTagAdd: false
     }));
   }
-//(typeof str=='string')&&str.constructor==String;
   render() {
     const { tagList } = this.state;
     const solvedTageList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
@@ -104,8 +108,7 @@ class Tag extends React.Component {
           </li>
         );
       })
-    );
-
+    ); 
     const addTag = (this.state.isTagAdd) ? (
       <div>
         <input
@@ -128,7 +131,6 @@ class Tag extends React.Component {
         Add New Tags
       </div>
     );
-
     return (
       <div className="tag-section">
         <ul className="tag-ul">
@@ -142,13 +144,6 @@ class Tag extends React.Component {
 
 export default  Tag;
 
-/*
-tagList: {
-  data: [
-    {name: xxx},
-    {name: xxx},
-    {name: xxx},
-    {name: xxx}
-  ]
-}
+/*get的video tag string形式
+  "xx,xxx,xxx,xxx"
 */

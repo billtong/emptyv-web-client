@@ -1,20 +1,20 @@
 import React from 'react';
-import {connect} from "react-redux";
 
 class Dan extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      numArrT: [],
-      numArrL: [],
-      colorArr: [],
-      speedArr: [],
-      displayDanList: [],
+    this.state = {         //这几个数组的index应该一直是完全对应的
+      numArrT: [],        //弹幕距离top的数组
+      numArrL: [],        //弹幕距离左边的数组
+      colorArr: [],       //弹幕的颜色的数组
+      speedArr: [],       //弹幕的速度数组
+      displayDanList: [], //目前需要在屏幕上展示的全部弹幕
     };
     this.myCanvas = React.createRef();
-  }
+  } 
 
-   //打印传进来的这部分displayDanList
+   //处理从videoPlayer传进来的新的currentDanlist，放到五个state数组里
+   //不断的画出现在的情况
   componentWillReceiveProps=(nextProps) => {
     if (nextProps.resetDan === true) {
       this.setState({
@@ -29,7 +29,7 @@ class Dan extends React.Component {
       const ctx = this.myCanvas.current.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       return;
-    }
+    } 
     let isNew = false;
     if (this.props.displayDanList.length !== nextProps.displayDanList.length) {
       isNew = true;
@@ -49,7 +49,6 @@ class Dan extends React.Component {
         }
       });
     }
-
     if (isNew) {
       const canvas = this.myCanvas.current;
       const displayDanList = nextProps.displayDanList;
@@ -59,7 +58,7 @@ class Dan extends React.Component {
         return (canvas.height * (index / 15)) + 20;
       });
       Array.prototype.push.apply(newNumArrT1, newNumArrT2);
-      const newNumArrL = this.state.numArrL;
+      const newNumArrL = this.state.numArrL; 
       Array.prototype.push.apply(newNumArrL, Array(displayDanList.length).fill(canvas.width));
       const newColorArr = this.state.colorArr;
       Array.prototype.push.apply(newColorArr, Array(displayDanList.length).fill('#FFFFFF'));
@@ -70,7 +69,7 @@ class Dan extends React.Component {
       Array.prototype.push.apply(newSpeedArr, newSpeedArr2);
       const newDisplayDanList = this.state.displayDanList;
       Array.prototype.push.apply(newDisplayDanList, displayDanList);
-      console.log(newDisplayDanList);
+      console.log(newDisplayDanList); 
       this.setState({
         numArrT: newNumArrT1,
         numArrL: newNumArrL,
@@ -84,6 +83,7 @@ class Dan extends React.Component {
     }
   }
 
+  //画出当前时间的全部数组，出了canvas的做删除处理
   drawDanList=() => {
     const canvas = this.myCanvas.current;
     const ctx = this.myCanvas.current.getContext('2d');
@@ -94,7 +94,7 @@ class Dan extends React.Component {
         ctx.fillStyle = this.state.colorArr[index];
         ctx.fillText(dan.danContent, this.state.numArrL[index], this.state.numArrT[index]);
         if (this.state.numArrL[index] <= -canvas.width) {
-          const newNumArrL = this.state.numArrL;
+          const newNumArrL = this.state.numArrL; 
           const newNumArrT = this.state.numArrT;
           const newColorArr = this.state.colorArr;
           const newSpeedArr = this.state.speedArr;
@@ -117,9 +117,9 @@ class Dan extends React.Component {
           this.setState({
             numArrL: newArrL,
           });
-        }
+        }  
       });
-      ctx.restore();
+      ctx.restore(); 
   }
 
   render = () => {
@@ -131,4 +131,4 @@ class Dan extends React.Component {
   }
 }
 
-export default Dan;
+module.exports = Dan;
