@@ -8,6 +8,7 @@ class Pagination extends React.Component {
     currPage: 1,
     sizes: 8,
   }
+
   componentDidMount() {
     switch (this.props.tag) {
       case 'comment':
@@ -45,8 +46,8 @@ class Pagination extends React.Component {
     const list = this.props.list;
     const sizes = this.state.sizes;
     let pagination = null;
-    if(!list && list.length > 0) {
-      pagination = Array(list.length % sizes === 0 ? list.length / sizes : (list.length / sizes) + 1).fill(0);
+    if(list !== undefined && list.length > 0) {
+      pagination = Array(list.length % sizes === 0 ? Math.floor(list.length / sizes) : (Math.floor(list.length / sizes)) + 1).fill(0);
       pagination = pagination.map((value, index) => {
         const changePage = (e) => {
           e.preventDefault();

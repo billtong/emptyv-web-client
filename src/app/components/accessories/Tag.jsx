@@ -40,10 +40,6 @@ class Tag extends React.Component {
   //点击Enter键提交这个tag
   handleEnterKey=(e) => {
     if (e.keyCode === 13 && this.state.isTagForcus && !this.state.isTagBlur) {
-      if (getSessionTokenJson === null) {
-        alert('please login first!');
-        return;
-      }
       const { tagList } = this.state;
       const tag = this.refs.addTag.value;
       this.refs.addTag.value = '';
