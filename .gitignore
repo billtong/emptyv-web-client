@@ -1,4 +1,16 @@
+### ide files
 .idea/
-.vscode/
-node_modules/
-public/bundle.js
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+### testing
+/public/bundle.js
+/coverage
+
+### production
+/build
+
+### misc
+npm-debug.log*
