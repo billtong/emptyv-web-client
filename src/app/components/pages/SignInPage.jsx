@@ -5,16 +5,29 @@ import { signInAction } from '../../actions/SignInActions.jsx';
 
 
 class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.state = {
-      isLoading: false,
-      error: undefined,
-    };
+  state = {
+    signInError: this.props.signInError
   }
 
-  onSubmit(e) {
+  onSubmit = (e) => {
+    const {username, password } = this.refs;
+    const checkNull = (item, itemName) => {
+      console.log(item);
+      if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
+        this.setState({
+          signInError: `${itemName} can't be null`
+        });  
+        return true;
+      }
+      return false;
+    };
+    if (checkNull(username.value, 'username')) {
+      return;
+    } 
+    if (checkNull(password.value, 'password')) {
+      return;
+    }
+
     const inputJson = {
       userName: this.refs.username.value,
       userPassword: this.refs.password.value
@@ -26,16 +39,16 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const loadingIcon = this.props.isLoading ? (
+    const loadingIcon = this.props.isSignInLoading ? (
       <div className="loader">
         <RingLoader color={'#d9d9d9'} />
       </div>
     ) : null;
-    const errText = (this.props.error === undefined) ?
+    const errText = (this.state.signInError === undefined) ?
       null : (
         <div className="error">
           <div className="badge badge-danger">
-            {this.props.error}
+            {this.state.signInError}
           </div>
         </div>
       );
@@ -45,7 +58,7 @@ class SignIn extends React.Component {
         <p className="sign-title">
           welcome home!
         </p>
-        <form className="sign-form" onSubmit={this.onSubmit}>
+        <form className="sign-form" onSubmit={e => this.onSubmit(e)}>
           <input
             id="exampleInputUsername1"
             aria-describedby="usernameHelp"
@@ -71,8 +84,8 @@ class SignIn extends React.Component {
 }
 
 const mapStateToProps = ({ signInReducer }) => {
-  const { isLoading, error } = signInReducer;
-  return { isLoading, error };
+  const { isSignInLoading, signInError } = signInReducer;
+  return { isSignInLoading, signInError };
 };
 
 export default connect(

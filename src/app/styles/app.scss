@@ -45,6 +45,23 @@ input {
   font-size: inherit;
   line-height: inherit;
 }
+
+.badge-danger {
+  color: #fff;
+  background-color: #dc3545;
+}
+
+.badge {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+}
 //bootstrap 结束
 
 //我在tobyX的工作结晶，用于addbtn

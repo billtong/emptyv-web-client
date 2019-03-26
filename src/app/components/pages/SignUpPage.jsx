@@ -5,20 +5,47 @@ import { signUpAction } from '../../actions/SignUpActions.jsx';
 
 
 class SignUp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.state = {
-        isLoading: false,
-        rslt: undefined,
-    };
+  state = {
+    rslt: this.props.rslt,
+    isError: true
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    this.setState({
+      rslt: nextProps.rslt
+    });  
   }
 
-  componentWillMount() {
-  }
 
   onSubmit(e) {
     const { email, username, password1, password2 } = this.refs;
+    const checkNull = (item, itemName) => {
+      console.log(item);
+      if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
+        this.setState({
+          rslt: `${itemName} can't be null`,
+          isError: false
+        });  
+        return true;
+      }
+      return false;
+    };
+    if (checkNull(email.value, 'email')) {
+      return;
+    }
+    if (checkNull(username.value, 'username')) {
+      return;
+    } 
+    if (checkNull(password1.value, 'password')) {
+      return;
+    }
+    if(password1.value !== password2.value) {
+      this.setState({
+        rslt: 'confirm password is not same as the password',
+        isError: false
+      });  
+      return;
+    }
     const inputJson = {
       userName: username.value,
       userPassword: password1.value,
@@ -33,20 +60,32 @@ class SignUp extends React.Component {
   }
 
   render() {
-      const loadingIcon = this.props.isLoading ? (
-        <div className="loader">
-          <RingLoader color={'#d9d9d9'} />
-        </div>
-      ) : null;
-      const rsltMessage = (this.props.rslt === undefined) ? null :
-        (
+    const loadingIcon = this.props.isLoading ? (
+      <div className="loader">
+        <RingLoader color={'#d9d9d9'} />
+      </div>
+    ) : null;
+
+    let rsltMessage = null;
+    if(this.state.rslt !== undefined) {
+      if(this.state.isError) {
+        rsltMessage =  (
           <div className="error">
             <div className="badge badge-danger">
-              {this.props.rslt}
+              {this.state.rslt}
             </div>
           </div>
         );
-
+      } else {
+        rsltMessage =  (
+          <div className="error">
+            <div className="badge">`
+              {this.state.rslt}
+            </div>
+          </div>
+        );
+      }
+    }
     return (
       <div className="sign-section">
         <p className="sign-title">
@@ -73,8 +112,8 @@ class SignUp extends React.Component {
           />
            <input
             type="password"
-            id="exampleInputPassword1"
-            placeholder="Confirm Password"
+            id="exampleInputPassword2"
+            placeholder="Confirm Password"n
             ref="password2"
           />
           <div className="sign-btn-section">
