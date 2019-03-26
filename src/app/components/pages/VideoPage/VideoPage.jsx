@@ -16,7 +16,7 @@ import { patchOtherNum } from '../../../api/video.jsx';
 import { postComment } from '../../../api/comment';
 
 class VideoPage extends React.Component {
-  state= {
+  state = {
     hasLike: false,
     hasUnlike: false,
     hasFav: false,
@@ -124,6 +124,10 @@ class VideoPage extends React.Component {
   handleEnterKey=(e) => {
     if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
       const comment = this.refs.comment.value;
+      if (!comment || comment === null || comment === '' || (typeof comment === 'string' && comment.trim().length === 0)) {
+        alert('fill with something please...');
+        return;
+    }
       this.refs.comment.value = '';
       const inputJson = {
         commentContent: comment,

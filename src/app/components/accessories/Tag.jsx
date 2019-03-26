@@ -40,6 +40,11 @@ class Tag extends React.Component {
   //点击Enter键提交这个tag
   handleEnterKey=(e) => {
     if (e.keyCode === 13 && this.state.isTagForcus && !this.state.isTagBlur) {
+      const content = this.refs.addTag.value;
+      if (!content || content === null || content === '' || (typeof content === 'string' && content.trim().length === 0)) {
+          alert('fill with something please...');
+          return;
+      }
       const { tagList } = this.state;
       const tag = this.refs.addTag.value;
       this.refs.addTag.value = '';

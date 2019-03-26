@@ -7,7 +7,7 @@ import { signUpAction } from '../../actions/SignUpActions.jsx';
 class SignUp extends React.Component {
   state = {
     rslt: this.props.rslt,
-    isError: true
+    isError: false
   };
 
   componentWillReceiveProps = (nextProps) => {
@@ -16,15 +16,13 @@ class SignUp extends React.Component {
     });  
   }
 
-
-  onSubmit(e) {
+  onSubmit=(e) => {
     const { email, username, password1, password2 } = this.refs;
     const checkNull = (item, itemName) => {
-      console.log(item);
       if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
         this.setState({
           rslt: `${itemName} can't be null`,
-          isError: false
+          isError: true
         });  
         return true;
       }
@@ -42,7 +40,7 @@ class SignUp extends React.Component {
     if(password1.value !== password2.value) {
       this.setState({
         rslt: 'confirm password is not same as the password',
-        isError: false
+        isError: true
       });  
       return;
     }
@@ -100,7 +98,6 @@ class SignUp extends React.Component {
           />
           <input
             id="exampleInputUsername1"
-            aria-describedby="usernameHelp"
             placeholder="Enter Username"
             ref="username"
           />
@@ -113,7 +110,7 @@ class SignUp extends React.Component {
            <input
             type="password"
             id="exampleInputPassword2"
-            placeholder="Confirm Password"n
+            placeholder="Confirm Password"
             ref="password2"
           />
           <div className="sign-btn-section">

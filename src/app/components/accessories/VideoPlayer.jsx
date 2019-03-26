@@ -309,6 +309,11 @@ class VideoPlayer extends React.Component {
   submitDan=(e) => {
     e.preventDefault();
     if (getSessionTokenJson() !== null) {
+      const content = this.refs.danContent.value;
+      if (!content || content === null || content === '' || (typeof content === 'string' && content.trim().length === 0)) {
+          alert('send with something please...');
+          return;
+      }
       const myVideo = document.getElementById('myVideo');
       //假的，未了让用户看到伪造一个id和currentTIme+1
       const newDanItem = {
@@ -332,6 +337,7 @@ class VideoPlayer extends React.Component {
       }).then().catch(err=>{
         console.log(err);
       });
+      this.refs.danContent.value = '';
     } else {
       alert('please login or sign up first');
     }
