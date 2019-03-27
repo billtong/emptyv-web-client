@@ -20,7 +20,8 @@ export const postComment = (inputJson) => {
   return axios.post(deviceListURL, {
     commentContent: inputJson.commentContent,
     videoId: inputJson.videoId,
-    userId: inputJson.userId
+    userId: inputJson.userId,
+    commentParentId: inputJson.commentParentId
   }, {
     headers:{
       'Content-Type': 'application/json'

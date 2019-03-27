@@ -132,7 +132,8 @@ class VideoPage extends React.Component {
       const inputJson = {
         commentContent: comment,
         videoId: this.props.location.query.videoId,
-        userId: getSessionTokenJson().user.userId
+        userId: getSessionTokenJson().user.userId,
+        commentParentId: 0
       };
       postComment(inputJson)
       .then(() => {

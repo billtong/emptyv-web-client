@@ -18,7 +18,7 @@ class CommentGrid extends React.Component {
         const { currPage, sizes } = this.props;
         if (index >= (currPage - 1) * sizes && index < currPage * sizes) {
           return (
-            <CommentBlock key={comment.commentId} commentInfo={comment} />
+            <CommentBlock key={index} commentInfo={comment} />
           );
       }
     });
