@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node bin/start.js",
+    "build": "webpack --config bin/config/webpack.prod.config.js",
     "test": "jest"
   },
   "repository": {
@@ -53,6 +54,7 @@
       }
     },
     "rules": {
+      "indent": "warn",
       "semi": "error"
     },
     "env": {
