@@ -3,7 +3,6 @@ import { START_SIGN_IN_ERR_FETCH,
   COMPLETE_SIGN_IN_ERR_FETCH,
   FAIL_SIGN_IN_ERR_FETCH
 } from './types.jsx';
-import { checkRedirect } from '../api/errorHandling.jsx';
 import { getToken } from '../api/user';
 
 export const startSignIn = () => ({
@@ -36,7 +35,6 @@ export const signInAction = (inputJson) => {
     })
     .catch((err) => {
       dispatch(faileSignIn(`Sign in Failed: ${err.message}`));
-      checkRedirect(err);
     });
   };
 };

@@ -6,14 +6,23 @@ import { signUpAction } from '../../actions/SignUpActions.jsx';
 
 class SignUp extends React.Component {
   state = {
-    rslt: this.props.rslt,
-    isError: false
+    error: undefined
   };
 
   componentWillReceiveProps = (nextProps) => {
-    this.setState({
-      rslt: nextProps.rslt
-    });  
+   if(!nextProps.error) {
+      this.setState({
+        error: nextProps.error
+      });
+    }
+  }
+
+  componentWillUnmount=() => {
+    const { email, username, password1, password2 } = this.refs;
+    email.value = '';
+    username.value = '';
+    password1.value = '';
+    password2.value = '';
   }
 
   onSubmit=(e) => {
@@ -21,8 +30,7 @@ class SignUp extends React.Component {
     const checkNull = (item, itemName) => {
       if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
         this.setState({
-          rslt: `${itemName} can't be null`,
-          isError: true
+          error: `${itemName} can't be null`
         });  
         return true;
       }
@@ -39,8 +47,7 @@ class SignUp extends React.Component {
     }
     if(password1.value !== password2.value) {
       this.setState({
-        rslt: 'confirm password is not same as the password',
-        isError: true
+        error: 'confirm password is not same as the password'
       });  
       return;
     }
@@ -51,10 +58,6 @@ class SignUp extends React.Component {
     };
     e.preventDefault();
     this.props.signUpAction(inputJson);
-    email.value = '';
-    username.value = '';
-    password1.value = '';
-    password2.value = '';
   }
 
   render() {
@@ -65,24 +68,22 @@ class SignUp extends React.Component {
     ) : null;
 
     let rsltMessage = null;
-    if(this.state.rslt !== undefined) {
-      if(this.state.isError) {
-        rsltMessage =  (
-          <div className="error">
-            <div className="badge badge-danger">
-              {this.state.rslt}
-            </div>
+    if(this.props.rslt) {
+      rsltMessage =  (
+        <div className="error">
+          <div className="badge">
+            {this.props.rslt}
           </div>
-        );
-      } else {
-        rsltMessage =  (
-          <div className="error">
-            <div className="badge">`
-              {this.state.rslt}
-            </div>
+        </div>
+      );
+    } else if(this.state.error) {
+      rsltMessage =  (
+        <div className="error">
+          <div className="badge badge-danger">
+            {this.state.error}
           </div>
-        );
-      }
+        </div>
+      );
     }
     return (
       <div className="sign-section">
@@ -125,8 +126,8 @@ class SignUp extends React.Component {
 }
 
 const mapStateToProps = ({ signUpReducer }) => {
-    const { isLoading, rslt } = signUpReducer;
-    return { isLoading, rslt };
+    const { isLoading, rslt, error } = signUpReducer;
+    return { isLoading, rslt, error };
 };
 
 export default connect(

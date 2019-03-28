@@ -1,6 +1,7 @@
 import {
 	START_SIGN_UP_RSLT_FETCH,
-	COMPLETE_SIGN_UP_RSLT_FETCH
+  COMPLETE_SIGN_UP_RSLT_FETCH,
+  FAIL_SIGN_UP_FETCH
 } from './types.jsx';
 import { postRegister } from '../api/user';
 
@@ -14,6 +15,11 @@ export const completeSignUp = (rslt) => ({
   rslt
 });
 
+export const failSignUp = (err) => ({
+  type: FAIL_SIGN_UP_FETCH,
+  err
+});
+
 export const signUpAction = (inputJson) => {
 	return (dispatch) => {
 		dispatch(startSignUp());
@@ -22,7 +28,7 @@ export const signUpAction = (inputJson) => {
 				dispatch(completeSignUp(`${res.data.message}`));
 			})
 			.catch((err) => {
-				dispatch(completeSignUp(`${err.message}`));
+				dispatch(failSignUp(`${err.message}`));
 			});
 	};
 };

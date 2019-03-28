@@ -6,13 +6,18 @@ import { signInAction } from '../../actions/SignInActions.jsx';
 
 class SignIn extends React.Component {
   state = {
-    signInError: this.props.signInError
+    signInError: undefined
+  }
+
+  componentWillReceiveProps=(nextProps) => {
+    if(nextProps.signInError !== this.props.signInError) {
+      this.setState({ signInError: nextProps.signInError });
+    }
   }
 
   onSubmit = (e) => {
     const {username, password } = this.refs;
     const checkNull = (item, itemName) => {
-      console.log(item);
       if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
         this.setState({
           signInError: `${itemName} can't be null`
@@ -46,12 +51,12 @@ class SignIn extends React.Component {
     ) : null;
     const errText = (this.state.signInError === undefined) ?
       null : (
-        <div className="error">
-          <div className="badge badge-danger">
-            {this.state.signInError}
-          </div>
+      <div className="error">
+        <div className="badge badge-danger">
+          {this.state.signInError}
         </div>
-      );
+      </div>
+    );
 
     return (
       <div className="sign-section">

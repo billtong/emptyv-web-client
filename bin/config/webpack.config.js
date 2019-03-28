@@ -7,6 +7,10 @@ module.exports = {
     entry: [
         './src/index.js'
     ],
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, '../public')
+    },
     resolve: {
         modules: [__dirname, 'node_modules'],
         alias: {

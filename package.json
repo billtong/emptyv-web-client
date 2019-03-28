@@ -54,7 +54,6 @@
       }
     },
     "rules": {
-      "indent": "warn",
       "semi": "error"
     },
     "env": {
