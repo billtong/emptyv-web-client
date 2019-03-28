@@ -172,8 +172,8 @@ class VideoPage extends React.Component {
       />
     );
 
-    const token = sessionStorage.getItem('empty-video-web-user-session');
-    const commentUploadBox = (!token || token.length <= 0) ?
+    const token = getSessionTokenJson();
+    const commentUploadBox = (!token || token === null) ?
       (
         <Link to="SignIn">Sign In To Leave a Comment</Link>
       ) :

@@ -26,6 +26,7 @@ class SignUp extends React.Component {
   }
 
   onSubmit=(e) => {
+    e.preventDefault();
     const { email, username, password1, password2 } = this.refs;
     const checkNull = (item, itemName) => {
       if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
@@ -56,7 +57,6 @@ class SignUp extends React.Component {
       userPassword: password1.value,
       userEmail: email.value
     };
-    e.preventDefault();
     this.props.signUpAction(inputJson);
   }
 
@@ -90,7 +90,7 @@ class SignUp extends React.Component {
         <p className="sign-title">
           Start your journey at Empty Video Today!
         </p>
-        <form className="sign-form" onSubmit={this.onSubmit}>
+        <form className="sign-form" onSubmit={e => this.onSubmit(e)}>
           <input
             id="exampleInputname1"
             aria-describedby="emailHelp"

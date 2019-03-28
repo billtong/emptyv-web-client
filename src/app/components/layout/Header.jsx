@@ -6,6 +6,8 @@ import { ClipLoader } from 'react-spinners';
 import { logout } from '../../api/user';
 import { getVideoListAction } from '../../actions/getVideoListActions';
 import { getUserHistoryAction } from '../../actions/getUserHistoryAction';
+import { getSessionTokenJson, userTokenCookieKey, userTokenSessionKey } from '../../api/apiHelper';
+import { deleteCookie } from '../../utils/cookieTools';
 
 class Header extends React.Component {
   state = {
@@ -23,14 +25,15 @@ class Header extends React.Component {
   }
 
   logout = (e) => {
-    const userJSON = JSON.parse(sessionStorage.getItem('empty-video-web-user-session'));
+    const userJSON = getSessionTokenJson();
     const inputJson = {
       sessionId: userJSON.userSessionId,
       userName: userJSON.user.userName,
       token: userJSON.userToken
     };
     logout(inputJson).then(() => {
-      sessionStorage.removeItem('empty-video-web-user-session');
+      deleteCookie(userTokenCookieKey);
+      sessionStorage.removeItem(userTokenSessionKey);
       this.setState({ isLoading: false });
       hashHistory.push('/');
     }).catch(() => {
@@ -131,13 +134,13 @@ class Header extends React.Component {
   }
 
   renderRightMenuList = () => {
-    const token = sessionStorage.getItem('empty-video-web-user-session');
+    const token = getSessionTokenJson();
     const loadingIcon = this.state.isLoading ? (
       <li className="desktop">
         <ClipLoader color={'#d9d9d9'} />
       </li>
     ) : null;
-    return (!token || token.length <= 0) ?
+    return (!token || token === null) ?
       (
         <ul className="menu-right">
           <li className="desktop">

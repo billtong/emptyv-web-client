@@ -16,6 +16,7 @@ class SignIn extends React.Component {
   }
 
   onSubmit = (e) => {
+    e.preventDefault();
     const {username, password } = this.refs;
     const checkNull = (item, itemName) => {
       if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
@@ -28,19 +29,19 @@ class SignIn extends React.Component {
     };
     if (checkNull(username.value, 'username')) {
       return;
-    } 
-    if (checkNull(password.value, 'password')) {
+    } else if (checkNull(password.value, 'password')) {
       return;
+    } else {
+      console.log("???");
+      const inputJson = {
+        userName: this.refs.username.value,
+        userPassword: this.refs.password.value,
+        isKeepLogin: this.refs['isKeepLogin'].checked
+      };
+      this.props.signInAction(inputJson);
+      this.refs.username.value = '';
+      this.refs.password.value = '';
     }
-
-    const inputJson = {
-      userName: this.refs.username.value,
-      userPassword: this.refs.password.value
-    };
-    e.preventDefault();
-    this.props.signInAction(inputJson);
-    this.refs.username.value = '';
-    this.refs.password.value = '';
   }
 
   render() {
@@ -79,6 +80,15 @@ class SignIn extends React.Component {
           <div className="sign-btn-section">
             <input type="submit" className="btn btn-primary" value="Sign In" />
           </div>
+          <table class="check-keep-section">
+            <tr>
+              <td><div class="check-box-text">Keep sign in for 15 DAYs</div></td>
+              <td><input class="check-keep-login-box" id="inputKeepLogIN" type="checkbox" ref="isKeepLogin" /></td>
+            </tr>
+            <tr>
+              <td><div class="warning-text">*check only if this is your device</div></td>
+            </tr>
+          </table>
           {loadingIcon}
           {errText}
         </form>

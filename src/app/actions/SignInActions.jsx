@@ -4,6 +4,8 @@ import { START_SIGN_IN_ERR_FETCH,
   FAIL_SIGN_IN_ERR_FETCH
 } from './types.jsx';
 import { getToken } from '../api/user';
+import { userTokenCookieKey, userTokenSessionKey } from '../api/apiHelper';
+import { setCookie } from '../utils/cookieTools';
 
 export const startSignIn = () => ({
   type: START_SIGN_IN_ERR_FETCH
@@ -29,7 +31,12 @@ export const signInAction = (inputJson) => {
         userToken: res.data.token,
         userSessionId: res.data.sessionId
       };
-      sessionStorage.setItem('empty-video-web-user-session', JSON.stringify(userJson));
+      console.log(inputJson);
+      if (inputJson.isKeepLogin) {
+        setCookie(userTokenCookieKey, JSON.stringify(userJson));
+      } else {
+        sessionStorage.setItem(userTokenSessionKey, JSON.stringify(userJson));
+      }
       dispatch(completeSignIn(res.data.user));
       hashHistory.push('/');
     })

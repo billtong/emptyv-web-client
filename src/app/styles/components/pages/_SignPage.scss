@@ -24,6 +24,28 @@
         border-color: #ed2353;
       }
     }
+
+    .check-keep-section {
+      width: 100%;
+      .check-box-text {
+        float: left;
+        margin-top: 1rem;
+      }
+  
+      .check-keep-login-box {
+        float: right;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-top: 1rem;
+      }
+  
+      .warning-text {
+        margin-top: 0.5rem;
+        text-align: left;
+        float: left;
+        color: orangered;
+      }
+    }
   }
 
   .loader{
