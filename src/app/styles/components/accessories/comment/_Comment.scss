@@ -9,6 +9,23 @@
   .comment-grid-section {
     .comment-list-section {
       .comment-block-section {
+        .reply-btn {
+          font-weight: 500;
+
+        }
+        .reply-btn:hover {
+          cursor: pointer;
+          color: gray;
+        }
+        .reply-arro {
+          font-weight: 500;
+          size: 0.7rem;
+        }
+        .reply-arro:hover {
+          cursor: pointer;
+          color: gray;
+        }
+
         margin-bottom: 1rem;
         margin-top: 1rem;
         .comment-user-avatar {
@@ -38,6 +55,10 @@
           color: orangered;
           line-height: 2rem;
           font-weight: 400;
+        }
+        .reply-input-section {
+          margin-left: 5rem;
+          font-weight: 600;
         }
       }
 
