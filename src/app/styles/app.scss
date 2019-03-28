@@ -11,6 +11,7 @@
 @import "components/pages/VideoPage";
 @import "components/pages/UserPage";
 @import "components/pages/AboutPage";
+@import "./bootstrap.scss";
 
 body {
   background: #0d0d0d;
@@ -20,49 +21,12 @@ body {
   }
 }
 
-//bootstrap 开始
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: .25rem;
-  transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
 input {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
-
-.badge-danger {
-  color: #fff;
-  background-color: #dc3545;
-}
-
-.badge {
-  display: inline-block;
-  padding: .25em .4em;
-  font-size: 75%;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: .25rem;
-}
-//bootstrap 结束
 
 //我在tobyX的工作结晶，用于addbtn
 .add-btn{
@@ -85,26 +49,3 @@ input {
   }
 }
 //add-btn结束
-
-//用于所有的pop窗口
-.showDialog {
-  background: rgba(0,0,0,.65);
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 10100;
-  padding-top: 10%;
-  .modal-content {
-    background-color: whitesmoke;
-    color: black;
-    opacity: 0.8;
-    font-weight: 600;
-  }
-}
-
-.notShowDialog {
-  display: none;
-}
-//pop窗口结束
