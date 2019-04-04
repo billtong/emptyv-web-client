@@ -5,7 +5,33 @@
   margin-top: 1rem;
   margin-right: 5rem;
   padding-bottom: 4rem;
-  width: 65rem;
+  .comment-write-block-section{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    a {
+      color: red;
+      margin-left: 1rem;
+    }
+    a:hover {
+      text-decoration: none;
+      background: yellow;
+    }
+
+    .comment-box{
+      .comment-content {
+        width: 90%;
+        height: 2rem;
+        display: inline-block;
+      }
+      .comment-btn {
+        width: 4rem;
+        height: 2rem;
+        padding: 0 0;
+        display: inline-block;
+      }
+    }
+  } 
   .comment-grid-section {
     .comment-list-section {
       .comment-block-section {
@@ -34,7 +60,6 @@
           width: 3rem;
           display: inline-block;
           vertical-align: middle;
-          background: purple;
           margin-left: 1rem;
         }
         .comment-user-avatar:hover {

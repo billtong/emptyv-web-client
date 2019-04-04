@@ -7,7 +7,6 @@
     position: relative;
     max-width: 80rem;
     margin-left: 5rem;
-    margin-top: 5rem;
     .videos-player{
       position: relative;
       max-width: 80rem;
@@ -62,33 +61,6 @@
       }
     }
   }
-  .comment-write-block-section{
-    margin-top: 1rem;
-    padding-left: 2rem;
-    a {
-      color: #ed2133;
-      margin-left: 1rem;
-    }
-    a:hover {
-      text-decoration: none;
-      color: red;
-    }
-
-    .comment-box{
-      .comment-content {
-        width: 90%;
-        height: 2rem;
-        display: inline-block;
-      }
-      .comment-btn {
-        width: 4rem;
-        height: 2rem;
-        padding: 0 0;
-        display: inline-block;
-      }
-    }
-  } 
-
   .close {
     display: inline;
   } 

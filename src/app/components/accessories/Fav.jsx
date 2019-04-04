@@ -4,7 +4,6 @@ import { MdAdd } from 'react-icons/md';
 import { PulseLoader } from 'react-spinners';
 import { getSessionTokenJson } from '../../api/apiHelper';
 import { patchFavList, postFavList, getFavList } from '../../api/fav';
-import {connect} from "react-redux";
 
 class Fav extends React.Component {
   state = {
@@ -19,7 +18,9 @@ class Fav extends React.Component {
       return;
     }
 
-    getFavList().then(res => {
+    getFavList({
+      userId: getSessionTokenJson().user.userId
+    }).then(res => {
       this.setState(prevState => (
         {
           ...prevState,

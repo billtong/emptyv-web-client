@@ -93,7 +93,7 @@ class CommentBlock extends React.Component {
       const replayDate = formatDateTime(parseInt(comment.commentDate));
       if(index===0) {
         return (
-          <span className="reply-arro" onClick={e=>{
+          <span key={index} className="reply-arro" onClick={e=>{
             e.preventDefault();
             this.setState({ isOpenReply: false });
           }}>
@@ -141,7 +141,6 @@ class CommentBlock extends React.Component {
           Reply
         </span>
       ); 
-      console.log(comment);
       return (
         <div key={index} className="comment-block-section reply">
           <div className="comment-user-avatar" onClick={e=>this.handleUserClick(e, comment.userId)}>
