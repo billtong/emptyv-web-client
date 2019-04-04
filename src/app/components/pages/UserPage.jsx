@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import { getUserHistory, getUserPublic } from '../../api/user';
 import { updateVideoListAction } from '../../actions/getVideoListActions';
 import { getSessionTokenJson } from '../../api/apiHelper';
@@ -23,11 +24,16 @@ class UserPage extends React.Component {
     let aUserId = null;
     if(this.props.routeParams.userId !== undefined) {
       aUserId = parseInt(this.props.routeParams.userId, 10);
+      if(aUserId === 0) {
+        hashHistory.push('404');
+      }
       getUserPublic({
         userId: aUserId
       }).then((res) => {
         this.setState({ user: res.data});
-      }).catch((err)=>{alert(err)});
+      }).catch((err)=>{
+        hashHistory.push('404');
+      });
     } else if (getSessionTokenJson() !== null) {
       aUserId = getSessionTokenJson().user.userId;
       this.setState({ user: getSessionTokenJson().user});

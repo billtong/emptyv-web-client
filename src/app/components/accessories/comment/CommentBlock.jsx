@@ -173,7 +173,6 @@ class CommentBlock extends React.Component {
         <GoChevronDown /> display reply
       </span>
     );
-
     return (
       <div className="comment-block-section">
         <div className="comment-user-avatar" onClick={e=>this.handleUserClick(e, rootComment.userId)}>

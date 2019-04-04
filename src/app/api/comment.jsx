@@ -30,3 +30,16 @@ export const postComment = (inputJson) => {
   , (err) => (err));
 };
 
+export const postCommentA = (inputJson) => {
+  const deviceListURL = `${BASE_URL}api/comment/writeA`;
+  return axios.post(deviceListURL, {
+    commentContent: inputJson.commentContent,
+    commentParentId: inputJson.commentParentId
+  }, {
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => (res)
+  , (err) => (err));
+};
+

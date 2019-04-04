@@ -1,3 +1,4 @@
+import { hashHistory } from 'react-router';
 import {
   START_VIDEO_FETCH,
   COMPLETE_VIDEO_FETCH,
@@ -26,6 +27,7 @@ export const getVideoActions = (videoId) => {
     getVideo(videoId).then((res) => {
       dispatch(completeGetVideo(res.data));
     }).catch((err) => {
+      hashHistory.push('404');
       dispatch(failedGetVideo(`Sorry...${err.statusCode}`));
     });
   };
