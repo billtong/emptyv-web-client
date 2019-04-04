@@ -1,35 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BarLoader } from 'react-spinners';
-import { getUserHistoryAction, compeleteGetUserHistory } from '../../actions/getUserHistoryAction';
+import { getUserHistoryAction } from '../../actions/getUserHistoryAction';
 import { completeGetVideos } from '../../actions/getVideoListActions';
 import { completeSignIn } from '../../actions/SignInActions';
 import { getSessionTokenJson } from '../../api/apiHelper';
 import { getFavList } from '../../api/fav';
 import VideoGrid from '../accessories/videoGrid/VideoGrid';
 import Pagination from '../accessories/Pagination';
-import userIconURL from '../../../asset/user.png';
 import { formatDateTime } from '../../utils/dateTools';
 
 class UserPage extends React.Component {
   state = {
     videoList: undefined,
     favList: undefined,
-    action: 1,  // 1(观看) 2(喜欢) 3(不喜欢) 4(收藏) 5(评论)
+    action: -1,  //-1(不选) 1(观看) 2(喜欢) 3(不喜欢) 4(收藏) 5(评论)
     favListIdSelected: -1,
     favListSelected: undefined,
   }
 
   componentDidMount=() => {
-    //if user state is deleted by refreshing，a new one need to be added
     if (!this.props.user) {
       this.props.completeSignIn(getSessionTokenJson().user);
     }
-    //get history action
     if (!this.props.history) {
       this.props.getUserHistoryAction();
     }
-    //get favList
     if (!this.props.favList) {
       getFavList().then(res => {
         this.setState(prevState => (
@@ -44,18 +40,10 @@ class UserPage extends React.Component {
     }
   };
 
-  //redux update component
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.history !== undefined) {
-      this.generateHistoryVideoList(nextProps.history, this.state.action);
-    }
-  }
-
   //数据复原,方便刷新
   componentWillUnmount() {
     this.props.completeGetVideos();
-    this.props.compeleteGetUserHistory();
-  }
+  } 
 
   generateHistoryVideoList=(rawVideoList, action) => {
     let list = rawVideoList.map((value) => {
@@ -64,24 +52,25 @@ class UserPage extends React.Component {
       }
     });
     list = list.filter(video => video != null);
-    this.setState(prevState => ({
-      ...prevState,
+
+    for(let index = list.length-1; index >= 0; index--) {
+      if (index >= 1 && list[index-1].videoId === list[index].videoId) {
+        list.splice(index, 1);
+      }
+    }
+
+    this.setState({
       videoList: list
-    }));
+    });
+    this.props.completeGetVideos(list);
   };
 
   render() {
-    const { user, history, isHistoryLoading, historyError } = this.props;
-
-    //更新videoList(props)
-    if (this.state.videoList !== undefined) {
-      this.props.completeGetVideos(this.state.videoList);
-    }
-    const loadingBar = isHistoryLoading ? (
+    const loadingBar = this.props.isHistoryLoading ? (
       <BarLoader color="#fff" />
     ) : null;
 
-    const errBar = !historyError ?
+    const errBar = !this.props.historyError ?
     null : (
       <div className="badge badge-danger">
         {this.props.historyError}
@@ -141,11 +130,16 @@ class UserPage extends React.Component {
       );
     });
 
-    const userHeader = !user || !history ? null : (
-      <div className="user-header-section">
-        <img className="log-img" src={userIconURL} width="50px" height="50px" />
-        <span className="uid-text">UID: {user.userId}</span>
-        <span className="username-text">USERNAME: {user.userName}</span>
+    const userHeader = !this.props.user ? null : (
+      <div>
+        <div className="user-banner-section">
+          <img className="user-banner-img" src={this.props.user.userBanner} />
+        </div>
+        <div className="user-header-section">
+          <img className="log-img" src={this.props.user.userIcon} width="100px" height="100px" />
+          <span className="uid-text">#{this.props.user.userId}</span>
+          <span className="username-text">{this.props.user.userName}</span>
+        </div>
       </div>
     );
 
@@ -171,11 +165,11 @@ class UserPage extends React.Component {
       </div>
     );
 
-    const videoGrid = (!history || !this.state.videoList) ? null : (
+    const videoGrid = (!this.props.history || !this.state.videoList) ? null : (
       <VideoGrid />
     );
 
-    const pagination = (!history || !this.state.videoList) ? null : (
+    const pagination = (!this.props.history || !this.state.videoList) ? null : (
       <Pagination
         list={this.state.videoList}
         tag="video"
@@ -215,6 +209,5 @@ const mapStateToProps = ({ getUserHistoryReducer, signInReducer }) => {
 export default connect(mapStateToProps, {
   getUserHistoryAction,
   completeGetVideos,
-  compeleteGetUserHistory,
   completeSignIn
 })(UserPage);

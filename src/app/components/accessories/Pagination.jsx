@@ -84,21 +84,32 @@ class Pagination extends React.Component {
       <div key='0' className="index-text currPage-index-text">[1]</div>
     );
     }
-    return (
+
+    const paginationWhole = !list || list.length === 0 ? (
+      <div className="pagination">
+        empty video
+      </div>
+    ) : (
       <div className="pagination">
         <div className="index-text" onClick={e => {
-          if(this.state.currPage > 1) {
-            this.changePage(e, this.state.currPage-2);
-          }
-        }}><GoChevronLeft /></div>
-        {pagination}
-        <div className="index-text"  onClick={e => {
-          const num = !pagination || pagination === null ? 1 : pagination.length;
-          if (this.state.currPage < num) {
-            this.changePage(e, this.state.currPage);
-          }
-        }}><GoChevronRight /></div>
-      </div>
+        if(this.state.currPage > 1) {
+          this.changePage(e, this.state.currPage-2);
+        }
+      }}><GoChevronLeft /></div>
+      {pagination}
+      <div className="index-text"  onClick={e => {
+        const num = !pagination || pagination === null ? 1 : pagination.length;
+        if (this.state.currPage < num) {
+          this.changePage(e, this.state.currPage);
+        }
+      }}><GoChevronRight /></div>
+       </div>
+    );
+
+    return (
+      <React.Fragment>
+        {paginationWhole}
+      </React.Fragment>
     );
   }
 }

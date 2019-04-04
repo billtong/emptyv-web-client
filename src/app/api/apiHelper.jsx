@@ -10,7 +10,6 @@ export const userTokenCookieKey = 'empty-video-web-user-cookie';
 //  userSessionId: res.data.sessionId
 //};
 export const getSessionTokenJson = () => {
-  console.log(getCookie(userTokenCookieKey).length);
   let userJson = JSON.parse(sessionStorage.getItem(userTokenSessionKey));
   const cookie = getCookie(userTokenCookieKey);
   if ((!userJson || userJson === null) && cookie && cookie !== null && cookie !== '')  {
