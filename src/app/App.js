@@ -18,6 +18,7 @@ class App extends Component{
             <Route path="SignIn" component={SignIn} />
             <Route path="SignUp" component={SignUp} />
             <Route path="UserPage" component={UserPage} />
+            <Route path="UserPage/:userId" component={UserPage} />
             <Route path="VideoPage" component={VideoPage} />
             <Route path="About" component={AboutPage} />
           </Route>

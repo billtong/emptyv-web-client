@@ -2,8 +2,8 @@ import axios from 'axios';
 import { BASE_URL } from './baseURL';
 import { getTokenParamURL } from './apiHelper';
 
-export const getFavList = () => {
-  const getFavListURL = `${BASE_URL}api/fav/getFavsByUserId?${getTokenParamURL()}`;
+export const getFavList = (inputJson) => {
+  const getFavListURL = `${BASE_URL}api/fav/getFavsByUserId?userId=${inputJson.userId}`;
   return axios.get(getFavListURL, {
     headers: {
       'Content-Type': 'application/json'

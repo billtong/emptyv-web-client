@@ -3,6 +3,7 @@ import {
   COMPLETE_VIDEOS_FETCH,
   FAILED_VIDEOS_FETCH,
   COMPELETE_UPDATE_VIDEO_PAGES,
+  COMPELETE_UPDATE_VIDEO_LIST
 } from './types.jsx';
 import { getVideoList } from '../api/video';
 
@@ -35,6 +36,16 @@ export const getVideoListAction = (inputJson) => {
     });
   };
 };
+
+export const updateVideoListAction = (videoList) => {
+  return (dispatch) => {
+    dispatch({
+      type: COMPELETE_UPDATE_VIDEO_LIST,
+      videoList
+    });
+  };
+};
+
 
 export const updateVideoPageAction = (currPage, sizes) => {
   return (dispatch) => {

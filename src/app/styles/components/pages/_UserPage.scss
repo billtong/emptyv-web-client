@@ -39,13 +39,14 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 3rem;
+    border: 0.3rem solid $grey;
     .left-menu {
       display: flex;
       margin-left: 7rem;
-      border: 0.1rem solid $grey;
+      border-right: 0.3rem solid $grey;
       border-radius: 4px;
       padding-right: 2rem;
-      padding-bottom: 1rem;
+      padding-bottom: 10rem;
       .user-history-menu {
         .user-menu-items {
           display: block;

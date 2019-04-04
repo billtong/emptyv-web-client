@@ -65,3 +65,16 @@ export const getUserHistory = () => {
     throw new Error(err.message);
   });
 };
+
+//public use
+export const getUserPublic = (inputJson) => {
+  const deviceListURL = `${BASE_URL}api/user/getUser?userId=${inputJson.userId}`;
+  return axios.get(deviceListURL, {
+    headers: { 
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => (res)
+  , (err) => {
+    throw new Error(err.message);
+  });
+};

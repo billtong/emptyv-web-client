@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import { GoChevronDown, GoChevronUp } from 'react-icons/go';
 import { formatDateTime } from '../../../utils/dateTools';
 import { getSessionTokenJson } from '../../../api/apiHelper';
@@ -36,6 +37,11 @@ class CommentBlock extends React.Component {
       alert(`failed post comment${err}`);
     });
   };
+
+  handleUserClick = (e, userId) => {
+    e.preventDefault();
+    hashHistory.push(`UserPage/${userId}`);
+  }
 
   render() {
     const commentData = this.props.commentInfo;
@@ -135,16 +141,17 @@ class CommentBlock extends React.Component {
           Reply
         </span>
       ); 
+      console.log(comment);
       return (
         <div key={index} className="comment-block-section reply">
-          <div className="comment-user-avatar">
+          <div className="comment-user-avatar" onClick={e=>this.handleUserClick(e, comment.userId)}>
             <img 
                 src={comment.userInfo.userIcon}
                 height="100%"
                 width="100%"
               />
           </div>
-          <div className="comment-user-text">
+          <div className="comment-user-text" onClick={e=>this.handleUserClick(e, comment.userId)}>
             {comment.userInfo.userName}
           </div>
           <div className="comment-public-date">
@@ -170,14 +177,14 @@ class CommentBlock extends React.Component {
 
     return (
       <div className="comment-block-section">
-        <div className="comment-user-avatar">
+        <div className="comment-user-avatar" onClick={e=>this.handleUserClick(e, rootComment.userId)}>
           <img 
             src={rootComment.userInfo.userIcon}
             height="100%"
             width="100%"
           />
         </div>
-        <div className="comment-user-text">
+        <div className="comment-user-text" onClick={e=>this.handleUserClick(e, rootComment.userId)}>
           {rootComment.userInfo.userName}
         </div>
         <div className="comment-public-date">

@@ -3,6 +3,7 @@ import {
     COMPLETE_VIDEOS_FETCH,
     FAILED_VIDEOS_FETCH,
     COMPELETE_UPDATE_VIDEO_PAGES,
+    COMPELETE_UPDATE_VIDEO_LIST
 } from '../actions/types.jsx';
 
 export const getVideoListReducer = (state = '', action) => {
@@ -35,6 +36,11 @@ export const getVideoListReducer = (state = '', action) => {
         currPage: action.currPage,
         sizes: action.sizes,
       };
+    case COMPELETE_UPDATE_VIDEO_LIST:
+      return {
+        ...state,
+        videoList: action.videoList,
+      }
     default:
       return state;
     }

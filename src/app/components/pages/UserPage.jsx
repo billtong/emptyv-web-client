@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BarLoader } from 'react-spinners';
-import { getUserHistoryAction } from '../../actions/getUserHistoryAction';
-import { completeGetVideos } from '../../actions/getVideoListActions';
-import { completeSignIn } from '../../actions/SignInActions';
+import { getUserHistory, getUserPublic } from '../../api/user';
+import { updateVideoListAction } from '../../actions/getVideoListActions';
 import { getSessionTokenJson } from '../../api/apiHelper';
 import { getFavList } from '../../api/fav';
 import VideoGrid from '../accessories/videoGrid/VideoGrid';
@@ -12,38 +10,51 @@ import { formatDateTime } from '../../utils/dateTools';
 
 class UserPage extends React.Component {
   state = {
-    videoList: undefined,
+    history: undefined,
     favList: undefined,
-    action: -1,  //-1(不选) 1(观看) 2(喜欢) 3(不喜欢) 4(收藏) 5(评论)
-    favListIdSelected: -1,
+    videoList: undefined,
+    action: -1,  //-1(不选) 1(观看) 2(喜欢) 3(不喜欢) 5(评论)
+    favListIdSelected: -1,  //index
     favListSelected: undefined,
+    user: null   //这里的user有两种，public的和private的
   }
 
   componentDidMount=() => {
-    if (!this.props.user) {
-      this.props.completeSignIn(getSessionTokenJson().user);
-    }
-    if (!this.props.history) {
-      this.props.getUserHistoryAction();
-    }
-    if (!this.props.favList) {
-      getFavList().then(res => {
-        this.setState(prevState => (
-          {
-            ...prevState,
-            favList: res.data
-          }
-        ));
+    let aUserId = null;
+    if(this.props.routeParams.userId !== undefined) {
+      aUserId = parseInt(this.props.routeParams.userId, 10);
+      getUserPublic({
+        userId: aUserId
+      }).then((res) => {
+        this.setState({ user: res.data});
+      }).catch((err)=>{alert(err)});
+    } else if (getSessionTokenJson() !== null) {
+      aUserId = getSessionTokenJson().user.userId;
+      this.setState({ user: getSessionTokenJson().user});
+      getUserHistory().then(res => {
+        this.setState({ 
+          history: res.data
+        });
       }).catch((err) => {
         alert(err);
       });
     }
+    getFavList({
+        userId: aUserId
+      }).then(res => {
+        this.setState({
+           favList: res.data
+        });
+      }).catch((err) => {
+        alert(err);
+      });
+      //reset the props from redux
+      this.props.updateVideoListAction();
   };
 
-  //数据复原,方便刷新
   componentWillUnmount() {
-    this.props.completeGetVideos();
-  } 
+    this.props.updateVideoListAction();
+  }
 
   generateHistoryVideoList=(rawVideoList, action) => {
     let list = rawVideoList.map((value) => {
@@ -52,42 +63,27 @@ class UserPage extends React.Component {
       }
     });
     list = list.filter(video => video != null);
-
     for(let index = list.length-1; index >= 0; index--) {
       if (index >= 1 && list[index-1].videoId === list[index].videoId) {
         list.splice(index, 1);
       }
     }
-
-    this.setState({
-      videoList: list
-    });
-    this.props.completeGetVideos(list);
+    this.setState({videoList: list});
+    this.props.updateVideoListAction(list);
   };
 
   render() {
-    const loadingBar = this.props.isHistoryLoading ? (
-      <BarLoader color="#fff" />
-    ) : null;
-
-    const errBar = !this.props.historyError ?
-    null : (
-      <div className="badge badge-danger">
-        {this.props.historyError}
-      </div>
-    );
-
     const menuArr = ['I view', 'I like', 'I unlike'];
-    const historyMenuList = menuArr.map((value, index) => {
+    const historyMenuList = this.state.history === undefined ? null : menuArr.map((value, index) => {
       const handleMenuClick = (e, newAction) => {
         e.preventDefault();
-        this.generateHistoryVideoList(this.props.history, newAction);
         this.setState(prevState => ({
           ...prevState,
           action: newAction,
           favListIdSelected: -1,
           favListSelected: undefined,
         }));
+        this.generateHistoryVideoList(this.state.history, newAction);
       };
       if (this.state.action === index + 1) {
         return (
@@ -102,19 +98,18 @@ class UserPage extends React.Component {
         </li>
       );
     });
-
     const favMenuList = this.state.favList === undefined || this.state.favList.length === 0 ? (
       <li>No Fav List</li>
     ) : this.state.favList.map((value, index) => {
       const handleMenuClick = (e, favId) => {
         e.preventDefault();
-        this.setState(prevState => ({
-          ...prevState,
+        this.setState({
           action: -1,
           favListIdSelected: favId,
           favListSelected: value,
           videoList: value.videoList
-        }));
+        });
+        this.props.updateVideoListAction(value.videoList);
       };
       if (this.state.favListIdSelected === value.favId) {
         return (
@@ -129,20 +124,18 @@ class UserPage extends React.Component {
         </li>
       );
     });
-
-    const userHeader = !this.props.user ? null : (
+    const userHeader = !this.state.user ? null : (
       <div>
         <div className="user-banner-section">
-          <img className="user-banner-img" src={this.props.user.userBanner} />
+          <img className="user-banner-img" src={this.state.user.userBanner} />
         </div>
         <div className="user-header-section">
-          <img className="log-img" src={this.props.user.userIcon} width="100px" height="100px" />
-          <span className="uid-text">#{this.props.user.userId}</span>
-          <span className="username-text">{this.props.user.userName}</span>
+          <img className="log-img" src={this.state.user.userIcon} width="100px" height="100px" />
+          <span className="uid-text">#{this.state.user.userId}</span>
+          <span className="username-text">{this.state.user.userName}</span>
         </div>
       </div>
     );
-
     const videoGridInfo = this.state.favListSelected === undefined ? null : (
       <div className="grid-info">
         <table>
@@ -164,12 +157,10 @@ class UserPage extends React.Component {
         </table>
       </div>
     );
-
-    const videoGrid = (!this.props.history || !this.state.videoList) ? null : (
+    const videoGrid = (!this.state.videoList) ? null : (
       <VideoGrid />
     );
-
-    const pagination = (!this.props.history || !this.state.videoList) ? null : (
+    const pagination = (!this.state.videoList) ? null : (
       <Pagination
         list={this.state.videoList}
         tag="video"
@@ -177,9 +168,7 @@ class UserPage extends React.Component {
     );
     return (
       <div className="user-page-main-section">
-        {loadingBar}
-        {errBar}
-        {userHeader}
+        {userHeader}        
         <div className="left-right-container">
           <div className="left-menu">
             <ul className="user-history-menu">
@@ -200,14 +189,8 @@ class UserPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ getUserHistoryReducer, signInReducer }) => {
-  const { isHistoryLoading, historyError, history } = getUserHistoryReducer;
-  const { user } = signInReducer;
-  return { isHistoryLoading, historyError, history, user };
-};
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {
-  getUserHistoryAction,
-  completeGetVideos,
-  completeSignIn
+  updateVideoListAction
 })(UserPage);
