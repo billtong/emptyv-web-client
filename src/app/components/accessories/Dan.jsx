@@ -124,7 +124,7 @@ class Dan extends React.Component {
 
   render = () => {
     return (
-      <div className="danmu-canvas-section">
+      <div className={this.props.className}>
         <canvas className="danmu-canvas" ref={this.myCanvas} width="1250" height="625" />
       </div>
     );

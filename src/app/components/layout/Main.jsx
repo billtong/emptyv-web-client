@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-
+import Footer from './Footer';
 
 class Main extends React.Component {
   render() {
@@ -10,6 +10,7 @@ class Main extends React.Component {
         <div className="main-bodey-container">
           {this.props.children}
         </div>
+        <Footer />
       </div>
     );
   }

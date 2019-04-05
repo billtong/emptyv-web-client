@@ -8,7 +8,7 @@ import {Provider} from "react-redux";
 require('style-loader!css-loader!sass-loader!applicationStyles');
 const store = configureStore.configure();
 store.subscribe(() => {
-    console.log('New state', store.getState());
+    //console.log('New state', store.getState());
 });
 const root = document.getElementById('app');
 if(root !== null){

@@ -16,12 +16,14 @@ class VideoPlayer extends React.Component {
 			duration: '0:00:00',      //记录视频展现给用户的总时间
 			volume: '1.0',            //记录音量大小 （0-1)
 			progress: '0',            //记录播放进度
-			headPos: '0',              //??
+			headPos: '0',              //
 			offVolume: false,         //记录是否静音
 			volumeProgress: '100%',
 			fullscreen: false,
 			showPlayBtn: true,
       showControlBar: false,
+      isDisplayDan: true,      //用来关闭弹幕
+      danCss: "danmu-canvas-section",
       danList: [],              //储存从后台传过来的该视频的全部弹幕列表
       danHasDisplayed: null,    //储存上一个弹幕ID，防止Interval里重复打印
       currentDanList: [],       //储存video.currentTime的全部弹幕列表，传给Dan组件展示出来
@@ -348,9 +350,26 @@ class VideoPlayer extends React.Component {
     const startControlIcon = this.state.progress === '100%' || this.state.pause ? <MdPlayArrow /> : <MdPause />;
     const volumnControlIcon = this.state.offVolume === true ? <MdVolumeMute /> : <MdVolumeUp />; 
     const fullScreenControlIcon = this.state.fullscreen === true ?  <MdFullscreenExit /> : <MdFullscreen />;
+    const danInputDiv = this.state.isDisplayDan ? (
+      <div>
+        <div className="vjs-control vjs-dan-switch" onClick={(e) => {this.setState({ isDisplayDan: false, danCss: "not-display" })}}>CLOSE</div>
+        <div className="vjs-dan-input vjs-control">
+          <input 
+            className="dan-input"
+            type="text" 
+            ref="danContent"
+            placeholder="leave a comment on the video"
+          />
+        </div>
+        <div className="vjs-dan-btn vjs-control" onClick={(e) => this.submitDan(e)}>go</div>
+      </div>
+    ) : (
+      <div className="vjs-control vjs-dan-switch" onClick={(e) => {this.setState({ isDisplayDan: true, danCss: "danmu-canvas-section" })}}>OPEN</div>
+    );
 		return (
 			<div className={this.state.fullscreen ? 'videos-player asset fullscreen' : 'videos-player asset'}>
-        <Dan 
+        <Dan
+          className={this.state.danCss} 
           displayDanList={this.state.currentDanList}
           pause={this.state.pause}
           resetDan={this.state.resetDan}
@@ -397,16 +416,7 @@ class VideoPlayer extends React.Component {
 					<div className="vjs-duration-time vjs-time-controls vjs-control">
 						<span>{this.state.duration}</span>
 					</div>
-          <div className="vjs-dan-input vjs-control">
-          <input 
-            className="dan-input"
-            type="text" 
-            ref="danContent"
-            placeholder="leave a comment on the video"
-          />
-          </div>
-          <div className="vjs-dan-btn vjs-control" onClick={(e) => this.submitDan(e)}>go</div>
-
+          {danInputDiv}
 					<div className="vjs-progress-control vjs-control" >
 						<div className="vjs-progress-holder vjs-slider" onClick={this.resetPlay.bind(this)}>
 							<div className="vjs-play-progress" style={{ width: this.state.progress }} />

@@ -120,10 +120,11 @@ handleEnterKey=(e) => {
             </ul>
           </section>
           <section>
-            <h2>New Features Comming</h2>
+            <h2>New Comming Features</h2>
             <ul>
               <li>chat with other users</li>
               <li>share your own videos</li>
+              <li>User notification</li>
             </ul>
           </section>
           <section>
