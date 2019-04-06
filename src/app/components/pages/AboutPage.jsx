@@ -6,6 +6,7 @@ import Pagination from '../accessories/Pagination';
 import { getSessionTokenJson } from '../../api/apiHelper';
 import { postComment, postCommentA } from '../../api/comment';
 import { getCommentListAction, completeGetComment} from '../../actions/getCommentListAction';
+import { getVersionDate } from '../../utils/dateTools';
 
 class AboutPage extends React.Component {
 
@@ -108,23 +109,24 @@ handleEnterKey=(e) => {
       <div className="about-us-page">
         <div className="about-us-container">
           <h1 className="title-text">Empty Video</h1>
-          <h4 className="title-text">1.1.0325</h4>
+          <h4 className="title-text">1.1.{getVersionDate()}</h4>
           <section>
             <h2>Accounts Privileges</h2>
             <ul>
-              <li>make or reply comments</li>
-              <li>like or unlike videos</li>
+              <li>make & reply comments</li>
+              <li>like & unlike videos</li>
               <li>add videos to your <p>favourite lists</p></li>
               <li>record your history</li>
               <li>make <p>danmu</p></li>
             </ul>
           </section>
           <section>
-            <h2>New Comming Features</h2>
+            <h2>Comming Features in v1.2</h2>
             <ul>
               <li>chat with other users</li>
-              <li>share your own videos</li>
-              <li>User notification</li>
+              <li>videos suggestion</li>
+              <li>notification & customize settings on UserPage</li>
+              <li>little video player at the footer</li>
             </ul>
           </section>
           <section>
