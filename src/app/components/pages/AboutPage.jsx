@@ -6,7 +6,6 @@ import Pagination from '../accessories/Pagination';
 import { getSessionTokenJson } from '../../api/apiHelper';
 import { postComment, postCommentA } from '../../api/comment';
 import { getCommentListAction, completeGetComment} from '../../actions/getCommentListAction';
-import { getVersionDate } from '../../utils/dateTools';
 
 class AboutPage extends React.Component {
 
@@ -26,6 +25,7 @@ class AboutPage extends React.Component {
   componentDidMount() {
     this.props.getCommentListAction({ videoId: this.props.videoId });
     document.removeEventListener('keypress', this.handleEenterKey);
+    document.documentElement.scrollTop = 0;
   }
 
 //这个是comment的输入栏的提交法方法
@@ -109,7 +109,7 @@ handleEnterKey=(e) => {
       <div className="about-us-page">
         <div className="about-us-container">
           <h1 className="title-text">Empty Video</h1>
-          <h4 className="title-text">1.1.{getVersionDate()}</h4>
+          <h4 className="title-text">1.1.0325</h4>
           <section>
             <h2>Accounts Privileges</h2>
             <ul>

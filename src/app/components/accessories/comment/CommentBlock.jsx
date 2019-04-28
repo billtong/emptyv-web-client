@@ -40,7 +40,11 @@ class CommentBlock extends React.Component {
 
   handleUserClick = (e, userId) => {
     e.preventDefault();
-    hashHistory.push(`UserPage/${userId}`);
+    if(userId === 0) {
+      hashHistory.push('404');
+    } else {
+      hashHistory.push(`UserPage/${userId}`);
+    }
   }
 
   render() {

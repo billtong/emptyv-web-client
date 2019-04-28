@@ -29,6 +29,7 @@ class VideoPage extends React.Component {
   }
 
   componentDidMount() {
+    document.documentElement.scrollTop = 0;
     //如果有历史记录需要读一下该视频like/unLike/Fav的情况，这里先调取历史记录
     if (getSessionTokenJson() !== null) {
       this.props.getUserHistoryAction();

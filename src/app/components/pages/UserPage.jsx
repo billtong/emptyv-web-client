@@ -21,12 +21,10 @@ class UserPage extends React.Component {
   }
 
   componentDidMount=() => {
+    document.documentElement.scrollTop = 0;
     let aUserId = null;
     if(this.props.routeParams.userId !== undefined) {
       aUserId = parseInt(this.props.routeParams.userId, 10);
-      if(aUserId === 0) {
-        hashHistory.push('404');
-      }
       getUserPublic({
         userId: aUserId
       }).then((res) => {

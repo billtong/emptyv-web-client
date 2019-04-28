@@ -9,6 +9,10 @@ class SignUp extends React.Component {
     error: undefined
   };
 
+  componentDidMount() {
+    document.documentElement.scrollTop = 0;
+  }
+
   componentWillReceiveProps = (nextProps) => {
    if(!nextProps.error) {
       this.setState({

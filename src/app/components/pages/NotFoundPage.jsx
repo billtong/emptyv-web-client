@@ -3,6 +3,10 @@ import React from 'react';
 import unknowImgURL from '../../../asset/404.jpg';
 
 class NotFoundPage extends React.Component {
+  componentDidMount() {
+    document.documentElement.scrollTop = 0;
+  }
+
   render() {
     return (
       <div className="unknow-section">

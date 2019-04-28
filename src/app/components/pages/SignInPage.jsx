@@ -9,6 +9,10 @@ class SignIn extends React.Component {
     signInError: undefined
   }
 
+  componentDidMount() {
+    document.documentElement.scrollTop = 0;
+  }
+  
   componentWillReceiveProps=(nextProps) => {
     if(nextProps.signInError !== this.props.signInError) {
       this.setState({ signInError: nextProps.signInError });

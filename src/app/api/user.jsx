@@ -2,6 +2,7 @@ import axios from 'axios';
 import { BASE_URL } from './baseURL';
 import { getTokenParamURL } from './apiHelper';
 
+//用户登陆获取token，sessionId和user全部信息
 export const getToken = (inputJson) => {
   const deviceListURL = `${BASE_URL}api/user/login`;
   return axios.post(deviceListURL, {
@@ -18,6 +19,7 @@ export const getToken = (inputJson) => {
   });
 };
 
+//用户登出delete后端token
 export const logout = (inputJson) => {
   const userLogoutUrl = `${BASE_URL}api/user/logout`;
   return axios.post(userLogoutUrl, {
@@ -37,6 +39,7 @@ export const logout = (inputJson) => {
   });
 };
 
+//注册新用户
 export const postRegister = (inputJson) => {
   const deviceListURL = `${BASE_URL}api/user/signUp`;
   return axios.post(deviceListURL, {
@@ -53,7 +56,7 @@ export const postRegister = (inputJson) => {
   });
 };
 
-//要判断token使用
+//获取用户记录
 export const getUserHistory = () => {
   const deviceListURL = `${BASE_URL}api/history/getHistory?${getTokenParamURL()}`;
   return axios.get(deviceListURL, {
@@ -66,7 +69,7 @@ export const getUserHistory = () => {
   });
 };
 
-//public use
+//获取用户的公开信息
 export const getUserPublic = (inputJson) => {
   const deviceListURL = `${BASE_URL}api/user/getUser?userId=${inputJson.userId}`;
   return axios.get(deviceListURL, {

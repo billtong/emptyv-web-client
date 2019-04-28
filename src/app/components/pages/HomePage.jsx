@@ -10,6 +10,7 @@ class Home extends React.Component {
     filter: 'date'
   }
   componentDidMount() {
+    document.documentElement.scrollTop = 0;
     this.props.getVideoListAction({
       filter: this.state.filter,
       word: undefined
