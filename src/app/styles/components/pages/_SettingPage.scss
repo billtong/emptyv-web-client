@@ -1,8 +1,12 @@
 .setting-ul {
+  padding-left: 10%;
+  padding-right: 10%;
   list-style-type: none;
   .setting-li {
-    margin-top: 1rem;
+    margin-top: 2rem;
     position: relative;
+    font-size: 1.5rem;
+    font-weight: 600;
     .input-img {
       width: 0.1px;
 	    height: 0.1px;
@@ -25,13 +29,24 @@
     }
     .input-img + label {
       cursor: pointer;
+      opacity: 0.8;
       margin-left: 1rem;
-      margin-top: 8rem;
+      margin-top: 7rem;
       padding: 0.1rem;
       background: black;
       font-size: 1.25em;
       font-weight: 700;
       display: inline-block;
+    }
+    .bio-text {
+      resize: none;
+      height: 6rem;
+      width: 30rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .input-text {
+      width: 30rem;
     }
   }
 } 
