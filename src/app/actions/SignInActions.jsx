@@ -21,6 +21,7 @@ export const faileSignIn = (error) => ({
   error
 });
 
+//session和cookie是二选一的关系
 export const signInAction = (inputJson) => {
   return (dispatch) => {
     dispatch(startSignIn());

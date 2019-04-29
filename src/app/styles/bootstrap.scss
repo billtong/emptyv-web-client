@@ -19,7 +19,6 @@
 }
 
 .badge-danger {
-  color: #fff;
   background-color: #dc3545;
 }
 
@@ -33,6 +32,15 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25rem;
+}
+
+.btn-able {
+  border: 2px green solid;
+  cursor: pointer;
+}
+
+.btn-disable {
+  border:2px #dc3545 solid;
 }
 
 //pop up 窗口开始

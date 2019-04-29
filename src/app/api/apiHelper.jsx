@@ -1,7 +1,22 @@
-import { getCookie } from '../utils/cookieTools';
+import { getCookie, setCookie } from '../utils/cookieTools';
 
 export const userTokenSessionKey = 'empty-video-web-user-session';
 export const userTokenCookieKey = 'empty-video-web-user-cookie';
+
+//更新cookie或session的用户信息
+export const updateUserInfo = (newUser) => {
+  let userJson = JSON.parse(sessionStorage.getItem(userTokenSessionKey));
+  const cookie = getCookie(userTokenCookieKey);
+  if(userJson !== null) {
+    userJson.user = newUser;
+    sessionStorage.setItem(userTokenSessionKey, JSON.stringify(userJson));
+  } 
+  else if ((!userJson || userJson === null) && cookie && cookie !== null && cookie !== '')  {
+    userJson = JSON.parse(cookie);
+    userJson.user = newUser;
+    setCookie(userTokenCookieKey, JSON.stringify(userJson));
+  }
+};
 
 //返回jsonconst 
 //userJson = {

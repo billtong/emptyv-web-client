@@ -5,7 +5,6 @@ import { MdInput, MdEdit, MdSearch } from 'react-icons/md';
 import { ClipLoader } from 'react-spinners';
 import { logout } from '../../api/user';
 import { getVideoListAction } from '../../actions/getVideoListActions';
-import { getUserHistoryAction } from '../../actions/getUserHistoryAction';
 import { getSessionTokenJson, userTokenCookieKey, userTokenSessionKey } from '../../api/apiHelper';
 import { deleteCookie } from '../../utils/cookieTools';
 
@@ -15,6 +14,7 @@ class Header extends React.Component {
     isBlur: true,
     isForcus: false,
     isSearch: false,
+    userMenuCss: "non-display"
   }
   componentWillMount() {
     document.addEventListener('keypress', this.handleEnterKey);
@@ -71,6 +71,19 @@ class Header extends React.Component {
       }
     }
   }
+
+  //点击userName或者userIcon弹出用户菜单栏
+  handleUserMenuEnter=(e) => {
+    e.preventDefault();
+    this.setState({ userMenuCss: "user-menu-ul" });
+  }
+
+  handleUserMenuLeave=(e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      this.setState({ userMenuCss: "non-display" });
+    }, 100);
+  } 
 
   ifForcus=() => {
     this.setState(prevState => ({
@@ -156,17 +169,35 @@ class Header extends React.Component {
         </ul>
       ) :
       (
-        <ul className="menu-right">
+        <ul className="menu-right" onMouseLeave={(e) => this.handleUserMenuLeave(e)}>
           <li className="desktop">
-            <Link to="UserPage" className="header-menu" onClick={(e) => this.handleMenuClick(e, 'UserPage')}>
-              User Page
-            </Link>
+            <img className="header-menu" src={getSessionTokenJson().user.userIcon} id="responsive-userIcon" onMouseEnter={(e) => this.handleUserMenuEnter(e)} />
           </li>
           <li className="desktop">
-            <div to="/" className="header-menu" onClick={(e) => this.logout(e)}>
+            <div className="header-userName header-menu" onMouseEnter={(e) => this.handleUserMenuEnter(e)}>{getSessionTokenJson().user.userName}</div>
+          </li>
+          <ul className={this.state.userMenuCss} onMouseEnter={(e) => this.handleUserMenuEnter(e)} onMouseLeave={(e) => this.handleUserMenuLeave(e)}>
+            <li className="user-menu-li">
+              <Link to="UserPage" className="header-menu" onClick={(e) => this.handleMenuClick(e, 'UserPage')}>
+                UserPage
+              </Link>
+            </li>
+            <li className="user-menu-li">
+              <Link to="UserPage/notification" className="header-menu">
+                Notification
+              </Link>
+            </li>
+            <li className="user-menu-li">
+              <Link to="UserPage/setting" className="header-menu">
+                Setting
+              </Link>
+            </li>
+            <li className="user-menu-li">
+              <div to="/" className="header-menu" onClick={(e) => this.logout(e)}>
               Logout
             </div>
-          </li>
+            </li>
+          </ul>
           {loadingIcon}
         </ul>
       );
@@ -192,5 +223,5 @@ const mapStateToProps = ({ getVideoListReducer }) => {
 };
 
 export default connect(
-  mapStateToProps, { getVideoListAction, getUserHistoryAction }
+  mapStateToProps, { getVideoListAction}
 )(Header);

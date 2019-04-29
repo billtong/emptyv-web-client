@@ -36,7 +36,6 @@ class SignIn extends React.Component {
     } else if (checkNull(password.value, 'password')) {
       return;
     } else {
-      console.log("???");
       const inputJson = {
         userName: this.refs.username.value,
         userPassword: this.refs.password.value,

@@ -69,6 +69,18 @@ export const getUserHistory = () => {
   });
 };
 
+//更新用户信息
+export const updateUser = (user) => {
+  const updateUserURL = `${BASE_URL}api/user/update?${getTokenParamURL()}`;
+  return axios.patch(updateUserURL, user, {
+    headers: { 
+      'Content-Type': 'application/json'
+    }
+  }).then((res)=>(res), (err)=>{
+    throw new Error(err.message);
+  });
+};
+
 //获取用户的公开信息
 export const getUserPublic = (inputJson) => {
   const deviceListURL = `${BASE_URL}api/user/getUser?userId=${inputJson.userId}`;

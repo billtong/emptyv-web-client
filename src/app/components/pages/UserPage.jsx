@@ -89,6 +89,16 @@ class UserPage extends React.Component {
         }));
         this.generateHistoryVideoList(this.state.history, newAction);
       };
+      if(index === 0) {
+        return (
+          <div>
+            <div className="big-menu-text">HISTORY</div>
+            <li key={index} className="user-menu-items" onClick={e => handleMenuClick(e, index + 1)}>
+              {value}
+            </li>
+          </div>
+        )
+      }
       if (this.state.action === index + 1) {
         return (
           <li key={index} className="user-menu-items selectedItem">
@@ -176,7 +186,6 @@ class UserPage extends React.Component {
         <div className="left-right-container">
           <div className="left-menu">
             <ul className="user-history-menu">
-              <div className="big-menu-text">HISTORY</div>
               {historyMenuList}
               <div className="big-menu-text">FAV LIST</div>
               {favMenuList}

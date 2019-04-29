@@ -29,6 +29,17 @@
         padding-left: 1rem;
         vertical-align: middle;
         padding-top: 0.2rem;
+        #responsive-userIcon {
+          width: 2.5rem;  
+          height: auto;
+          display: inline-block
+        }
+        
+        .header-userName {
+          display: inline-block;
+          width: 5.5rem; 
+        }
+
         .usr-icon-action {
           vertical-align: -0.1rem;
           margin-right: 0.1rem;
@@ -49,15 +60,17 @@
           padding-right: 2rem;
           border-radius: 1rem;
         }
+      }
 
-        .header-menu {
-          color: #d9d9d9
-        }
-
-        .header-menu:hover {
-          cursor: pointer;
-          text-decoration: none;
-          color: gray;
+      .user-menu-ul {
+        list-style-type: none;
+        padding-inline-start: 1.5rem;
+        padding-bottom: 2rem;
+        width: 100%;
+        border-bottom: 1px #d9d9d9 solid;
+        .user-menu-li {
+          margin-top: .5rem;
+          font-size: 1.5rem;
         }
       }
 
@@ -71,6 +84,20 @@
         float: right;
         margin-top: 0;
       }
+
+      .header-menu {
+        color: #d9d9d9
+      }
+
+      .header-menu:hover {
+        cursor: pointer;
+        text-decoration: none;
+        color: gray;
+      }
     }
   }
+}
+
+.non-display {
+  display: none;
 }
