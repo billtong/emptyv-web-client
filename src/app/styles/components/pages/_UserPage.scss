@@ -34,6 +34,23 @@
     }
   }
 
+  .userInfo-table {
+    font-size: 2rem;
+    margin-top: 1rem;
+    min-width: 30rem;
+    border: 0.3rem solid $grey;
+    border-radius: 4px;
+    th {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-bottom: 2rem;
+      text-align: left;
+    }
+    .bio-text {
+      white-space: pre;
+    }
+  }
+
   .left-right-container {
     display: flex;
     flex-direction: row;

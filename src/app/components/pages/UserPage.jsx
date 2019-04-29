@@ -150,6 +150,27 @@ class UserPage extends React.Component {
         </div>
       </div>
     );
+    const userInfo = !this.state.user ? null : (
+      <div>
+        <table className="userInfo-table">
+          <tr>
+            <th colSpan='2'>
+              <p className="bio-text">
+                {this.state.user.userDesc}
+              </p>
+            </th>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <th>{this.state.user.userLoc}</th>
+          </tr>
+          <tr>
+            <th>Website</th>
+            <th>{this.state.user.userSite}</th>
+          </tr>
+        </table>
+      </div>
+    );
     const videoGridInfo = this.state.favListSelected === undefined ? null : (
       <div className="grid-info">
         <table>
@@ -182,7 +203,8 @@ class UserPage extends React.Component {
     );
     return (
       <div className="user-page-main-section">
-        {userHeader}        
+        {userHeader}
+        {userInfo}        
         <div className="left-right-container">
           <div className="left-menu">
             <ul className="user-history-menu">

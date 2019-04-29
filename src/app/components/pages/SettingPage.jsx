@@ -85,13 +85,12 @@ class SettingPage extends React.Component {
     }
     if(this.state.userBannerImg === null && this.state.userBio === '' && this.state.userIconImg === null && this.state.userLocation === '' && this.state.userURL === '') {
       return false;
-    } 
-    console.log(this.state);
+    }
     return true;
   }
 
   //实时监听输入框改变state
-  handleKeyPress=(e, inputRefs) => {
+  handleKeyDown=(e, inputRefs) => {
     const newUser = this.state.user;
     switch(inputRefs) {
       case 'bio' :
@@ -127,7 +126,6 @@ class SettingPage extends React.Component {
       default:
         break;
     }
-    console.log(this.state);
   }
 
   handleUpdateClick=(e) => {
@@ -209,19 +207,19 @@ class SettingPage extends React.Component {
             <div>
               Bio
             </div>
-            <textarea className="bio-text" placeholder={getSessionTokenJson().user.userDesc} onKeyPress={(e)=>this.handleKeyPress(e, 'bio')} ref="bio"/>
+            <textarea className="bio-text" placeholder={getSessionTokenJson().user.userDesc} onKeyDown={(e)=>this.handleKeyDown(e, 'bio')} ref="bio"/>
           </li>
           <li className="setting-li">
             <div>
               Location
             </div>
-            <input className="input-text" placeholder={getSessionTokenJson().user.userLoc} type="text" onKeyPress={(e)=>this.handleKeyPress(e, 'location')} ref="location" />
+            <input className="input-text" placeholder={getSessionTokenJson().user.userLoc} type="text" onKeyDown={(e)=>this.handleKeyDown(e, 'location')} ref="location" />
           </li>
           <li className="setting-li">
             <div>
               URL
             </div>
-            <input className="input-text" placeholder={getSessionTokenJson().user.userSite} type="url" onKeyPress={(e)=>this.handleKeyPress(e, 'url')} ref="url" />
+            <input className="input-text" placeholder={getSessionTokenJson().user.userSite} type="url" onKeyDown={(e)=>this.handleKeyDown(e, 'url')} ref="url" />
           </li>
           <li className="setting-li">
             {updateBtn}
