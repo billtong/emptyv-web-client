@@ -20,6 +20,13 @@ class Dan extends React.Component {
     this.setState({canvasHeight: $div.clientHeight, canvasWidth: $div.clientWidth });
   }
 
+  componentDidUpdate = () => {
+    const $div = this.refs.div;
+    if(this.state.canvasHeight !== $div.clientHeight && this.state.canvasWidth !== $div.clientWidth) {
+      this.setState({canvasHeight: $div.clientHeight, canvasWidth: $div.clientWidth });
+    }
+  }
+
    //处理从videoPlayer传进来的新的currentDanlist，放到五个state数组里
    //不断的画出现在的情况
   componentWillReceiveProps = (nextProps) => {

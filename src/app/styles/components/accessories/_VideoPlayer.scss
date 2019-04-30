@@ -35,6 +35,10 @@
   line-height: 3em;
   color:#d9d9d9;
 }
+.vjs-control:hover {
+  color: red;
+  cursor: pointer;
+}
 .vjs-slider{
   outline: 0;
   position: relative;

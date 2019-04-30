@@ -11,17 +11,13 @@
   height: 100%;
 }
 
-.vjs-control {
-  .dan-input {
-    height: 2.5rem;
-    border-radius: 1rem;
-    vertical-align: middle;
-    border-color: gray;
-    outline: none;
-    margin-left: 1rem;
-    padding-left: 1rem;
-    width: 40rem;
-  }
+.dan-input {
+  height: 2.3rem;
+  vertical-align: top;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  width: 40rem;
+  opacity: 0.9;
 }
 
 .vjs-dan-switch {
@@ -42,5 +38,4 @@
 }
 .vjs-dan-btn:hover {
   cursor: pointer;
-  background-color: orangered;
 }

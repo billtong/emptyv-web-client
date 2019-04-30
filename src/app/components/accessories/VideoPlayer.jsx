@@ -379,9 +379,9 @@ class VideoPlayer extends React.Component {
     );
 		return (
       <div 
-        className={this.state.fullscreen ? 'videos-player asset fullscreen' : 'videos-player asset'}  
+        className={this.state.fullscreen ? 'videos-player asset fullscreen' : 'videos-player asset'} 
         onMouseMove={(e) => this.switchControlBar(e, true)} 
-        onMouseLeave={(e) => this.switchControlBar(e, false)}
+        onMouseLeave={(e) => this.switchControlBar(e, false)} 
       >
         <Dan
           className={this.state.danCss} 
@@ -415,6 +415,8 @@ class VideoPlayer extends React.Component {
             visibility: this.state.progress === '100%' || this.state.showControlBar ? 'visible' : 'hidden', 
             opacity: this.state.progress || this.state.showControlBar ? 1 : 0
           }}
+          onMouseMove={(e) => this.switchControlBar(e, true)} 
+          onMouseLeave={(e) => this.switchControlBar(e, false)} 
         >
           <div 
             className="vjs-play-control vjs-control vjs-paused" 
