@@ -42,6 +42,8 @@ class VideoPage extends React.Component {
   //如果有历史记录，获取历史记录来决定操作键的状态
   componentWillReceiveProps=(nextProps) => {
     if (nextProps.history !== undefined && nextProps.history.length > 0) {
+      //根据最新的状态来判断
+      nextProps.history.reverse();
       nextProps.history.forEach(item => {
         if (item.videoId === parseInt(this.props.location.query.videoId, 0)) {
           switch (parseInt(item.action, 0)) {

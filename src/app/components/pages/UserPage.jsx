@@ -77,7 +77,7 @@ class UserPage extends React.Component {
   };
 
   render() {
-    const menuArr = ['I view', 'I like', 'I unlike'];
+    const menuArr = ['view', 'like', 'unlike'];
     const historyMenuList = this.state.history === undefined ? null : menuArr.map((value, index) => {
       const handleMenuClick = (e, newAction) => {
         e.preventDefault();
@@ -113,7 +113,7 @@ class UserPage extends React.Component {
       );
     });
     const favMenuList = this.state.favList === undefined || this.state.favList.length === 0 ? (
-      <li>No Fav List</li>
+      <li className="user-menu-items-empty">empty</li>
     ) : this.state.favList.map((value, index) => {
       const handleMenuClick = (e, favId) => {
         e.preventDefault();
@@ -154,19 +154,20 @@ class UserPage extends React.Component {
       <div>
         <table className="userInfo-table">
           <tr>
-            <th colSpan='2'>
+          <td className="title-td">Bio</td>
+            <td className="text-td">
               <p className="bio-text">
                 {this.state.user.userDesc}
               </p>
-            </th>
+            </td>
           </tr>
           <tr>
-            <th>Location</th>
-            <th>{this.state.user.userLoc}</th>
+            <td className="title-td">Location</td>
+            <td className="text-td">{this.state.user.userLoc}</td>
           </tr>
           <tr>
-            <th>Website</th>
-            <th>{this.state.user.userSite}</th>
+            <td className="title-td">Website</td>
+            <td className="text-td">{this.state.user.userSite}</td>
           </tr>
         </table>
       </div>
@@ -184,7 +185,7 @@ class UserPage extends React.Component {
               <td className="text-td">
                 {this.state.favListSelected.videoList.length} videos
               </td>
-              <td>
+              <td className="text-td">
                 Published on {formatDateTime(parseInt(this.state.favListSelected.favDate, 0))}
               </td>
             </tr>
