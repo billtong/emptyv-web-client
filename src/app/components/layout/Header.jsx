@@ -120,12 +120,13 @@ class Header extends React.Component {
       <form className="searchBar">
         <input
           className="search-input"
-          placeholder="press <ENTER> to search"
+          placeholder="press <ENTER> search"
           ref="keyword"
           onKeyPress={e => (this.handleEnterKey(e))}
           autoFocus="true"
           onFocus={this.ifForcus}
           onBlur={this.ifBlur}
+          autoComplete="off"
         />
       </form>
     );

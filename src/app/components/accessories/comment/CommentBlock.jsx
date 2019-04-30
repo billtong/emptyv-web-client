@@ -59,6 +59,7 @@ class CommentBlock extends React.Component {
           id={rootComment.id}
           type="text"
           ref={`reply-${rootComment.commentId}`}
+          autoComplete="off"
           placeholder="press enter to reply this comment"
         />
         <input 
@@ -105,6 +106,7 @@ class CommentBlock extends React.Component {
           </span>
         );
       }
+
       const replyInnerInput = this.state.isReplyArr[index] ? (
         <div>
           <input
@@ -158,7 +160,7 @@ class CommentBlock extends React.Component {
             {comment.userInfo.userName}
           </div>
           <div className="comment-public-date">
-              {replayDate}
+            #{commentData.length - index} {replayDate}
           </div>
           <div className="comment-text reply">
             <p>replay to {rootComment.userInfo.userName}</p>
@@ -177,6 +179,7 @@ class CommentBlock extends React.Component {
         <GoChevronDown /> display reply
       </span>
     );
+    console.log(this.props);
     return (
       <div className="comment-block-section">
         <div className="comment-user-avatar" onClick={e=>this.handleUserClick(e, rootComment.userId)}>
@@ -190,7 +193,7 @@ class CommentBlock extends React.Component {
           {rootComment.userInfo.userName}
         </div>
         <div className="comment-public-date">
-          {uploadDate}
+          #{this.props.floor} {uploadDate}
         </div>
         <div className="comment-text">
           {rootComment.commentContent}

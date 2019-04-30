@@ -9,13 +9,20 @@ class Dan extends React.Component {
       colorArr: [],       //弹幕的颜色的数组
       speedArr: [],       //弹幕的速度数组
       displayDanList: [], //目前需要在屏幕上展示的全部弹幕
+      canvasHeight: 1250,
+      canvasWidth: 625
     };
     this.myCanvas = React.createRef();
-  } 
+  }
+
+  componentDidMount = () => {
+    const $div = this.refs.div;
+    this.setState({canvasHeight: $div.clientHeight, canvasWidth: $div.clientWidth });
+  }
 
    //处理从videoPlayer传进来的新的currentDanlist，放到五个state数组里
    //不断的画出现在的情况
-  componentWillReceiveProps=(nextProps) => {
+  componentWillReceiveProps = (nextProps) => {
     if (nextProps.resetDan === true) {
       this.setState({
         numArrT: [],
@@ -124,8 +131,8 @@ class Dan extends React.Component {
 
   render = () => {
     return (
-      <div className={this.props.className}>
-        <canvas className="danmu-canvas" ref={this.myCanvas} width="1250" height="625" />
+      <div className={this.props.className} ref="div" >
+        <canvas className="danmu-canvas" ref={this.myCanvas} width={this.state.canvasWidth} height={this.state.canvasHeight} />
       </div>
     );
   }

@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { MdPlayArrow, MdPause, MdVolumeMute, MdVolumeUp, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
+
 import Dan from '../accessories/Dan';
+import ContentMenu from '../accessories/ContentMenu';
 import { getSessionTokenJson } from '../../api/apiHelper';
 import { patchView } from '../../api/video.jsx';
 import { getDanList, postDan } from '../../api/dan';
@@ -22,6 +24,7 @@ class VideoPlayer extends React.Component {
 			fullscreen: false,
 			showPlayBtn: true,
       showControlBar: false,
+      displayCursor: "inherit",
       isDisplayDan: true,      //用来关闭弹幕
       danCss: "danmu-canvas-section",
       danList: [],              //储存从后台传过来的该视频的全部弹幕列表
@@ -34,7 +37,8 @@ class VideoPlayer extends React.Component {
   }
   
   //从后台获取全部弹幕list，确定视频是否全屏
-	componentDidMount=() => {
+	componentDidMount = () => {
+    document.getElementById("myVideo").oncontextmenu = (e)=> (false);
     getDanList(this.props.video.video_id).then(res => {
       this.setState(prevState => ({
         ...prevState,
@@ -51,7 +55,7 @@ class VideoPlayer extends React.Component {
   }
   
   //更新VideoPlayer里的视频，目前还没用过。需要加入dan的相关state
-	componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps = (nextProps) => {
     const myVideo = document.getElementById('myVideo');
 		if (this.props.video.video_url !== nextProps.video.video_url) {
 			if (!myVideo.paused) {
@@ -86,7 +90,7 @@ class VideoPlayer extends React.Component {
 		}
   }
   
-  //清空timeout和interval
+  //关闭视频页后清空timeout和interval
 	componentWillUnmount() {
     if (this.timer) {
 			clearInterval(this.timer);
@@ -175,15 +179,10 @@ class VideoPlayer extends React.Component {
       myVideo.play();
 			this.setState({
 				showPlayBtn: false,
-				showControlBar: true,
+				showControlBar: false,
 				pause: false,
 				duration: Math.floor((myVideo.duration) / 3600) + ':' + ((Math.floor((myVideo.duration) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.duration) % 60) / 100).toFixed(2).slice(-2)
-			});
-			this.timeTask = setTimeout(() => {
-				this.setState({ showControlBar: false });
-        clearTimeout(this.timeTask);
-				this.timeTask = null;
-      }, 3000);
+      });
       this.timer = setInterval(() => {
         this.updateVideoTime(myVideo);
       }, 0);
@@ -197,11 +196,17 @@ class VideoPlayer extends React.Component {
         pause: true, 
         showControlBar: true
       });
-		}
+    }
+    if(this.state.pause && !this.state.showControlBar) {
+      const timer = setTimeout(()=>{
+        this.setState({ showControlBar: true });
+        clearTimeout(timer);
+      }, 100); 
+    }
   }
   
   /**
-   * 改变currentTime,即当你点击controlbar时
+   * 改变currentTime,即当点击controlbar时
    * 清理掉之前的那个timer，添加新的timer
    */
 	resetPlay=(event) => {
@@ -288,19 +293,25 @@ class VideoPlayer extends React.Component {
 		this.setState({ fullscreen: !this.state.fullscreen });
   }
   
-  //改变controlbar的状态
-	toggleControlBar = () => {
-		if (this.state.showPlayBtn) {
-			this.setState({ showControlBar: false });
+  //改变controlbar和光标的状态
+	switchControlBar = (e, flag) => {
+    e.preventDefault();
+    if (this.state.pause) {
+      this.setState({ displayCursor: "inherit", showControlBar: true,  });
 			return;
-		}
-		if (this.state.pause) {
-			return;
-		}
-		if (!this.state.showControlBar) {
-			this.setState({ showControlBar: true });
-			return;
-		}
+    }
+    this.setState({  displayCursor: "inherit", showControlBar: flag });
+    if(flag && this.state.fullscreen) {
+      const timer = setTimeout(()=>{
+        if(this.state.pause) {
+          this.setState({  displayCursor: "inherit", showControlBar: true });
+			    return;
+        } else {
+          this.setState({ displayCursor: "none", showControlBar: false });
+        }
+        clearTimeout(timer);
+      }, 2000);
+    }
   }
 
   /**
@@ -367,7 +378,11 @@ class VideoPlayer extends React.Component {
       <div className="vjs-control vjs-dan-switch" onClick={(e) => {this.setState({ isDisplayDan: true, danCss: "danmu-canvas-section" })}}>OPEN</div>
     );
 		return (
-			<div className={this.state.fullscreen ? 'videos-player asset fullscreen' : 'videos-player asset'}>
+      <div 
+        className={this.state.fullscreen ? 'videos-player asset fullscreen' : 'videos-player asset'}  
+        onMouseMove={(e) => this.switchControlBar(e, true)} 
+        onMouseLeave={(e) => this.switchControlBar(e, false)}
+      >
         <Dan
           className={this.state.danCss} 
           displayDanList={this.state.currentDanList}
@@ -376,14 +391,14 @@ class VideoPlayer extends React.Component {
           setResetDan={this.setResetDan}
           currentTime={!document.getElementById('myVideo') ? 0 : document.getElementById('myVideo').currentTime}
         />
+        <ContentMenu rootElement={document.getElementById('myVideo')}/>
         <video 
           width="100%" 
           height="100%" 
-          poster="none" 
-          id="myVideo" 
-          onClick={this.playPause.bind(this)} 
-          onMouseMove={this.toggleControlBar.bind(this)} 
-          onMouseLeave={this.toggleControlBar.bind(this)}
+          poster="none"
+          style={{cursor: this.state.displayCursor}} 
+          id="myVideo"
+          onClick={(e) => this.playPause(e)}
         >
 					<source src={video.video_url} type="video/mp4" />
 				</video>

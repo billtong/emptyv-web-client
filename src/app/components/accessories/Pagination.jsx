@@ -87,7 +87,7 @@ class Pagination extends React.Component {
 
     const paginationWhole = !list || list.length === 0 ? (
       <div className="pagination">
-        empty video
+        here is empty
       </div>
     ) : (
       <div className="pagination">

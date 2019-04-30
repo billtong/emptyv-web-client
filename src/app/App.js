@@ -18,7 +18,7 @@ class App extends Component{
         <Router history={hashHistory}>
           <Route path="/" component={Main}>
             <IndexRoute component={Home} />
-            .<Route path="SignIn" component={SignIn} />
+            <Route path="SignIn" component={SignIn} />
             <Route path="SignUp" component={SignUp} />
             <Route path="UserPage" component={UserPage} />
             <Route path="UserPage/setting" component={SettingPage} />

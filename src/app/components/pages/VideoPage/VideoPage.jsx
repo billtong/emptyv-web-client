@@ -183,8 +183,8 @@ class VideoPage extends React.Component {
           <input
             className="form-control comment-content"
             id="comment-box"
+            autoComplete="off"
             placeholder="Press <Enter> to leave a comment"
-            type="text"
             onKeyPress={e => this.handleEnterKey(e)}
             onFocus={() => {
               this.setState(prevState => ({

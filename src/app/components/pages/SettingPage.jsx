@@ -12,13 +12,14 @@ class SettingPage extends React.Component {
     isLoading: false,   //等待更新endpoint完成
     userIconImg: null,  //更改的信息
     userBannerImg: null,
-    userIconImgURL: '',
-    userBannerImgURL: '',
+    userIconImgURL: '',  //ImgURL用于预览，Img文件用来传送
+    userBannerImgURL: '', 
     userBio: '',
     userLocation: '',
     userURL: ''
   }
 
+  //检查是否登陆，如果没有跳转到登陆界面
   componentWillMount() {
     const localUser = getSessionTokenJson();
     if(localUser === null) {
@@ -35,6 +36,7 @@ class SettingPage extends React.Component {
     });
   }
 
+  //监听用户上传图片的行为，更改state
   fileChangedHandler = (e, userParam) => {
     if(e.target.files[0] === undefined) {
       switch(userParam) {
@@ -78,7 +80,7 @@ class SettingPage extends React.Component {
     };
   }
 
-  //判断是否改变了用户信息
+  //判断用户有没有更改信息
   hasChanged=() => {
     if(this.refs.bio === '' && this.refs.location === '' && this.refs.url === '') {
       return false;
@@ -89,7 +91,7 @@ class SettingPage extends React.Component {
     return true;
   }
 
-  //实时监听输入框改变state
+  //监听用户输入行为，改变state
   handleKeyDown=(e, inputRefs) => {
     const newUser = this.state.user;
     switch(inputRefs) {
@@ -128,6 +130,7 @@ class SettingPage extends React.Component {
     }
   }
 
+  //提交更改
   handleUpdateClick=(e) => {
     e.preventDefault();
     this.setState({isLoading: true});
@@ -219,7 +222,7 @@ class SettingPage extends React.Component {
             <div>
               URL
             </div>
-            <input className="input-text" placeholder={getSessionTokenJson().user.userSite} type="url" onKeyDown={(e)=>this.handleKeyDown(e, 'url')} ref="url" />
+            <input className="input-text" placeholder={getSessionTokenJson().user.userSite} type="text" onKeyDown={(e)=>this.handleKeyDown(e, 'url')} ref="url" />
           </li>
           <li className="setting-li">
             {updateBtn}

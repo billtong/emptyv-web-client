@@ -51,7 +51,6 @@
           cursor: pointer;
           color: gray;
         }
-
         margin-bottom: 1rem;
         margin-top: 1rem;
         .comment-user-avatar {
@@ -59,7 +58,7 @@
           height: 3rem;
           width: 3rem;
           display: inline-block;
-          vertical-align: middle;
+          vertical-align: top;
           margin-left: 1rem;
         }
         .comment-user-avatar:hover {

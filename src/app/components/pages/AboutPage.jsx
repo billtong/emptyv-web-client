@@ -77,7 +77,7 @@ handleEnterKey=(e) => {
           className="form-control comment-content"
           id="comment-box"
           placeholder="Press <Enter> to leave a suggestion"
-          type="text"
+          autoComplete="off"
           onKeyPress={e => this.handleEnterKey(e)}
           onFocus={() => {
             this.setState(prevState => ({

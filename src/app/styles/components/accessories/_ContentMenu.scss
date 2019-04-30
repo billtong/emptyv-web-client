@@ -1,0 +1,24 @@
+.contextMenu {
+  position: absolute;
+  opacity: 0.9;
+  width: 15rem;
+  cursor: default;
+  font-size: 1rem;
+  background: white;
+  padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+  &--title {
+    color: orangered;
+    font-weight: 200;
+  }
+  
+  &--content {
+    word-break: break-all;
+    color: $grey;
+    font-weight: 400;
+  }
+  &--separator {
+    background: black;
+    height: 0.1rem;
+    margin: 0 0 0 0;
+  }
+}
