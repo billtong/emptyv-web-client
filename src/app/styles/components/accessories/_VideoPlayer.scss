@@ -1,6 +1,5 @@
 .vjs-big-play-button{
-  left: 0.5rem;
-  top: 1rem;
+  top: 40%;
   font-size: 3rem;
   z-index: 2;
   position: absolute;
@@ -10,6 +9,13 @@
 .vjs-big-play-button:hover{
   color: orangered;
   cursor: pointer;
+}
+.vjs-loading {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
 }
 .fullscreen{
   position: fixed;

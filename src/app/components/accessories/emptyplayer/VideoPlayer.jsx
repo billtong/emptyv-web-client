@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { MdPlayArrow, MdPause, MdVolumeMute, MdVolumeUp, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
-
-import Dan from '../accessories/Dan';
-import ContentMenu from '../accessories/ContentMenu';
-import { getSessionTokenJson } from '../../api/apiHelper';
-import { patchView } from '../../api/video.jsx';
-import { getDanList, postDan } from '../../api/dan';
+import { ClipLoader } from 'react-spinners';
+import Dan from './Dan';
+import ContentMenu from '../ContentMenu';
+import { getSessionTokenJson } from '../../../api/apiHelper';
+import { patchView } from '../../../api/video.jsx';
+import { getDanList, postDan } from '../../../api/dan';
 
 
 class VideoPlayer extends React.Component {
@@ -24,6 +24,7 @@ class VideoPlayer extends React.Component {
 			fullscreen: false,
 			showPlayBtn: true,
       showControlBar: false,
+      isVideoLoading: false,
       displayCursor: "inherit",
       isDisplayDan: true,      //用来关闭弹幕
       danCss: "danmu-canvas-section",
@@ -35,7 +36,7 @@ class VideoPlayer extends React.Component {
     this.timer = null;          //储存interval的key，刷新视频
     this.timerTask = null;      //储存timeouot的key，定时controlbar的出现和消失
   }
-  
+
   //从后台获取全部弹幕list，确定视频是否全屏
 	componentDidMount = () => {
     document.getElementById("myVideo").oncontextmenu = (e)=> (false);
@@ -112,6 +113,15 @@ class VideoPlayer extends React.Component {
   //更新时间+更新该时间点的弹幕(详见loadCurrentDanList)
   updateVideoTime=(myVideo) => {
     if (myVideo) {
+      const oldCurrentTime = myVideo.currentTime;
+      const loadingTimeCase = setTimeout(()=>{
+        if(myVideo.currentTime === oldCurrentTime && !this.state.pause) {
+          this.setState({ isVideoLoading: true });
+        } else {
+          clearTimeout(loadingTimeCase);
+          this.setState({ isVideoLoading: false });
+        }
+      }, 100);
       this.loadCurrentDanList(myVideo);
       this.setState({
         currentTime: Math.floor((myVideo.currentTime) / 3600) + ':' + ((Math.floor((myVideo.currentTime) / 60) % 60) / 100).toFixed(2).slice(-2) + ':' + (((myVideo.currentTime) % 60) / 100).toFixed(2).slice(-2),
@@ -409,6 +419,12 @@ class VideoPlayer extends React.Component {
         >
 					<MdPlayArrow />
 				</div>
+        <div 
+          className="vjs-loading"
+          style={{ display: this.state.isVideoLoading ? 'block': 'none'}}
+        >
+          <ClipLoader color="#FF4500"/>
+        </div>
         <div 
           className="vjs-control-bar" 
           style={{ 

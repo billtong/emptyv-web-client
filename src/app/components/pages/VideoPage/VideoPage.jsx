@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { RingLoader } from 'react-spinners';
 import { Link } from 'react-router';
 
-import ReactPlayer from '../../accessories/VideoPlayer';
+import VideoPlayer from '../../accessories/emptyplayer/VideoPlayer';
 import Pagination from '../../accessories/Pagination';
 import CommentGrid from '../../accessories/comment/CommentGrid';
 import VideoTitle from './VideoTitle';
@@ -165,7 +165,7 @@ class VideoPage extends React.Component {
       </div>
     );
     const videoPlayer = this.props.videoData === undefined ? null : (
-      <ReactPlayer
+      <VideoPlayer
         className='react-player'
         video={{
           thumbnail_url: videoData.videoThumbnailImg,

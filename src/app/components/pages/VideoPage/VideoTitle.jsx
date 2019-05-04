@@ -1,7 +1,6 @@
 import React from 'react';
 import { MdThumbUp, MdThumbDown } from 'react-icons/md';
 import Fav from '../../accessories/Fav';
-import {connect} from "react-redux";
 
 class VideoTitle extends React.Component {
   render = () => {
