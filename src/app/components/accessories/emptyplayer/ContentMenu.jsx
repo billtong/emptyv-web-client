@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 class ContextMenu extends React.Component {
   state = {
@@ -56,8 +55,8 @@ class ContextMenu extends React.Component {
               <div className="contextMenu--title">EmptyVideo Player v1.1</div>
               <div className="contextMenu--separator" />
               <div className="contextMenu--content">A video player trys to satisfy all your needs</div>
-              <div className="contextMenu--content">more functions on the way...</div>
-              <div className="contextMenu--content">Author by Bill Tong</div>
+              <div className="contextMenu--content">more features on the way...</div>
+              <div className="contextMenu--content">Author Bill Tong</div>
           </div>
   };
 }

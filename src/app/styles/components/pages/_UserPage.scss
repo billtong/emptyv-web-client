@@ -34,71 +34,73 @@
     }
   }
 
-  .userInfo-table {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    min-width: 30rem;
-    border: 1px solid $grey;
-    border-radius: 4px;
-    td {
-      padding: 0.5rem 1rem 0.5rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid $grey;
-    }
-    .title-td {
-      font-weight: 500;
-    }
-    .text-td {
-      font-weight: 100;
-    }
-    .bio-text {
-      white-space: pre;
-    }
-  }
-
   .left-right-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 3rem;
-    border: 2px solid $grey;
     .left-menu {
-      white-space: nowrap;
-      display: flex;
-      margin-left: 7rem;
-      border-right: 2px solid $grey;
-      border-radius: 4px;
-      padding-right: 2rem;
-      padding-bottom: 10rem;
-      font-size: 1.5rem;
-      .user-history-menu {
-        .user-menu-items {
-          display: block;
-          font-weight: 300;
+      margin-right: 1rem;
+      .userInfo-table {
+        font-size: 1.5rem;
+        min-width: 30rem;
+        border: 1px solid $grey;
+        border-radius: 4px;
+        td {
           padding: 0.5rem 1rem 0.5rem 1rem;
+          text-align: left;
+          border-bottom: 1px solid $grey;
         }
-        .user-menu-items:hover {
-          cursor: pointer;
-          color: orangered;
+        .title-td {
+          font-weight: 500;
         }
-        .user-menu-items-empty {
+        .text-td {
           font-weight: 100;
         }
-        .selectedItem {
-          color: orangered;
+        .bio-text {
+          white-space: pre;
         }
-      }
-      .big-menu-text {
-        font-weight: 500;
-        margin-top: 1rem; 
       }
     }
   
     .right-grid-display {
       width: 100%;
-      padding-right: 5rem;
-      display: flex;
-      flex-direction: column;
+      border: 1px solid $grey;
+      border-radius: 4px;
+      margin-left: 1rem;
+      &-menu {
+        margin-left: 0;
+        .big-menu-text {
+          font-size: 1.5rem;
+          display: inline-block;
+          font-weight: 500;
+          margin-top: 1rem;
+          cursor: pointer; 
+          margin-inline-end: 1rem;
+        }
+      }
+
+      &-list {
+        vertical-align: top;
+        display: inline-block;
+      }
+      .user-menu-items {
+        font-size: 1.5rem;
+        margin-inline-end: 1rem;
+        display: inline;
+        font-weight: 300;
+      }
+      .user-menu-items:hover {
+        cursor: pointer;
+        color: orangered;
+      }
+      .user-menu-items-empty {
+        font-weight: 100;
+      }
+      .selectedItem {
+        color: orangered;
+      }
+      
       .grid-info {
         padding: 0.5rem 1rem 0.5rem 1rem;
         font-size: 1.5rem;

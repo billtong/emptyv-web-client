@@ -15,9 +15,11 @@ export const getVideo = (videoId) => {
 };
 
 export const getVideoList = (inputJson) => {
-
-  const deviceListURL = !inputJson.word ? `${BASE_URL}api/video/getVideoList?filter=${inputJson.filter}&word=` : `${BASE_URL}api/video/getVideoList?filter=${inputJson.filter}&word=${inputJson.word}`;
-  return axios.get(deviceListURL, {
+  inputJson.word = !inputJson.word ? '' : inputJson.word;
+  inputJson.filter = !inputJson.filter ? '' : inputJson.filter;
+  inputJson.userId = !inputJson.userId ? -1 : inputJson.userId;
+  const getVideoListURL = `${BASE_URL}api/video/getVideoList?filter=${inputJson.filter}&word=${inputJson.word}&userId=${inputJson.userId}`;
+  return axios.get(getVideoListURL, {
     headers: {
       'Content-Type': 'application/json'
     }

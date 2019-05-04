@@ -3,7 +3,7 @@ import React from 'react';
 import { MdPlayArrow, MdPause, MdVolumeMute, MdVolumeUp, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
 import { ClipLoader } from 'react-spinners';
 import Dan from './Dan';
-import ContentMenu from '../ContentMenu';
+import ContentMenu from './ContentMenu';
 import { getSessionTokenJson } from '../../../api/apiHelper';
 import { patchView } from '../../../api/video.jsx';
 import { getDanList, postDan } from '../../../api/dan';

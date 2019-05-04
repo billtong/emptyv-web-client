@@ -4,7 +4,7 @@ import Main from './components/layout/Main';
 import SignIn from './components/pages/SignInPage';
 import SignUp from './components/pages/SignUpPage';
 import Home from './components/pages/HomePage';
-import UserPage from './components/pages/UserPage';
+import UserPage from './components/pages/UserPage/UserPage';
 import SettingPage from './components/pages/SettingPage';
 import NotificationPage from './components/pages/NotificationPage';
 import VideoPage from './components/pages/VideoPage/VideoPage';

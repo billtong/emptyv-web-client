@@ -2,11 +2,13 @@
 @import "./bootstrap.scss";
 @import "components/accessories/comment/Comment";
 @import "components/accessories/videoGrid/VideoGrid";
-@import "components/accessories/VideoPlayer";
-@import "components/accessories/Dan";
+@import "components/accessories/videoPlayer/VideoPlayer";
+@import "components/accessories/videoPlayer/ContentMenu";
+@import "components/accessories/videoPlayer/Dan";
 @import "components/accessories/Pagination";
 @import "components/accessories/Tag";
-@import "components/accessories/ContentMenu";
+@import "components/accessories/Filter";
+@import "components/accessories/UserAvatar";
 @import "components/layout/Header";
 @import "components/layout/Main";
 @import "components/layout/Footer";

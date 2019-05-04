@@ -6,6 +6,7 @@ import { formatDateTime } from '../../../utils/dateTools';
 import { getSessionTokenJson } from '../../../api/apiHelper';
 import { getCommentListAction, completeGetComment } from '../../../actions/getCommentListAction';
 import { postComment } from '../../../api/comment';
+import UserAvatar from '../UserAvatar';
 
 class CommentBlock extends React.Component {
   state = {
@@ -149,16 +150,7 @@ class CommentBlock extends React.Component {
       ); 
       return (
         <div key={index} className="comment-block-section reply">
-          <div className="comment-user-avatar" onClick={e=>this.handleUserClick(e, comment.userId)}>
-            <img 
-                src={comment.userInfo.userIcon}
-                height="100%"
-                width="100%"
-              />
-          </div>
-          <div className="comment-user-text" onClick={e=>this.handleUserClick(e, comment.userId)}>
-            {comment.userInfo.userName}
-          </div>
+          <UserAvatar userInfo={comment.userInfo} />
           <div className="comment-public-date">
             #{commentData.length - index} {replayDate}
           </div>
@@ -179,19 +171,9 @@ class CommentBlock extends React.Component {
         <GoChevronDown /> display reply
       </span>
     );
-    console.log(this.props);
     return (
       <div className="comment-block-section">
-        <div className="comment-user-avatar" onClick={e=>this.handleUserClick(e, rootComment.userId)}>
-          <img 
-            src={rootComment.userInfo.userIcon}
-            height="100%"
-            width="100%"
-          />
-        </div>
-        <div className="comment-user-text" onClick={e=>this.handleUserClick(e, rootComment.userId)}>
-          {rootComment.userInfo.userName}
-        </div>
+        <UserAvatar userInfo={rootComment.userInfo}/>
         <div className="comment-public-date">
           #{this.props.floor} {uploadDate}
         </div>
