@@ -7,7 +7,7 @@ import { patchFavList, postFavList, getFavList } from '../../api/fav';
 
 class Fav extends React.Component {
   state = {
-    favDialogCss: 'notShowDialog', //showDialog and notShowDialog
+    favDialogCss: 'notShowDialog',         //showDialog and notShowDialog
     favList: this.props.favList,           //get from VideoPage
     isNewFavList: false,
     changedFavList: [],

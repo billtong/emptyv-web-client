@@ -4,7 +4,6 @@ import {
     FAIL_SIGN_UP_FETCH
 } from '../actions/types.jsx';
 
-
 export const signUpReducer = (state = '', action) => {
   switch (action.type) {
     case START_SIGN_UP_RSLT_FETCH:

@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoChevronLeft, GoChevronRight} from 'react-icons/go';
 import { connect } from 'react-redux';
+
 import { updateVideoPageAction } from '../../actions/getVideoListActions';
 import { updateCommentPageAction } from '../../actions/getCommentListAction';
 

@@ -19,19 +19,19 @@ class Filter extends React.Component {
   render() {
     return (
       <div className="filter-selecter-section">
-          Sort 
-          <select
-            className="select-section"
-            //here the props.filter will be injected by when user clicked home nav at header more than once
-            value={this.props.filter}
-            onChange={e => this.handleChange(e)}
-            ref="filter"
-          >
-            <option value="date">DATE</option>
-            <option value="rate">RATE</option>
-            <option value="view">VIEW</option>
-          </select>
-        </div>
+        Sort 
+        <select
+          className="select-section"
+          //here the props.filter will be injected by when user clicked home nav at header more than once
+          value={this.props.filter}
+          onChange={e => this.handleChange(e)}
+          ref="filter"
+        >
+          <option value="date">DATE</option>
+          <option value="rate">RATE</option>
+          <option value="view">VIEW</option>
+        </select>
+      </div>
     );
   }
 }

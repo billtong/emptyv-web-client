@@ -4,7 +4,6 @@ import {
     FAIL_SIGN_IN_ERR_FETCH,
 } from '../actions/types.jsx';
 
-
 export const signInReducer = (state = '', action) => {
   switch (action.type) {
     case START_SIGN_IN_ERR_FETCH:

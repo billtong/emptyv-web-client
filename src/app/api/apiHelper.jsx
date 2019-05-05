@@ -3,7 +3,7 @@ import { getCookie, setCookie } from '../utils/cookieTools';
 export const userTokenSessionKey = 'empty-video-web-user-session';
 export const userTokenCookieKey = 'empty-video-web-user-cookie';
 
-//更新cookie或session的用户信息
+//登入状态下，更新cookie或session的用户信息
 export const updateUserInfo = (newUser) => {
   let userJson = JSON.parse(sessionStorage.getItem(userTokenSessionKey));
   const cookie = getCookie(userTokenCookieKey);
@@ -18,12 +18,14 @@ export const updateUserInfo = (newUser) => {
   }
 };
 
-//返回jsonconst 
-//userJson = {
-//  user: res.data.user,
-//  userToken: res.data.token,
-//  userSessionId: res.data.sessionId
-//};
+/**
+ * 返回的userJson = 
+ * {
+ *  user: res.data.user,
+ *  userToken: res.data.token,
+ *  userSessionId: res.data.sessionId
+ * }
+ **/
 export const getSessionTokenJson = () => {
   let userJson = JSON.parse(sessionStorage.getItem(userTokenSessionKey));
   const cookie = getCookie(userTokenCookieKey);

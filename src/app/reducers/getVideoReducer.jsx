@@ -4,7 +4,6 @@ import {
   FAILED_VIDEO_FETCH
 } from '../actions/types.jsx';
 
-
 export const getVideoReducer = (state = '', action) => {
   switch (action.type) {
     case START_VIDEO_FETCH:

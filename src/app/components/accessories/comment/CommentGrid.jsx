@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { RingLoader } from 'react-spinners';
 import CommentBlock from './CommentBlock.jsx';
 
-
 class CommentGrid extends React.Component {
   render() {
     const getLoadingIcon = this.props.isGetLoading ? <RingLoader color={'#d9d9d9'} /> : null;
@@ -25,16 +24,16 @@ class CommentGrid extends React.Component {
 
     return (
       <div className="comment-grid-section">
-          <div className="loading-icon-sectiton">
-            {getLoadingIcon}
-          </div>
-          <div className="err-text-section">
-            {errText}
-          </div>
-          <div className="comment-list-section">
-            {commentList}
-          </div>
+        <div className="loading-icon-sectiton">
+          {getLoadingIcon}
         </div>
+        <div className="err-text-section">
+          {errText}
+        </div>
+        <div className="comment-list-section">
+          {commentList}
+        </div>
+      </div>
     );
   }
 }

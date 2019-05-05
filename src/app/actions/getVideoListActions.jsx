@@ -7,7 +7,6 @@ import {
 } from './types.jsx';
 import { getVideoList } from '../api/video';
 
-
 export const startGetVideos = (filter, currPage, word, sizes) => ({
   type: START_VIDEOS_FETCH,
   filter,

@@ -17,13 +17,13 @@ class VideoBlock extends React.Component {
     return (
       <div className="video-block-section" onClick={this.clickVideo}>
         <div className="video-thumbnail-img-section">
-            <img width="200" height="150" src={this.props.videoInfo.videoThumbnailImg} />
+          <img width="200" height="150" src={this.props.videoInfo.videoThumbnailImg} />
         </div>
         <div className="video-title-section">
-            {this.props.videoInfo.videoName}
+          {this.props.videoInfo.videoName}
         </div>
         <div className="video-view-num-section">
-            {this.props.videoInfo.videoViewNum} views
+          {this.props.videoInfo.videoViewNum} views
         </div>
       </div>
     );

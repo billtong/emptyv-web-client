@@ -27,8 +27,9 @@ class Dan extends React.Component {
     }
   }
 
-   //处理从videoPlayer传进来的新的currentDanlist，放到五个state数组里
-   //不断的画出现在的情况
+   /**
+    * 处理从videoPlayer传进来的新的currentDanlist，放到五个state数组里不断的画出现在的情况
+    **/
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.resetDan === true) {
       this.setState({
@@ -83,7 +84,6 @@ class Dan extends React.Component {
       Array.prototype.push.apply(newSpeedArr, newSpeedArr2);
       const newDisplayDanList = this.state.displayDanList;
       Array.prototype.push.apply(newDisplayDanList, displayDanList);
-      console.log(newDisplayDanList); 
       this.setState({
         numArrT: newNumArrT1,
         numArrL: newNumArrL,

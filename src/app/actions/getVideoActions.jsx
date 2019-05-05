@@ -6,7 +6,6 @@ import {
 } from './types.jsx';
 import { getVideo } from '../api/video.jsx';
 
-
 export const startGetVideo = () => ({
   type: START_VIDEO_FETCH
 });

@@ -40,7 +40,6 @@ export const patchView = (videoId) => {
 };
 
 export const patchOtherNum = (inputJson) => {
-  //这里不可空行，空行会被写入
   const deviceListURL = `${BASE_URL}api/video/patchOtherNum?videoId=${inputJson.videoId}&action=${inputJson.action}&${getTokenParamURL()}`;
   return axios.patch(deviceListURL, {
     headers: {
@@ -53,7 +52,6 @@ export const patchOtherNum = (inputJson) => {
 };
 
 export const patchTags = (inputJson) => {
-  //这里不可空行，空行会被写入
   const deviceListURL = `${BASE_URL}api/video/patchTags?videoId=${inputJson.videoId}&tagJsonString=${inputJson.tagJsonString}&${getTokenParamURL()}`;
   return axios.patch(deviceListURL, {
     headers: {

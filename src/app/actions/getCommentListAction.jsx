@@ -6,7 +6,6 @@ import {
 } from './types';
 import { getComemtList } from '../api/comment';
 
-
 export const startGetComment = () => ({
 	type: START_COMMENTS_FETCH
 });

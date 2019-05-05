@@ -5,7 +5,6 @@ import {
 } from './types.jsx';
 import { postRegister } from '../api/user';
 
-
 export const startSignUp = () => ({
 	type: START_SIGN_UP_RSLT_FETCH
 });

@@ -7,7 +7,6 @@ import { getVideoListReducer } from '../reducers/GetVideoListReducer';
 import { getVideoReducer } from '../reducers/getVideoReducer.jsx';
 import { getCommentListReducer } from '../reducers/getCommentListReducer';
 
-
 export const configure = () => {
   const reducer = redux.combineReducers({
     signInReducer,

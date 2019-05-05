@@ -17,4 +17,3 @@ Run the script. After successfully compiled, you can go to the URL `http://local
 ```
 npm start
 ```
-

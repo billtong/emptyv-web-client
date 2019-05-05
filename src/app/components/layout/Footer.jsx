@@ -12,6 +12,7 @@ class Footer extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
+  
   handleScroll=(e) => {
     if(window.scrollY === 0) {
       this.setState({ isTop: true });

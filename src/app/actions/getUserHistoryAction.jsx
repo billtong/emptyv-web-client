@@ -19,7 +19,6 @@ export const failedGetUserHistory = (err) => ({
   err
 });
 
-
 export const getUserHistoryAction = () => {
   return (dispatch) => {
     getUserHistory()
