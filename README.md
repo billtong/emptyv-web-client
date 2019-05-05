@@ -18,10 +18,3 @@ Run the script. After successfully compiled, you can go to the URL `http://local
 npm start
 ```
 
-## Build
-
-Run the script. You can have the new bundle.js under `/public`
-
-```
-npm run-script build
-```
