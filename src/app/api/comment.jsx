@@ -30,8 +30,8 @@ export const postComment = (inputJson) => {
 };
 
 export const postCommentA = (inputJson) => {
-  const deviceListURL = `${BASE_URL}api/comment/writeA`;
-  return axios.post(deviceListURL, {
+  const postCommentAnonyURL = `${BASE_URL}api/comment/writeA`;
+  return axios.post(postCommentAnonyURL, {
     commentContent: inputJson.commentContent,
     commentParentId: inputJson.commentParentId
   }, {
@@ -42,3 +42,9 @@ export const postCommentA = (inputJson) => {
   , (err) => (err));
 };
 
+export const deleteComment = (inputJson) => {
+  const deleteCommentURL = `${BASE_URL}api/comment/delete?${getTokenParamURL()}&commentId=${inputJson.commentId}`;
+  return axios.delete(deleteCommentURL, {
+  }).then((res) => (res)
+  , (err) => (err));
+};

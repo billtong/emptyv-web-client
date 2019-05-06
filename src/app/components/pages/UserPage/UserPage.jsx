@@ -7,7 +7,6 @@ import { getSessionTokenJson } from '../../../api/apiHelper';
 import { getFavList } from '../../../api/fav';
 import { getVideoListAction } from '../../../actions/getVideoListActions';
 import VideoGrid from '../../accessories/videoGrid/VideoGrid';
-import Filter from '../../accessories/Filter';
 import Pagination from '../../accessories/Pagination';
 import { formatDateTime } from '../../../utils/dateTools';
 

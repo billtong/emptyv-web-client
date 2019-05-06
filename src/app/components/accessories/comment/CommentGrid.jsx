@@ -13,7 +13,7 @@ class CommentGrid extends React.Component {
       </div>
     );
     const commentList = (!this.props.commentList) ? null :
-      this.props.commentList.map((comment, index) => {
+    this.props.commentList.map((comment, index) => {
         const { currPage, sizes } = this.props;
         if (index >= (currPage - 1) * sizes && index < currPage * sizes) {
           return (
