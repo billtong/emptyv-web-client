@@ -7,8 +7,14 @@ class MessageUser extends React.Component {
     return (
       <div className="msg-user msg">
         <ul>
+          <li className="name">
+            <span>{userInfo.userName}</span>
+            <img
+              className="user-icon"
+              src={userInfo.userIcon}
+            />
+          </li>
           <li className="content">{msg.msgContent}</li>
-          <li className="name">{userInfo.userName}</li>
           <li className="time">{msg.msgTime}</li>
         </ul>
       </div>

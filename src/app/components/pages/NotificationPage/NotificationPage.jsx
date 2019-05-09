@@ -31,9 +31,6 @@ class NotificationPage extends React.Component {
           <li className={this.state.tabSelected === "message" ? "select" : null} onClick={e => this.handleClick(e, "message")}>
             Message
           </li>
-          <li className={this.state.tabSelected === "comment" ? "select" : null}onClick={e => this.handleClick(e, "comment")}>
-            Comment
-          </li>
         </ul>
         <div className="content-section">
           {content}
@@ -44,3 +41,10 @@ class NotificationPage extends React.Component {
 }
 
 export default NotificationPage;
+
+
+/**
+           <li className={this.state.tabSelected === "comment" ? "select" : null}onClick={e => this.handleClick(e, "comment")}>
+            Comment
+            </li>
+           */

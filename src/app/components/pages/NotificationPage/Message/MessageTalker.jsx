@@ -7,9 +7,14 @@ class MessageTalker extends React.Component {
     return (
       <div className="msg-talker msg">
         <ul>
-          <li className="time">{msg.msgTime}</li>
-          <li className="name">{talkerInfo.userName}</li>
+          <li className="name">
+            <img
+              className="user-icon"
+              src={talkerInfo.userIcon}
+            />{talkerInfo.userName}
+          </li>
           <li className="content">{msg.msgContent}</li>
+          <li className="time">{msg.msgTime}</li>
         </ul>
       </div>
     );

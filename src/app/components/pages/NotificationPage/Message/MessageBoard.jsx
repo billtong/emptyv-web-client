@@ -9,7 +9,7 @@ class MessageBoard extends React.Component {
       this.props.msgListSelected.map((value, index) => {
           if(value.isSend) {
             return (
-              <li>
+              <li className="msg-li">
                 <MessageUser 
                   userInfo = {value.userInfo}
                   msg={value}
@@ -18,7 +18,7 @@ class MessageBoard extends React.Component {
             );
           } else {
             return (
-              <li>
+              <li className="msg-li">
                 <MessageTalker 
                   talkerInfo = {value.talkerInfo}
                   msg={value}
@@ -30,11 +30,9 @@ class MessageBoard extends React.Component {
     ) : null;
 
     return (
-      <div className="message-board">
-        <ul>
-          {MsgList}
-        </ul>
-      </div>
+      <ul className="message-board" id = "style-scroll">
+        {MsgList}
+      </ul>
     );
   }
 }

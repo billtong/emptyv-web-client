@@ -18,16 +18,24 @@ class Message extends React.Component {
   };
 
   componentDidMount = () => {
-    this.getMsgData(this.state.talkerSelected);
+    this.timeCase = setInterval(() => {
+      this.getMsgData(this.state.talkerSelected);    
+    }, 1000);
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.timeCase);
   }
 
   getMsgData = (value) => {
+    this.setState({isLoading: false});
     getMsgList().then(res=>{
       this.setState({ 
         rawMsgList: res.data,
         isLoading: true
       });
       this.changeListsStates(value);
+      this.setState({isLoading: true});
     }).catch(err=>{
       this.setState({ 
         rawMsgList: [],

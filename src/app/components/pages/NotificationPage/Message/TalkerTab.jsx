@@ -14,7 +14,7 @@ class TalkerTab extends React.Component {
   }
   render() {
     const talkOptionList = (!this.props.talkerInfoList || this.props.talkerInfoList.length === 0) ? (
-      <div>empty list</div>
+      null
     ) : (
       this.props.talkerInfoList.map((talker, index) => {
         return (
@@ -28,7 +28,7 @@ class TalkerTab extends React.Component {
       })
     );
     return (
-      <div className="talker-tab">
+      <div className="talker-tab" id ="style-scroll">
         <ul>
           {talkOptionList}
         </ul>

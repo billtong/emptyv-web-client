@@ -10,6 +10,10 @@ class MessageInput extends React.Component {
   }
   handleClick = (e) => {
     e.preventDefault();
+    if(!this.refs.content.value || this.refs.content.value === null || this.refs.content.value === '' || this.refs.content.value.trim().size === 0) {
+      alert("please say something!");
+      return;
+    }
     postMsg({
       msgContent: this.refs.content.value,
       msgType:  this.state.msgType,
@@ -27,15 +31,16 @@ class MessageInput extends React.Component {
   render() {
     return (
       <div className="message-input-board">
+        <span
+          className="send-btn"
+          onClick={e=>this.handleClick(e)}
+        >Send</span>
         <textarea 
           className="text-input-area"
           ref="content"
         />
-        <div
-          className="send-btn"
-          onClick={e=>this.handleClick(e)}
-        >Send</div>
       </div>
+      
     );
   }
 }
