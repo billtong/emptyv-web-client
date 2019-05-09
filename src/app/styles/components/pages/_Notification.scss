@@ -1,0 +1,74 @@
+.notification-section {
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+  }
+  .tab-section {
+    list-style-type: none;
+    cursor: pointer;
+    text-align: center;
+    li {
+      font-size: 2rem;
+      display: inline-block;
+      margin-right: 1rem;
+      &:hover {
+        color: gray;
+      }
+    }
+    .select {
+      font-weight: 600;
+    }
+  }
+
+  .content-section {
+    .message-container {
+      font-size: 2rem;
+      border: 1px $grey solid ;
+      display: flex;
+      height: 50%;
+      margin: 3rem 6rem 3rem 6rem;
+      
+      .talker-tab {
+        border: 1px $grey solid ;
+      }
+      .message-board-section {
+        width: 100%;
+        text-align: center;
+        .message-board {
+          padding-bottom: 5rem;
+          .msg {
+            .name {
+              font-weight: 600;
+            }
+            .time {
+              font-weight: 200;
+            }
+            .content {
+              color: red;
+            }
+          }
+          .msg-talker {
+            text-align: left;
+          }
+        
+          .msg-user {
+            text-align: right;
+          }
+        }
+      }
+      .message-input-board {
+        border: 1px $grey solid ;
+        .text-input-area {
+          font-size: 2rem;
+          resize: none;
+          height: 10rem;
+          width: 100%;
+        }
+        .send-btn {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+}

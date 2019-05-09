@@ -6,7 +6,7 @@ import SignUp from './components/pages/SignUpPage';
 import Home from './components/pages/HomePage';
 import UserPage from './components/pages/UserPage/UserPage';
 import SettingPage from './components/pages/SettingPage';
-import NotificationPage from './components/pages/NotificationPage';
+import NotificationPage from './components/pages/NotificationPage/NotificationPage';
 import VideoPage from './components/pages/VideoPage/VideoPage';
 import AboutPage from './components/pages/AboutPage';
 import NotFoundPage from './components/pages/NotFoundPage';

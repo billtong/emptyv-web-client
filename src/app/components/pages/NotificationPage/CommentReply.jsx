@@ -1,6 +1,6 @@
 import React from 'react';
 
-class NotificationPage extends React.Component {
+class CommentReply extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class NotificationPage extends React.Component {
   }
 }
 
-export default NotificationPage;
+export default CommentReply;

@@ -32,7 +32,6 @@ export const signInAction = (inputJson) => {
         userToken: res.data.token,
         userSessionId: res.data.sessionId
       };
-      console.log(inputJson);
       if (inputJson.isKeepLogin) {
         setCookie(userTokenCookieKey, JSON.stringify(userJson));
       } else {
