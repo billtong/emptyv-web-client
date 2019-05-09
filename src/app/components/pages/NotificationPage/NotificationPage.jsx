@@ -17,7 +17,7 @@ class NotificationPage extends React.Component {
     let content = null;
     switch(this.state.tabSelected) {
       case "message":
-        content = (<Message />);
+        content = (<Message defaultTalker={this.props.routeParams.talker && this.props.routeParams.talker !==null && this.props.routeParams.talker ? JSON.parse(this.props.routeParams.talker) : null}/>);
         break;
       case "comment":
         content = (<CommentReply />);

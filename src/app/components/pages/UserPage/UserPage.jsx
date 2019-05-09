@@ -124,6 +124,16 @@ class UserPage extends React.Component {
     this.props.updateVideoListAction(list);
   };
 
+  handleMessageClick = (e, userInfo) => {
+    e.preventDefault();
+    if(getSessionTokenJson() !== null) {
+      const talker = JSON.stringify(userInfo);
+      hashHistory.push(`/UserPage/notification/${talker}`);
+    } else {
+      alert("please login to send messages");
+    }
+  }
+
   render() {
     const uploadsMenu = !this.state.user ? null : (
       <li 
@@ -201,6 +211,7 @@ class UserPage extends React.Component {
           <img className="log-img" src={this.state.user.userIcon} width="100px" height="100px" />
           <span className="uid-text">#{this.state.user.userId}</span>
           <span className="username-text">{this.state.user.userName}</span>
+          <span className="btn" onClick={e=>this.handleMessageClick(e, this.state.user)}> Message </span>
         </div>
       </div>
     );

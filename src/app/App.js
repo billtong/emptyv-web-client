@@ -23,6 +23,7 @@ class App extends Component{
             <Route path="UserPage" component={UserPage} />
             <Route path="UserPage/setting" component={SettingPage} />
             <Route path="UserPage/notification" component={NotificationPage} />
+            <Route path="UserPage/notification/:talker" component={NotificationPage} />
             <Route path="UserPage/:userId" component={UserPage} />
             <Route path="VideoPage" component={VideoPage} />
             <Route path="About" component={AboutPage} />

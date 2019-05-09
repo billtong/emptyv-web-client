@@ -1,11 +1,10 @@
 import React from 'react';
-import { BounceLoader } from 'react-spinners';
 
 import MessageBoard from './MessageBoard';
 import TalkerTab from "./TalkerTab";
 import MessageInput from './MessageInput';
 import { getSessionTokenJson } from '../../../../api/apiHelper';
-import { getMsgList, postMsg, deleteMsg, patchMsg } from '../../../../api/message';
+import { getMsgList } from '../../../../api/message';
 import { formatDateTime } from '../../../../utils/dateTools';
 
 
@@ -47,6 +46,12 @@ class Message extends React.Component {
     const rawDataList = this.state.rawMsgList;
     const msgMap = new Map();       //(talkerId, 和该talker的msgList)
     const talkersMap = new Map();
+    
+    if(this.props.defaultTalker) {
+      msgMap.set(this.props.defaultTalker.userId, []);
+      talkersMap.set(this.props.defaultTalker.userId, this.props.defaultTalker);
+    }
+
     rawDataList.forEach((msg) => {
       const talkerInfo = this.solveTalkerInfo(msg, userId);
       talkersMap.set(talkerInfo.userId, talkerInfo);

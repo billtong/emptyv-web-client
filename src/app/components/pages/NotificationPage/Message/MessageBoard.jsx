@@ -5,7 +5,6 @@ import MessageUser from './MessageUser';
 
 class MessageBoard extends React.Component {
   render() {
-    console.log(this.props.msgListSelected);
     const MsgList = this.props.msgListSelected && this.props.msgListSelected.length > 0 ? (
       this.props.msgListSelected.map((value, index) => {
           if(value.isSend) {
