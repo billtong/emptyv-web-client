@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 import { postMsg } from '../../../../api/message';
 import { getSessionTokenJson } from '../../../../api/apiHelper';
@@ -16,6 +17,7 @@ class MessageInput extends React.Component {
       listenerId: this.props.talkerInfo.userId
     }).then(()=>{
       this.props.updateMsg(this.props.talkerSelected);
+      hashHistory.push('/UserPage/notification');
       console.log(this.props.talkerSelected);
     }).catch(err=>{
       alert(err);

@@ -127,8 +127,11 @@ class UserPage extends React.Component {
   handleMessageClick = (e, userInfo) => {
     e.preventDefault();
     if(getSessionTokenJson() !== null) {
-      const talker = JSON.stringify(userInfo);
-      hashHistory.push(`/UserPage/notification/${talker}`);
+      const path = {
+        pathname:`/UserPage/notification/${userInfo.userId}`,
+        state: userInfo
+      }
+      hashHistory.push(path);
     } else {
       alert("please login to send messages");
     }

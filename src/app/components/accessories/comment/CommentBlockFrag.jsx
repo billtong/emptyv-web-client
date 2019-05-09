@@ -66,7 +66,6 @@ class CommentBlockFrag extends React.Component {
 
   render() {
     const uploadDate = formatDateTime(parseInt(this.props.comment.commentDate));
-    console.log(this.props.rootComment);
     const replyTag = !this.props.rootComment ? null : (
       <div className="comment-text reply">
         <p>@{this.props.rootComment.userInfo.userName}</p>

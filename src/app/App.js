@@ -28,7 +28,6 @@ class App extends Component{
             <Route path="VideoPage" component={VideoPage} />
             <Route path="About" component={AboutPage} />
             <Route path="404" component={NotFoundPage} />
-            <Redirect from="*" to="404" />
           </Route>
         </Router>
       </Fragment>

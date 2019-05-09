@@ -33,7 +33,6 @@ class Message extends React.Component {
         rawMsgList: [],
         isLoading: true
       });
-      alert(err);
     });
   }
   
@@ -42,14 +41,18 @@ class Message extends React.Component {
   }
 
   changeListsStates = (selectValue) => {
+    if(!this.state.rawMsgList && this.state.rawMsgList === null && this.state.rawMsgList.length === 0) {
+      return;
+    }
     const userId = getSessionTokenJson().user.userId;
     const rawDataList = this.state.rawMsgList;
     const msgMap = new Map();       //(talkerId, 和该talker的msgList)
     const talkersMap = new Map();
     
-    if(this.props.defaultTalker) {
-      msgMap.set(this.props.defaultTalker.userId, []);
-      talkersMap.set(this.props.defaultTalker.userId, this.props.defaultTalker);
+    if (this.props.defaultTalker) {
+      const talker = this.props.defaultTalker;
+      msgMap.set(talker.userId, 10, []);
+      talkersMap.set(talker.userId, talker);
     }
 
     rawDataList.forEach((msg) => {
@@ -76,6 +79,9 @@ class Message extends React.Component {
 
   generatedFinalList = (list) => {
     const userId = getSessionTokenJson().user.userId;
+    if(!list || list.length === 0 || !(list instanceof Array)) {
+      return [];
+    }
     const newList = list.map((msg, index) => {
       return {
         msgId: msg.msgId,
@@ -110,6 +116,7 @@ class Message extends React.Component {
             updateMsg={this.getMsgData}
             talkerSelected={this.state.talkerSelected}
             talkerInfo = {this.state.talkerInfoList[this.state.talkerSelected]}
+            defaultTalker = {this.state.defaultTalker}
           />
         </div>
       </div>
