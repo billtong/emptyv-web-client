@@ -109,31 +109,30 @@ handleEnterKey=(e) => {
       <div className="about-us-page">
         <div className="about-us-container">
           <h1 className="title-text">Empty Video</h1>
-          <h4 className="title-text">1.1.0325</h4>
+          <h4 className="title-text">1.2.0410</h4>
           <section>
             <h2>Accounts Privileges</h2>
             <ul>
-              <li>make & reply comments</li>
-              <li>like & unlike videos</li>
-              <li>add videos to your <p>favourite lists</p></li>
-              <li>record your history</li>
-              <li>make <p>danmu</p></li>
+              <li>customised your very own DashBoard.</li>
+              <li>Multiple interactions with vidoe Entity, includes <p>danmu</p> like/unlike, favourite, comment.</li>
+              <li>Communicate with other users openly and freely in private chat rooms.</li>
+              <li>Record the video you have watched or you love.</li>
             </ul>
           </section>
           <section>
-            <h2>Comming Features in v1.2</h2>
+            <h2>Future Features in v1.3</h2>
             <ul>
-              <li>chat with other users</li>
-              <li>videos suggestion</li>
-              <li>notification & customize settings on UserPage</li>
-              <li>little video player at the footer</li>
+              <li>Video Uploading System.</li>
+              <li>notification for other user's interaction with you.</li>
+              <li>more powerful videoplayer features.</li>
             </ul>
           </section>
           <section>
             <span>
               <h2>Join Us</h2>
               <li>Language: JavaScript, H5, <p>CSS</p>, <p>Python</p>, Java</li>
-              <li>Framworks: <p>React.JS</p>, Spring, SpringMVC, Mybatis</li>
+              <li>Framworks: <p>React.JS</p>, Spring, Spring Boot, Mybatis</li>
+              <li>Others: Docker, Jenkins</li>
               <li>Email: <p>emptyvideos@outlook.com</p></li>
               <li>FollowMe: <p><a href="https://github.com/billtong">GitHub Account</a></p></li>
             </span>
