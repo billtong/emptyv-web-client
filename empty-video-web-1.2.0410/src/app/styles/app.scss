@@ -1,0 +1,71 @@
+@import "./color.scss";
+@import "./bootstrap.scss";
+@import "components/accessories/comment/Comment";
+@import "components/accessories/videoGrid/VideoGrid";
+@import "components/accessories/videoPlayer/VideoPlayer";
+@import "components/accessories/videoPlayer/ContentMenu";
+@import "components/accessories/videoPlayer/Dan";
+@import "components/accessories/Pagination";
+@import "components/accessories/Tag";
+@import "components/accessories/Filter";
+@import "components/accessories/UserAvatar";
+@import "components/layout/Header";
+@import "components/layout/Main";
+@import "components/layout/Footer";
+@import "components/pages/HomePage";
+@import "components/pages/SignPage";
+@import "components/pages/VideoPage";
+@import "components/pages/UserPage";
+@import "components/pages/AboutPage";
+@import "components/pages/NotFoundPage";
+@import "components/pages/Notification";
+@import "components/pages/SettingPage";
+
+body {
+  background: #0d0d0d;
+  color: #d9d9d9;
+  a {
+    text-decoration: none;
+  }
+}
+
+input {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+//我在tobyX的工作结晶，用于addbtn
+.add-btn{
+  float: left;
+  clear: both;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+  .add-icon{
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background-color: #ECAA03;
+    color: #fff;
+  }
+  .add-icon:hover {
+    cursor: pointer;
+    background-color: #dc9e04;
+  }
+}
+
+#style-scroll::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+#style-scroll::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+#style-scroll::-webkit-scrollbar-track {
+  border: 1px solid black;
+  background-color: #F5F5F5;
+}
+//add-btn结束

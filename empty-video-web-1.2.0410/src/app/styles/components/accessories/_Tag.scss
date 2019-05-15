@@ -1,0 +1,16 @@
+.tag-section{
+  border-top: 1px solid $grey;
+  .tag-ul{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    .tag-li{
+      display: inline-block;
+      padding-right: .5rem;
+      border: 0.15rem solid #d9d9d9;
+      border-radius: 1rem;
+      padding: 0 1rem;
+      margin: 0 10px 8px 0;
+      font-weight: 500;
+    }
+  }
+}

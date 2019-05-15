@@ -1,0 +1,36 @@
+.user-page-main-section {
+  padding-top: 3rem;
+  .user-header-section {
+    margin-left: 9rem;
+    background: maroon;
+    padding-top: 1rem;
+    margin-right: 9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    .uid-text {
+      display: block;
+      font-size: 1.5rem;
+    }
+    .username-text {
+      font-size: 1.5rem;
+    }
+    .user-history-menu {
+      .user-history-menu-items {
+        display: inline-block;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .user-history-menu-items:hover {
+        cursor: pointer;
+
+      }
+      .selectedItem {
+        color: orange;
+      }
+    }
+    .big-menu-text {
+      font-size: 1.4rem;
+      font-weight: 800;  
+    }
+  }
+}

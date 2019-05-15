@@ -1,0 +1,17 @@
+@import "components/accessories/comment/Comment";
+@import "components/accessories/videoGrid/VideoGrid";
+@import "components/accessories/VideoPlayer";
+@import "components/accessories/Pagination";
+@import "components/accessories/Tag";
+@import "components/layout/Header";
+@import "components/pages/DonatePage";
+@import "components/pages/HomePage";
+@import "components/pages/SignPage";
+@import "components/pages/VideoPage";
+@import "components/pages/UserPage";
+@import "components/pages/AboutPage";
+
+body {
+  background: #0d0d0d;
+  color: #d9d9d9;
+}

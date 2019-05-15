@@ -1,0 +1,22 @@
+.tag-section{
+  .tag-ul{
+    .tag-li{
+      display: inline-block;
+      padding-right: .5rem;
+    }
+  }
+  .add-btn{
+    float: left;
+    clear: both;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    .add-icon{
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background-color: #ECAA03;
+      color: #fff;
+    }
+  }
+}

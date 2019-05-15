@@ -1,0 +1,36 @@
+.sign-section {
+  text-align: center;
+  .sign-title {
+    color: #fff;
+    font-size: 1rem;
+    margin: 0 auto;
+    padding-top: 8rem;
+  }
+  .sign-form {
+    display: grid;
+    margin: 0 40% auto;
+    padding-top: 3rem;
+    padding-bottom: 6rem;
+    .sign-btn-section {
+      padding-top: 1rem;
+      .btn-primary {
+        background-color: #ed2133;
+        border-color: #ed2133;
+        width: 100%;
+      }
+      .btn-primary:hover {
+        cursor: pointer;
+        background-color: #ed2353;
+        border-color: #ed2353;
+      }
+    }
+  }
+
+  .loader{
+    margin: 1rem auto;
+  }
+
+  .error {
+    margin: 1rem auto;
+  }
+}

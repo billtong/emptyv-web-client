@@ -1,0 +1,73 @@
+.video-page-main-section {
+  padding-top: 3rem;
+  .video-player-section{
+    border: 1px solid #313131;
+    border-radius: 4px;
+    padding-bottom: 20px;
+    position: relative;
+    max-width: 80rem;
+    margin-left: 5rem;
+    .videos-player{
+      position: relative;
+      max-width: 80rem;
+      max-height: 50rem;
+      margin: 0.5rem;
+    }
+
+    .video-info-section {
+      .video-title {
+        background-color: #313131;
+        .video-action-action {
+          display: inline;
+          padding-right: 1rem;
+        } 
+        .video-action-action:hover{
+          cursor: pointer;
+        }
+        
+        .actioned {
+          color: orange;
+        }
+        .favlist-loader {
+          margin: 0 auto;
+          width: 3.6rem;
+        }
+        .fav-dialog {
+          .fav-list-table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1rem 1rem auto;
+            margin-bottom: 1rem;
+            .check-box-section {
+              height: 1.5rem;
+              width: 1.5rem;
+            }
+            .fav-list-name {
+              font-size: 1.5rem;
+              font-weight: 400;
+            }
+            .fav-list-num {
+              font-size: 1.5rem;
+              font-weight: 200;
+            }
+          }
+        }
+      }
+      
+      .video-little-title-sectiton {
+        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+        .video-upload-user {
+          margin-bottom: 1rem;
+        }
+        .num {
+          display: inline-block;
+        }
+        .video-upload-date {
+        }
+      }
+    }
+  }
+  .close {
+    display: inline;
+  } 
+}

@@ -1,0 +1,25 @@
+.home-section {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 3rem;
+  .ad-banner {
+    text-align: center;
+    padding-bottom: 1rem;
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      cursor: pointer;
+    }
+
+    img{
+      max-width: 90%;
+      vertical-align: middle;
+      border-style: none; 
+    }
+  }
+  .search-keyword-display {
+    font-size: 2rem;
+    margin: 1rem 4rem;
+  }
+}

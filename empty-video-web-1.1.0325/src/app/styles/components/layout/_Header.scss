@@ -1,0 +1,76 @@
+.header-section {
+  .active {
+    text-decoration: none;
+  }
+
+  nav {
+    background-color: #1f1f1f;
+    height: 3rem;
+    padding-left: 5%;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    .logo-container {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .logo-container:hover {
+      cursor: pointer;
+    }
+
+    .menu-container {
+      display: inline-block;
+      vertical-align: middle;
+      width: 90%;
+      height: 2rem;
+      .desktop {
+        display: inline-block;
+        font-size: 1.5rem;
+        padding-left: 1rem;
+        vertical-align: middle;
+        padding-top: 0.2rem;
+        .usr-icon-action {
+          vertical-align: -0.1rem;
+          margin-right: 0.1rem;
+        }
+
+        .search-btn {
+          margin-top: 0.4rem;
+          margin-left: 2rem;
+        }
+        .search-btn:hover {
+          cursor: pointer;
+        }
+        .search-input {
+          outline: none;
+          max-width: 30rem;
+          vertical-align: middle;
+          padding-left: 1rem;
+          padding-right: 2rem;
+          border-radius: 1rem;
+        }
+
+        .header-menu {
+          color: #d9d9d9
+        }
+
+        .header-menu:hover {
+          cursor: pointer;
+          text-decoration: none;
+          color: gray;
+        }
+      }
+
+      .menu-left {
+        float: left;
+        padding-left: 0;
+        margin-top: 0;
+      }
+
+      .menu-right {
+        float: right;
+        margin-top: 0;
+      }
+    }
+  }
+}

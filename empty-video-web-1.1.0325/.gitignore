@@ -1,0 +1,16 @@
+### ide files
+.idea/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+### testing
+/public/bundle.js
+/coverage
+
+### production
+/build
+
+### misc
+npm-debug.log*

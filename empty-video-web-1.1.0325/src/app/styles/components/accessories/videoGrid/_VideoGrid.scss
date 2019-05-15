@@ -1,0 +1,41 @@
+.video-grid-container {
+  box-sizing: border-box;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  .loader {
+    margin: 1rem auto;
+    width: 6.25rem;
+  }
+
+  .error-text-section {
+    text-align: center;
+  }
+
+  .video-blocks-section {
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    .video-block-section{
+      padding-bottom: 1rem;
+      margin: 2rem auto;
+      .video-title-section {
+        font-size: 1rem;
+        line-height: 1.1rem;
+        word-break: break-word;
+        width: 13rem;
+      }
+      
+      .video-view-num-section {
+        font-size: .8rem;
+        color: #888;
+      }
+    }
+    .video-block-section:hover {
+      cursor: pointer;
+    }
+
+  }
+}
+ 

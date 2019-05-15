@@ -1,0 +1,135 @@
+$height: 35rem;
+$width-left: 7rem;
+$width-right: 55rem; 
+
+$message-board-padding: 1rem;
+
+.notification-section {
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+  .tab-section {
+    list-style-type: none;
+    cursor: pointer;
+    text-align: center;
+    li {
+      font-size: 1rem;
+      margin-right: 1rem;
+      &:hover {
+        color: gray;
+      }
+    }
+    .select {
+      font-weight: 600;
+    }
+  }
+
+  .content-section {
+    width: #{$width-left} + #{$width-right};
+    .message-container {
+      font-size: 1rem;
+      border: 1px $grey solid ;
+      display: flex;
+      margin: 3rem 6rem 3rem 6rem;
+      .talker-tab {
+        border: 1px $grey solid;
+        word-wrap: break-word;
+        width: $width-left;
+        height: $height;
+        overflow-y: auto;
+        overflow-x: hide;
+        .talker-option {
+          width: $width-left;
+          height: 3.5rem;
+          background: $grey;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px black solid;
+          .user-avatar {
+          }
+          .user-text {
+            overflow: hidden;
+            text-overflow: unset;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+          }
+        }
+      }
+      .message-board-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: $width-right;
+        height: $height;
+        text-align: right;
+        .message-board {
+          height: 25rem;
+          overflow-y: auto;
+          overflow-x: hidden;
+          .msg-li {
+            display: block;
+          }
+          .msg {
+            width: 54rem;
+            .name {
+              font-weight: 600;
+              .user-icon {
+                width: 2rem;
+                height: 2rem;
+              }
+            }
+            .time {
+              font-weight: 200;
+              margin-bottom: .5rem;
+            }
+            .content {
+              word-wrap: break-word;
+            }
+          }
+          .msg-talker {
+            padding-left: 1rem;
+            text-align: left;
+            .content { 
+              color: red;
+            }
+          }
+        
+          .msg-user {
+            padding-right: 1rem;
+            .content { 
+              text-align: right;
+              color: 	#32CD32;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .message-input-board {
+        .text-input-area {
+          background: $grey;
+          outline: none;
+          border-color: black;
+          color: 	#32CD32;
+          font-weight: 600;
+          opacity: 0.9;
+          font-size: 1rem;
+          resize: none;
+          height: 10rem;
+          width: $width-right;
+        }
+        .send-btn {
+          cursor: pointer;
+          font-weight: 100;
+          &:hover {
+            color: #32CD32;
+          }
+        }
+      }
+    }
+  }
+
+}
