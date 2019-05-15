@@ -33,7 +33,7 @@ class VideoLittelTitle extends React.Component {
         </div>
       );
     }
-    
+
     const videoLittleTitle = this.props.videoData === undefined ? null : (
       <div className='video-little-title-sectiton'>
         <div className='video-upload-user'>

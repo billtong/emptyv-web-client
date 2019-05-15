@@ -1,7 +1,7 @@
 {
   "name": "empty-video-web",
   "version": "1.0.0",
-  "description": "a video sharing website front with DanMu build in React.js",
+  "description": "a video sharing website front-end",
   "main": "index.js",
   "scripts": {
     "start": "node bin/start.js",

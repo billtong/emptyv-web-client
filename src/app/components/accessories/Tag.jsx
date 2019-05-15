@@ -4,6 +4,11 @@ import { MdAdd } from 'react-icons/md';
 import { patchTags } from '../../api/video';
 import { getSessionTokenJson } from '../../api/apiHelper';
 
+/*
+* get的video tag string形式
+* "xx,xxx,xxx,xxx"
+*/
+
 class Tag extends React.Component {
   state = {
     tagList: this.props.tagList,  //用于记录改变的tagList
@@ -22,19 +27,8 @@ class Tag extends React.Component {
       tagList: this.props.tagList,
       isTagAdd: false,
       isTagBlur: true,
-      isTagForcus: false,
-      hasChanged: false
+      isTagForcus: false
     });
-  }
-
-  //在退出这个页面的时候将改变的tag提交上去，（这个tagJsonString仅仅是个string而已不是json）
-  componentWillUnmount = () => {
-    if (this.state.hasChanged) {
-      patchTags({
-        videoId: this.props.videoId,
-        tagJsonString: this.state.tagList
-      });
-    }
   }
 
   //点击Enter键提交这个tag
@@ -51,18 +45,21 @@ class Tag extends React.Component {
       e.preventDefault();
       const newTagList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
       newTagList.push(tag);
+      patchTags({
+        videoId: this.props.videoId,
+        tagJsonString: newTagList.join(',')
+      });
       this.setState(prevState => ({
         ...prevState,
         isTagAdd: false,
         isTagForcus: false,
         isTagBlur: true,
-        hasChanged: true,
         tagList: newTagList.join(',')
       }));
     }
   };
 
-  //点击tag按钮
+  //click the add button to open input board
   handleClick=(e) => {
     const userJSON = getSessionTokenJson();
     if (!userJSON) {
@@ -144,7 +141,3 @@ class Tag extends React.Component {
 }
 
 export default Tag;
-
-/*get的video tag string形式
-  "xx,xxx,xxx,xxx"
-*/
