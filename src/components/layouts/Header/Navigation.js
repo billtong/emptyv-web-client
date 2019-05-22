@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import styled from 'styled-components';
 import PropTypes from "prop-types";
-import Text from "../accessories/Text";
+import Text from "../../accessories/Text";
 
 const Button = styled.td`
   padding-right: 1rem;
