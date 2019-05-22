@@ -1,7 +1,7 @@
 {
   "name": "eazytrip-web",
   "version": "1.3.0",
-  "description": "a video sharing website front-end",
+  "description": "a video sharing website",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/billtong/empty-video-web.git"

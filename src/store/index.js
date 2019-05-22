@@ -29,8 +29,6 @@ export const store = createStore(
             routerMiddleware(history),
             ...middleware),
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-        //** Deprecated **//
-        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 

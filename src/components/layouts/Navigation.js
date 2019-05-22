@@ -1,45 +1,31 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import styled from 'styled-components';
 import PropTypes from "prop-types";
+import Text from "../accessories/Text";
 
-const Wrapper = styled.table`
-  justify-content: center;
-  min-width: 100%;
-`;
 const Button = styled.td`
-  margin-left: 10px;
-  margin-right: 10px;
-  border: 1px solid transparent;
+  padding-right: 1rem;
+  cursor: pointer;
   &:hover {
-    border: 1px solid white;
+    color: grey;
   }
 `;
 
 export const NavItem = (props) => (
     <Fragment>
-        <Button onClick={props.event} title={props.name}>{props.name}</Button>
-    </Fragment>
-);
-
-export default (props) => (
-    <Fragment>
-        <Wrapper>
-            <tbody>
-                <tr>
-                    {props.children}
-                </tr>
-            </tbody>
-        </Wrapper>
+        <Button onClick={props.event}>
+          <Text id={props.id}/>
+        </Button>
     </Fragment>
 );
 
 
 NavItem.propTypes = {
     event: PropTypes.func,
-    name: PropTypes.string,
+    id: PropTypes.string,
 };
 
 NavItem.defaultProps = {
     event: undefined,
-    name: "undefined",
+    id: "undefined",
 };

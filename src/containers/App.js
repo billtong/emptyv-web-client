@@ -1,54 +1,44 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
 import './App.css';
-import Text from "../components/accessories/Text";
 import {connect} from "react-redux";
 import actions from "../store/actions/root";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import NotFound from "./Routes/NotFound";
 import Home from "./Routes/Home";
-import Navigation, {NavItem} from "../components/layouts/Navigation"
+import {NavItem} from "../components/layouts/Navigation"
 import history from "../utils/history";
+import AboutPage from "./Routes/AboutPage/AboutPage";
 
 class App extends Component {
-  changeLanguage() {
+  handleNavClick = (route) => {
+	  history.push(route);
+  }
+
+	switchLanguage() {
     let lang = this.props.locale;
     lang = lang === 'zh' ? 'en' : 'zh';
     this.props.changeLanguage(lang);
   }
   render() {
-    const { locale } = this.props;
     return (
       <div className="App">
         <header className="App-header">
-          <Navigation>
-            <NavItem event={() => {history.push("/")}} name={"Home"} />
-            <NavItem />
-            <NavItem event={() => this.changeLanguage()} name={locale === 'zh' ? '英文' : 'Chinese'}/>
-          </Navigation>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <div>
-            <h1 className="App-title">
-              <Text
-                  id="hello"
-              />
-            </h1>
-            <p className="App-intro">
-              <Text
-                  id="name"
-                  values={{ name: <b>{'estKey'}</b> }}
-              />
-            </p>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/404" exact component={NotFound} />
-              <Redirect from="*" to="/404" />
-            </Switch>
+          <div className="App-header-left">
+	          <NavItem event={() => this.handleNavClick("/")} id={"home"} />
+	          <NavItem event={()=> this.handleNavClick("/about") } id={"about"} />
+          </div>
+          <div className="App-header-right">
+	          <NavItem event={() => this.switchLanguage() } id={"language"}/>
           </div>
         </header>
+	      <div className="App-content">
+		      <Switch>
+			      <Route path="/" exact component={Home} />
+            <Route path="/about" exact component={AboutPage}/>
+			      <Route path="/404" exact component={NotFound} />
+			      <Redirect from="*" to="/404" />
+		      </Switch>
+	      </div>
       </div>
     );
   }

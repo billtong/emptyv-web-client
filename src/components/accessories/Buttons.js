@@ -9,7 +9,6 @@ const Wrapper = styled.div`
 export const LanBtn = (props) => (
     <Fragment>
         <Wrapper>
-
         </Wrapper>
     </Fragment>
 );

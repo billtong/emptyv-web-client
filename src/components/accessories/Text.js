@@ -15,8 +15,6 @@ class Text extends Component {
     }
 }
 
-
-
 Text.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.node,
