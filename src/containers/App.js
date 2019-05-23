@@ -7,6 +7,7 @@ import AboutPage from "./Routes/AboutPage/AboutPage";
 import SignUpPage from "./Routes/SignUpPage/SignUpPage";
 import Header from "../components/layouts/Header/Header";
 import NotificationPage from "./Routes/UserPage/NotificationPage/NotificationPage";
+import loginForm from "../components/layouts/Header/Login/Login";
 
 class App extends Component {
   render() {
@@ -19,9 +20,11 @@ class App extends Component {
 		      <Switch>
 			      <Route path="/" exact component={Home} />
             <Route path="/about" exact component={AboutPage}/>
+			      <Route path="/login" exact component={loginForm} />
 			      <Route path="/signup" exact component={SignUpPage}/>
 			      <Route path="/user/notification" exact component={NotificationPage} />
 			      <Route path="/404" exact component={NotFound} />
+			      <Redirect from="/*" to="/404" />
 		      </Switch>
 	      </div>
       </div>

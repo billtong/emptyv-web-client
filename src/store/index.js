@@ -1,11 +1,13 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import {createStore, applyMiddleware, compose, combineReducers} from "redux";
 import thunk from "redux-thunk";
-import rootReducer from "./reducers";
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import transforms from "./transform";
 import history from "../utils/history"
-import {routerMiddleware} from "connected-react-router";
+import {connectRouter, routerMiddleware} from "connected-react-router";
+import changeLanguageReducer from "./reducers/ChangeLanguageReducer";
+import {signInReducer} from "./reducers/SignInReducer";
+import {signUpReducer} from "./reducers/SignUpReducer";
 
 const initialState = {
 };
@@ -18,6 +20,13 @@ const persistConfig = {
      transforms: [transforms],
      whitelist: ['root']
 };
+
+const rootReducer = (history) => combineReducers({
+	changeLanguageReducer,
+	signInReducer,
+	signUpReducer,
+	router: connectRouter(history)
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer(history));
 

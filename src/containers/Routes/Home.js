@@ -7,7 +7,7 @@ class Home extends Component{
     render() {
         return(
             <Fragment>
-                <XHelmet title={"Home"} />
+                <XHelmet title={"Empty Video"} />
                 <div>Home</div>
             </Fragment>
         )

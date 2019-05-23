@@ -2,11 +2,12 @@ import React, { Component, Fragment } from 'react';
 import { NavLink, withRouter, Switch, Route } from "react-router-dom";
 import { NavItem } from "./Navigation";
 import history from "../../../utils/history";
-import actions from "../../../store/actions/root";
+import actions from "../../../store/actions/ChangeLanguageAction";
 import connect from "react-redux/es/connect/connect";
 import "./Header.css";
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import loginForm from "./Login/Login";
+import changeLanguageReducer from "../../../store/reducers/ChangeLanguageReducer";
 
 class Header extends Component{
 	handleNavClick=(route) => {
@@ -49,16 +50,13 @@ class Header extends Component{
 						</tr>
 					</tbody>
 				</table>
-				<Switch>
-					<Route path="/login" exact component={loginForm} />
-				</Switch>
 			</Fragment>
 		)
 	}
 }
 
 const mapStateToProps = (state, ...ownProps) => ({
-	locale: state.root.language,
+	locale: state.changeLanguageReducer.language,
 });
 const mapDispatchToProps = (dispatch, ...ownProps) => ({
 	changeLanguage: (val) => dispatch(actions.changeLanguage(val))

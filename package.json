@@ -32,6 +32,7 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "axios": "^0.18.0",
     "connected-react-router": "^6.3.2",
     "history": "^4.9.0",
     "react": "^16.8.5",
