@@ -9,6 +9,16 @@ const zh_CN = {
 	login: "登陆",
 	signup: "注册",
 
+	//login diaglog
+	lgtitle: "登陆界面",
+	lgip_1: "用户名",
+	lgip_2: "密码",
+	lgi_3: "登陆",
+	lgitxt_4: "保持登陆状态15天",
+	lgitxt_5: "请在私人电脑上使用此功能，以保护个人信息",
+	lgi_6: "注册",
+	lgi_txt_6: "没有注册用户？",
+
 	//about Page
 	abs1: "为什么要成为EmptyVideo用户",
 	abl1_1:"个性化用户面板，更方便的看到你的视频",

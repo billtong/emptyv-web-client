@@ -6,7 +6,7 @@ import actions from "../../../store/actions/root";
 import connect from "react-redux/es/connect/connect";
 import "./Header.css";
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
-import {loginForm} from "./Login/Login";
+import loginForm from "./Login/Login";
 
 class Header extends Component{
 	handleNavClick=(route) => {
@@ -17,10 +17,6 @@ class Header extends Component{
 		let lang = this.props.locale;
 		lang = lang === 'zh' ? 'en' : 'zh';
 		this.props.changeLanguage(lang);
-	};
-
-	handleLoginCLick=() => {
-
 	};
 
 	render() {
@@ -37,14 +33,22 @@ class Header extends Component{
 
 		return(
 			<Fragment>
-				<div className="App-header-left">
-					<NavItem event={() => this.handleNavClick("/")} id={"home"} />
-					<NavItem event={()=> this.handleNavClick("/about") } id={"about"} />
-				</div>
-				<div className="App-header-right">
-					<NavItem event={() => this.switchLanguage() } id={"language"}/>
-					{rightMenu}
-				</div>
+				<table className="App-header-left">
+					<tbody>
+					<tr>
+						<NavItem event={() => this.handleNavClick("/")} id={"home"} />
+						<NavItem event={()=> this.handleNavClick("/about") } id={"about"} />
+					</tr>
+					</tbody>
+				</table>
+				<table className="App-header-right">
+					<tbody>
+						<tr>
+							<NavItem event={() => this.switchLanguage() } id={"language"}/>
+							{rightMenu}
+						</tr>
+					</tbody>
+				</table>
 				<Switch>
 					<Route path="/login" exact component={loginForm} />
 				</Switch>

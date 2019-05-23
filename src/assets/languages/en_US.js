@@ -8,6 +8,17 @@ const en_US = {
 	language: "Language",
 	login: "Login",
 	signup: "Sign Up",
+
+	//login diaglog
+	lgtitle: "Login",
+	lgip_1: "username",
+	lgip_2: "password",
+	lgi_3: "login",
+	lgitxt_4: "Keep sign in for 15 DAYs",
+	lgitxt_5: "*check only if this is your device",
+	lgi_6: "sign up",
+	lgi_txt_6: "don't have an account yet?",
+
 	//about Page
 	abs1: "Why you should become Empty Video member",
 	abl1_1:"customised your very own DashBoard.",
