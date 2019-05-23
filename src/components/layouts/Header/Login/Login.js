@@ -76,7 +76,7 @@ class LoginForm extends Component{
 						<tr>
 							<td colSpan={2}>
 								<Text id={"lgip_1"}
-									  children={(text) => <input className={"text-input"} type="password" placeholder={text} id={"username"} /> }
+									  children={(text) => <input className={"text-input"} type="text" placeholder={text} id={"username"} /> }
 								/>
 							</td>
 						</tr>
