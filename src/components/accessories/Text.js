@@ -8,14 +8,17 @@ class Text extends Component {
             <Fragment>
                 <FormattedMessage
                     id = {this.props.id}
-                    values = {this.props.values}
-                />
+                    values = {this.props.values}>
+                    {this.props.children}
+                </FormattedMessage>
             </Fragment>
         )
     }
 }
 
 Text.propTypes = {
+    id: PropTypes.string,
+    values: PropTypes.string,
     children: PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.arrayOf(PropTypes.node),
@@ -23,6 +26,8 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
+    id: "",
+    values: "",
     children: null,
 };
 

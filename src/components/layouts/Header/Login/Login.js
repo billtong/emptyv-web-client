@@ -75,16 +75,16 @@ class LoginForm extends Component{
 					<Dialog titleTextId={"lgtitle"} event={this.handleCloseClick}>
 						<tr>
 							<td colSpan={2}>
-								<FormattedMessage id={"lgip_1"}>
-									{(text) => <input className={"text-input"} type="text" placeholder={text} id={"username"} />}
-								</FormattedMessage>
+								<Text id={"lgip_1"}
+									  children={(text) => <input className={"text-input"} type="password" placeholder={text} id={"username"} /> }
+								/>
 							</td>
 						</tr>
 						<tr>
 							<td colSpan={2}>
-								<FormattedMessage id={"lgip_2"}>
-									{(text) => <input className={"text-input"} type="password" placeholder={text} id={"password"} /> }
-								</FormattedMessage>
+								<Text id={"lgip_2"}
+									children={(text) => <input className={"text-input"} type="password" placeholder={text} id={"password"} /> }
+								/>
 							</td>
 						</tr>
 						<tr>
@@ -100,9 +100,9 @@ class LoginForm extends Component{
 						</tr>
 						<tr>
 							<td colSpan={2}>
-								<FormattedMessage id={"lgi_3"}>
-									{(text) => <input className={"submit-input"} type="submit" value={text}/>}
-								</FormattedMessage>
+								<Text id={"lgi_3"}
+									children={(text) => <input className={"submit-input"} type="submit" value={text}/>}
+								/>
 							</td>
 						</tr>
 						<tr>
