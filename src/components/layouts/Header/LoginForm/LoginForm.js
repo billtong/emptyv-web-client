@@ -1,13 +1,14 @@
 import React, {Fragment, Component} from 'react';
 import { withRouter } from 'react-router-dom';
-import {Dialog} from "../../../accessories/Dialog";
-import XHelmet from "../../../accessories/XHelmet";
-import Text from "../../../accessories/Text";
+
+import {Dialog} from "../../../accessories/Dialog.js";
+import XHelmet from "../../../accessories/XHelmet.js";
+import Text from "../../../accessories/Text.js";
 import "./LoginForm.css";
-import history from "../../../../utils/history";
-import {getToken} from "../../../../utils/api/user";
-import {setCookie} from "../../../../utils/cookieTools";
-import {userTokenCookieKey, userTokenSessionKey} from "../../../../utils/api/apiHelper";
+import history from "../../../../utils/history.js";
+import {getToken} from "../../../../utils/api/user.js";
+import {setCookie} from "../../../../utils/cookieTools.js";
+import {userTokenCookieKey, userTokenSessionKey} from "../../../../utils/api/apiHelper.js";
 
 class LoginForm extends Component{
 	state = {

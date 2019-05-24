@@ -14,6 +14,7 @@ export const getVideo = (videoId) => {
   });
 };
 
+//userId不用管，以后会被废除，现在也不影响搜索
 export const getVideoList = (inputJson) => {
   inputJson.word = !inputJson.word ? '' : inputJson.word;
   inputJson.filter = !inputJson.filter ? '' : inputJson.filter;

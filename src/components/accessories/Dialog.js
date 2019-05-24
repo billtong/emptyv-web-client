@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import {Fragment} from "react";
 import React from "react";
-import Text from "./Text";
 import PropTypes from "prop-types";
+import Text from "./Text";
 
 
 const Wrapper = styled.div`
