@@ -1,25 +1,21 @@
-import React, {Fragment, Component} from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
-const style = {
-	width: "200px",
-	height: "150px",
-};
+import { videoStyle } from './style.js';
 
 const Wrapper = styled.div`
 	display: inline-block;
-	padding: 1rem 2rem;
+	padding: ${videoStyle.paddingVerti}px ${videoStyle.paddingHori}px; 
 `;
 
 const Img = styled.img`
-	width: ${style.width};
-	height:${style.height};
+	width: ${videoStyle.width}px;
+	height:${videoStyle.height}px;
 `;
 
 const Title = styled.div`
 	word-break: break-word;
-	width: ${style.width};
+	width: ${videoStyle.width}px;
 	text-align: left;
 	height: 2.2rem;
 	margin: 0 auto;
@@ -27,7 +23,7 @@ const Title = styled.div`
 `;
 
 const Num = styled.div`
-	width: ${style.width};	
+	width: ${videoStyle.width}px;	
 	text-align: left;
 	margin: 0 auto;
 `;

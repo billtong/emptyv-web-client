@@ -37,7 +37,7 @@ class Pagination extends Component {
 	handleCellClick = (e, value) => {
 		e.preventDefault();
 		if (value >= 1 && value <= this.props.total) {
-			this.props.changeFatherState(value);
+			this.props.passFatherState(value);
 		}
 	};
 
@@ -57,7 +57,7 @@ class Pagination extends Component {
 
 	render = () => {
 		const startNum = this.generateOffsetNum();
-		const cells = [...Array(this.props.cellNum)].map((item, index)=> {
+		const cells = [...Array(this.props.total >this.props.cellNum ? this.props.cellNum : this.props.total)].map((item, index)=> {
 			const value = startNum + index;
 			if(value === this.props.curr) {
 				return <SelectedCell> {value} </SelectedCell>
@@ -81,14 +81,14 @@ Pagination.propTypes = {
 	total: PropTypes.number,
 	curr: PropTypes.number,
 	cellNum: PropTypes.number,
-	changeFatherState: PropTypes.func
+	passFatherState: PropTypes.func
 };
 
 Pagination.defaultProps = {
 	total: 1,
 	curr: 1,
 	cellNum: 7,
-	changeFatherState: undefined
+	passFatherState: undefined
 };
 
 export default Pagination;

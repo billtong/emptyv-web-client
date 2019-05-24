@@ -8,3 +8,14 @@
     top: 0.8rem;
     padding-right: 1rem;
 }
+
+.selector-contaienr {
+    margin-top: -0.3rem;
+}
+
+.user-name {
+    display: inline-block;
+    vertical-align: super;
+    overflow: hidden;
+    width: 4rem;
+}

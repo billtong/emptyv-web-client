@@ -8,6 +8,19 @@ const en_US = {
 	language: "Language",
 	login: "Login",
 	signup: "Sign Up",
+	notification: "notification",
+
+	//user right menu
+	se_o_dashboard: "Dashboard",
+	se_o_message: "Message",
+	se_o_setting: "Setting",
+	se_o_logout: "Logout",
+
+	//filter selector
+	se_title: "Sort By",
+	se_o_date: "latest",
+	se_o_rate: "most like",
+	se_o_view: "popular",	
 
 	//login diaglog
 	lgtitle: "Login",

@@ -4,11 +4,6 @@ import PropTypes from "prop-types";
 import Text from "../../accessories/Text";
 
 const Button = styled.td`
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
 	user-select: none;
   padding-right: 1rem;
   cursor: pointer;
@@ -33,5 +28,5 @@ NavItem.propTypes = {
 
 NavItem.defaultProps = {
     event: undefined,
-    id: "undefined",
+    id: "undefined"
 };

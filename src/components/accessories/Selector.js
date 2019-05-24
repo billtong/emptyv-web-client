@@ -1,24 +1,18 @@
 import React, {Fragment, Component} from 'react';
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
+import Text from './Text'
 
 const Container = styled.div`
 	width: 8rem;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
 	user-select: none;
 `;
 
 const Button = styled.div`
-	padding: 0.5rem 1rem;
-  cursor: pointer;
-  &:hover {
-    color: grey;
-  }
+	cursor: pointer;
+  	&:hover {
+    	color: grey;
+  	}
 `;
 
 const Wrapper = styled.ul`
@@ -43,7 +37,7 @@ const OptionsSelected = styled.li`
 	color: red
 `;
 
-class Filter extends Component{
+class Selector extends Component{
 	state = {
 		isClick: false,
 	};
@@ -57,9 +51,7 @@ class Filter extends Component{
 
 	handleOptionCick = (e, value) => {
 		e.preventDefault();
-		if(this.props.changeFatherState) {
-			this.props.changeFatherState(value);
-		}
+		this.props.passFatherState(value);
 		this.setState({
 			isClick: !this.state.isClick,
 		});
@@ -72,10 +64,10 @@ class Filter extends Component{
 					console.log("value", value);
 					console.log("selected", this.props.selectedOptions);
 					if (value === this.props.selectedOptions) {
-						return (<OptionsSelected key={value}>{value}</OptionsSelected>);
+						return (<OptionsSelected key={value}><Text id={`se_o_${value}`}/></OptionsSelected>);
 					} else {
 						return (
-							<Options key={value} onClick={e=>{this.handleOptionCick(e, value)}}>{value}</Options>
+							<Options key={value} onClick={e=>{this.handleOptionCick(e, value)}}><Text id={`se_o_${value}`}/></Options>
 						);
 					}
 				})}
@@ -84,7 +76,7 @@ class Filter extends Component{
 		return (
 			<Fragment>
 				<Container>
-					<Button onClick={e => this.handleSortButtonClick(e)}>Sort By</Button>
+					<Button onClick={e => this.handleSortButtonClick(e)}>{this.props.title}</Button>
 					{options}
 				</Container>
 			</Fragment>
@@ -92,16 +84,21 @@ class Filter extends Component{
 	};
 }
 
-Filter.propTypes =  {
+Selector.propTypes =  {
+	title: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.arrayOf(PropTypes.node),
+    ]),
 	options: PropTypes.arrayOf(PropTypes.string),
 	selectedOptions: PropTypes.string,
-	changeFatherState: PropTypes.func,
+	passFatherState: PropTypes.func,
 };
 
-Filter.defaultProps = {
+Selector.defaultProps = {
+	titel: null,
 	options: ["null"],
 	selectedOptions: "null",
-	changeFatherState: undefined,
+	passFatherState: ()=>{},
 };
 
-export default Filter;
+export default Selector;

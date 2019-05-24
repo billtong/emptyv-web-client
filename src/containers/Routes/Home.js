@@ -2,14 +2,16 @@ import React, { Component, Fragment } from 'react';
 import { withRouter } from "react-router-dom";
 
 import XHelmet from "../../components/accessories/XHelmet.js";
-import Filter from "../../components/accessories/entityDisplay/Filter.js";
+import Text from "../../components/accessories/Text";
+import Selector from "../../components/accessories/Selector";
 import Pagination from "../../components/accessories/entityDisplay/Pagination";
 import {getVideoList} from "../../utils/api/video";
 import {Container} from "../../components/accessories/entityDisplay/Container";
 
+const options = ["date", "rate", "view"];
+
 class Home extends Component{
   state = {
-    options: ["date", "rate", "view"],
 	  sort: "date",
     total: 1,           //总页数
     curr: 1,            //当前页数
@@ -57,13 +59,20 @@ class Home extends Component{
 			this.setState({errMsg: "Sorry...we ain\\'t able to serve any videos rn", isLoading: true});
 		});
 	};
-
   render() {
-    return(
+		const selectorTitle = (
+			<Text id={"se_title"}/>
+		);
+		return(
       <Fragment>
         <XHelmet title={"Empty Video"} />
         <div>
-          <Filter options={this.state.options} selectedOptions={this.state.sort} changeFatherState={this.handleOptionClick}/>
+					<Selector
+						title={selectorTitle} 
+						options={options} 
+						selectedOptions={this.state.sort} 
+						passFatherState={this.handleOptionClick}
+					/>
         </div>
 	      <div>
 					<Container
@@ -78,7 +87,7 @@ class Home extends Component{
 	          total={this.state.total}
             curr={this.state.curr}
             cellNum={this.state.cellNum}
-            changeFatherState={this.handlePaginationClick}
+            passFatherState={this.handlePaginationClick}
           />
         </div>
       </Fragment>

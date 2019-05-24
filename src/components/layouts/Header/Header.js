@@ -4,8 +4,12 @@ import { NavItem } from "./Navigation";
 import history from "../../../utils/history";
 import actions from "../../../store/actions/ChangeLanguageAction";
 import connect from "react-redux/es/connect/connect";
+import Selector from "../../accessories/Selector";
 import "./Header.css";
-import {getSessionTokenJson} from "../../../utils/api/apiHelper";
+import { logout } from "../../../utils/api/user"
+import {getSessionTokenJson, userTokenSessionKey, userTokenCookieKey} from "../../../utils/api/apiHelper";
+import { deleteCookie } from "../../../utils/cookieTools";
+const rightUserMenus = ["dashboard", "message", "setting", "logout"];
 
 class Header extends Component{
 	handleNavClick=(route) => {
@@ -18,10 +22,45 @@ class Header extends Component{
 		this.props.changeLanguage(lang);
 	};
 
+	handleUserMenuClick = (value) => {
+		switch(value){
+			case rightUserMenus[0]:
+				break;
+			case rightUserMenus[1]:
+				break;
+			case rightUserMenus[2]:
+				break;
+			case rightUserMenus[3]:
+				const userJSON = getSessionTokenJson();
+				logout({
+					sessionId: userJSON.userSessionId,
+					userName: userJSON.user.userName,
+					token: userJSON.userToken
+				}).finally(()=>{
+					deleteCookie(userTokenCookieKey);
+					sessionStorage.removeItem(userTokenSessionKey);
+					this.handleNavClick("/");
+				});
+				break;
+		}
+	}
+
 	render() {
 		const rightMenu = getSessionTokenJson() !== null ? (
 			<Fragment>
 				<NavItem event={() => this.handleNavClick("/user/notification")} id={"notification"} />
+				<div className={"selector-contaienr"}>
+					<Selector
+						title={(
+							<div className="userMenuButton">
+								<img width="30" heigh="30" src={getSessionTokenJson().user.userIcon}/>
+								<div className="user-name">{getSessionTokenJson().user.userName}</div>
+							</div>
+						)} 
+						options={rightUserMenus} 
+						passFatherState={this.handleUserMenuClick}
+					/>
+				</div>
 			</Fragment>
 		) : (
 			<Fragment>

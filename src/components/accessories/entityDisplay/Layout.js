@@ -5,6 +5,15 @@ import styled from "styled-components";
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    @media screen and (max-width: 1500px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media screen and (max-width: 700px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (max-width: 450px) {
+        grid-template-columns: 1fr;
+    }
 `;
 
 const VertiList = styled.div`
