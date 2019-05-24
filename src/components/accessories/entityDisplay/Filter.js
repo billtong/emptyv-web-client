@@ -36,10 +36,18 @@ const Options = styled.li`
 	text-align: left;
 `;
 
+const OptionsSelected = styled.li`
+	display:block;
+	cursor: pointer;
+	text-align: left;
+	color: red
+`;
+
 class Filter extends Component{
 	state = {
 		isClick: false,
 	};
+
 	handleSortButtonClick = (e) => {
 		e.preventDefault();
 		this.setState({
@@ -60,9 +68,17 @@ class Filter extends Component{
 	render = () => {
 		const options = this.state.isClick ? (
 			<Wrapper>
-				{this.props.options.map((value) => (
-					<Options onClick={e=>{this.handleOptionCick(e, value)}}>{value}</Options>)
-				)}
+				{this.props.options.map((value) => {
+					console.log("value", value);
+					console.log("selected", this.props.selectedOptions);
+					if (value === this.props.selectedOptions) {
+						return (<OptionsSelected key={value}>{value}</OptionsSelected>);
+					} else {
+						return (
+							<Options key={value} onClick={e=>{this.handleOptionCick(e, value)}}>{value}</Options>
+						);
+					}
+				})}
 			</Wrapper>
 		) : null;
 		return (
@@ -78,11 +94,13 @@ class Filter extends Component{
 
 Filter.propTypes =  {
 	options: PropTypes.arrayOf(PropTypes.string),
+	selectedOptions: PropTypes.string,
 	changeFatherState: PropTypes.func,
 };
 
 Filter.defaultProps = {
 	options: ["null"],
+	selectedOptions: "null",
 	changeFatherState: undefined,
 };
 

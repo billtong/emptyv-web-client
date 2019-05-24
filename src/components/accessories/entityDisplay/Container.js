@@ -1,6 +1,8 @@
 import React, {Fragment} from 'react';
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import {VideoBlock} from "./blocks/VideoBlock";
+import { Layout } from './Layout';
 
 export const Container = (props) => {
 	const isLoading = props.isLoading ? (
@@ -21,7 +23,9 @@ export const Container = (props) => {
 		<Fragment>
 			{isLoading}
 			{error}
-			{list}
+			<Layout layout={"grid"}>
+				{list}
+			</Layout>
 		</Fragment>
 	);
 };
@@ -30,10 +34,12 @@ Container.propTypes = {
 	list: PropTypes.arrayOf(PropTypes.object),
 	isLoading: PropTypes.bool,
 	errMsg: PropTypes.string,
+	layout: PropTypes.string,
 };
 
 Container.defaultProps = {
 	list: [],
 	isLoading: false,
 	errMsg: "",
+	layout: "grid",
 };

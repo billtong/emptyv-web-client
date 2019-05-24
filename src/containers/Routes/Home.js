@@ -14,7 +14,7 @@ class Home extends Component{
     total: 1,           //总页数
     curr: 1,            //当前页数
     cellNum: 7,         //pagination上展示的页数
-	  pageSize: 10,       //一夜里的视频数
+	  pageSize: 16,       //一夜里的视频数
 	  videoList: [],      //总的视频list
 	  videoSliceList: [], //展示的视频list
 	  isLoading: false,
@@ -63,13 +63,14 @@ class Home extends Component{
       <Fragment>
         <XHelmet title={"Empty Video"} />
         <div>
-          <Filter options={this.state.options} changeFatherState={this.handleOptionClick}/>
+          <Filter options={this.state.options} selectedOptions={this.state.sort} changeFatherState={this.handleOptionClick}/>
         </div>
 	      <div>
 					<Container
 						list={this.state.videoSliceList}
 			      isLoading={this.state.isLoading}
-			      errMsg={this.state.errMsg}
+						errMsg={this.state.errMsg}
+						layout={"grid"}
 					/>
 	      </div>
         <div>
