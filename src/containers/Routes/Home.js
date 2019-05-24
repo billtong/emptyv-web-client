@@ -13,12 +13,12 @@ const options = ["date", "rate", "view"];
 class Home extends Component{
   state = {
 	  sort: "date",
-    total: 1,           //总页数
-    curr: 1,            //当前页数
-    cellNum: 7,         //pagination上展示的页数
-	  pageSize: 16,       //一夜里的视频数
-	  videoList: [],      //总的视频list
-	  videoSliceList: [], //展示的视频list
+    total: 1,           //total number of pages
+    curr: 1,            //current page number
+    cellNum: 7,         //max page display on pagination 
+	  pageSize: 16,       //video entity numbers in one page
+	  videoList: [],      //total video entity list
+	  videoSliceList: [], //display video entity list
 	  isLoading: false,
 	  errMsg: undefined,
   };
@@ -56,7 +56,7 @@ class Home extends Component{
 				total: Math.ceil(totalVideoList.length / pageSize)
 			});
 		}).catch((err)=>{
-			this.setState({errMsg: "Sorry...we ain\\'t able to serve any videos rn", isLoading: true});
+			this.setState({errMsg: "Sorry...we ain\\'t able to serve any videos rn", isLoading: false});
 		});
 	};
   render() {

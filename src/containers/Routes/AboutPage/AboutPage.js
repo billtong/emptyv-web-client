@@ -34,8 +34,8 @@ class AboutPage extends Component {
 					<section>
             <span>
               <h2><Text id="abs3"/></h2>
-              <li><Text id="abl3_1"/><p>JavaScript</p>, H5, CSS, Java, Golang</li>
-              <li><Text id="abl3_2"/><p>React.JS</p>, Spring Boot, Mybatis, Spring Cloud</li>
+              <li><Text id="abl3_1"/>Java, Golang, JavaScript, H5, CSS</li>
+              <li><Text id="abl3_2"/>React, Spring Boot, Spring Cloud</li>
               <li><Text id="abl3_3"/>Docker, Jenkins</li>
               <li><Text id="abl3_4"/><p>emptyvideos@outlook.com</p></li>
               <li><Text id="abl3_5"/><p><a href="https://github.com/billtong">GitHub Account</a></p></li>
