@@ -1,13 +1,13 @@
 import React, {Fragment, Component} from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {Dialog} from "../../../accessories/Dialog";
 import XHelmet from "../../../accessories/XHelmet";
-import {FormattedMessage} from "react-intl";
 import Text from "../../../accessories/Text";
-import "./Login.css";
+import "./LoginForm.css";
 import history from "../../../../utils/history";
-import {connect} from "react-redux";
-import {signInAction} from "../../../../store/actions/SignInAction";
+import {getToken} from "../../../../utils/api/user";
+import {setCookie} from "../../../../utils/cookieTools";
+import {userTokenCookieKey, userTokenSessionKey} from "../../../../utils/api/apiHelper";
 
 class LoginForm extends Component{
 	state = {
@@ -22,7 +22,7 @@ class LoginForm extends Component{
 
 	handleCloseClick = (e) => {
 		e.preventDefault();
-		history.goBack();
+		history.go(-1);
 	};
 
 	handleSignUpClick = (e) => {
@@ -32,8 +32,8 @@ class LoginForm extends Component{
 
 	handleLoginSubmit = (e) => {
 		e.preventDefault();
-		let username = document.getElementById("username").value;
-		let password = document.getElementById("password").value;
+		let username = document.getElementById("login-username").value;
+		let password = document.getElementById("login-password").value;
 		let checked = this.refs['isKeepLogin'].checked;
 		const checkNull = (item, itemName) => {
 			if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
@@ -44,21 +44,31 @@ class LoginForm extends Component{
 			}
 			return false;
 		};
-		if (checkNull(username, 'username')) {
-			return;
-		} else if (checkNull(password, 'password')) {
-			return;
-		} else {
-			const inputJson = {
+		if (!checkNull(username, 'username') && !checkNull(password, 'password')) {
+			getToken({
 				userName: username,
 				userPassword: password,
-				isKeepLogin: checked
-			};
-			this.props.signInAction(inputJson);
-			username = '';
-			password = '';
-			checked = false;
+			}).then((res) => {
+				const userJson = {
+					user: res.data.user,
+					userToken: res.data.token,
+					userSessionId: res.data.sessionId
+				};
+				if (checked) {
+					setCookie(userTokenCookieKey, JSON.stringify(userJson));
+				} else {
+					sessionStorage.setItem(userTokenSessionKey, JSON.stringify(userJson));
+				}
+				history.go(-1);
+			}).catch((err) => {
+				this.setState({
+					signInError: `Sign in Failed: ${err.message}`,
+				});
+			});
 		}
+		username = '';
+		password = '';
+		checked = false;
 	};
 
 	render = () => {
@@ -75,16 +85,12 @@ class LoginForm extends Component{
 					<Dialog titleTextId={"lgtitle"} event={this.handleCloseClick}>
 						<tr>
 							<td colSpan={2}>
-								<Text id={"lgip_1"}
-									  children={(text) => <input className={"text-input"} type="text" placeholder={text} id={"username"} /> }
-								/>
+								<Text id={"lgip_1"} children={(text) => <input className={"text-input"} type="text" placeholder={text} id={"login-username"} />} />
 							</td>
 						</tr>
 						<tr>
 							<td colSpan={2}>
-								<Text id={"lgip_2"}
-									children={(text) => <input className={"text-input"} type="password" placeholder={text} id={"password"} /> }
-								/>
+								<Text id={"lgip_2"} children={(text) => <input className={"text-input"} type="password" placeholder={text} id={"login-password"} />} />
 							</td>
 						</tr>
 						<tr>
@@ -100,9 +106,7 @@ class LoginForm extends Component{
 						</tr>
 						<tr>
 							<td colSpan={2}>
-								<Text id={"lgi_3"}
-									children={(text) => <input className={"submit-input"} type="submit" value={text}/>}
-								/>
+								<Text id={"lgi_3"} children={(text) => <input className={"submit-input"} type="submit" value={text}/>} />
 							</td>
 						</tr>
 						<tr>
@@ -123,15 +127,7 @@ class LoginForm extends Component{
 				</form>
 			</Fragment>
 		);
-	}
+	};
 }
 
-const mapStateToProps = ({ signInReducer }) => {
-	const { isSignInLoading, signInError } = signInReducer;
-	return { isSignInLoading, signInError };
-};
-
-export default  withRouter(connect(
-	mapStateToProps, { signInAction }
-)(LoginForm));
-
+export default  withRouter(LoginForm);

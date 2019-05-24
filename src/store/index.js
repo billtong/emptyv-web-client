@@ -6,7 +6,6 @@ import transforms from "./transform";
 import history from "../utils/history"
 import {connectRouter, routerMiddleware} from "connected-react-router";
 import changeLanguageReducer from "./reducers/ChangeLanguageReducer";
-import {signInReducer} from "./reducers/SignInReducer";
 import {signUpReducer} from "./reducers/SignUpReducer";
 
 const initialState = {
@@ -23,7 +22,6 @@ const persistConfig = {
 
 const rootReducer = (history) => combineReducers({
 	changeLanguageReducer,
-	signInReducer,
 	signUpReducer,
 	router: connectRouter(history)
 });

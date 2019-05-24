@@ -7,7 +7,7 @@ import AboutPage from "./Routes/AboutPage/AboutPage";
 import SignUpPage from "./Routes/SignUpPage/SignUpPage";
 import Header from "../components/layouts/Header/Header";
 import NotificationPage from "./Routes/UserPage/NotificationPage/NotificationPage";
-import LoginForm from "../components/layouts/Header/Login/Login";
+import LoginForm from "../components/layouts/Header/LoginForm/LoginForm";
 
 class App extends Component {
   render() {
