@@ -17,7 +17,7 @@ class AboutPage extends Component {
 		curr: 1,            //current page number
 		cellNum: 7,         //max page display on pagination
 		pageSize: 20,       //video entity numbers in one page
-		commentList: [],
+		commentList: this.props.commentList,
 		commentSliceList: [],
 	}
 	componentDidMount = () => {

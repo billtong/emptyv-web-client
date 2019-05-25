@@ -2,6 +2,7 @@
     padding-left: 10%;
     padding-right: 10%;
     list-style-type: none;
+    text-align: left;
 }
 .setting-ul .setting-li {
     margin-top: 2rem;
@@ -15,19 +16,19 @@
     opacity: 0;
     overflow: hidden;
     position: absolute;
-    z-index: -1;
+    z-index: 1;
 }
 .setting-ul .setting-li #responsive-userIcon {
     width: 10rem;
     height: 10rem;
     position: absolute;
-    z-index: -1;
+    z-index: 1;
 }
 .setting-ul .setting-li #responsive-userBanner {
     width: 66.6rem;
     height: 10rem;
     position: absolute;
-    z-index: -1;
+    z-index: 1;
 }
 .setting-ul .setting-li .input-img + label {
     cursor: pointer;

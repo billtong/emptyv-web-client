@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoChevronDown, GoChevronUp } from 'react-icons/go';
 import CommentBlockFrag from './CommentBlockFragment';
+import './CommentBlock.css';
 
 class CommentBlock extends React.Component {
 	state = {

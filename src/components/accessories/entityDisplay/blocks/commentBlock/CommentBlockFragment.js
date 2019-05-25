@@ -4,7 +4,7 @@ import { MdMoreVert } from 'react-icons/md';
 
 import { formatDateTime } from '../../../../../utils/dateTools';
 import { getSessionTokenJson } from '../../../../../utils/api/apiHelper';
-import { getCommentListAction, completeGetComment } from '../../../../../store/actions/getCommentListAction';
+import { getCommentListAction } from '../../../../../store/actions/getCommentListAction';
 import { postComment, deleteComment } from '../../../../../utils/api/comment';
 import UserAvatar from '../../../UserAvatar';
 
@@ -30,6 +30,7 @@ class CommentBlockFrag extends React.Component {
 		e.preventDefault();
 		postComment(inputJson)
 		.then(() => {
+			this.setState({ isReply: false });
 			this.props.getCommentListAction({ videoId: reComment.videoId });
 		})
 		.catch((err) => {
@@ -124,7 +125,6 @@ const mapStateToProps = (state) => (state);
 
 export default connect(
 	mapStateToProps, {
-		getCommentListAction,
-		completeGetComment
+		getCommentListAction
 	}
 )(CommentBlockFrag);

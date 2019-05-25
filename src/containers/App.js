@@ -26,6 +26,7 @@ class App extends Component {
 			      <Route path="/login" component={LoginForm} />
 			      <Route path="/signup" component={SignUpPage} />
             <Route path="/about" component={AboutPage} />
+
 			      <Route path="/user" component={UserRouter} />
 			      <Route path="/404" component={NotFound} />
 		      </Switch>

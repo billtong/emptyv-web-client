@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {grey, widthLeft} from "./style";
 
 const UnSelectedOption = styled.div`
-  width: ${widthLeft};
+  width: ${widthLeft}rem;
   height: 3.5rem;
   background: ${grey};
   padding-top: 1rem;
@@ -13,7 +13,7 @@ const UnSelectedOption = styled.div`
 `;
 
 const SelectedOption = styled.div`
-  width: ${widthLeft};
+  width: ${widthLeft}rem;
   height: 3.5rem;
   background: ${grey};
   padding-top: 1rem;

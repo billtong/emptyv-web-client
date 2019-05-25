@@ -32,7 +32,8 @@ class Message extends React.Component {
     talkerInfoList: [],         //talkinfo 列表
     msgListSelected: [],        //被选中的msgList
     talkerSelected: 0,          //被选中的talker，默认是第一个
-    isLoading: false
+    isLoading: false,
+    error: null,
   };
 
   componentDidMount = () => {
@@ -55,8 +56,8 @@ class Message extends React.Component {
       this.changeListsStates(value);
       this.setState({isLoading: true});
     }).catch(err=>{
-      this.setState({ 
-        rawMsgList: [],
+      this.setState({
+        error: err.message,
         isLoading: true
       });
     });

@@ -25,7 +25,7 @@ class Header extends Component{
 	handleUserMenuClick = (value) => {
 		switch(value){
 			case rightUserMenus[0]:
-				this.handleNavClick(`/user/${getSessionTokenJson().user.userId}`);
+				this.handleNavClick(`/user/dashboard/${getSessionTokenJson().user.userId}`);
 				break;
 			case rightUserMenus[1]:
 				this.handleNavClick("/user/message");

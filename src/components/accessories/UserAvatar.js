@@ -24,7 +24,7 @@ class UserAvatar extends React.Component {
 	handleUserClick = (e, userId) => {
 		e.preventDefault();
 		if(userId > 0) {
-			history.push(`/user/${userId}`);
+			history.push(`/user/dashboard/${userId}`);
 		}
 	};
 

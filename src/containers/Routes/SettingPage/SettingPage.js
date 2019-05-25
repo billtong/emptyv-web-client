@@ -19,7 +19,7 @@ class SettingPage extends React.Component {
 		userBio: '',
 		userLocation: '',
 		userURL: ''
-	}
+	};
 
 	//检查是否登陆，如果没有跳转到登陆界面
 	componentWillMount() {
@@ -55,7 +55,7 @@ class SettingPage extends React.Component {
 					});
 					break;
 				default: break;
-			};
+			}
 			return;
 		}
 		const newUser = this.state.user;
@@ -79,8 +79,8 @@ class SettingPage extends React.Component {
 				});
 				break;
 			default: break;
-		};
-	}
+		}
+	};
 
 	//判断用户有没有更改信息
 	hasChanged=() => {
@@ -91,7 +91,7 @@ class SettingPage extends React.Component {
 			return false;
 		}
 		return true;
-	}
+	};
 
 	//监听用户输入行为，改变state
 	handleKeyDown=(e, inputRefs) => {
@@ -130,7 +130,7 @@ class SettingPage extends React.Component {
 			default:
 				break;
 		}
-	}
+	};
 
 	//提交更改
 	handleUpdateClick=(e) => {
@@ -177,8 +177,7 @@ class SettingPage extends React.Component {
 				alert(err);
 			});
 		}
-
-	}
+	};
 
 	render() {
 		const updateBtn = this.hasChanged() ? (
