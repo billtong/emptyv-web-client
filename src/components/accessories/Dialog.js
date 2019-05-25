@@ -1,6 +1,5 @@
+import React, {Fragment} from "react";
 import styled from "styled-components";
-import {Fragment} from "react";
-import React from "react";
 import PropTypes from "prop-types";
 import Text from "./Text";
 

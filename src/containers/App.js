@@ -8,6 +8,7 @@ import SignUpPage from "./Routes/SignUpPage/SignUpPage";
 import Header from "../components/layouts/Header/Header";
 import NotificationPage from "./Routes/UserPage/NotificationPage/NotificationPage";
 import LoginForm from "../components/layouts/Header/LoginForm/LoginForm";
+import MessagePage from "./Routes/MessagePage";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
 			      <Route path="/login" exact component={LoginForm} />
 			      <Route path="/signup" exact component={SignUpPage}/>
 			      <Route path="/user/notification" exact component={NotificationPage} />
+			      <Route path="/user/message" component={MessagePage} />
 			      <Route path="/404" exact component={NotFound} />
 			      <Redirect from="/*" to="/404" />
 		      </Switch>

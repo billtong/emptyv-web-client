@@ -27,6 +27,7 @@ class Header extends Component{
 			case rightUserMenus[0]:
 				break;
 			case rightUserMenus[1]:
+				this.handleNavClick("/user/message");
 				break;
 			case rightUserMenus[2]:
 				break;
