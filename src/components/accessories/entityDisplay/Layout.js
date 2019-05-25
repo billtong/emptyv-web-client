@@ -17,11 +17,11 @@ const Grid = styled.div`
 `;
 
 const VertiList = styled.div`
-
+    display: block;
 `;
 
 const HoriList = styled.div`
-
+    display: inline-block;
 `;
 
 export const Layout = (props) => {

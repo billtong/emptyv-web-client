@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import PropTypes from "prop-types";
-import {VideoBlock} from "./blocks/VideoBlock";
+import {VideoBlock} from "./blocks/videoBlock/VideoBlock";
 import { Layout } from './Layout';
-import CommentBlock from "./blocks/CommentBlock";
+import CommentBlock from "./blocks/commentBlock/CommentBlock";
 
 export const Container = (props) => {
 	const isLoading = props.isLoading ? (
@@ -42,15 +42,17 @@ export const Container = (props) => {
 };
 
 Container.propTypes = {
-	list: PropTypes.arrayOf(PropTypes.object),
-	isLoading: PropTypes.bool,
-	errMsg: PropTypes.string,
-	layout: PropTypes.string,
-	entityType: PropTypes.string,
+	list: PropTypes.arrayOf(PropTypes.object),   //展示的数组
+	totalLength: PropTypes.number,              //从后端传来的总长度，用来算评论floor
+	isLoading: PropTypes.bool,                  //是否加载
+	errMsg: PropTypes.string,                    //错误
+	layout: PropTypes.string,                     //布局，grid和list
+	entityType: PropTypes.string,                 //video和comment
 };
 
 Container.defaultProps = {
 	list: [],
+	totalLength: 0,
 	isLoading: false,
 	errMsg: "",
 	layout: "grid",

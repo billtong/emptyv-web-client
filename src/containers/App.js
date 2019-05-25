@@ -6,9 +6,12 @@ import Home from "./Routes/Home";
 import AboutPage from "./Routes/AboutPage/AboutPage";
 import SignUpPage from "./Routes/SignUpPage/SignUpPage";
 import Header from "../components/layouts/Header/Header";
-import NotificationPage from "./Routes/UserPage/NotificationPage/NotificationPage";
+import NotificationPage from "./Routes/NotificationPage/NotificationPage";
 import LoginForm from "../components/layouts/Header/LoginForm/LoginForm";
 import MessagePage from "./Routes/MessagePage";
+import UserRouter from "../containers/Routes/UserPage";
+import UserPage from "./Routes/UserPage/UserPage";
+import SettingPage from "./Routes/SettingPage/SettingPage";
 
 class App extends Component {
   render() {
@@ -20,13 +23,11 @@ class App extends Component {
 	      <div className="App-content">
 		      <Switch>
 			      <Route path="/" exact component={Home} />
-            <Route path="/about" exact component={AboutPage}/>
-			      <Route path="/login" exact component={LoginForm} />
-			      <Route path="/signup" exact component={SignUpPage}/>
-			      <Route path="/user/notification" exact component={NotificationPage} />
-			      <Route path="/user/message" component={MessagePage} />
-			      <Route path="/404" exact component={NotFound} />
-			      <Redirect from="/*" to="/404" />
+			      <Route path="/login" component={LoginForm} />
+			      <Route path="/signup" component={SignUpPage} />
+            <Route path="/about" component={AboutPage} />
+			      <Route path="/user" component={UserRouter} />
+			      <Route path="/404" component={NotFound} />
 		      </Switch>
 	      </div>
       </div>

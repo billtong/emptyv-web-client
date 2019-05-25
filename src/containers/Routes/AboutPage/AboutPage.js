@@ -4,8 +4,26 @@ import Text from '../../../components/accessories/Text';
 
 import "./AboutPage.css";
 import XHelmet from "../../../components/accessories/XHelmet";
+import {connect} from "react-redux";
+import {Container} from "../../../components/accessories/entityDisplay/Container";
+import {getCommentListAction} from "../../../store/actions/getCommentListAction";
+import Pagination from "../../../components/accessories/entityDisplay/Pagination";
+
+const aboutId = 0;
 
 class AboutPage extends Component {
+	state = {
+		total: 1,           //total number of pages
+		curr: 1,            //current page number
+		cellNum: 7,         //max page display on pagination
+		pageSize: 20,       //video entity numbers in one page
+		commentList: [],
+		commentSliceList: [],
+	}
+	componentDidMount = () => {
+		this.props.getCommentListAction({ videoId: aboutId });
+	};
+
 	render=() => {
 		return (
 			<div className="about-us-page">
@@ -46,9 +64,28 @@ class AboutPage extends Component {
 						<div> — Empty Video Team</div>
 					</div>
 				</div>
+
+				<div>
+					<Container
+						list={this.props.commentList}
+						isLoading={this.props.isLoading}
+						errMsg={this.props.error}
+						layout={"verti-list"}
+						entityType={"comment"}
+					/>
+				</div>
 			</div>
 		);
 	}
 }
 
-export default withRouter(AboutPage);
+const mapStateToProps = ({ getCommentListReducer }) => {
+	const { isLoading, commentList, error } = getCommentListReducer;
+	return { isLoading, commentList, error };
+};
+
+export default withRouter(connect(
+	mapStateToProps, {
+		getCommentListAction
+	}
+)(AboutPage));

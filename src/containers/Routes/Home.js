@@ -80,6 +80,7 @@ class Home extends Component{
 			      isLoading={this.state.isLoading}
 						errMsg={this.state.errMsg}
 						layout={"grid"}
+						entityType={"video"}
 					/>
 	      </div>
         <div>

@@ -1,5 +1,5 @@
 import {Component, Fragment} from "react";
-import XHelmet from "../../../../components/accessories/XHelmet";
+import XHelmet from "../../../components/accessories/XHelmet";
 import React from "react";
 import {withRouter} from "react-router-dom";
 

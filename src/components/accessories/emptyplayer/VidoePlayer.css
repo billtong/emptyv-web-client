@@ -1,0 +1,185 @@
+.vjs-big-play-button {
+    top: 40%;
+    font-size: 3rem;
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+.vjs-big-play-button:hover {
+    color: orangered;
+    cursor: pointer;
+}
+.vjs-loading {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+.fullscreen {
+    position: fixed;
+    overflow: hidden;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+.vjs-control {
+    outline: none;
+    position: relative;
+    float: left;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 3em;
+    width: 4em;
+    line-height: 3em;
+    color: #d9d9d9;
+}
+.vjs-control:hover {
+    color: red;
+    cursor: pointer;
+}
+.vjs-slider {
+    outline: 0;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    background-color: rgba(51, 51, 51, 0.9);
+}
+.vjs-play-progress {
+    background: orangered;
+}
+.vjs-seek-handle {
+    width: 1.5em;
+    height: 100%;
+}
+.vjs-slider-handle {
+    position: absolute;
+    top: 0;
+}
+.vjs-control-bar {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3em;
+    background-color: rgba(7, 20, 30, 0.7);
+    transition: visibility 0.1s, opacity 0.1s;
+}
+.vjs-fullscreen-control i {
+    color: #d9d9d9;
+    font-size: 1.5em;
+}
+.vjs-fullscreen-control i::before {
+    text-align: center;
+    vertical-align: middle;
+}
+.vjs-fullscreen-control i:hover {
+    text-shadow: 0 0 1em #fff;
+}
+.vjs-volume-control {
+    width: 5em;
+    float: right;
+}
+.vjs-volume-bar {
+    width: 5em;
+    height: 0.6em;
+    margin: 1.1em auto 0;
+    position: relative;
+}
+.vjs-volume-bar:hover {
+    cursor: pointer;
+}
+.vjs-volume-level {
+    height: 0.5em;
+    width: 100%;
+    background: orangered;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.vjs-volume-handle {
+    width: 0.5em;
+    height: 0.5em;
+    left: 4.5em;
+}
+.vjs-volume-handle i {
+    text-shadow: 0 0 1em #fff;
+    display: block;
+    transform: rotate(-45deg);
+}
+.vjs-play-control {
+    width: 5em;
+    height: 3em;
+    cursor: pointer;
+    text-align: center;
+}
+.vjs-play-control i::before {
+    text-align: center;
+    vertical-align: middle;
+}
+.vjs-play-control:hover {
+    text-shadow: 0 0 1em #fff;
+}
+.fa-pause {
+    font-size: 1.2em;
+}
+.vjs-time-controls {
+    font-size: 1em;
+}
+.vjs-time-divider {
+    line-height: 3em;
+    float: left;
+    color: #d9d9d9;
+}
+.vjs-progress-control {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: auto;
+    font-size: 0.3rem;
+    height: 1rem;
+    top: -1em;
+}
+.vjs-progress-holder {
+    height: 100%;
+}
+.vjs-play-progress {
+    position: absolute;
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+}
+.vjs-slider-handle i {
+    text-shadow: 0 0 1em #fff;
+    display: table;
+    transform: rotate(-45deg);
+}
+.vjs-fullscreen-control {
+    width: 3.8em;
+    cursor: pointer;
+    float: right;
+    text-align: center;
+}
+.vjs-mute-control {
+    cursor: pointer;
+    float: right;
+}
+.vjs-mute-control i {
+    color: #ccc;
+    font-size: 1.5em;
+}
+.vjs-mute-control i:hover {
+    text-shadow: 0 0 1em #fff;
+}
+
