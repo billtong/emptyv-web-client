@@ -54,3 +54,38 @@ a:hover {
     margin-top: 1rem;
 }
 
+
+.comment-container {
+    border: 1px solid #313131;
+    border-radius: 4px;
+    margin-left: 5rem;
+    margin-top: 1rem;
+    margin-right: 5rem;
+    padding-bottom: 4rem;
+}
+
+.comment-write-block-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+}
+.comment-write-block-section a {
+    color: white;
+    margin-left: 1rem;
+}
+.comment-write-block-section a:hover {
+    text-decoration: none;
+    background: red;
+}
+.comment-write-block-section .comment-box .comment-content {
+    width: 90%;
+    height: 2rem;
+    display: inline-block;
+}
+.comment-write-block-section .comment-box .comment-btn {
+    width: 4rem;
+    height: 2rem;
+    padding: 0 0;
+    display: inline-block;
+}
+

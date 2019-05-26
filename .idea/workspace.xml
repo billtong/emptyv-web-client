@@ -3,74 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1afcfa01-123b-4d5a-8cab-deb9ca8222b2" name="Default Changelist" comment="Refactoring init commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/languages/en_US.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/en_US.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Dialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Dialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Intl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/MessageBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/MessageBoard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/MessageInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/MessageInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/MessageTalker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/MessageTalker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/MessageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/MessageUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/TalkerOption.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/TalkerOption.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/TalkerTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/TalkerTab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Selector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Text.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/UserAvatar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/UserAvatar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/VideoTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/VideoTag.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/XHelmet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/XHelmet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/emptyplayer/ContentMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/emptyplayer/ContentMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/emptyplayer/ContentMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/emptyplayer/ContentMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/emptyplayer/Dan.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/emptyplayer/Dan.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/emptyplayer/Dan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/emptyplayer/Dan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/emptyplayer/VideoPlayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/emptyplayer/VideoPlayer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/emptyplayer/VidoePlayer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/emptyplayer/VidoePlayer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/Pagination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/LoginForm/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/LoginForm/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/NotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/NotFound.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/NotificationPage/NotificationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/NotificationPage/NotificationPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/SettingPage/SettingPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/SettingPage/SettingPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/SettingPage/SettingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/SettingPage/SettingPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/SignUpPage/SignUpPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/SignUpPage/SignUpPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/SignUpPage/SignUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/SignUpPage/SignUpPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/UserPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/UserPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/ChangeLanguageAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/ChangeLanguageAction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/SignUpAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/SignUpAction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/getCommentListAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/getCommentListAction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/ChangeLanguageReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/ChangeLanguageReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/SignUpReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/SignUpReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/getCommentListReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/getCommentListReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/transform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/transform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/apiHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/apiHelper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/dan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/dan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/fav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/fav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/file.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/file.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/cookieTools.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/cookieTools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/dateTools.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/dateTools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/serviceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/serviceWorker.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -95,9 +29,9 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Filter" value="3" />
-          <entry key="css" value="28" />
+          <entry key="css" value="29" />
           <entry key="ico" value="1" />
-          <entry key="js" value="442" />
+          <entry key="js" value="450" />
           <entry key="json" value="9" />
           <entry key="jsx" value="13" />
           <entry key="rnc" value="7" />
@@ -107,11 +41,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="28" />
+          <entry key="CSS" value="29" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="9" />
           <entry key="JSX Harmony" value="13" />
-          <entry key="JavaScript" value="445" />
+          <entry key="JavaScript" value="453" />
           <entry key="RNG Compact" value="7" />
           <entry key="SVG" value="1" />
           <entry key="TypeScript" value="2" />
@@ -120,18 +54,18 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Filter" value="320" />
-          <entry key="css" value="1028" />
-          <entry key="js" value="13989" />
+          <entry key="css" value="1037" />
+          <entry key="js" value="14108" />
           <entry key="json" value="2" />
           <entry key="jsx" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="1028" />
+          <entry key="CSS" value="1037" />
           <entry key="JSON" value="2" />
           <entry key="JSX Harmony" value="36" />
-          <entry key="JavaScript" value="14309" />
+          <entry key="JavaScript" value="14428" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -144,10 +78,31 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.js">
+        <entry file="file://$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+            <state relative-caret-position="266">
+              <caret line="150" column="16" lean-forward="true" selection-start-line="150" selection-start-column="16" selection-end-line="150" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="70" column="1" lean-forward="true" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -193,6 +148,7 @@
       <find>hasChange</find>
       <find>login</find>
       <find>props</find>
+      <find>container</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -201,7 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/accessories/dialog.js" />
         <option value="$PROJECT_DIR$/src/store/reducers/root.js" />
         <option value="$PROJECT_DIR$/src/store/actions/SignInActions.jsx" />
         <option value="$PROJECT_DIR$/src/store/actions/SignUpActions.jsx" />
@@ -225,7 +180,6 @@
         <option value="$PROJECT_DIR$/src/components/layouts/Header/Navigation.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/Pagination.js" />
         <option value="$PROJECT_DIR$/src/utils/api/video.js" />
-        <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/VideoBlock.js" />
         <option value="$PROJECT_DIR$/src/containers/Routes/Home.js" />
         <option value="$PROJECT_DIR$/src/containers/Routes/UserPage/UserPage.css" />
@@ -236,7 +190,6 @@
         <option value="$PROJECT_DIR$/src/containers/App.js" />
         <option value="$PROJECT_DIR$/src/containers/Routes/UserPage/index.js" />
         <option value="$PROJECT_DIR$/src/components/layouts/Header/Header.js" />
-        <option value="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" />
         <option value="$PROJECT_DIR$/src/components/accessories/Message/Message.js" />
@@ -252,6 +205,9 @@
         <option value="$PROJECT_DIR$/src/assets/languages/en_US.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/UserAvatar.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/Message/MessageTalker.js" />
+        <option value="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.css" />
+        <option value="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js" />
+        <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js" />
       </list>
     </option>
   </component>
@@ -334,41 +290,22 @@
               <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="accessories" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="Routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="accessories" type="462c0819:PsiDirectoryNode" />
-              <item name="entityDisplay" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="accessories" type="462c0819:PsiDirectoryNode" />
-              <item name="entityDisplay" type="462c0819:PsiDirectoryNode" />
-              <item name="blocks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="accessories" type="462c0819:PsiDirectoryNode" />
-              <item name="entityDisplay" type="462c0819:PsiDirectoryNode" />
-              <item name="blocks" type="462c0819:PsiDirectoryNode" />
-              <item name="commentBlock" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="Routes" type="462c0819:PsiDirectoryNode" />
+              <item name="AboutPage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -448,7 +385,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68441000" />
+    <option name="totallyTimeSpent" value="69352000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -487,21 +424,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Refactoring init commit" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/block.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="244" column="16" selection-start-line="244" selection-start-column="16" selection-end-line="244" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react/cjs/react.development.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="1857" column="2" selection-start-line="1857" selection-start-column="2" selection-end-line="1857" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/CommentBlock.js" />
     <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/Filter.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/prop-types/factoryWithThrowingShims.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -514,13 +436,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/Pagination.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="50" column="24" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -618,13 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/accessories/Message/TalkerOption.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -660,30 +568,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/accessories/Message/Message.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="536">
           <caret line="139" column="24" lean-forward="true" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="46" column="17" lean-forward="true" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -839,8 +727,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+        <state relative-caret-position="264">
+          <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1045">
+          <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-268">
+          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/style.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/Layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/Pagination.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="50" column="4" lean-forward="true" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="70" column="1" lean-forward="true" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="150" column="16" lean-forward="true" selection-start-line="150" selection-start-column="16" selection-end-line="150" selection-end-column="16" />
         </state>
       </provider>
     </entry>
