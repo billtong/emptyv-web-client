@@ -42,17 +42,17 @@ export const Dialog = (props) => {
 			<Wrapper>
 				<Form>
 					<tbody>
-						<tr>
-							<th>
-								<DialogTitle>
-									<Text id={props.titleTextId}/>
-								</DialogTitle>
-							</th>
-							<th>
-								<DialogClose><span onClick={props.event}>&times;</span></DialogClose>
-							</th>
-						</tr>
-						{props.children}
+					<tr>
+						<th>
+							<DialogTitle>
+								<Text id={props.titleTextId}/>
+							</DialogTitle>
+						</th>
+						<th>
+							<DialogClose><span onClick={props.event}>&times;</span></DialogClose>
+						</th>
+					</tr>
+					{props.children}
 					</tbody>
 				</Form>
 			</Wrapper>

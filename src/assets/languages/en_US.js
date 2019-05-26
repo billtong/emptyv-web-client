@@ -1,8 +1,6 @@
 const en_US = {
-  hello: "Hello, world!",
-  name: "my name is {name}",
-  notfound: "Page Not Found",
-  //header
+	notfound: "Page Not Found",
+	//header
 	home: "Home",
 	about: "About Us",
 	language: "Language",
@@ -20,7 +18,7 @@ const en_US = {
 	se_title: "Sort By",
 	se_o_date: "latest",
 	se_o_rate: "most like",
-	se_o_view: "popular",	
+	se_o_view: "popular",
 
 	//login diaglog
 	lgtitle: "Login",
@@ -34,20 +32,20 @@ const en_US = {
 
 	//about Page
 	abs1: "Why you should become Empty Video member",
-	abl1_1:"customised your very own DashBoard.",
-	abl1_2:"Multiple interactions with vidoe Entity, includes danmu like/unlike, favourite, comment.",
-	abl1_3:"Communicate with other users openly and freely in private chat rooms.",
-	abl1_4:"Record the video you have watched or you love.",
+	abl1_1: "customised your very own DashBoard.",
+	abl1_2: "Multiple interactions with vidoe Entity, includes danmu like/unlike, favourite, comment.",
+	abl1_3: "Communicate with other users openly and freely in private chat rooms.",
+	abl1_4: "Record the video you have watched or you love.",
 	abs2: "Future Features in v1.3",
-	abl2_1:"Video Uploading System.",
-	abl2_2:"notification for other user's interaction with you.",
-	abl2_3:"more powerful video player features.",
-	abl2_4:"backend will be built in micro-services",
+	abl2_1: "Video Uploading System.",
+	abl2_2: "notification for other user's interaction with you.",
+	abl2_3: "more powerful video player features.",
+	abl2_4: "backend will be built in micro-services",
 	abs3: "Join Us",
 	abl3_1: "Language: ",
-	abl3_2:"Frameworks: ",
-	abl3_3:"Others: ",
-	abl3_4:"Email: ",
+	abl3_2: "Frameworks: ",
+	abl3_3: "Others: ",
+	abl3_4: "Email: ",
 	abl3_5: "FollowMe: ",
 	abf: "we create a free WORLD",
 };

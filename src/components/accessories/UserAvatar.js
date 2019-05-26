@@ -1,6 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 import history from '../../utils/history';
+import PropTypes from 'prop-types';
 
 const Wrapper = Styled.div`
 	border-radius: 100%;
@@ -23,7 +24,7 @@ const TextWrapper = Styled.div`
 class UserAvatar extends React.Component {
 	handleUserClick = (e, userId) => {
 		e.preventDefault();
-		if(userId > 0) {
+		if (userId > 0) {
 			history.push(`/user/dashboard/${userId}`);
 		}
 	};
@@ -31,14 +32,14 @@ class UserAvatar extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Wrapper onClick={e=>this.handleUserClick(e, this.props.userInfo.userId)}>
+				<Wrapper onClick={e => this.handleUserClick(e, this.props.userInfo.userId)}>
 					<img
 						src={this.props.userInfo.userIcon}
 						height="100%"
 						width="100%"
 					/>
 				</Wrapper>
-				<TextWrapper onClick={e=>this.handleUserClick(e, this.props.userInfo.userId)}>
+				<TextWrapper onClick={e => this.handleUserClick(e, this.props.userInfo.userId)}>
 					{this.props.userInfo.userName}
 				</TextWrapper>
 			</React.Fragment>
@@ -47,3 +48,15 @@ class UserAvatar extends React.Component {
 }
 
 export default UserAvatar;
+
+UserAvatar.propTypes = {
+	userInfo: PropTypes.object,
+};
+
+UserAvatar.defaultProps = {
+	userInfo: {
+		userId: null,
+		userIcon: null,
+		userName: null,
+	}
+};

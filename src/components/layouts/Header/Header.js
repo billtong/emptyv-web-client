@@ -1,29 +1,30 @@
-import React, { Component, Fragment } from 'react';
-import { withRouter } from "react-router-dom";
-import { NavItem } from "../../accessories/Navigation";
+import React, {Component, Fragment} from 'react';
+import {withRouter} from "react-router-dom";
+import {NavItem} from "../../accessories/Navigation";
 import history from "../../../utils/history";
 import actions from "../../../store/actions/ChangeLanguageAction";
 import connect from "react-redux/es/connect/connect";
 import Selector from "../../accessories/Selector";
 import "./Header.css";
-import { logout } from "../../../utils/api/user"
-import {getSessionTokenJson, userTokenSessionKey, userTokenCookieKey} from "../../../utils/api/apiHelper";
-import { deleteCookie } from "../../../utils/cookieTools";
+import {logout} from "../../../utils/api/user"
+import {getSessionTokenJson, userTokenCookieKey, userTokenSessionKey} from "../../../utils/api/apiHelper";
+import {deleteCookie} from "../../../utils/cookieTools";
+
 const rightUserMenus = ["dashboard", "message", "setting", "logout"];
 
-class Header extends Component{
-	handleNavClick=(route) => {
+class Header extends Component {
+	handleNavClick = (route) => {
 		history.push(route);
 	};
 
-	switchLanguage=() => {
+	switchLanguage = () => {
 		let lang = this.props.locale;
 		lang = lang === 'zh' ? 'en' : 'zh';
 		this.props.changeLanguage(lang);
 	};
 
 	handleUserMenuClick = (value) => {
-		switch(value){
+		switch (value) {
 			case rightUserMenus[0]:
 				this.handleNavClick(`/user/dashboard/${getSessionTokenJson().user.userId}`);
 				break;
@@ -39,7 +40,7 @@ class Header extends Component{
 					sessionId: userJSON.userSessionId,
 					userName: userJSON.user.userName,
 					token: userJSON.userToken
-				}).finally(()=>{
+				}).finally(() => {
 					deleteCookie(userTokenCookieKey);
 					sessionStorage.removeItem(userTokenSessionKey);
 					this.handleNavClick("/");
@@ -51,7 +52,7 @@ class Header extends Component{
 	render() {
 		const rightMenu = getSessionTokenJson() !== null ? (
 			<Fragment>
-				<NavItem event={() => this.handleNavClick("/user/notification")} id={"notification"} />
+				<NavItem event={() => this.handleNavClick("/user/notification")} id={"notification"}/>
 				<div className={"selector-contaienr"}>
 					<Selector
 						title={(
@@ -59,35 +60,35 @@ class Header extends Component{
 								<img width="30" heigh="30" src={getSessionTokenJson().user.userIcon}/>
 								<div className="user-name">{getSessionTokenJson().user.userName}</div>
 							</div>
-						)} 
-						options={rightUserMenus} 
+						)}
+						options={rightUserMenus}
 						passFatherState={this.handleUserMenuClick}
 					/>
 				</div>
 			</Fragment>
 		) : (
 			<Fragment>
-				<NavItem event={() => this.handleNavClick("/login")} id={"login"} />
-				<NavItem event={() => this.handleNavClick("/signup")} id={"signup"} />
+				<NavItem event={() => this.handleNavClick("/login")} id={"login"}/>
+				<NavItem event={() => this.handleNavClick("/signup")} id={"signup"}/>
 			</Fragment>
 		);
 
-		return(
+		return (
 			<Fragment>
 				<table className="App-header-left">
 					<tbody>
 					<tr>
-						<NavItem event={() => this.handleNavClick("/")} id={"home"} />
-						<NavItem event={()=> this.handleNavClick("/about") } id={"about"} />
+						<NavItem event={() => this.handleNavClick("/")} id={"home"}/>
+						<NavItem event={() => this.handleNavClick("/about")} id={"about"}/>
 					</tr>
 					</tbody>
 				</table>
 				<table className="App-header-right">
 					<tbody>
-						<tr>
-							<NavItem event={() => this.switchLanguage() } id={"language"}/>
-							{rightMenu}
-						</tr>
+					<tr>
+						<NavItem event={() => this.switchLanguage()} id={"language"}/>
+						{rightMenu}
+					</tr>
 					</tbody>
 				</table>
 			</Fragment>

@@ -1,9 +1,5 @@
-import {
-	START_COMMENTS_FETCH,
-	COMPLETE_COMMENTS_FETCH,
-	FAILED_COMMENTS_FETCH
-} from './types';
-import { getComemtList } from '../../utils/api/comment';
+import {COMPLETE_COMMENTS_FETCH, FAILED_COMMENTS_FETCH, START_COMMENTS_FETCH} from './types';
+import {getComemtList} from '../../utils/api/comment';
 
 export const startGetComment = () => ({
 	type: START_COMMENTS_FETCH

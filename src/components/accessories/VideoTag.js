@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { MdAdd } from 'react-icons/md';
-import { patchTags } from '../../utils/api/video';
-import { getSessionTokenJson } from '../../utils/api/apiHelper';
+import {MdAdd} from 'react-icons/md';
+import {patchTags} from '../../utils/api/video';
+import {getSessionTokenJson} from '../../utils/api/apiHelper';
 
 /*
 * get的video tag string形式
@@ -17,11 +17,11 @@ class Tag extends React.Component {
 		isTagForcus: false            //blur和focus是防止被其他input的enter提交给影响
 	}
 
-	componentWillMount=() => {
+	componentWillMount = () => {
 		document.addEventListener('keypress', this.handleEnterKey);
 	}
 
-	componentDidMount=() => {
+	componentDidMount = () => {
 		document.removeEventListener('keypress', this.handleEenterKey);
 		this.setState({
 			tagList: this.props.tagList,
@@ -32,14 +32,14 @@ class Tag extends React.Component {
 	}
 
 	//点击Enter键提交这个tag
-	handleEnterKey=(e) => {
+	handleEnterKey = (e) => {
 		if (e.keyCode === 13 && this.state.isTagForcus && !this.state.isTagBlur) {
 			const content = this.refs.addTag.value;
 			if (!content || content === null || content === '' || (typeof content === 'string' && content.trim().length === 0)) {
 				alert('fill with something please...');
 				return;
 			}
-			const { tagList } = this.state;
+			const {tagList} = this.state;
 			const tag = this.refs.addTag.value;
 			this.refs.addTag.value = '';
 			e.preventDefault();
@@ -60,7 +60,7 @@ class Tag extends React.Component {
 	};
 
 	//click the add button to open input board
-	handleClick=(e) => {
+	handleClick = (e) => {
 		const userJSON = getSessionTokenJson();
 		if (!userJSON) {
 			alert('please login or sign up a new account');
@@ -76,7 +76,7 @@ class Tag extends React.Component {
 	}
 
 	//监听tag输入筐的focus状态
-	ifTagForcus=() => {
+	ifTagForcus = () => {
 		this.setState(prevState => ({
 			...prevState,
 			isTagForcus: true,
@@ -85,7 +85,7 @@ class Tag extends React.Component {
 	}
 
 	//监听tag输入框的blur状态
-	ifTagBlur=() => {
+	ifTagBlur = () => {
 		this.setState(prevState => ({
 			...prevState,
 			isTagForcus: false,
@@ -93,8 +93,9 @@ class Tag extends React.Component {
 			isTagAdd: false
 		}));
 	}
+
 	render() {
-		const { tagList } = this.state;
+		const {tagList} = this.state;
 		const solvedTageList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
 		const tagListSec = (typeof solvedTageList !== 'object' || solvedTageList.constructor !== Array || solvedTageList.length === 0) ? (
 			<li key={-1}>no tags yet</li>
@@ -124,7 +125,7 @@ class Tag extends React.Component {
 		) : (
 			<div>
 				<div className="add-btn" onClick={e => this.handleClick(e)}>
-					<MdAdd className="add-icon" />
+					<MdAdd className="add-icon"/>
 				</div>
 				Add New Tags
 			</div>

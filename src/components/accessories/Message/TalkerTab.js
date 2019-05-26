@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { TalkerOption } from './TalkerOption';
+import {TalkerOption} from './TalkerOption';
 import {grey, height, widthLeft} from "./style";
 
 const Wrapper = styled.div`
@@ -19,26 +19,26 @@ const MYul = styled.ul`
 `;
 
 export const TalkerTab = (props) => {
-	const talkOptionList = (!props.talkerInfoList || props.talkerInfoList.length === 0) ? ( null ) : (
+	const talkOptionList = (!props.talkerInfoList || props.talkerInfoList.length === 0) ? (null) : (
 		props.talkerInfoList.map((talker, index) => {
 			const handleClick = (e) => {
 				e.preventDefault();
 				props.changeTalkerSelectedState(index);
 			};
 			return (
-				<li onClick = {e => handleClick(e)}>
+				<li onClick={e => handleClick(e)}>
 					<TalkerOption
-						isSelected = {props.talkerSelected === index}
-						userInfo = {talker}
+						isSelected={props.talkerSelected === index}
+						userInfo={talker}
 					/>
 				</li>
 			);
 		})
 	);
 	return (
-		<Wrapper id ="style-scroll">
+		<Wrapper id="style-scroll">
 			<MYul>{talkOptionList}</MYul>
-    </Wrapper>
+		</Wrapper>
 	);
 };
 

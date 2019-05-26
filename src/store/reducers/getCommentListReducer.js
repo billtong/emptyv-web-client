@@ -1,8 +1,4 @@
-import {
-	START_COMMENTS_FETCH,
-	COMPLETE_COMMENTS_FETCH,
-	FAILED_COMMENTS_FETCH
-} from '../actions/types';
+import {COMPLETE_COMMENTS_FETCH, FAILED_COMMENTS_FETCH, START_COMMENTS_FETCH} from '../actions/types';
 
 export const getCommentListReducer = (state = '', action) => {
 	switch (action.type) {

@@ -1,5 +1,5 @@
-import React, {Fragment, Component} from 'react';
-import { withRouter } from 'react-router-dom';
+import React, {Component, Fragment} from 'react';
+import {withRouter} from 'react-router-dom';
 
 import {Dialog} from "../../../accessories/Dialog.js";
 import XHelmet from "../../../accessories/XHelmet.js";
@@ -10,14 +10,14 @@ import {getToken} from "../../../../utils/api/user.js";
 import {setCookie} from "../../../../utils/cookieTools.js";
 import {userTokenCookieKey, userTokenSessionKey} from "../../../../utils/api/apiHelper.js";
 
-class LoginForm extends Component{
+class LoginForm extends Component {
 	state = {
 		signInError: undefined
 	};
 
-	componentWillReceiveProps=(nextProps) => {
-		if(nextProps.signInError !== this.props.signInError) {
-			this.setState({ signInError: nextProps.signInError });
+	componentWillReceiveProps = (nextProps) => {
+		if (nextProps.signInError !== this.props.signInError) {
+			this.setState({signInError: nextProps.signInError});
 		}
 	};
 
@@ -48,7 +48,7 @@ class LoginForm extends Component{
 		if (!checkNull(username, 'username') && !checkNull(password, 'password')) {
 			getToken({
 				userName: username,
-					userPassword: password,
+				userPassword: password,
 			}).then((res) => {
 				const userJson = {
 					user: res.data.user,
@@ -82,22 +82,25 @@ class LoginForm extends Component{
 		return (
 			<Fragment>
 				<XHelmet title={"login"}/>
-				<form className="login-form" onSubmit={(e)=>this.handleLoginSubmit(e)}>
+				<form className="login-form" onSubmit={(e) => this.handleLoginSubmit(e)}>
 					<Dialog titleTextId={"lgtitle"} event={this.handleCloseClick}>
 						<tr>
 							<td colSpan={2}>
-								<Text id={"lgip_1"} children={(text) => <input className={"text-input"} type="text" placeholder={text} id={"login-username"} />} />
+								<Text id={"lgip_1"} children={(text) => <input className={"text-input"} type="text" placeholder={text}
+								                                               id={"login-username"}/>}/>
 							</td>
 						</tr>
 						<tr>
 							<td colSpan={2}>
-								<Text id={"lgip_2"} children={(text) => <input className={"text-input"} type="password" placeholder={text} id={"login-password"} />} />
+								<Text id={"lgip_2"}
+								      children={(text) => <input className={"text-input"} type="password" placeholder={text}
+								                                 id={"login-password"}/>}/>
 							</td>
 						</tr>
 						<tr>
 							<td colSpan={2}>
 								<div className={"checkbox-text"}><Text id={"lgitxt_4"}/></div>
-								<input className="keep-login-input" type="checkbox" ref={"isKeepLogin"} />
+								<input className="keep-login-input" type="checkbox" ref={"isKeepLogin"}/>
 							</td>
 						</tr>
 						<tr>
@@ -107,7 +110,7 @@ class LoginForm extends Component{
 						</tr>
 						<tr>
 							<td colSpan={2}>
-								<Text id={"lgi_3"} children={(text) => <input className={"submit-input"} type="submit" value={text}/>} />
+								<Text id={"lgi_3"} children={(text) => <input className={"submit-input"} type="submit" value={text}/>}/>
 							</td>
 						</tr>
 						<tr>
@@ -121,7 +124,7 @@ class LoginForm extends Component{
 						<tr>
 							<td colSpan={2}>
 								<div className={"sign-btn-text"}><Text id={"lgi_txt_6"}/></div>
-								<div className={"sign-btn"} onClick={e=>this.handleSignUpClick(e)}><Text id={"lgi_6"}/></div>
+								<div className={"sign-btn"} onClick={e => this.handleSignUpClick(e)}><Text id={"lgi_6"}/></div>
 							</td>
 						</tr>
 					</Dialog>
@@ -131,4 +134,4 @@ class LoginForm extends Component{
 	};
 }
 
-export default  withRouter(LoginForm);
+export default withRouter(LoginForm);

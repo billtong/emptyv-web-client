@@ -4,12 +4,14 @@
     list-style-type: none;
     text-align: left;
 }
+
 .setting-ul .setting-li {
     margin-top: 2rem;
     position: relative;
     font-size: 1.5rem;
     font-weight: 600;
 }
+
 .setting-ul .setting-li .input-img {
     width: 0.1px;
     height: 0.1px;
@@ -18,16 +20,19 @@
     position: absolute;
     z-index: 1;
 }
+
 .setting-ul .setting-li #responsive-userIcon {
     width: 10rem;
     height: 10rem;
     position: absolute;
 }
+
 .setting-ul .setting-li #responsive-userBanner {
     width: 66.6rem;
     height: 10rem;
     position: absolute;
 }
+
 .setting-ul .setting-li .input-img + label {
     cursor: pointer;
     opacity: 0.8;
@@ -39,6 +44,7 @@
     font-weight: 700;
     display: inline-block;
 }
+
 .setting-ul .setting-li .bio-text {
     resize: none;
     height: 6rem;
@@ -46,6 +52,7 @@
     font-size: 1.5rem;
     font-weight: 500;
 }
+
 .setting-ul .setting-li .input-text {
     width: 30rem;
 }
@@ -56,5 +63,5 @@
 }
 
 .btn-disable {
-    border:2px #dc3545 solid;
+    border: 2px #dc3545 solid;
 }

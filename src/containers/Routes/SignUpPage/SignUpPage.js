@@ -1,14 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import { NavLink, withRouter } from "react-router-dom";
-import Text from "../../../components/accessories/Text";
+import React, {Component, Fragment} from 'react';
+import {withRouter} from "react-router-dom";
 import XHelmet from "../../../components/accessories/XHelmet";
 import {getToken, postRegister} from "../../../utils/api/user";
-import {setCookie} from "../../../utils/cookieTools";
-import {userTokenCookieKey, userTokenSessionKey} from "../../../utils/api/apiHelper";
+import {userTokenSessionKey} from "../../../utils/api/apiHelper";
 import history from "../../../utils/history";
 import "./SignUpPage.css";
 
-class SignUpPage extends Component{
+class SignUpPage extends Component {
 	state = {
 		isLoading: false,
 		resMessage: null,
@@ -17,7 +15,7 @@ class SignUpPage extends Component{
 
 	handleSignupSubmit(e) {
 		e.preventDefault();
-		const { email, username, password1, password2 } = this.refs;
+		const {email, username, password1, password2} = this.refs;
 		const checkNull = (item, itemName) => {
 			if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
 				this.setState({
@@ -28,7 +26,7 @@ class SignUpPage extends Component{
 			return false;
 		};
 
-		if(password1.value !== password2.value) {
+		if (password1.value !== password2.value) {
 			this.setState({
 				error: 'confirm password is not same as the password'
 			});
@@ -47,10 +45,10 @@ class SignUpPage extends Component{
 				this.setState({
 					resMessage: `${res.data.message}, auto login...`,
 				});
-				const timer = setTimeout(()=>{
+				const timer = setTimeout(() => {
 					getToken({
-						userName:  username.value,
-						userPassword:password1.value,
+						userName: username.value,
+						userPassword: password1.value,
 					}).then((res) => {
 						const userJson = {
 							user: res.data.user,
@@ -90,9 +88,9 @@ class SignUpPage extends Component{
 		const rsltMessage = this.state.resMessage ? (
 			<div>{this.state.resMessage}</div>
 		) : null;
-		return(
+		return (
 			<Fragment>
-				<XHelmet title={"Sign Up"} />
+				<XHelmet title={"Sign Up"}/>
 				<div className="sign-section">
 					<p className="sign-title">
 						JOIN US TODAY!
@@ -122,7 +120,7 @@ class SignUpPage extends Component{
 							ref="password2"
 						/>
 						<div className="sign-btn-section">
-							<input type="submit" className="btn btn-primary" value="Sign Up" />
+							<input type="submit" className="btn btn-primary" value="Sign Up"/>
 						</div>
 						{loadingIcon}
 						{errorMessage}

@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { MdMoreVert } from 'react-icons/md';
+import {connect} from 'react-redux';
+import {MdMoreVert} from 'react-icons/md';
 
-import { formatDateTime } from '../../../../../utils/dateTools';
-import { getSessionTokenJson } from '../../../../../utils/api/apiHelper';
-import { getCommentListAction } from '../../../../../store/actions/getCommentListAction';
-import { postComment, deleteComment } from '../../../../../utils/api/comment';
+import {formatDateTime} from '../../../../../utils/dateTools';
+import {getSessionTokenJson} from '../../../../../utils/api/apiHelper';
+import {getCommentListAction} from '../../../../../store/actions/getCommentListAction';
+import {deleteComment, postComment} from '../../../../../utils/api/comment';
 import UserAvatar from '../../../UserAvatar';
 
 class CommentBlockFrag extends React.Component {
@@ -30,8 +30,8 @@ class CommentBlockFrag extends React.Component {
 		e.preventDefault();
 		postComment(inputJson)
 		.then(() => {
-			this.setState({ isReply: false });
-			this.props.getCommentListAction({ videoId: reComment.videoId });
+			this.setState({isReply: false});
+			this.props.getCommentListAction({videoId: reComment.videoId});
 		})
 		.catch((err) => {
 			alert(`failed post comment${err}`);
@@ -39,14 +39,14 @@ class CommentBlockFrag extends React.Component {
 	};
 
 	handleReplyClick = (e, flag) => {
-		if(flag) {
+		if (flag) {
 			const userJSON = getSessionTokenJson();
 			if (!userJSON) {
 				alert('please login or sign up a new account');
 				return 0;
 			}
 		}
-		this.setState({ isReply: flag });
+		this.setState({isReply: flag});
 	};
 
 	checkDeletePerm = () => {
@@ -55,9 +55,9 @@ class CommentBlockFrag extends React.Component {
 
 	handleDelete = (e) => {
 		e.preventDefault();
-		deleteComment({ commentId: this.props.comment.commentId }).then(()=>{
-			this.props.getCommentListAction({ videoId: this.props.comment.videoId });
-		}).catch((err)=>{
+		deleteComment({commentId: this.props.comment.commentId}).then(() => {
+			this.props.getCommentListAction({videoId: this.props.comment.videoId});
+		}).catch((err) => {
 			alert(err);
 		});
 	};
@@ -82,7 +82,7 @@ class CommentBlockFrag extends React.Component {
 					className="reply-comment-confirm"
 					type="button"
 					value="reply"
-					onClick={e=>this.handleReplySubmit(e, this.props.comment)}
+					onClick={e => this.handleReplySubmit(e, this.props.comment)}
 				/>
 				<input
 					className="reply-comment-cancel"
@@ -103,10 +103,10 @@ class CommentBlockFrag extends React.Component {
 					#{this.props.floor} {uploadDate}
 				</div>
 				<a className="comment-menu-btn">
-					<MdMoreVert />
+					<MdMoreVert/>
 					<ul className="comment-menu">
 						{deleteBtn}
-						<li >report</li>
+						<li>report</li>
 					</ul>
 				</a>
 				{replyTag}

@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import { withRouter } from "react-router-dom";
+import React, {Component} from 'react';
+import {withRouter} from "react-router-dom";
 import Text from '../../../components/accessories/Text';
 
 import "./AboutPage.css";
@@ -7,7 +7,6 @@ import XHelmet from "../../../components/accessories/XHelmet";
 import {connect} from "react-redux";
 import {Container} from "../../../components/accessories/entityDisplay/Container";
 import {getCommentListAction} from "../../../store/actions/getCommentListAction";
-import Pagination from "../../../components/accessories/entityDisplay/Pagination";
 
 const aboutId = 0;
 
@@ -21,13 +20,13 @@ class AboutPage extends Component {
 		commentSliceList: [],
 	}
 	componentDidMount = () => {
-		this.props.getCommentListAction({ videoId: aboutId });
+		this.props.getCommentListAction({videoId: aboutId});
 	};
 
-	render=() => {
+	render = () => {
 		return (
 			<div className="about-us-page">
-				<XHelmet title={"About Us"} />
+				<XHelmet title={"About Us"}/>
 				<div className="about-us-container">
 					<h1 className="title-text">Empty Video</h1>
 					<h4 className="title-text">1.2.0510</h4>
@@ -79,9 +78,9 @@ class AboutPage extends Component {
 	}
 }
 
-const mapStateToProps = ({ getCommentListReducer }) => {
-	const { isLoading, commentList, error } = getCommentListReducer;
-	return { isLoading, commentList, error };
+const mapStateToProps = ({getCommentListReducer}) => {
+	const {isLoading, commentList, error} = getCommentListReducer;
+	return {isLoading, commentList, error};
 };
 
 export default withRouter(connect(

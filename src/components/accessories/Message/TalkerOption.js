@@ -32,31 +32,31 @@ const UserText = styled.div`
 
 export const TalkerOption = (props) => {
 
-  const option = (
-    <Fragment>
-	    <div className="user-avatar">
-		    <img src={props.userInfo.userIcon} height="20px" width="20px" />
-	    </div>
-      <UserText>{props.userInfo.userName}</UserText>
-	    <div className="msg-text">{props.lastMsg}</div>
-    </Fragment>
-  );
+	const option = (
+		<Fragment>
+			<div className="user-avatar">
+				<img src={props.userInfo.userIcon} height="20px" width="20px"/>
+			</div>
+			<UserText>{props.userInfo.userName}</UserText>
+			<div className="msg-text">{props.lastMsg}</div>
+		</Fragment>
+	);
 
-  return props.isSelected ? (
-    <SelectedOption>
-      {option}
-    </SelectedOption>
-  ) : (
-    <UnSelectedOption>
-      {option}
-    </UnSelectedOption>
-  );
+	return props.isSelected ? (
+		<SelectedOption>
+			{option}
+		</SelectedOption>
+	) : (
+		<UnSelectedOption>
+			{option}
+		</UnSelectedOption>
+	);
 };
 
 TalkerOption.propTypes = {
-  isSelected: PropTypes.bool,
-  userInfo: PropTypes.object,
-  lastMsg: PropTypes.string,
+	isSelected: PropTypes.bool,
+	userInfo: PropTypes.object,
+	lastMsg: PropTypes.string,
 };
 
 TalkerOption.defaultProps = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoChevronDown, GoChevronUp } from 'react-icons/go';
+import {GoChevronDown, GoChevronUp} from 'react-icons/go';
 import CommentBlockFrag from './CommentBlockFragment';
 import './CommentBlock.css';
 
@@ -11,7 +11,7 @@ class CommentBlock extends React.Component {
 
 	reverseRepliesComment = (list) => (
 		list.map((item, index) => {
-			if(index === 0) {
+			if (index === 0) {
 				return item;
 			} else {
 				return list[list.length - index];
@@ -22,45 +22,45 @@ class CommentBlock extends React.Component {
 	render() {
 		const rootComment = this.props.commentInfo[0];
 		const clist = this.reverseRepliesComment(this.props.commentInfo);
-		const renderReplyList = this.state.isOpenReply ? clist.map((comment, index)=>{
-			if(index===0) {
+		const renderReplyList = this.state.isOpenReply ? clist.map((comment, index) => {
+			if (index === 0) {
 				return (
-					<span key={index} className="reply-arro" onClick={e=>{
+					<span key={index} className="reply-arro" onClick={e => {
 						e.preventDefault();
-						this.setState({ isOpenReply: false });
+						this.setState({isOpenReply: false});
 					}}>
-            <GoChevronUp /> hide reply
+            <GoChevronUp/> hide reply
           </span>
 				);
 			}
 			let rc = null;
 			clist.forEach(element => {
-				if(element.commentId == comment.commentParentId) {
+				if (element.commentId == comment.commentParentId) {
 					rc = element;
 				}
 			});
 			return (
 				<div key={index} className="comment-block-section">
 					<CommentBlockFrag
-						floor = {clist.length - index}
-						comment = {comment}
+						floor={clist.length - index}
+						comment={comment}
 						rootComment={rc}
 					/>
 				</div>
 			);
 		}) : (
-			<span className="reply-arro" onClick={e=>{
+			<span className="reply-arro" onClick={e => {
 				e.preventDefault();
-				this.setState({ isOpenReply: true });
+				this.setState({isOpenReply: true});
 			}}>
-        <GoChevronDown /> display reply
+        <GoChevronDown/> display reply
       </span>
 		);
 		return (
 			<div className="comment-block-section">
 				<CommentBlockFrag
-					floor = {this.props.floor}
-					comment = {rootComment}
+					floor={this.props.floor}
+					comment={rootComment}
 				/>
 				<div className="comment-reply">
 					{clist.length === 1 ? null : renderReplyList}

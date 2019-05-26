@@ -1,6 +1,7 @@
-import React, {Fragment} from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import UserAvatar from "../UserAvatar";
 
 const Wrapper = styled.div`
 	padding-left: 1rem;
@@ -11,10 +12,6 @@ const Wrapper = styled.div`
 const MYul = styled.ul`
 	list-style: none;
 	padding-inline-start: 0;
-`;
-
-const InfoWrapper = styled.li`
-   font-weight: 600;
 `;
 
 const MsgContentWrapper = styled.li`
@@ -29,32 +26,30 @@ const MsgTimeWrapper = styled.li`
 
 export const MessageTalker = (props) => {
 	return (
-    <Wrapper>
-	    <MYul>
-		    <InfoWrapper>
-			    <img className="user-icon" width={"30"} height={"30"} src={props.talkerInfo.userIcon} />{props.talkerInfo.userName}
-		    </InfoWrapper>
-		    <MsgContentWrapper>
-			    <li className="content">{props.msg.msgContent}</li>
-		    </MsgContentWrapper>
-		    <MsgTimeWrapper>
-			    <li className="time">{props.msg.msgTime}</li>
-		    </MsgTimeWrapper>
-	    </MYul>
-    </Wrapper>
+		<Wrapper>
+			<MYul>
+				<UserAvatar userInfo={props.talkerInfo} />
+				<MsgContentWrapper>
+					<li className="content">{props.msg.msgContent}</li>
+				</MsgContentWrapper>
+				<MsgTimeWrapper>
+					<li className="time">{props.msg.msgTime}</li>
+				</MsgTimeWrapper>
+			</MYul>
+		</Wrapper>
 	);
 };
 
 MessageTalker.propTypes = {
-  talkerInfo: PropTypes.object,
-  msg: PropTypes.object,
+	talkerInfo: PropTypes.object,
+	msg: PropTypes.object,
 };
 
 MessageTalker.defaultProps = {
-  talkerInfo: {
-	  userIcon: null,
-	  userName: null
-  },
+	talkerInfo: {
+		userIcon: null,
+		userName: null
+	},
 	msg: {
 		msgContent: null,
 		msgTime: null,

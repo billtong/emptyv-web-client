@@ -3,32 +3,32 @@ import {FormattedMessage} from "react-intl";
 import PropTypes from "prop-types";
 
 class Text extends Component {
-    render() {
-        return(
-            <Fragment>
-                <FormattedMessage
-                    id = {this.props.id}
-                    values = {this.props.values}>
-                    {this.props.children}
-                </FormattedMessage>
-            </Fragment>
-        )
-    }
+	render() {
+		return (
+			<Fragment>
+				<FormattedMessage
+					id={this.props.id}
+					values={this.props.values}>
+					{this.props.children}
+				</FormattedMessage>
+			</Fragment>
+		)
+	}
 }
 
 Text.propTypes = {
-    id: PropTypes.string,
-    values: PropTypes.string,
-    children: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.arrayOf(PropTypes.node),
-    ]),
+	id: PropTypes.string,
+	values: PropTypes.string,
+	children: PropTypes.oneOfType([
+		PropTypes.node,
+		PropTypes.arrayOf(PropTypes.node),
+	]),
 };
 
 Text.defaultProps = {
-    id: "",
-    values: "",
-    children: null,
+	id: "",
+	values: "",
+	children: null,
 };
 
 export default Text

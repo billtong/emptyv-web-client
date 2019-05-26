@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {MessageTalker} from "./MessageTalker";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -34,7 +33,7 @@ export const MessageUser = (props) => {
 		<Wrapper>
 			<MYul>
 				<InfoWrapper>
-					{props.userInfo.userName}<img className="user-icon" width={"30"} height={"30"} src={props.userInfo.userIcon} />
+					{props.userInfo.userName}<img className="user-icon" width={"30"} height={"30"} src={props.userInfo.userIcon}/>
 				</InfoWrapper>
 				<MsgContentWrapper>
 					<li className="content">{props.msg.msgContent}</li>

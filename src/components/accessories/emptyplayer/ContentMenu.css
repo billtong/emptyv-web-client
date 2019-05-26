@@ -7,15 +7,18 @@
     background: black;
     padding: 0.2rem 0.4rem 0.2rem 0.4rem;
 }
+
 .contextMenu--title {
     color: white;
     font-weight: 200;
 }
+
 .contextMenu--content {
     word-break: normal;
     color: white;
     font-weight: 300;
 }
+
 .contextMenu--separator {
     background: white;
     height: 0.1rem;

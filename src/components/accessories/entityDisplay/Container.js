@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from "prop-types";
 import {VideoBlock} from "./blocks/videoBlock/VideoBlock";
-import { Layout } from './Layout';
+import {Layout} from './Layout';
 import CommentBlock from "./blocks/commentBlock/CommentBlock";
 
 export const Container = (props) => {
@@ -16,17 +16,18 @@ export const Container = (props) => {
 		switch (entityType) {
 			case "video":
 				return props.list.length > 0 ? (
-					props.list.map((video, index)=>{
+					props.list.map((video, index) => {
 						return (
-							<VideoBlock videoInfo={video} />
+							<VideoBlock videoInfo={video}/>
 						);
 					})
 				) : null;
 			case "comment":
 				return props.list.length > 0 ? props.list.map((comment, index) => {
 					return (
-						<CommentBlock key={index} floor={props.totalLength - index} commentInfo={comment} />
-					)}) : null;
+						<CommentBlock key={index} floor={props.totalLength - index} commentInfo={comment}/>
+					)
+				}) : null;
 		}
 	};
 

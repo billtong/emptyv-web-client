@@ -1,7 +1,7 @@
-import React, { Fragment, Component } from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { videoStyle } from '../style.js';
+import {videoStyle} from '../style.js';
 
 const Wrapper = styled.div`
 	display: inline-block;
@@ -36,7 +36,7 @@ export const VideoBlock = (props) => {
 	return (
 		<Wrapper onClick={e => handleVideoBlockClick(e)}>
 			<div>
-				<Img src={props.videoInfo.videoThumbnailImg} />
+				<Img src={props.videoInfo.videoThumbnailImg}/>
 			</div>
 			<Title>
 				{props.videoInfo.videoName}

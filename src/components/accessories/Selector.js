@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Text from './Text'
@@ -37,7 +37,7 @@ const OptionsSelected = styled.li`
 	color: red
 `;
 
-class Selector extends Component{
+class Selector extends Component {
 	state = {
 		isClick: false,
 	};
@@ -67,7 +67,9 @@ class Selector extends Component{
 						return (<OptionsSelected key={value}><Text id={`se_o_${value}`}/></OptionsSelected>);
 					} else {
 						return (
-							<Options key={value} onClick={e=>{this.handleOptionCick(e, value)}}><Text id={`se_o_${value}`}/></Options>
+							<Options key={value} onClick={e => {
+								this.handleOptionCick(e, value)
+							}}><Text id={`se_o_${value}`}/></Options>
 						);
 					}
 				})}
@@ -84,11 +86,11 @@ class Selector extends Component{
 	};
 }
 
-Selector.propTypes =  {
+Selector.propTypes = {
 	title: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.arrayOf(PropTypes.node),
-    ]),
+		PropTypes.node,
+		PropTypes.arrayOf(PropTypes.node),
+	]),
 	options: PropTypes.arrayOf(PropTypes.string),
 	selectedOptions: PropTypes.string,
 	passFatherState: PropTypes.func,
@@ -98,7 +100,8 @@ Selector.defaultProps = {
 	titel: null,
 	options: ["null"],
 	selectedOptions: "null",
-	passFatherState: ()=>{},
+	passFatherState: () => {
+	},
 };
 
 export default Selector;

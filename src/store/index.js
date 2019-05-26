@@ -1,6 +1,6 @@
-import {createStore, applyMiddleware, compose, combineReducers} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import thunk from "redux-thunk";
-import {persistStore, persistReducer} from 'redux-persist';
+import {persistReducer, persistStore} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import transforms from "./transform";
 import history from "../utils/history"
@@ -9,16 +9,15 @@ import changeLanguageReducer from "./reducers/ChangeLanguageReducer";
 import {signUpReducer} from "./reducers/SignUpReducer";
 import {getCommentListReducer} from "./reducers/getCommentListReducer";
 
-const initialState = {
-};
+const initialState = {};
 const middleware = [thunk];
 
 const persistConfig = {
-     key: 'root',
-     storage: storage,
-     //stateReconciler: hardSet,
-     transforms: [transforms],
-     whitelist: ['root']
+	key: 'root',
+	storage: storage,
+	//stateReconciler: hardSet,
+	transforms: [transforms],
+	whitelist: ['root']
 };
 
 const rootReducer = (history) => combineReducers({
@@ -31,14 +30,14 @@ const rootReducer = (history) => combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer(history));
 
 export const store = createStore(
-    persistedReducer,
-    initialState,
-    compose(
-        applyMiddleware(
-            routerMiddleware(history),
-            ...middleware),
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    )
+	persistedReducer,
+	initialState,
+	compose(
+		applyMiddleware(
+			routerMiddleware(history),
+			...middleware),
+		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+	)
 );
 
 export const persistor = persistStore(store);
