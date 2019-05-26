@@ -11,7 +11,6 @@ export const Container = (props) => {
 	const error = (props.errMsg && props.errMsg !== null) ? (
 		<div>{props.errMsg}</div>
 	) : null;
-
 	const getList = (entityType) => {
 		switch (entityType) {
 			case "video":

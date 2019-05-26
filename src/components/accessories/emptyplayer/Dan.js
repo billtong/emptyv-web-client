@@ -5,13 +5,15 @@ class Dan extends React.Component {
 	componentDidMount = () => {
 		const $div = this.refs.div;
 		this.setState({canvasHeight: $div.clientHeight, canvasWidth: $div.clientWidth});
-	}
+	};
+
 	componentDidUpdate = () => {
 		const $div = this.refs.div;
 		if (this.state.canvasHeight !== $div.clientHeight && this.state.canvasWidth !== $div.clientWidth) {
 			this.setState({canvasHeight: $div.clientHeight, canvasWidth: $div.clientWidth});
 		}
-	}
+	};
+
 	/**
 	 * 处理从videoPlayer传进来的新的currentDanlist，放到五个state数组里不断的画出现在的情况
 	 **/
@@ -49,6 +51,7 @@ class Dan extends React.Component {
 				}
 			});
 		}
+
 		if (isNew) {
 			const canvas = this.myCanvas.current;
 			const displayDanList = nextProps.displayDanList;
@@ -80,7 +83,8 @@ class Dan extends React.Component {
 		if (this.props.currentTime !== nextProps.currentTime && this.state.displayDanList.length > 0) {
 			this.drawDanList();
 		}
-	}
+	};
+
 	//画出当前时间的全部数组，出了canvas的做删除处理
 	drawDanList = () => {
 		const canvas = this.myCanvas.current;
@@ -118,7 +122,8 @@ class Dan extends React.Component {
 			}
 		});
 		ctx.restore();
-	}
+	};
+
 	render = () => {
 		return (
 			<div className={this.props.className} ref="div">
@@ -126,7 +131,7 @@ class Dan extends React.Component {
 				        height={this.state.canvasHeight}/>
 			</div>
 		);
-	}
+	};
 
 	constructor(props) {
 		super(props);

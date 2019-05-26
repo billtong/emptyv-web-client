@@ -17,7 +17,6 @@ const Title = styled.div`
 	word-break: break-word;
 	width: ${videoStyle.width}px;
 	text-align: left;
-	height: 2.2rem;
 	margin: 0 auto;
 	overflow: hidden;
 `;

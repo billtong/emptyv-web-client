@@ -5,9 +5,7 @@ class MessagePage extends Component {
 	render = () => {
 		return (
 			<div>
-				<Message
-					defaultTalker={this.props.location.state}
-				/>
+				<Message defaultTalker={this.props.location.state} />
 			</div>
 		);
 	}

@@ -7,7 +7,7 @@ class CommentBlock extends React.Component {
 	state = {
 		isOpenReply: false,
 		isReplyArr: Array(this.props.commentInfo.length).fill(false)
-	}
+	};
 
 	reverseRepliesComment = (list) => (
 		list.map((item, index) => {
@@ -35,7 +35,7 @@ class CommentBlock extends React.Component {
 			}
 			let rc = null;
 			clist.forEach(element => {
-				if (element.commentId == comment.commentParentId) {
+				if (element.commentId === comment.commentParentId) {
 					rc = element;
 				}
 			});

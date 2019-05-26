@@ -6,7 +6,7 @@ import SettingPage from "../SettingPage/SettingPage";
 import MessagePage from "../MessagePage";
 
 /*
-这里有一个react-router的问题，如果把/user/：id 会被默认当成indexrouter
+	这里有一个react-router的问题，如果把/user/：id 会被默认当成indexrouter
  */
 
 class UserRouter extends Component {
@@ -14,10 +14,10 @@ class UserRouter extends Component {
 		return (
 			<Fragment>
 				<Switch>
-					<Route path="/user/dashboard/:id" component={UserPage}/>
-					<Route path="/user/notification" component={NotificationPage}/>
-					<Route path="/user/setting" component={SettingPage}/>
-					<Route path="/user/message" component={MessagePage}/>
+					<Route path="/user/dashboard/:id" component={UserPage} />
+					<Route path="/user/notification" component={NotificationPage} />
+					<Route path="/user/setting" component={SettingPage} />
+					<Route path="/user/message" component={MessagePage} />
 				</Switch>
 			</Fragment>
 		);

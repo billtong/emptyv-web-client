@@ -74,11 +74,7 @@ class AboutPage extends Component {
 
 	render = () => {
 		const token = getSessionTokenJson();
-		if(!token || token === null) {
-			this.isUserA= true;
-		} else {
-			this.isUserA= false;
-		}
+		this.isUserA = !token || token === null;
 		const commentUploadBox = (
 			<div className="comment-box">
 				<input
