@@ -22,13 +22,11 @@
     width: 10rem;
     height: 10rem;
     position: absolute;
-    z-index: 1;
 }
 .setting-ul .setting-li #responsive-userBanner {
     width: 66.6rem;
     height: 10rem;
     position: absolute;
-    z-index: 1;
 }
 .setting-ul .setting-li .input-img + label {
     cursor: pointer;
@@ -52,3 +50,11 @@
     width: 30rem;
 }
 
+.btn-able {
+    border: 2px green solid;
+    cursor: pointer;
+}
+
+.btn-disable {
+    border:2px #dc3545 solid;
+}

@@ -100,7 +100,7 @@ class SettingPage extends React.Component {
 			case 'bio' :
 				const timer1 = setInterval(() => {
 					if(this.state.userBio !== this.refs.bio.value) {
-						newUser.userDesc = this.refs.bio.value
+						newUser.userDesc = this.refs.bio.value;
 						this.setState({ userBio: this.refs.bio.value, user: newUser });
 					} else {
 						clearInterval(timer1);

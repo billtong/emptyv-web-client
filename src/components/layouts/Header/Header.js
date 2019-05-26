@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from "react-router-dom";
-import { NavItem } from "./Navigation";
+import { NavItem } from "../../accessories/Navigation";
 import history from "../../../utils/history";
 import actions from "../../../store/actions/ChangeLanguageAction";
 import connect from "react-redux/es/connect/connect";

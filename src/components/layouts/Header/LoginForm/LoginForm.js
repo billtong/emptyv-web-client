@@ -48,7 +48,7 @@ class LoginForm extends Component{
 		if (!checkNull(username, 'username') && !checkNull(password, 'password')) {
 			getToken({
 				userName: username,
-				userPassword: password,
+					userPassword: password,
 			}).then((res) => {
 				const userJson = {
 					user: res.data.user,
