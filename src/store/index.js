@@ -16,7 +16,7 @@ const persistConfig = {
 	storage: storage,
 	//stateReconciler: hardSet,
 	transforms: [transforms],
-	whitelist: ['root']
+	whitelist: ['changeLanguageReducer']
 };
 
 const rootReducer = (history) => combineReducers({

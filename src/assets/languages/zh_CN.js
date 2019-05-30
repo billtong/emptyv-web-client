@@ -1,5 +1,6 @@
 const zh_CN = {
 	notfound: '页面找不到了QAQ',
+
 	//header
 	home: "主页",
 	about: "关于我们",

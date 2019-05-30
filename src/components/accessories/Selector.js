@@ -61,8 +61,6 @@ class Selector extends Component {
 		const options = this.state.isClick ? (
 			<Wrapper>
 				{this.props.options.map((value) => {
-					console.log("value", value);
-					console.log("selected", this.props.selectedOptions);
 					if (value === this.props.selectedOptions) {
 						return (<OptionsSelected key={value}><Text id={`se_o_${value}`}/></OptionsSelected>);
 					} else {

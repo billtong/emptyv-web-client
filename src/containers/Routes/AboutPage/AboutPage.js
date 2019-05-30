@@ -1,106 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {withRouter} from "react-router-dom";
-import Text from '../../../components/accessories/Text';
 
+import Text from '../../../components/accessories/Text';
 import "./AboutPage.css";
 import XHelmet from "../../../components/accessories/XHelmet";
-import {connect} from "react-redux";
-import {Container} from "../../../components/accessories/entityDisplay/Container";
-import {getCommentListAction} from "../../../store/actions/getCommentListAction";
-import {postComment, postCommentA} from "../../../utils/api/comment";
-import {getSessionTokenJson} from "../../../utils/api/apiHelper";
+import Comment from "../../../components/accessories/Comment/Comment";
 
 const aboutId = 0;
 
 class AboutPage extends Component {
-	state = {
-		total: 1,           //total number of pages
-		curr: 1,            //current page number
-		cellNum: 7,         //max page display on pagination
-		pageSize: 20,       //video entity numbers in one page
-		commentList: this.props.commentList,
-		commentSliceList: [],
-		isBlur: true,
-		isForcus: false
-	};
-
-	static defaultProps = {
-		videoId: 0,  //comment id是0时指aboutpage的评论
-	};
-
-	componentWillMount() {
-		document.addEventListener('keypress', this.handleEnterKey);
-	}
-
-	componentDidMount() {
-		this.props.getCommentListAction({videoId: aboutId});
-		document.removeEventListener('keypress', this.handleEenterKey);
-		document.documentElement.scrollTop = 0;
-	}
-
-	//这个是comment的输入栏的提交法方法
-	handleEnterKey=(e) => {
-		if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
-			e.preventDefault();
-			const comment = this.refs.comment.value;
-			if (!comment || comment === null || comment === '' || (typeof comment === 'string' && comment.trim().length === 0)) {
-				alert('fill with something please...');
-				return;
-			}
-			this.refs.comment.value = '';
-			if(this.isUserA) {
-				postCommentA({
-					commentContent: comment,
-					commentParentId: 0
-				}).then(()=> {
-					this.props.getCommentListAction({videoId: this.props.videoId});
-				}).catch((err)=>{
-					alert(`failed post comment${err}`);
-				});
-			} else {
-				postComment({
-					commentContent: comment,
-					videoId: this.props.videoId,
-					userId: getSessionTokenJson().user.userId,
-					commentParentId: 0
-				}).then(() => {
-					this.props.getCommentListAction({ videoId: this.props.videoId });
-				}).catch((err) => {
-					alert(`failed post comment${err}`);
-				});
-			}
-		}
-	};
-
 	render = () => {
-		const token = getSessionTokenJson();
-		this.isUserA = !token || token === null;
-		const commentUploadBox = (
-			<div className="comment-box">
-				<input
-					className="form-control comment-content"
-					id="comment-box"
-					placeholder="Press <Enter> to leave a suggestion"
-					autoComplete="off"
-					onKeyPress={e => this.handleEnterKey(e)}
-					onFocus={() => {
-						this.setState(prevState => ({
-							...prevState,
-							isForcus: true,
-							isBlur: false
-						}));
-					}}
-					onBlur={() => {
-						this.setState(prevState => ({
-							...prevState,
-							isForcus: false,
-							isBlur: true
-						}));
-					}}
-					ref="comment"
-				/>
-			</div>
-		);
 		return (
 			<div className="about-us-page">
 				<XHelmet title={"About Us"}/>
@@ -140,32 +49,10 @@ class AboutPage extends Component {
 						<div> — Empty Video Team</div>
 					</div>
 				</div>
-
-				<div className="comment-container">
-					<div className="comment-write-block-section">
-						{commentUploadBox}
-					</div>
-					<Container
-						list={this.props.commentList}
-						isLoading={this.props.isLoading}
-						totalLength={this.props.commentList ? this.props.commentList.length : 0}
-						errMsg={this.props.error}
-						layout={"verti-list"}
-						entityType={"comment"}
-					/>
-				</div>
+				<Comment videoId={aboutId}/>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = ({ getCommentListReducer }) => {
-	const {isLoading, commentList, error} = getCommentListReducer;
-	return {isLoading, commentList, error};
-};
-
-export default withRouter(connect(
-	mapStateToProps, {
-		getCommentListAction
-	}
-)(AboutPage));
+export default withRouter(AboutPage);
