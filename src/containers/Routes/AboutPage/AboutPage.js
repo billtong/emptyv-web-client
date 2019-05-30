@@ -1,10 +1,10 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 
 import Text from '../../../components/accessories/Text';
 import "./AboutPage.css";
 import XHelmet from "../../../components/accessories/XHelmet";
-import Comment from "../../../components/accessories/Comment/Comment";
+import Comment from "../../../components/accessories/comment/Comment";
 
 const aboutId = 0;
 

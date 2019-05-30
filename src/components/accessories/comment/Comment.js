@@ -6,12 +6,12 @@ import Pagination from "../entityDisplay/Pagination";
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import {postComment, postCommentA} from "../../../utils/api/comment";
 import PropTypes from "prop-types";
-import "../comment/Comment.css";
+import "./Comment.css";
 
 const cellNum = 7; //max cells display on pagination
 const pageSize = 8; //comment entity numbers in one page
 
-class Comment extends Component{
+class Comment extends Component {
 
 	state = {
 		total: 1,           //total number of pages
@@ -21,32 +21,19 @@ class Comment extends Component{
 		isBlur: true,
 		isForcus: false
 	};
-
-	componentWillMount() {
-		document.addEventListener('keypress', this.handleEnterKey);
-	}
-
-	componentDidMount() {
-		this.props.getCommentListAction({videoId: this.props.videoId});
-		document.removeEventListener('keypress', this.handleEenterKey);
-		document.documentElement.scrollTop = 0;
-		console.log("did mount");
-	}
-
 	componentDidUpdate = (prevProps, prevState, snapshot) => {
 		if (prevProps.commentList !== this.props.commentList) {
 			const currPage = prevState.curr;
 			this.setState({
 				total: Math.ceil(this.props.commentList.length / pageSize),
 				curr: currPage,
-				commentList:  this.props.commentList,
-				commentSliceList:  this.props.commentList.slice((currPage - 1) * pageSize, ((currPage - 1) * pageSize) + pageSize),
+				commentList: this.props.commentList,
+				commentSliceList: this.props.commentList.slice((currPage - 1) * pageSize, ((currPage - 1) * pageSize) + pageSize),
 			});
 		}
 		console.log("did update", this.state);
 	}
-
-	handleEnterKey=(e) => {
+	handleEnterKey = (e) => {
 		if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
 			e.preventDefault();
 			const comment = this.refs.comment.value;
@@ -55,13 +42,13 @@ class Comment extends Component{
 				return;
 			}
 			this.refs.comment.value = '';
-			if(this.isUserA) {
+			if (this.isUserA) {
 				postCommentA({
 					commentContent: comment,
 					commentParentId: 0
-				}).then(()=> {
+				}).then(() => {
 					this.props.getCommentListAction({videoId: this.props.videoId});
-				}).catch((err)=>{
+				}).catch((err) => {
 					alert(`failed post comment${err}`);
 				});
 			} else {
@@ -71,14 +58,13 @@ class Comment extends Component{
 					userId: getSessionTokenJson().user.userId,
 					commentParentId: 0
 				}).then(() => {
-					this.props.getCommentListAction({ videoId: this.props.videoId });
+					this.props.getCommentListAction({videoId: this.props.videoId});
 				}).catch((err) => {
 					alert(`failed post comment${err}`);
 				});
 			}
 		}
 	};
-
 	handlePaginationClick = (currPage) => {
 		const {commentList} = this.state;
 		const newCommentList = commentList.slice((currPage - 1) * pageSize, ((currPage - 1) * pageSize) + pageSize);
@@ -87,7 +73,6 @@ class Comment extends Component{
 			commentSliceList: newCommentList,
 		});
 	};
-
 	render = () => {
 		const token = getSessionTokenJson();
 		this.isUserA = !token || token === null;
@@ -143,6 +128,17 @@ class Comment extends Component{
 			</Fragment>
 		);
 	}
+
+	componentWillMount() {
+		document.addEventListener('keypress', this.handleEnterKey);
+	}
+
+	componentDidMount() {
+		this.props.getCommentListAction({videoId: this.props.videoId});
+		document.removeEventListener('keypress', this.handleEenterKey);
+		document.documentElement.scrollTop = 0;
+		console.log("did mount");
+	}
 }
 
 
@@ -155,7 +151,7 @@ Pagination.defaultProps = {
 };
 
 
-const mapStateToProps = ({ getCommentListReducer }) => {
+const mapStateToProps = ({getCommentListReducer}) => {
 	const {isLoading, commentList, error} = getCommentListReducer;
 	return {isLoading, commentList, error};
 };

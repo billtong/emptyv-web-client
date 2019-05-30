@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import {Container} from "../entityDisplay/Container";
 import Pagination from "../entityDisplay/Pagination";
 import PropTypes from "prop-types";
-import {NavItem} from "../Navigation";
 
 const cellNum = 7; //max page display on pagination
 const pageSize = 16; //video entity numbers in one page

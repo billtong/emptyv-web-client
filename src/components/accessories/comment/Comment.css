@@ -13,19 +13,23 @@
     padding-bottom: 2rem;
     padding-left: 2rem;
 }
+
 .comment-write-block-section a {
     color: white;
     margin-left: 1rem;
 }
+
 .comment-write-block-section a:hover {
     text-decoration: none;
     background: red;
 }
+
 .comment-write-block-section .comment-box .comment-content {
     width: 90%;
     height: 2rem;
     display: inline-block;
 }
+
 .comment-write-block-section .comment-box .comment-btn {
     width: 4rem;
     height: 2rem;

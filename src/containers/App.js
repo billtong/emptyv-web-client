@@ -18,12 +18,12 @@ class App extends Component {
 				</header>
 				<div className="App-content">
 					<Switch>
-						<Route path="/" exact component={Home} />
-						<Route path="/login" component={LoginForm} />
-						<Route path="/signup" component={SignUpPage} />
-						<Route path="/about" component={AboutPage} />
-						<Route path="/user" component={UserRouter} />
-						<Route path="/404" component={NotFound} />
+						<Route path="/" exact component={Home}/>
+						<Route path="/login" component={LoginForm}/>
+						<Route path="/signup" component={SignUpPage}/>
+						<Route path="/about" component={AboutPage}/>
+						<Route path="/user" component={UserRouter}/>
+						<Route path="/404" component={NotFound}/>
 					</Switch>
 				</div>
 			</div>

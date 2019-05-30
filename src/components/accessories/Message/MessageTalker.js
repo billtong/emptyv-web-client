@@ -28,7 +28,7 @@ export const MessageTalker = (props) => {
 	return (
 		<Wrapper>
 			<MYul>
-				<UserAvatar userInfo={props.talkerInfo} />
+				<UserAvatar userInfo={props.talkerInfo}/>
 				<MsgContentWrapper>
 					<li className="content">{props.msg.msgContent}</li>
 				</MsgContentWrapper>
