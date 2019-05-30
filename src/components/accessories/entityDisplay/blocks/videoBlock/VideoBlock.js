@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import {videoStyle} from '../style.js';
+import history from "../../../../../utils/history";
 
 const Wrapper = styled.div`
 	display: inline-block;
@@ -29,11 +30,12 @@ const Num = styled.div`
 
 const handleVideoBlockClick = (e, videoId) => {
 	e.preventDefault();
-}
+	history.push(`/video/${videoId}`);
+};
 
 export const VideoBlock = (props) => {
 	return (
-		<Wrapper onClick={e => handleVideoBlockClick(e)}>
+		<Wrapper onClick={e => handleVideoBlockClick(e, props.videoInfo.videoId)}>
 			<div>
 				<Img src={props.videoInfo.videoThumbnailImg}/>
 			</div>
@@ -52,10 +54,5 @@ VideoBlock.propTypes = {
 };
 
 VideoBlock.propTypes = {
-	videoInfo: {
-		videoId: 0,
-		videoThumbnailImg: "",
-		videoName: "",
-		videoViewNum: 0,
-	}
+	videoInfo: {}
 };

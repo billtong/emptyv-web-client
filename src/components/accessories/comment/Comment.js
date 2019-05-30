@@ -7,6 +7,7 @@ import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import {postComment, postCommentA} from "../../../utils/api/comment";
 import PropTypes from "prop-types";
 import "./Comment.css";
+import history from "../../../utils/history";
 
 const cellNum = 7; //max cells display on pagination
 const pageSize = 8; //comment entity numbers in one page
@@ -43,14 +44,18 @@ class Comment extends Component {
 			}
 			this.refs.comment.value = '';
 			if (this.isUserA) {
-				postCommentA({
-					commentContent: comment,
-					commentParentId: 0
-				}).then(() => {
-					this.props.getCommentListAction({videoId: this.props.videoId});
-				}).catch((err) => {
-					alert(`failed post comment${err}`);
-				});
+				if(this.props.videoId === 0) {
+					postCommentA({
+						commentContent: comment,
+						commentParentId: 0
+					}).then(() => {
+						this.props.getCommentListAction({videoId: this.props.videoId});
+					}).catch((err) => {
+						alert(`failed post comment${err}`);
+					});
+				} else {
+					history.push("/login");
+				}
 			} else {
 				postComment({
 					commentContent: comment,

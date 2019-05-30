@@ -7,19 +7,13 @@ import {getSessionTokenJson} from '../../../utils/api/apiHelper';
 import {patchView} from '../../../utils/api/video';
 import {getDanList, postDan} from '../../../utils/api/dan';
 import "./VidoePlayer.css";
+import PropTypes from "prop-types";
+import {TalkerTab} from "../Message/TalkerTab";
 
 class VideoPlayer extends React.Component {
 	//从后台获取全部弹幕list，确定视频是否全屏
 	componentDidMount = () => {
 		document.getElementById("myVideo").oncontextmenu = (e) => (false);
-		getDanList(this.props.video.video_id).then(res => {
-			this.setState(prevState => ({
-				...prevState,
-				danList: res.data,
-			}));
-		}).catch(err => {
-			console.log(err);
-		});
 		window.onresize = () => {
 			if (!this.checkFull() && this.state.fullscreen) {
 				this.f11Key();
@@ -29,7 +23,7 @@ class VideoPlayer extends React.Component {
 	//更新VideoPlayer里的视频，目前还没用过。需要加入dan的相关state
 	componentWillReceiveProps = (nextProps) => {
 		const myVideo = document.getElementById('myVideo');
-		if (this.props.video.video_url !== nextProps.video.video_url) {
+		if (this.props.video !== nextProps.video) {
 			if (!myVideo.paused) {
 				myVideo.pause();
 			}
@@ -44,6 +38,13 @@ class VideoPlayer extends React.Component {
 			myVideo.src = nextProps.video.video_url;
 			myVideo.volume = 1.0;
 			myVideo.muted = false;
+			getDanList(this.props.video.video_id).then(res => {
+				this.setState({
+					danList: res.data,
+				});
+			}).catch(err => {
+				console.log(err);
+			});
 			this.setState({
 				pause: true,
 				currentTime: '0:00:00',
@@ -340,8 +341,9 @@ class VideoPlayer extends React.Component {
 		}
 		const navigatorName = 'Microsoft Internet Explorer';
 		if (window.navigator.appName === navigatorName) {
-			const WsShell = new ActiveXObject('WScript.Shell');
-			WsShell.SendKeys('{F11}');
+		//	const WsShell = new ActiveXObject('WScript.Shell');
+		//	WsShell.SendKeys('{F11}');
+			alert("you cannot use fullscreen feature on IE");
 		} else {
 			const de = document.getElementsByClassName('videos-player')[0];
 			if (de.requestFullscreen) {
@@ -368,14 +370,12 @@ class VideoPlayer extends React.Component {
 					this.setState({isDisplayDan: false, danCss: "not-display"})
 				}}>CLOSE
 				</div>
-				<div className="vjs-dan-input vjs-control">
-					<input
-						className="dan-input"
-						type="text"
-						ref="danContent"
-						placeholder="leave a comment on the video"
-					/>
-				</div>
+				<input
+					className="dan-input"
+					type="text"
+					ref="danContent"
+					placeholder="leave a comment on the video"
+				/>
 				<div className="vjs-dan-btn vjs-control" onClick={(e) => this.submitDan(e)}>go</div>
 			</div>
 		) : (
@@ -469,3 +469,15 @@ class VideoPlayer extends React.Component {
 }
 
 export default VideoPlayer;
+
+VideoPlayer.propTypes = {
+	video: PropTypes.object,
+};
+
+VideoPlayer.defaultProps = {
+	video: {
+		thumbnail_url: "",
+		video_url: "",
+		video_id: ""
+	}
+};

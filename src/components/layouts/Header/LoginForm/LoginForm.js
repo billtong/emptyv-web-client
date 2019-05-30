@@ -15,12 +15,6 @@ class LoginForm extends Component {
 		signInError: undefined
 	};
 
-	componentWillReceiveProps = (nextProps) => {
-		if (nextProps.signInError !== this.props.signInError) {
-			this.setState({signInError: nextProps.signInError});
-		}
-	};
-
 	handleCloseClick = (e) => {
 		e.preventDefault();
 		history.go(-1);

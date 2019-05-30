@@ -12,12 +12,15 @@
 }
 
 .dan-input {
-    height: 2.3rem;
-    vertical-align: top;
-    margin-left: 1rem;
-    padding-left: 1rem;
-    width: 40rem;
     opacity: 0.9;
+    outline: none;
+    position: relative;
+    float: left;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    width: 15rem;
+    line-height: 1.5rem;
+    color: black;
 }
 
 .vjs-dan-switch {

@@ -8,6 +8,7 @@ import SignUpPage from "./Routes/SignUpPage/SignUpPage";
 import Header from "../components/layouts/Header/Header";
 import LoginForm from "../components/layouts/Header/LoginForm/LoginForm";
 import UserRouter from "../containers/Routes/UserPage";
+import VideoPage from "./Routes/VideoPage/VideoPage";
 
 class App extends Component {
 	render() {
@@ -23,6 +24,7 @@ class App extends Component {
 						<Route path="/signup" component={SignUpPage}/>
 						<Route path="/about" component={AboutPage}/>
 						<Route path="/user" component={UserRouter}/>
+						<Route path="/video/:id" component={VideoPage}/>
 						<Route path="/404" component={NotFound}/>
 					</Switch>
 				</div>
