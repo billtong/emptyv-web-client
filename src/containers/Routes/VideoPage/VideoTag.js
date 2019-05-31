@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 import { MdAdd } from 'react-icons/md';
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import {patchTags} from "../../../utils/api/video";
-
-const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-const user = (getSessionTokenJson() !== null) && getSessionTokenJson().user;
+import history from "../../../utils/history";
 
 const Wrapper = styled.div`
   padding: 0.5rem 1rem;
@@ -77,15 +75,20 @@ class VideoTag extends Component{
 	//click the add button to open input board
 	handleClick=(e) => {
 		e.preventDefault();
+		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
 		const userJSON = getSessionTokenJson();
-		if (!isUserA && user.userId === this.props.videoData.userId) {
-			this.setState({
-				isTagAdd: true,
-				isTagForcus: true,
-				isTagBlur: false
-			});
+		if (!isUserA) {
+			if (userJSON.user.userId === this.props.videoData.userId) {
+				this.setState({
+					isTagAdd: true,
+					isTagForcus: true,
+					isTagBlur: false
+				});
+			} else {
+				alert("only uploader can add tags >_<# !");
+			}
 		} else {
-			alert("only uploader can add tags >_<# !");
+			history.push("/login");
 		}
 	};
 

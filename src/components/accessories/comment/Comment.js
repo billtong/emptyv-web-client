@@ -12,7 +12,6 @@ import {Link} from "react-router-dom";
 
 const cellNum = 7; //max cells display on pagination
 const pageSize = 8; //comment entity numbers in one page
-const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
 
 class Comment extends Component {
 
@@ -56,6 +55,7 @@ class Comment extends Component {
 				return;
 			}
 			this.refs.comment.value = '';
+			const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
 			if (!isUserA) {
 				postComment({
 					commentContent: comment,
@@ -90,6 +90,7 @@ class Comment extends Component {
 	};
 
 	render = () => {
+		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
 		const commentUploadBox = (this.props.videoId === 0 || !isUserA) ? (
 			<div className="comment-box">
 				<input

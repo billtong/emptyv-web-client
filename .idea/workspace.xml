@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1afcfa01-123b-4d5a-8cab-deb9ca8222b2" name="Default Changelist" comment="Refactoring init commit">
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accessories/comment/Comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/comment/Comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTag.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -34,7 +35,7 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
           <entry key="ico" value="1" />
-          <entry key="js" value="699" />
+          <entry key="js" value="703" />
           <entry key="json" value="11" />
           <entry key="jsx" value="13" />
           <entry key="md" value="2" />
@@ -50,7 +51,7 @@
           <entry key="Image" value="1" />
           <entry key="JSON" value="11" />
           <entry key="JSX Harmony" value="13" />
-          <entry key="JavaScript" value="702" />
+          <entry key="JavaScript" value="706" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="7" />
@@ -62,7 +63,7 @@
         <counts>
           <entry key="Filter" value="320" />
           <entry key="css" value="1180" />
-          <entry key="js" value="22923" />
+          <entry key="js" value="23039" />
           <entry key="json" value="2" />
           <entry key="jsx" value="36" />
         </counts>
@@ -72,7 +73,7 @@
           <entry key="CSS" value="1180" />
           <entry key="JSON" value="2" />
           <entry key="JSX Harmony" value="36" />
-          <entry key="JavaScript" value="23243" />
+          <entry key="JavaScript" value="23359" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -85,12 +86,12 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.js">
+        <entry file="file://$PROJECT_DIR$/src/components/layouts/Header/Header.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+            <state relative-caret-position="316">
+              <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#49#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -114,7 +115,6 @@
       <find>ref</find>
       <find>push</find>
       <find>isLoading</find>
-      <find>isUserA</find>
       <find>isUser</find>
       <find>this.props.total</find>
       <find>daninput</find>
@@ -138,6 +138,7 @@
       <find>videoData.tag</find>
       <find>li</find>
       <find>user</find>
+      <find>isUserA</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,7 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/layouts/Header/Header.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" />
         <option value="$PROJECT_DIR$/src/components/accessories/Message/Message.js" />
@@ -185,7 +185,6 @@
         <option value="$PROJECT_DIR$/src/components/accessories/entityDisplay/Pagination.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/video/index.js" />
         <option value="$PROJECT_DIR$/src/components/accessories/emptyplayer/VideoPlayer.js" />
-        <option value="$PROJECT_DIR$/src/components/accessories/comment/Comment.js" />
         <option value="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPageInfo.js" />
         <option value="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPage.js" />
         <option value="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" />
@@ -195,8 +194,10 @@
         <option value="$PROJECT_DIR$/src/containers/App.css" />
         <option value="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.css" />
         <option value="$PROJECT_DIR$/src/index.css" />
-        <option value="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTag.js" />
         <option value="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.js" />
+        <option value="$PROJECT_DIR$/src/components/accessories/comment/Comment.js" />
+        <option value="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTag.js" />
+        <option value="$PROJECT_DIR$/src/components/layouts/Header/Header.js" />
       </list>
     </option>
   </component>
@@ -267,43 +268,22 @@
               <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="Routes" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="Routes" type="462c0819:PsiDirectoryNode" />
-              <item name="SettingPage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="Routes" type="462c0819:PsiDirectoryNode" />
-              <item name="VideoPage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="empty-video-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="empty-video-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+              <item name="Header" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -379,12 +359,12 @@
       <workItem from="1558651809237" duration="24156000" />
       <workItem from="1558851456082" duration="2688000" />
       <workItem from="1558858799325" duration="15081000" />
-      <workItem from="1559178467909" duration="37167000" />
+      <workItem from="1559178467909" duration="38448000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121600000" />
+    <option name="totallyTimeSpent" value="122881000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -423,13 +403,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Refactoring init commit" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -736,16 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/accessories/comment/Comment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -830,22 +793,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTag.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="76" />
+        <state relative-caret-position="-1331">
+          <caret line="77" column="78" selection-start-line="77" selection-start-column="78" selection-end-line="77" selection-end-column="78" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.js">
+    <entry file="file://$PROJECT_DIR$/src/components/accessories/comment/Comment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+        <state relative-caret-position="145">
+          <caret line="92" column="36" lean-forward="true" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/layouts/Header/Header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>

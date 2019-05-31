@@ -43,6 +43,8 @@ class Header extends Component {
 				}).finally(() => {
 					deleteCookie(userTokenCookieKey);
 					sessionStorage.removeItem(userTokenSessionKey);
+					//delete all the redux
+					window.location.reload();
 					this.handleNavClick("/");
 				});
 				break;
