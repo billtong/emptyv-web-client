@@ -14,6 +14,29 @@ const en_US = {
 	se_o_setting: "Setting",
 	se_o_logout: "Logout",
 
+	//comment
+	c_input: "Press <Enter> to leave a comment",
+	c_display: "display reply",
+	c_hide: "hide reply",
+	c_reply: "reply",
+	c_send: "send",
+	c_cancel: "cancel",
+	c_delete: "delete",
+	c_report: "report",
+
+	//video
+	vb_views: " views",
+	v_publish: "published at ",
+	v_show: "Show More",
+	v_hide: "Hide All",
+	v_ant: "Add New Tags",
+	v_ant_input: "Press <Enter> to Add",
+
+	//videoPlayer
+	vp_close: "CLOSE",
+	vp_go: "GO",
+	vp_input: "leave a comment on video screen",
+
 	//filter selector
 	se_title: "Sort By",
 	se_o_date: "latest",

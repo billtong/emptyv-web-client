@@ -1,6 +1,7 @@
 import React from 'react';
 import {GoChevronDown, GoChevronUp} from 'react-icons/go';
 import CommentBlockFrag from './CommentBlockFragment';
+import Text from '../../../Text';
 import './CommentBlock.css';
 
 class CommentBlock extends React.Component {
@@ -29,8 +30,8 @@ class CommentBlock extends React.Component {
 						e.preventDefault();
 						this.setState({isOpenReply: false});
 					}}>
-            <GoChevronUp/> hide reply
-          </span>
+						<GoChevronUp/> <Text id="c_hide"/>
+					</span>
 				);
 			}
 			let rc = null;
@@ -53,7 +54,7 @@ class CommentBlock extends React.Component {
 				e.preventDefault();
 				this.setState({isOpenReply: true});
 			}}>
-        <GoChevronDown/> display reply
+        <GoChevronDown/> <Text id="c_display"/>
       </span>
 		);
 		return (

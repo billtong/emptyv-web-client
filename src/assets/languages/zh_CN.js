@@ -9,6 +9,29 @@ const zh_CN = {
 	signup: "注册",
 	notification: "消息",
 
+	//comment
+	c_input: "按回车建发送评论",
+	c_display: "展示回复评论",
+	c_hide: "隐藏回复评论",
+	c_reply: "回复评论",
+	c_send: "发送",
+	c_cancel: "取消",
+	c_delete: "删除评论",
+	c_report: "举报评论",
+
+	//video
+	vb_views: " 观看",
+	v_publish: "发布于 ",
+	v_show: "展示全部",
+	v_hide: "隐藏全部",
+	v_ant: "添加新标签",
+	v_ant_input: "按回车键添加",
+
+	//videoPlayer
+	vp_close: "关弹幕",
+	vp_go: "发射",
+	vp_input: "在屏幕上留下你的痕迹",
+
 	//filter selector
 	se_title: "排序",
 	se_o_date: "发布时间",

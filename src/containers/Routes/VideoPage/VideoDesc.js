@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import UserAvatar from "../../../components/accessories/UserAvatar";
 import {formatDateTime} from "../../../utils/dateTools";
+import Text from '../../../components/accessories/Text';
 
 const AvaterWrapper = styled.div`
 	margin-inline-start: 1rem;
@@ -36,6 +37,8 @@ const EmptyWrapper = styled.div`
 
 const ShowButton = styled.div`
 	margin-inline-start: 5rem;
+	margin-block-start: 0.5rem;
+	margin-block-end: 1rem;
 	cursor: pointer;
 	color: grey;
 `;
@@ -63,18 +66,18 @@ class VideoDesc extends Component{
 			<Fragment>
 				<AvaterWrapper>
 					<UserAvatar userInfo={this.props.videoData.userInfo}/>
-					<TimeWrapper>published at {formatDateTime(this.props.videoData.videoDate)}</TimeWrapper>
+					<TimeWrapper><Text id="v_publish"/> {formatDateTime(this.props.videoData.videoDate)}</TimeWrapper>
 				</AvaterWrapper>
 
 				{videoDesc}
 				{!this.state.showCompelete ? (
 					<ShowButton onClick={e=>{
 						this.setState({showCompelete: true});
-					}}>Show More</ShowButton>
+					}}><Text id="v_show"/></ShowButton>
 				) : (
 					<ShowButton onClick={e=>{
 						this.setState({showCompelete: false});
-					}}>Hide All</ShowButton>
+					}}><Text id="v_hide"/></ShowButton>
 				)}
 			</Fragment>
 		);
