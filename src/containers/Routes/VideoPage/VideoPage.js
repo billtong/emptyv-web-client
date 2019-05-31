@@ -7,16 +7,29 @@ import {getUserHistory} from "../../../utils/api/user";
 import VideoPlayer from "../../../components/accessories/emptyplayer/VideoPlayer";
 import styled from "styled-components";
 import Comment from "../../../components/accessories/comment/Comment";
+import VideoPageInfo from "./VideoPageInfo";
 
 const VideoWrapper = styled.div`
 	position: relative;
 	width: 880px;
 	height: 570px;
-	margin: 30px 5rem 10px 5rem;
+	margin: 30px 5rem 0px 5rem;
 	@media screen and (max-width: 450px) {
 		 margin: 0;
 		 width: 100%;
 		 height: auto;
+	}
+`;
+
+const VideoInfoWrapper = styled.div`
+	border: 1px solid #313131;
+	border-radius: 4px;
+	width: 880px;
+	text-align: left;
+	margin: 0px 5rem 0px 5rem;
+	@media screen and (max-width: 450px) {
+		 width: 100%;
+		 margin: 0;
 	}
 `;
 
@@ -41,7 +54,7 @@ class VideoPage extends Component {
 			if (getSessionTokenJson() !== null) {
 				getUserHistory().then(historyRes => {
 					this.setState({
-						history: historyRes,
+						history: historyRes.data,
 					});
 				}).catch(historyErr=>{
 					console.log(historyErr.message);
@@ -68,7 +81,6 @@ class VideoPage extends Component {
 	render = () => {
 		const videoId = this.props.match.params.id;
 		const {video, isLoading, history} = this.state;
-		console.log(video);
 		const loading = isLoading ? (<div>
 			loading...
 		</div>) : null;
@@ -86,6 +98,13 @@ class VideoPage extends Component {
 						}}
 					/>
 				</VideoWrapper>
+				<VideoInfoWrapper>
+					<VideoPageInfo
+						videoData={video}
+						videoId={videoId}
+						history={history}
+					/>
+				</VideoInfoWrapper>
 				<CommentWrapper>
 					<Comment videoId = {videoId}/>
 				</CommentWrapper>

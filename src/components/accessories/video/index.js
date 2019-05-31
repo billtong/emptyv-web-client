@@ -45,7 +45,7 @@ class Video extends Component {
 				</div>
 				<div>
 					<Pagination
-						total={this.state.total}
+						total={this.state.total <= 0 ? 1 : this.state.total}
 						curr={this.state.curr}
 						cellNum={cellNum}
 						passFatherState={this.handlePaginationClick}

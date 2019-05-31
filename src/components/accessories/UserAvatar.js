@@ -9,7 +9,6 @@ const Wrapper = Styled.div`
 	width: 3rem;
 	display: inline-block;
 	vertical-align: top;
-	margin-left: 1rem;
 	cursor: pointer;
 `;
 

@@ -6,9 +6,9 @@ import ContentMenu from './ContentMenu';
 import {getSessionTokenJson} from '../../../utils/api/apiHelper';
 import {patchView} from '../../../utils/api/video';
 import {getDanList, postDan} from '../../../utils/api/dan';
+import history from '../../../utils/history';
 import "./VidoePlayer.css";
 import PropTypes from "prop-types";
-import {TalkerTab} from "../Message/TalkerTab";
 
 class VideoPlayer extends React.Component {
 	//从后台获取全部弹幕list，确定视频是否全屏
@@ -246,7 +246,7 @@ class VideoPlayer extends React.Component {
 			});
 			this.refs.danContent.value = '';
 		} else {
-			alert('please login or sign up first');
+			history.push('/login');
 		}
 	}
 

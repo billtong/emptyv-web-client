@@ -8,9 +8,11 @@ import {postComment, postCommentA} from "../../../utils/api/comment";
 import PropTypes from "prop-types";
 import "./Comment.css";
 import history from "../../../utils/history";
+import {Link} from "react-router-dom";
 
 const cellNum = 7; //max cells display on pagination
 const pageSize = 8; //comment entity numbers in one page
+const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
 
 class Comment extends Component {
 
@@ -22,6 +24,11 @@ class Comment extends Component {
 		isBlur: true,
 		isForcus: false
 	};
+
+	componentWillMount() {
+		document.addEventListener('keypress', this.handleEnterKey);
+	}
+
 	componentDidUpdate = (prevProps, prevState, snapshot) => {
 		if (prevProps.commentList !== this.props.commentList) {
 			const currPage = prevState.curr;
@@ -32,8 +39,14 @@ class Comment extends Component {
 				commentSliceList: this.props.commentList.slice((currPage - 1) * pageSize, ((currPage - 1) * pageSize) + pageSize),
 			});
 		}
-		console.log("did update", this.state);
+	};
+
+	componentDidMount() {
+		this.props.getCommentListAction({videoId: this.props.videoId});
+		document.removeEventListener('keypress', this.handleEenterKey);
+		document.documentElement.scrollTop = 0;
 	}
+
 	handleEnterKey = (e) => {
 		if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
 			e.preventDefault();
@@ -43,20 +56,7 @@ class Comment extends Component {
 				return;
 			}
 			this.refs.comment.value = '';
-			if (this.isUserA) {
-				if(this.props.videoId === 0) {
-					postCommentA({
-						commentContent: comment,
-						commentParentId: 0
-					}).then(() => {
-						this.props.getCommentListAction({videoId: this.props.videoId});
-					}).catch((err) => {
-						alert(`failed post comment${err}`);
-					});
-				} else {
-					history.push("/login");
-				}
-			} else {
+			if (!isUserA) {
 				postComment({
 					commentContent: comment,
 					videoId: this.props.videoId,
@@ -65,11 +65,21 @@ class Comment extends Component {
 				}).then(() => {
 					this.props.getCommentListAction({videoId: this.props.videoId});
 				}).catch((err) => {
-					alert(`failed post comment${err}`);
+					alert(`failed post comment${err.message}`);
+				});
+			} else if (this.props.videoId === 0) {
+				postCommentA({
+					commentContent: comment,
+					commentParentId: 0
+				}).then(() => {
+					this.props.getCommentListAction({videoId: this.props.videoId});
+				}).catch((err) => {
+					alert(`failed post comment${err.message}`);
 				});
 			}
 		}
 	};
+
 	handlePaginationClick = (currPage) => {
 		const {commentList} = this.state;
 		const newCommentList = commentList.slice((currPage - 1) * pageSize, ((currPage - 1) * pageSize) + pageSize);
@@ -78,10 +88,9 @@ class Comment extends Component {
 			commentSliceList: newCommentList,
 		});
 	};
+
 	render = () => {
-		const token = getSessionTokenJson();
-		this.isUserA = !token || token === null;
-		const commentUploadBox = (
+		const commentUploadBox = (this.props.videoId === 0 || !isUserA) ? (
 			<div className="comment-box">
 				<input
 					className="form-control comment-content"
@@ -106,6 +115,8 @@ class Comment extends Component {
 					ref="comment"
 				/>
 			</div>
+		) : (
+			<Link to={"/login"}>login to write your comment :)</Link>
 		);
 		return (
 			<Fragment>
@@ -123,7 +134,7 @@ class Comment extends Component {
 					/>
 					<div>
 						<Pagination
-							total={this.state.total}
+							total={this.state.total <= 0 ? 1 : this.state.total}
 							curr={this.state.curr}
 							cellNum={cellNum}
 							passFatherState={this.handlePaginationClick}
@@ -132,17 +143,6 @@ class Comment extends Component {
 				</div>
 			</Fragment>
 		);
-	}
-
-	componentWillMount() {
-		document.addEventListener('keypress', this.handleEnterKey);
-	}
-
-	componentDidMount() {
-		this.props.getCommentListAction({videoId: this.props.videoId});
-		document.removeEventListener('keypress', this.handleEenterKey);
-		document.documentElement.scrollTop = 0;
-		console.log("did mount");
 	}
 }
 
