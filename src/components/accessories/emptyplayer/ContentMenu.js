@@ -36,12 +36,12 @@ class ContextMenu extends React.Component {
 	};
 
 	componentDidMount() {
-		document.addEventListener('contextmenu', this._handleContextMenu);
+		document.getElementById('myVideo').addEventListener('contextmenu', this._handleContextMenu);
 		document.addEventListener('click', this._handleClick);
 	};
 
 	componentWillUnmount() {
-		document.removeEventListener('contextmenu', this._handleContextMenu);
+		document.getElementById('myVideo').removeEventListener('contextmenu', this._handleContextMenu);
 		document.removeEventListener('click', this._handleClick);
 	}
 
