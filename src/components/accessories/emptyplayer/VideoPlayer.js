@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
 class VideoPlayer extends React.Component {
 	//从后台获取全部弹幕list，确定视频是否全屏
 	componentDidMount = () => {
-		document.getElementById("myVideo").oncontextmenu = (e) => (false);
 		window.onresize = () => {
 			if (!this.checkFull() && this.state.fullscreen) {
 				this.f11Key();
