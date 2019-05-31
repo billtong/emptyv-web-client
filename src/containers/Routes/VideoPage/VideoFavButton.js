@@ -9,7 +9,7 @@ import history from "../../../utils/history";
 import "./VideoFavButton.css";
 
 const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-const user = getSessionTokenJson().user;
+const user = (getSessionTokenJson() !== null) && getSessionTokenJson().user;
 
 class VideoFavButton extends React.Component {
 	state = {
@@ -33,7 +33,7 @@ class VideoFavButton extends React.Component {
 				alert(err);
 			});
 		} else {
-			history.push('login');
+			history.push('/login');
 		}
 	};
 

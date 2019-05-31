@@ -6,7 +6,7 @@ import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import {patchTags} from "../../../utils/api/video";
 
 const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-const user = getSessionTokenJson().user;
+const user = (getSessionTokenJson() !== null) && getSessionTokenJson().user;
 
 const Wrapper = styled.div`
   padding: 0.5rem 1rem;
