@@ -4,6 +4,21 @@ import PropTypes from "prop-types";
 import {getFavList} from "../../../utils/api/fav";
 import {TitleText, VideoWrapper} from "./UserUploadVideo";
 import Video from "../../../components/accessories/video";
+import {formatDateTime} from "../../../utils/dateTools";
+
+const FavFlexWrapper = styled.div`
+	display: flex;
+	justify-content: start;
+`;
+
+const FavDetailsWrapper = styled.div`
+	margin: 1.5rem 2rem;
+`;
+
+const FavListDetails = styled.div`
+	display: inline;
+	margin-right: 1rem;
+`;
 
 export const EmptyTitle = styled.div`
 	font-size: 1rem;
@@ -29,7 +44,8 @@ export const LittleTitle = styled.div`
 
 class UserFavVideo extends Component{
 	state = {
-		favListSelected: 0,
+		favListSelectedId: 0,
+		favListSelected: {},
 		favList: [],
 		videoList: [],
 		isLoading: false,
@@ -58,7 +74,7 @@ class UserFavVideo extends Component{
 		const favMenuList = (!this.state.favList || this.state.favList.length === 0) ? (
 			<EmptyTitle>empty</EmptyTitle>
 		) : this.state.favList.map((value, index) => {
-			if (this.state.favListSelected === value.favId) {
+			if (this.state.favListSelectedId === value.favId) {
 				return (
 					<LittleTitleSelected>{value.favName}</LittleTitleSelected>
 				);
@@ -66,7 +82,8 @@ class UserFavVideo extends Component{
 			const handleFavMenuClick = (e, favId) => {
 				e.preventDefault();
 				this.setState({
-					favListSelected: value.favId,
+					favListSelectedId: value.favId,
+					favListSelected: value,
 					videoList: value.videoList,
 				});
 			};
@@ -77,11 +94,27 @@ class UserFavVideo extends Component{
 			);
 		});
 
+		const favListInfo = (this.state.favListSelected && this.state.favListSelected.videoList) && (
+			<FavDetailsWrapper>
+				<FavListDetails>
+					{this.state.favListSelected.videoList.length} videos
+				</FavListDetails>
+				<FavListDetails>
+					Published on {formatDateTime(parseInt(this.state.favListSelected.favDate, 0))}
+				</FavListDetails>
+			</FavDetailsWrapper>
+		);
+
 		return (
 			<Fragment>
 				<VideoWrapper>
-					<TitleText>Favourite List</TitleText>
-					{favMenuList}
+					<FavFlexWrapper>
+						<div>
+							<TitleText>Favourite List</TitleText>
+							{favMenuList}
+						</div>
+						{favListInfo}
+					</FavFlexWrapper>
 					<Video
 						videoList={this.state.videoList}
 						isLoading={this.state.isLoading}

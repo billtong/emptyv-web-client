@@ -15,6 +15,10 @@ code {
     monospace;
 }
 
+.App-header {
+    z-index: 10;
+}
+
 .add-btn {
     float: left;
     clear: both;
