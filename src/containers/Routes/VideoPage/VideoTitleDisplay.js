@@ -3,8 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { IoIosHeart } from 'react-icons/io';
 import { MdThumbUp, MdThumbDown } from 'react-icons/md';
-import {formatDateTime} from "../../../utils/dateTools";
-import UserAvatar from "../../../components/accessories/UserAvatar";
+import Text from '../../../components/accessories/Text';
 
 const TitleWrapper = styled.h3`
 	font-size: 1.5rem;
@@ -48,7 +47,7 @@ class VideoTitleDisplay extends Component{
 				<div>
 					<TitleWrapper>{this.props.videoData.videoName}</TitleWrapper>
 					<NumWrapper>
-						<Num>{this.props.videoData.videoViewNum} views</Num>
+						<Num>{this.props.videoData.videoViewNum} <Text id={"vb_views"}/></Num>
 						{this.likeRateIcon()}
 						<Num> {this.props.videoData.videoFavouriteNum}<IoIosHeart color={"orange"} /></Num>
 					</NumWrapper>

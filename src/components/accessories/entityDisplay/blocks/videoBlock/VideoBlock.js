@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import {videoStyle} from '../style.js';
 import history from "../../../../../utils/history";
+import Text from '../../../Text';
 
 const Wrapper = styled.div`
 	display: inline-block;
@@ -43,7 +44,8 @@ export const VideoBlock = (props) => {
 				{props.videoInfo.videoName}
 			</Title>
 			<Num>
-				{props.videoInfo.videoViewNum} views
+				{props.videoInfo.videoViewNum}
+				<Text id={"vb_views"}/>
 			</Num>
 		</Wrapper>
 	);

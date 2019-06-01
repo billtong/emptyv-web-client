@@ -5,6 +5,7 @@ import { MdAdd } from 'react-icons/md';
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import {patchTags} from "../../../utils/api/video";
 import history from "../../../utils/history";
+import Text from '../../../components/accessories/Text';
 
 const Wrapper = styled.div`
   padding: 0.5rem 1rem;
@@ -129,7 +130,7 @@ class VideoTag extends Component{
 					className="add-input"
 					id="add-tag-input"
 					autoFocus="true"
-					placeholder="Press <Enter> to Add"
+					placeholder="press <Enter>"
 					onKeyPress={e => this.handleEnterKey(e)}
 					onFocus={this.ifTagForcus}
 					onBlur={this.ifTagBlur}
@@ -142,7 +143,7 @@ class VideoTag extends Component{
 				<div className="add-btn" onClick={e => this.handleClick(e)}>
 					<MdAdd className="add-icon" />
 				</div>
-				Add New Tags
+				<Text id="v_ant"/>
 			</div>
 		);
 		return (

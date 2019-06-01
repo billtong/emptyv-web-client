@@ -7,6 +7,7 @@ import {getSessionTokenJson} from '../../../../../utils/api/apiHelper';
 import {getCommentListAction} from '../../../../../store/actions/getCommentListAction';
 import {deleteComment, postComment} from '../../../../../utils/api/comment';
 import UserAvatar from '../../../UserAvatar';
+import Text from '../../../Text';
 
 class CommentBlockFrag extends React.Component {
 	state = {
@@ -76,25 +77,26 @@ class CommentBlockFrag extends React.Component {
 					type="text"
 					ref={`reply-${this.props.comment.commentId}`}
 					autoComplete="off"
-					placeholder="press enter to reply this comment"
 				/>
-				<input
+				<Text id="c_send" children={text=><input
 					className="reply-comment-confirm"
 					type="button"
-					value="reply"
+					value={text}
 					onClick={e => this.handleReplySubmit(e, this.props.comment)}
-				/>
-				<input
+				/>}/>
+
+				<Text id="c_cancel" children={text=><input
 					className="reply-comment-cancel"
 					type="button"
-					value="cancel"
+					value={text}
 					onClick={e => this.handleReplyClick(e, false)}
-				/></div>
+				/>}/>
+				</div>
 		) : (
-			<span className="reply-btn" onClick={e => this.handleReplyClick(e, true)}>Reply</span>
+			<span className="reply-btn" onClick={e => this.handleReplyClick(e, true)}><Text id="c_reply"/></span>
 		);
 		const deleteBtn = this.checkDeletePerm() ? (
-			<li onClick={e => this.handleDelete(e)}>delete</li>
+			<li onClick={e => this.handleDelete(e)}><Text id="c_delete"/></li>
 		) : null;
 		return (
 			<React.Fragment>
@@ -106,7 +108,7 @@ class CommentBlockFrag extends React.Component {
 					<MdMoreVert/>
 					<ul className="comment-menu">
 						{deleteBtn}
-						<li>report</li>
+						<li><Text id="c_report"/></li>
 					</ul>
 				</a>
 				{replyTag}

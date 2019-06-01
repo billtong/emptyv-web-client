@@ -1,14 +1,16 @@
 import React from 'react';
 import {MdFullscreen, MdFullscreenExit, MdPause, MdPlayArrow, MdVolumeMute, MdVolumeUp} from 'react-icons/md';
 import {ClipLoader} from 'react-spinners';
+import PropTypes from "prop-types";
 import Dan from './Dan';
 import ContentMenu from './ContentMenu';
+import Text from '../Text';
 import {getSessionTokenJson} from '../../../utils/api/apiHelper';
 import {patchView} from '../../../utils/api/video';
 import {getDanList, postDan} from '../../../utils/api/dan';
 import history from '../../../utils/history';
 import "./VidoePlayer.css";
-import PropTypes from "prop-types";
+
 
 class VideoPlayer extends React.Component {
 	//从后台获取全部弹幕list，确定视频是否全屏
@@ -367,15 +369,14 @@ class VideoPlayer extends React.Component {
 			<div>
 				<div className="vjs-control vjs-dan-switch" onClick={(e) => {
 					this.setState({isDisplayDan: false, danCss: "not-display"})
-				}}>CLOSE
+				}}><Text id="vp_close" />
 				</div>
 				<input
 					className="dan-input"
 					type="text"
 					ref="danContent"
-					placeholder="leave a comment on the video"
 				/>
-				<div className="vjs-dan-btn vjs-control" onClick={(e) => this.submitDan(e)}>go</div>
+				<div className="vjs-dan-btn vjs-control" onClick={(e) => this.submitDan(e)}><Text id="vp_go"/></div>
 			</div>
 		) : (
 			<div className="vjs-control vjs-dan-switch" onClick={(e) => {
