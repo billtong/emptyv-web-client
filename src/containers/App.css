@@ -1,0 +1,23 @@
+.App {
+    text-align: center;
+    background: #0d0d0d;
+    min-height: 100vh;
+    color: white;
+}
+
+.App-header {
+    background-color: #1f1f1f;
+    position: fixed;
+    height: 3rem;
+    color: white;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.App-content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+

@@ -1,21 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import * as serviceWorker from "./app/utils/serviceWorker";
-import App from "./app/App";
-import * as configureStore from "./app/store/configureStore";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './containers/App';
+import * as serviceWorker from './utils/serviceWorker';
+import {ConnectedRouter as Router} from "connected-react-router";
+import {PersistGate} from 'redux-persist/integration/react'
 import {Provider} from "react-redux";
+import Intl from "./utils/Intl";
+import {persistor, store} from './store';
+import history from "./utils/history";
 
-require('style-loader!css-loader!sass-loader!applicationStyles');
-const store = configureStore.configure();
-store.subscribe(() => {
-    //console.log('New state', store.getState());
-});
-const root = document.getElementById('app');
-if(root !== null){
-  ReactDOM.render(
-    <Provider store={store}>
-      <App/>
-    </Provider>
-    , root);
-}
+ReactDOM.render(
+	<Provider store={store}>
+		<PersistGate loading={null} persistor={persistor}>
+			<Router history={history}>
+				<Intl>
+					<App/>
+				</Intl>
+			</Router>
+		</PersistGate>
+	</Provider>
+	, document.getElementById('root'));
 serviceWorker.register();

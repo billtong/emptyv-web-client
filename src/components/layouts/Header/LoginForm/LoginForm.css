@@ -1,0 +1,40 @@
+.login-form {
+    position: absolute;
+}
+
+.text-input {
+    margin: 0.3rem 1rem;
+}
+
+.submit-input {
+    width: 10rem;
+    padding: 0.3rem;
+}
+
+.checkbox-text {
+    display: inline;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.keep-login-input {
+}
+
+.warning-info {
+    font-size: 0.8rem;
+}
+
+.loading-icon {
+    height: 2rem;
+}
+
+.sign-btn-text {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.sign-btn {
+    display: inline-block;
+    font-weight: 600;
+    cursor: pointer;
+}

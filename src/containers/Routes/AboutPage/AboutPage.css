@@ -1,0 +1,67 @@
+.about-us-page {
+    text-align: left;
+}
+
+.about-us-container {
+    margin: 0 5rem 3rem 5rem;
+    padding: 1rem 0rem 1rem 3rem;
+    border-bottom: 1px solid #333;
+    background-color: #1f1f1f;
+}
+
+
+section {
+    padding-left: 3rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 3rem;
+    padding-block-start: 1rem;
+}
+
+@media screen and (max-width: 450px) {
+    .about-us-container {
+        margin: 0;
+        padding:0;
+        border-bottom: none;
+    }
+    section {
+        padding-left: 0.5rem;
+        border-bottom: none;
+        padding-bottom: 1rem;
+        padding-block-start: 0rem;
+    }
+}
+
+li {
+    margin: 0.9rem;
+    font-size: 1.3rem;
+}
+
+.about-us-page p {
+    color: orangered;
+    display: inline;
+}
+
+p:hover {
+    cursor: pointer;
+}
+
+a {
+    color: blue;
+}
+
+a:hover {
+    color: blueviolet;
+}
+
+.title-text {
+    text-align: center;
+    font-weight: 800;
+}
+
+.foot-text {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-top: 1rem;
+}
+

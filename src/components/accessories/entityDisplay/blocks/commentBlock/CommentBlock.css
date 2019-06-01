@@ -1,0 +1,104 @@
+.comment-block-section {
+    margin: 1rem 0.5rem;
+}
+
+.comment-block-section .reply-btn {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.comment-block-section .reply-btn:hover {
+    color: gray;
+}
+
+.comment-block-section .reply-arro {
+    display: block;
+    font-weight: 500;
+    size: 0.7rem;
+    width: 8rem;
+    cursor: pointer;
+}
+
+.comment-block-section .reply-arro:hover {
+    color: gray;
+}
+
+.comment-block-section .comment-public-date {
+    margin-left: 1rem;
+    display: inline-block;
+    color: gray;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.comment-block-section .comment-menu-btn {
+    float: right;
+    cursor: pointer;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.comment-block-section .comment-menu-btn .comment-menu {
+    background: #424242;
+    list-style: none;
+    margin-top: -1rem;
+    visibility: hidden;
+}
+
+.comment-block-section .comment-menu-btn .comment-menu li {
+    text-align: center;
+    padding-bottom: 0.3rem;
+}
+
+.comment-block-section .comment-menu-btn .comment-menu li:hover {
+    background: #313131;
+}
+
+.comment-block-section .comment-menu-btn:hover .comment-menu {
+    visibility: visible;
+}
+
+.comment-block-section .comment-text {
+    margin-left: 5rem;
+    color: white;
+    line-height: 2rem;
+    font-weight: 400;
+}
+
+.comment-block-section .reply-input-section {
+    margin-left: 5rem;
+    font-weight: 700;
+    color: gray;
+}
+
+.comment-block-section .reply-input-section .reply-comment-input {
+    min-width: 70%;
+    margin-right: 1rem;
+    padding-left: 0.5rem;
+    border: none;
+    border-radius: 0.4rem;
+}
+
+.comment-block-section .reply-input-section .reply-comment-confirm {
+    margin-right: 1rem;
+    background: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.comment-block-section .reply-input-section .reply-comment-confirm:hover {
+    background: greenyellow;
+}
+
+.comment-block-section .reply-input-section .reply-comment-cancel {
+    background: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.comment-block-section .reply-input-section .reply-comment-cancel:hover {
+    background: red;
+}
+
