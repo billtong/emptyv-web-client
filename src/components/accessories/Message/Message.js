@@ -74,7 +74,6 @@ class Message extends React.Component {
 		const rawDataList = this.state.rawMsgList;
 		const msgMap = new Map();       //(talkerId, 和该talker的msgList)
 		const talkersMap = new Map();
-
 		if (this.props.defaultTalker) {
 			const talker = this.props.defaultTalker;
 			msgMap.set(talker.userId, 10, []);

@@ -16,6 +16,16 @@
     padding-bottom: 6rem;
 }
 
+@media screen and (max-width: 450px) {
+    .sign-section .sign-form {
+        display: grid;
+        margin: 0;
+        padding-top: 3rem;
+        padding-bottom: 6rem;
+    }
+}
+
+
 .sign-section .sign-form .sign-btn-section {
     padding-top: 1rem;
 }

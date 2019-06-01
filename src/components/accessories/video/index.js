@@ -4,7 +4,6 @@ import Pagination from "../entityDisplay/Pagination";
 import PropTypes from "prop-types";
 
 const cellNum = 7; //max page display on pagination
-const pageSize = 16; //video entity numbers in one page
 
 class Video extends Component {
 	state = {
@@ -16,15 +15,15 @@ class Video extends Component {
 	componentDidUpdate = (prevProps, prevState, snapshot) => {
 		if (prevProps.videoList !== this.props.videoList) {
 			this.setState({
-				total: Math.ceil(this.props.videoList.length / pageSize),
+				total: Math.ceil(this.props.videoList.length / this.props.pageSize),
 				curr: 1,
-				videoSliceList: this.props.videoList.slice(0, pageSize)
+				videoSliceList: this.props.videoList.slice(0, this.props.pageSize)
 			});
 		}
 	};
 
 	handlePaginationClick = (value) => {
-		const videoList = this.props.videoList.slice((value - 1) * pageSize, ((value - 1) * pageSize) + pageSize);
+		const videoList = this.props.videoList.slice((value - 1) * this.props.pageSize, ((value - 1) * this.props.pageSize) + this.props.pageSize);
 		this.setState({
 			curr: value,
 			videoSliceList: videoList,
@@ -60,12 +59,14 @@ Video.propTypes = {
 	videoList: PropTypes.arrayOf(PropTypes.object),
 	isLoading: PropTypes.bool,
 	errMsg: PropTypes.string,
+	pageSize: PropTypes.number,
 };
 
 Video.defaultProps = {
 	videoList: [],
 	isLoading: false,
 	errMsg: null,
+	pageSize: 16,
 };
 
 export default Video;

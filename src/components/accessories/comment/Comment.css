@@ -2,10 +2,15 @@
 .comment-container {
     border: 1px solid #313131;
     border-radius: 4px;
-    margin-left: 5rem;
-    margin-top: 1rem;
-    margin-right: 5rem;
     padding-bottom: 4rem;
+    margin: 1rem 5rem 0rem 5rem;
+}
+
+@media screen and (max-width: 450px) {
+    .comment-container {
+        padding-bottom: 4rem;
+        margin: 0;
+    }
 }
 
 .comment-write-block-section {
