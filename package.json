@@ -15,7 +15,6 @@
   "bugs": {
     "url": "https://github.com/billtong/empty-video-web/issues"
   },
-  "homepage": "https://github.com/billtong/empty-video-web#readme",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
