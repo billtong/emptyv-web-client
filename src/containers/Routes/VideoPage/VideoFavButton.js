@@ -8,9 +8,6 @@ import history from "../../../utils/history";
 
 import "./VideoFavButton.css";
 
-const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-const user = (getSessionTokenJson() !== null) && getSessionTokenJson().user;
-
 class VideoFavButton extends React.Component {
 	state = {
 		favDialogCss: 'notShowDialog',         //showDialog and notShowDialog
@@ -20,6 +17,8 @@ class VideoFavButton extends React.Component {
 	};
 
 	handleFavClickAction = (e) => {
+    const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
+    const user = (getSessionTokenJson() !== null) && getSessionTokenJson().user;
 		e.preventDefault();
 		if(!isUserA) {
 			getFavList({

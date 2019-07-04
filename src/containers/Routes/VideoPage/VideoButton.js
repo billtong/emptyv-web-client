@@ -8,8 +8,6 @@ import history from "../../../utils/history";
 import {patchOtherNum} from "../../../utils/api/video";
 import VideoFavButton from "./VideoFavButton";
 
-const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-
 const IconWrapper = styled.div`
 	display: inline-block;
 	margin-inline-end: 2rem;
@@ -62,13 +60,9 @@ class VideoButton extends Component{
 	};
 
 	handleClickAction = (e, myAction) => {
-		e.preventDefault();
+    e.preventDefault();
+    const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
 		if(!isUserA) {
-
-			if(myAction === 'favourite') {
-
-			}
-
 			patchOtherNum({
 				action: myAction,
 				videoId: this.props.videoId,
