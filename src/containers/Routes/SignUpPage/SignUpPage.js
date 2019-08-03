@@ -17,7 +17,7 @@ class SignUpPage extends Component {
 		e.preventDefault();
 		const {email, username, password1, password2} = this.refs;
 		const checkNull = (item, itemName) => {
-			if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
+			if (!item || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
 				this.setState({
 					error: `${itemName} can't be null`
 				});
@@ -47,13 +47,13 @@ class SignUpPage extends Component {
 				});
 				const timer = setTimeout(() => {
 					getToken({
-						userName: username.value,
-						userPassword: password1.value,
+						email: email.value,
+						password: password1.value,
 					}).then((res) => {
 						const userJson = {
-							user: res.data.user,
-							userToken: res.data.token,
-							userSessionId: res.data.sessionId
+							user: res.data,
+							userToken: res.headers.authorization,
+							userSessionId: ""
 						};
 						sessionStorage.setItem(userTokenSessionKey, JSON.stringify(userJson));
 						history.push("/");
@@ -97,12 +97,14 @@ class SignUpPage extends Component {
 					</p>
 					<form className="sign-form" onSubmit={e => this.handleSignupSubmit(e)}>
 						<input
+							type="email"
 							id="exampleInputname1"
 							aria-describedby="emailHelp"
 							placeholder="Enter email"
 							ref="email"
 						/>
 						<input
+							type="text"
 							id="exampleInputUsername1"
 							placeholder="Enter Username"
 							ref="username"

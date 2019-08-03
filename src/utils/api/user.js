@@ -1,16 +1,18 @@
 import axios from 'axios';
-import {BASE_URL} from './baseURL';
-import {getTokenParamURL} from './apiHelper';
+import { BASE_URL } from './baseURL';
+import { getTokenParamURL } from './apiHelper';
 
-//用户登陆获取token，sessionId和user全部信息
 export const getToken = (inputJson) => {
-	const deviceListURL = `${BASE_URL}api/user/login`;
-	return axios.post(deviceListURL, {
-		userName: inputJson.userName,
-		userPassword: inputJson.userPassword
-	}, {
+	const loginUrl = `${BASE_URL}user-service/auth/login`;
+	//const loginUrl = "http://localhost:8001/auth/login"
+	return axios.post(loginUrl, {
 		headers: {
 			'Content-Type': 'application/json'
+		}
+	}, {
+		auth: {
+			username: inputJson.email,
+			password: inputJson.password
 		}
 	})
 	.then((res) => (res)
@@ -29,7 +31,6 @@ export const logout = (inputJson) => {
 	}, {
 		headers: {
 			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
 			'Accept': 'application/json'
 		}
 	})
@@ -39,13 +40,12 @@ export const logout = (inputJson) => {
 		});
 };
 
-//注册新用户
 export const postRegister = (inputJson) => {
-	const deviceListURL = `${BASE_URL}api/user/signUp`;
-	return axios.post(deviceListURL, {
-		userName: inputJson.userName,
-		userPassword: inputJson.userPassword,
-		userEmail: inputJson.userEmail
+	const registerURL = `${BASE_URL}user-service/user`;
+	return axios.post(registerURL, {
+		name: inputJson.userName,
+		pwd: inputJson.userPassword,
+		email: inputJson.userEmail
 	}, {
 		headers: {
 			'Content-Type': 'application/json'
@@ -56,7 +56,6 @@ export const postRegister = (inputJson) => {
 		});
 };
 
-//获取用户记录
 export const getUserHistory = () => {
 	const deviceListURL = `${BASE_URL}api/history/getHistory?${getTokenParamURL()}`;
 	return axios.get(deviceListURL, {
@@ -69,7 +68,6 @@ export const getUserHistory = () => {
 		});
 };
 
-//更新用户信息
 export const updateUser = (user) => {
 	const updateUserURL = `${BASE_URL}api/user/update?${getTokenParamURL()}`;
 	return axios.patch(updateUserURL, user, {
@@ -81,9 +79,8 @@ export const updateUser = (user) => {
 	});
 };
 
-//获取用户的公开信息
 export const getUserPublic = (inputJson) => {
-	const deviceListURL = `${BASE_URL}api/user/getUser?userId=${inputJson.userId}`;
+	const deviceListURL = `${BASE_URL}user-service/user/${inputJson.userId}`;
 	return axios.get(deviceListURL, {
 		headers: {
 			'Content-Type': 'application/json'

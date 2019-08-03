@@ -27,11 +27,11 @@ class LoginForm extends Component {
 
 	handleLoginSubmit = (e) => {
 		e.preventDefault();
-		let username = document.getElementById("login-username").value;
+		let email = document.getElementById("login-email").value;
 		let password = document.getElementById("login-password").value;
 		let checked = this.refs['isKeepLogin'].checked;
 		const checkNull = (item, itemName) => {
-			if (!item || item === null || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
+			if (!item || item === '' || (typeof item === 'string' && item.trim().length === 0)) {
 				this.setState({
 					signInError: `${itemName} can't be null`
 				});
@@ -39,16 +39,16 @@ class LoginForm extends Component {
 			}
 			return false;
 		};
-		if (!checkNull(username, 'username') && !checkNull(password, 'password')) {
+		if (!checkNull(email, 'email') && !checkNull(password, 'password')) {
 			getToken({
-				userName: username,
-				userPassword: password,
-			}).then((res) => {
-				const userJson = {
-					user: res.data.user,
-					userToken: res.data.token,
-					userSessionId: res.data.sessionId
-				};
+					email: email,
+					password: password,
+				}).then((res) => {
+					const userJson = {
+						user: res.data,
+						userToken: res.headers.authorization,
+						userSessionId: ""
+					};
 				if (checked) {
 					setCookie(userTokenCookieKey, JSON.stringify(userJson));
 				} else {
@@ -61,7 +61,7 @@ class LoginForm extends Component {
 				});
 			});
 		}
-		username = '';
+		email = '';
 		password = '';
 		checked = false;
 	};
@@ -81,7 +81,7 @@ class LoginForm extends Component {
 						<tr>
 							<td colSpan={2}>
 								<Text id={"lgip_1"} children={(text) => <input className={"text-input"} type="text" placeholder={text}
-								                                               id={"login-username"}/>}/>
+								                                               id={"login-email"}/>}/>
 							</td>
 						</tr>
 						<tr>

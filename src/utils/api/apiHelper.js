@@ -1,4 +1,5 @@
 import {getCookie, setCookie} from '../cookieTools';
+import zh_CN from "../../assets/languages/zh_CN";
 
 export const userTokenSessionKey = 'empty-video-web-user-session';
 export const userTokenCookieKey = 'empty-video-web-user-cookie';
@@ -11,7 +12,7 @@ export const updateUserInfo = (newUser) => {
 		userJson.user = newUser;
 		sessionStorage.setItem(userTokenSessionKey, JSON.stringify(userJson));
 	}
-	else if ((!userJson || userJson === null) && cookie && cookie !== null && cookie !== '') {
+	else if (cookie && cookie !== '') {
 		userJson = JSON.parse(cookie);
 		userJson.user = newUser;
 		setCookie(userTokenCookieKey, JSON.stringify(userJson));
@@ -29,7 +30,7 @@ export const updateUserInfo = (newUser) => {
 export const getSessionTokenJson = () => {
 	let userJson = JSON.parse(sessionStorage.getItem(userTokenSessionKey));
 	const cookie = getCookie(userTokenCookieKey);
-	if ((!userJson || userJson === null) && cookie && cookie !== null && cookie !== '') {
+	if (!userJson && cookie && cookie !== '') {
 		userJson = JSON.parse(cookie);
 	}
 	return !userJson || userJson === null ? null : userJson;
@@ -39,7 +40,7 @@ export const getSessionTokenJson = () => {
 export const getTokenParamURL = () => {
 	let userJson = JSON.parse(sessionStorage.getItem(userTokenSessionKey));
 	const cookie = getCookie(userTokenCookieKey);
-	if ((!userJson || userJson === null) && cookie && cookie !== null && cookie !== '') {
+	if (!userJson && cookie && cookie !== '') {
 		userJson = JSON.parse(cookie);
 	}
 	return (!userJson || !userJson.user || !userJson.userToken || !userJson.userSessionId) ? null : `userId=${userJson.user.userId}&token=${userJson.userToken}&sessionId=${userJson.userSessionId}`;

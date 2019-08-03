@@ -26,7 +26,7 @@ class Header extends Component {
 	handleUserMenuClick = (value) => {
 		switch (value) {
 			case rightUserMenus[0]:
-				this.handleNavClick(`/user/dashboard/${getSessionTokenJson().user.userId}`);
+				this.handleNavClick(`/user/dashboard/${getSessionTokenJson().user.id}`);
 				break;
 			case rightUserMenus[1]:
 				this.handleNavClick("/user/message");
@@ -59,8 +59,8 @@ class Header extends Component {
 					<Selector
 						title={(
 							<div className="userMenuButton">
-								<img width="30" heigh="30" src={getSessionTokenJson().user.userIcon}/>
-								<div className="user-name">{getSessionTokenJson().user.userName}</div>
+								<img width="30" heigh="30" src={getSessionTokenJson().user.profile.avatar}/>
+								<div className="user-name">{getSessionTokenJson().user.profile.name}</div>
 							</div>
 						)}
 						options={rightUserMenus}
