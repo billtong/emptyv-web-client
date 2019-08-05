@@ -6,7 +6,7 @@ import "./AboutPage.css";
 import XHelmet from "../../../components/accessories/XHelmet";
 import Comment from "../../../components/accessories/comment/Comment";
 
-const aboutId = 0;
+const aboutId = "about-us";
 
 class AboutPage extends Component {
 	render = () => {

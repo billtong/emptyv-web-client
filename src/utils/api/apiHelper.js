@@ -22,9 +22,9 @@ export const updateUserInfo = (newUser) => {
 /**
  * return userJson =
  * {
- *  user: res.data.user,
- *  userToken: res.data.token,
- *  userSessionId: res.data.sessionId
+ *  user: res.data
+ *  userToken: bearer token
+ *  userSessionId: not yet
  * }
  **/
 export const getSessionTokenJson = () => {
@@ -35,6 +35,8 @@ export const getSessionTokenJson = () => {
 	}
 	return !userJson || userJson === null ? null : userJson;
 };
+
+
 
 //append it to the url for user auth
 export const getTokenParamURL = () => {

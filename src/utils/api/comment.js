@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {BASE_URL} from './baseURL';
-import {getTokenParamURL} from './apiHelper';
+import {getSessionTokenJson, getTokenParamURL} from './apiHelper';
 
 export const getComemtList = (inputJson) => {
-	const deviceListURL = `${BASE_URL}api/comment/load?videoId=${inputJson.videoId}`;
+	const deviceListURL = `${BASE_URL}comment-service/comment/video/${inputJson.videoId}`;
 	return axios.get(deviceListURL, {
 		headers: {
 			'Content-Type': 'application/json'
@@ -15,15 +15,11 @@ export const getComemtList = (inputJson) => {
 };
 
 export const postComment = (inputJson) => {
-	const deviceListURL = `${BASE_URL}api/comment/write?${getTokenParamURL()}`;
-	return axios.post(deviceListURL, {
-		commentContent: inputJson.commentContent,
-		videoId: inputJson.videoId,
-		userId: inputJson.userId,
-		commentParentId: inputJson.commentParentId
-	}, {
+	const postCommentURL = `${BASE_URL}comment-service/comment`;
+	return axios.post(postCommentURL, inputJson, {
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Authorization': getSessionTokenJson().userToken
 		}
 	}).then((res) => (res)
 		, (err) => (err));
@@ -43,7 +39,12 @@ export const postCommentA = (inputJson) => {
 };
 
 export const deleteComment = (inputJson) => {
-	const deleteCommentURL = `${BASE_URL}api/comment/delete?${getTokenParamURL()}&commentId=${inputJson.commentId}`;
-	return axios.delete(deleteCommentURL, {}).then((res) => (res)
+	const deleteCommentURL = `${BASE_URL}comment-service/comment/${inputJson.commentId}`;
+	return axios.delete(deleteCommentURL, {
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': getSessionTokenJson().userToken
+		}
+	}).then((res) => (res)
 		, (err) => (err));
 };

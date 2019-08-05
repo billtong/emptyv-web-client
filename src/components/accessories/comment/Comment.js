@@ -58,10 +58,9 @@ class Comment extends Component {
 			const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
 			if (!isUserA) {
 				postComment({
-					commentContent: comment,
+					text: comment,
 					videoId: this.props.videoId,
-					userId: getSessionTokenJson().user.userId,
-					commentParentId: 0
+					created: new Date()
 				}).then(() => {
 					this.props.getCommentListAction({videoId: this.props.videoId});
 				}).catch((err) => {
@@ -149,11 +148,11 @@ class Comment extends Component {
 
 
 Pagination.propTypes = {
-	videoId: PropTypes.number,
+	videoId: PropTypes.string,
 };
 
 Pagination.defaultProps = {
-	videoId: null,
+	videoId: "",
 };
 
 

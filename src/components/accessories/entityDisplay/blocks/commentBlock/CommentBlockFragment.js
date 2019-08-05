@@ -2,39 +2,52 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {MdMoreVert} from 'react-icons/md';
 
-import {formatDateTime} from '../../../../../utils/dateTools';
 import {getSessionTokenJson} from '../../../../../utils/api/apiHelper';
 import {getCommentListAction} from '../../../../../store/actions/getCommentListAction';
 import {deleteComment, postComment} from '../../../../../utils/api/comment';
 import UserAvatar from '../../../UserAvatar';
 import Text from '../../../Text';
+import PropTypes from "prop-types";
+import {getUserPublic} from "../../../../../utils/api/user";
 
 class CommentBlockFrag extends React.Component {
 	state = {
-		isReply: false
+		isReply: false,
+		isLoading: false,
+		userInfo: null
+	};
+
+	componentDidMount = () => {
+		this.setState({
+			isLoading: true,
+		});
+		getUserPublic({ userId: this.props.comment.userId }).then((res) => {
+			this.setState({
+				isLoading: false,
+				userInfo: res.data
+			});
+		});
 	};
 
 	//这个是comment的输入栏的提交法方法
-	handleReplySubmit = (e, reComment) => {
-		const comment = this.refs[`reply-${reComment.commentId}`].value;
+	handleReplySubmit = (e) => {
+		const reComment = this.props.comment;
+		const comment = this.refs[`reply-${reComment.id}`].value;
 		if (!comment || comment === null || comment === '' || (typeof comment === 'string' && comment.trim().length === 0)) {
 			alert('fill with something please...');
 			return;
 		}
-		this.refs[`reply-${reComment.commentId}`].value = '';
-		const inputJson = {
-			commentContent: comment,
-			videoId: reComment.videoId,
-			userId: getSessionTokenJson().user.userId,
-			commentParentId: reComment.commentId
-		};
+		this.refs[`reply-${reComment.id}`].value = '';
 		e.preventDefault();
-		postComment(inputJson)
-		.then(() => {
+		const parentId = this.props.rootComment ? this.props.rootComment.id : reComment.id;
+		postComment({
+			text: comment,
+			videoId: reComment.videoId,
+			parentId: parentId
+		}).then(() => {
 			this.setState({isReply: false});
 			this.props.getCommentListAction({videoId: reComment.videoId});
-		})
-		.catch((err) => {
+		}).catch((err) => {
 			alert(`failed post comment${err}`);
 		});
 	};
@@ -51,12 +64,12 @@ class CommentBlockFrag extends React.Component {
 	};
 
 	checkDeletePerm = () => {
-		return getSessionTokenJson() !== null && this.props.comment.userId === getSessionTokenJson().user.userId;
+		return getSessionTokenJson() !== null && this.props.comment.userId === getSessionTokenJson().user.id;
 	};
 
 	handleDelete = (e) => {
 		e.preventDefault();
-		deleteComment({commentId: this.props.comment.commentId}).then(() => {
+		deleteComment({commentId: this.props.comment.id}).then(() => {
 			this.props.getCommentListAction({videoId: this.props.comment.videoId});
 		}).catch((err) => {
 			alert(err);
@@ -64,10 +77,10 @@ class CommentBlockFrag extends React.Component {
 	};
 
 	render() {
-		const uploadDate = formatDateTime(parseInt(this.props.comment.commentDate));
-		const replyTag = !this.props.rootComment ? null : (
+		const uploadDate = this.props.comment.created;
+		const replyTag = !this.props.comment.at ? null : (
 			<div className="comment-text reply">
-				<p>@{this.props.rootComment.userInfo.userName}</p>
+				<p>@{this.props.rootComment.id}</p>
 			</div>
 		);
 		const replyInput = this.state.isReply ? (
@@ -75,16 +88,17 @@ class CommentBlockFrag extends React.Component {
 				<input
 					className="reply-comment-input"
 					type="text"
-					ref={`reply-${this.props.comment.commentId}`}
+					ref={`reply-${this.props.comment.id}`}
 					autoComplete="off"
 				/>
-				<Text id="c_send" children={text=><input
-					className="reply-comment-confirm"
-					type="button"
-					value={text}
-					onClick={e => this.handleReplySubmit(e, this.props.comment)}
-				/>}/>
-
+				<Text id="c_send" children={text => (<input
+						className="reply-comment-confirm"
+						type="button"
+						value={text}
+						onClick={e => this.handleReplySubmit(e)}
+					/>)
+				}
+				/>
 				<Text id="c_cancel" children={text=><input
 					className="reply-comment-cancel"
 					type="button"
@@ -100,7 +114,7 @@ class CommentBlockFrag extends React.Component {
 		) : null;
 		return (
 			<React.Fragment>
-				<UserAvatar userInfo={this.props.comment.userInfo}/>
+				{ this.state.userInfo && <UserAvatar userInfo={this.state.userInfo} />}
 				<div className="comment-public-date">
 					#{this.props.floor} {uploadDate}
 				</div>
@@ -113,7 +127,7 @@ class CommentBlockFrag extends React.Component {
 				</a>
 				{replyTag}
 				<div className="comment-text">
-					{this.props.comment.commentContent}
+					{this.props.comment.text}
 				</div>
 				<div className="reply-input-section">
 					{replyInput}
@@ -122,6 +136,29 @@ class CommentBlockFrag extends React.Component {
 		);
 	}
 }
+
+CommentBlockFrag.propTypes = {
+	rootComment: PropTypes.object,
+	comment: PropTypes.object,
+};
+
+CommentBlockFrag.defaultProps = {
+	rootComment: null,
+	comment: {
+		at: "",
+		created: new Date(),
+		deleted: false,
+		id: "",
+		likeNum: 0,
+		parentId: "",
+		replyNum: 0,
+		text: "",
+		userId: "",
+		videoId: "",
+		replies: []
+	}
+};
+
 
 const mapStateToProps = (state) => (state);
 

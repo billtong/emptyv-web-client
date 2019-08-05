@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from './baseURL';
-import { getTokenParamURL } from './apiHelper';
+import { getTokenParamURL, getSessionTokenJson } from './apiHelper';
 
 export const getToken = (inputJson) => {
 	const loginUrl = `${BASE_URL}user-service/auth/login`;
@@ -69,10 +69,11 @@ export const getUserHistory = () => {
 };
 
 export const updateUser = (user) => {
-	const updateUserURL = `${BASE_URL}api/user/update?${getTokenParamURL()}`;
+	const updateUserURL = `${BASE_URL}user-service/user`;
 	return axios.patch(updateUserURL, user, {
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Authorization': getSessionTokenJson().userToken
 		}
 	}).then((res) => (res), (err) => {
 		throw new Error(err.message);

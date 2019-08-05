@@ -12,17 +12,17 @@ class UserInfo extends Component{
 						<td className="title-td">Bio</td>
 						<td className="text-td">
 							<p className="bio-text">
-								{this.props.user.userDesc}
+								{this.props.user.profile.description}
 							</p>
 						</td>
 					</tr>
 					<tr>
 						<td className="title-td">Location</td>
-						<td className="text-td">{this.props.user.userLoc}</td>
+						<td className="text-td">{this.props.user.profile.location}</td>
 					</tr>
 					<tr>
 						<td className="title-td">Website</td>
-						<td className="text-td">{this.props.user.userSite}</td>
+						<td className="text-td">{this.props.user.profile.website}</td>
 					</tr>
 				</table>
 			</Fragment>
@@ -37,5 +37,21 @@ UserInfo.propsTypes = {
 };
 
 UserInfo.defaultProps = {
-	user: {}
+	user: {
+		system: {
+			reg: "",
+			active: false,
+			status: "",
+			point: 0,
+			achievement: []
+		},
+		profile: {
+			avatar: "",
+			name: "",
+			banner: "",
+			description: "",
+			location: "",
+			website: ""
+		}
+	}
 };

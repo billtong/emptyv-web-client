@@ -8,4 +8,4 @@
 export const BASE_MULTIPARTFILES_URL = 'http://178.128.236.114:8080/empty-video-files/';
 
 //localhost
-export const BASE_URL = "http://localhost:8000/";
+export const BASE_URL = "http://192.168.0.12:8000/";

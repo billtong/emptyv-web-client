@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {GoChevronDown, GoChevronUp} from 'react-icons/go';
 import CommentBlockFrag from './CommentBlockFragment';
 import Text from '../../../Text';
 import './CommentBlock.css';
+import PropTypes from "prop-types";
 
 class CommentBlock extends React.Component {
 	state = {
 		isOpenReply: false,
-		isReplyArr: Array(this.props.commentInfo.length).fill(false)
+		isReplyArr: this.props.commentInfo.replies ? Array(this.props.commentInfo.replies.length).fill(false) : []
 	};
+
 
 	reverseRepliesComment = (list) => (
 		list.map((item, index) => {
@@ -21,22 +23,29 @@ class CommentBlock extends React.Component {
 	);
 
 	render() {
-		const rootComment = this.props.commentInfo[0];
-		const clist = this.reverseRepliesComment(this.props.commentInfo);
+		const {commentInfo} = this.props;
+		const clist = commentInfo.replies ? commentInfo.replies : [];
 		const renderReplyList = this.state.isOpenReply ? clist.map((comment, index) => {
+			let rc = commentInfo;
 			if (index === 0) {
 				return (
-					<span key={index} className="reply-arro" onClick={e => {
-						e.preventDefault();
-						this.setState({isOpenReply: false});
-					}}>
-						<GoChevronUp/> <Text id="c_hide"/>
-					</span>
+					<Fragment>
+						<span key={index} className="reply-arro" onClick={e => {
+								e.preventDefault();
+								this.setState({isOpenReply: false});
+							}}>
+							<GoChevronUp/> <Text id="c_hide"/>
+						</span>
+						<CommentBlockFrag
+							floor={clist.length - index}
+							comment={comment}
+							rootComment={commentInfo}
+						/>
+					</Fragment>
 				);
 			}
-			let rc = null;
 			clist.forEach(element => {
-				if (element.commentId === comment.commentParentId) {
+				if (element.id === comment.parentId) {
 					rc = element;
 				}
 			});
@@ -45,7 +54,7 @@ class CommentBlock extends React.Component {
 					<CommentBlockFrag
 						floor={clist.length - index}
 						comment={comment}
-						rootComment={rc}
+						rootComment={commentInfo}
 					/>
 				</div>
 			);
@@ -61,14 +70,34 @@ class CommentBlock extends React.Component {
 			<div className="comment-block-section">
 				<CommentBlockFrag
 					floor={this.props.floor}
-					comment={rootComment}
+					comment={commentInfo}
 				/>
 				<div className="comment-reply">
-					{clist.length === 1 ? null : renderReplyList}
+					{clist.length === 0 ? null : renderReplyList}
 				</div>
 			</div>
 		);
 	}
 }
+
+CommentBlock.propTypes = {
+	commentInfo: PropTypes.object,
+};
+
+CommentBlock.defaultProps = {
+	commentInfo: {
+		at: "",
+		created: new Date(),
+		deleted: false,
+		id: "",
+		likeNum: 0,
+		parentId: "",
+		replyNum: 0,
+		text: "",
+		userId: "",
+		videoId: "",
+		replies: []
+	}
+};
 
 export default CommentBlock;

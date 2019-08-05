@@ -24,7 +24,6 @@ class UserPage extends Component {
 		isHostUser: false,
 	};
 
-
 	componentWillReceiveProps = (nextProps) => {
 		if(nextProps.match.params.id !== this.props.match.params.id) {
 			window.location.reload();
@@ -34,7 +33,7 @@ class UserPage extends Component {
 	componentWillMount = () => {
 		const userId = this.props.match.params.id;
 		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-		if(!isUserA && getSessionTokenJson().user.userId === parseInt(userId, 10)) {
+		if(!isUserA && getSessionTokenJson().user.id === userId) {
 			this.setState({
 				user: getSessionTokenJson().user,
 				isHostUser: true,

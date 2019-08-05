@@ -18,8 +18,10 @@ class SettingPage extends React.Component {
 		userBannerImgURL: '',
 		userBio: '',
 		userLocation: '',
-		userURL: ''
+		userURL: '',
+		userName: ''
 	};
+
 	//监听用户上传图片的行为，更改state
 	fileChangedHandler = (e, userParam) => {
 		if (e.target.files[0] === undefined) {
@@ -67,14 +69,12 @@ class SettingPage extends React.Component {
 	};
 	//判断用户有没有更改信息
 	hasChanged = () => {
-		if (this.refs.bio === '' && this.refs.location === '' && this.refs.url === '') {
+		if (this.refs.bio === '' && this.refs.location === '' && this.refs.url === '' && this.refs.name === '') {
 			return false;
 		}
-		if (this.state.userBannerImg === null && this.state.userBio === '' && this.state.userIconImg === null && this.state.userLocation === '' && this.state.userURL === '') {
-			return false;
-		}
-		return true;
+		return !(this.state.userBannerImg === null && this.state.userBio === '' && this.state.userIconImg === null && this.state.userLocation === '' && this.state.userURL === '' && this.state.userName === '');
 	};
+
 	//监听用户输入行为，改变state
 	handleKeyDown = (e, inputRefs) => {
 		const newUser = this.state.user;
@@ -82,7 +82,7 @@ class SettingPage extends React.Component {
 			case 'bio' :
 				const timer1 = setInterval(() => {
 					if (this.state.userBio !== this.refs.bio.value) {
-						newUser.userDesc = this.refs.bio.value;
+						newUser.profile.description = this.refs.bio.value;
 						this.setState({userBio: this.refs.bio.value, user: newUser});
 					} else {
 						clearInterval(timer1);
@@ -92,7 +92,7 @@ class SettingPage extends React.Component {
 			case 'location' :
 				const timer2 = setInterval(() => {
 					if (this.state.userLocation !== this.refs.location.value) {
-						newUser.userLoc = this.refs.location.value;
+						newUser.profile.location = this.refs.location.value;
 						this.setState({userLocation: this.refs.location.value, user: newUser});
 					} else {
 						clearInterval(timer2);
@@ -102,18 +102,27 @@ class SettingPage extends React.Component {
 			case 'url' :
 				const timer3 = setInterval(() => {
 					if (this.state.userURL !== this.refs.url.value) {
-						newUser.userSite = this.refs.url.value;
+						newUser.profile.website = this.refs.url.value;
 						this.setState({userURL: this.refs.url.value, user: newUser});
 					} else {
 						clearInterval(timer3);
 					}
 				}, 10);
 				break;
+			case 'name':
+				const timer4 = setInterval(()=>{
+					if (this.state.user.profile.name !== this.refs.name.value) {
+						newUser.profile.name = this.refs.name.value;
+						this.setState({ userName: this.refs.name.value, user: newUser })
+					} else {
+						clearInterval(timer4);
+					}
+				}, 10);
 			default:
 				break;
 		}
 	};
-	//提交更改
+
 	handleUpdateClick = (e) => {
 		e.preventDefault();
 		this.setState({isLoading: true});
@@ -138,7 +147,7 @@ class SettingPage extends React.Component {
 				updateUser(this.state.user).then(() => {
 					updateUserInfo(this.state.user);
 					this.setState({isLoading: false});
-					//location.reload();
+					history.push("/");
 				}).catch((err) => {
 					this.setState({isLoading: false});
 					alert(err);
@@ -152,7 +161,7 @@ class SettingPage extends React.Component {
 			updateUser(this.state.user).then(() => {
 				updateUserInfo(this.state.user);
 				this.setState({isLoading: false});
-				//location.reload();
+				history.push("/");
 			}).catch((err) => {
 				this.setState({isLoading: false});
 				alert(err);
@@ -208,24 +217,25 @@ class SettingPage extends React.Component {
 						<label for="userIcon">Update</label>
 					</li>
 					<li className="setting-li">
-						<div>
-							Bio
-						</div>
-						<textarea className="bio-text" placeholder={getSessionTokenJson().user.userDesc}
+						<div>name</div>
+						<input className={"input-text"} placeholder={getSessionTokenJson().user.profile.name} type={"text"}
+						       onKeyDown={(e)=>this.handleKeyDown(e, 'name')} ref="name" />
+					</li>
+					<li className="setting-li">
+						<div>Bio</div>
+						<textarea className="bio-text" placeholder={getSessionTokenJson().user.profile.description}
 						          onKeyDown={(e) => this.handleKeyDown(e, 'bio')} ref="bio"/>
 					</li>
 					<li className="setting-li">
-						<div>
-							Location
-						</div>
-						<input className="input-text" placeholder={getSessionTokenJson().user.userLoc} type="text"
+						<div>Location</div>
+						<input className="input-text" placeholder={getSessionTokenJson().user.profile.location} type="text"
 						       onKeyDown={(e) => this.handleKeyDown(e, 'location')} ref="location"/>
 					</li>
 					<li className="setting-li">
 						<div>
 							URL
 						</div>
-						<input className="input-text" placeholder={getSessionTokenJson().user.userSite} type="text"
+						<input className="input-text" placeholder={getSessionTokenJson().user.profile.website} type="text"
 						       onKeyDown={(e) => this.handleKeyDown(e, 'url')} ref="url"/>
 					</li>
 					<li className="setting-li">

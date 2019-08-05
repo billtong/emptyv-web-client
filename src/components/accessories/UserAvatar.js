@@ -23,23 +23,21 @@ const TextWrapper = Styled.div`
 class UserAvatar extends React.Component {
 	handleUserClick = (e, userId) => {
 		e.preventDefault();
-		if (userId > 0) {
-			history.push(`/user/dashboard/${userId}`);
-		}
+		history.push(`/user/dashboard/${userId}`);
 	};
 
 	render() {
 		return (
 			<React.Fragment>
-				<Wrapper onClick={e => this.handleUserClick(e, this.props.userInfo.userId)}>
+				<Wrapper onClick={e => this.handleUserClick(e, this.props.userInfo.id)}>
 					<img
-						src={this.props.userInfo.userIcon}
+						src={this.props.userInfo.profile.avatar}
 						height="100%"
 						width="100%"
 					/>
 				</Wrapper>
-				<TextWrapper onClick={e => this.handleUserClick(e, this.props.userInfo.userId)}>
-					{this.props.userInfo.userName}
+				<TextWrapper onClick={e => this.handleUserClick(e, this.props.userInfo.id)}>
+					{this.props.userInfo.profile.name}
 				</TextWrapper>
 			</React.Fragment>
 		);
@@ -54,8 +52,20 @@ UserAvatar.propTypes = {
 
 UserAvatar.defaultProps = {
 	userInfo: {
-		userId: null,
-		userIcon: null,
-		userName: null,
+		system: {
+			reg: "",
+			active: false,
+			status: "",
+			point: 0,
+			achievement: []
+		},
+		profile: {
+			avatar: "",
+			name: "",
+			banner: "",
+			description: "",
+			location: "",
+			website: ""
+		}
 	}
 };

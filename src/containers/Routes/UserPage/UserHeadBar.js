@@ -60,7 +60,7 @@ class UserHeadBar extends Component{
 		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
 		if(!isUserA) {
 			history.push({
-				pathname:`/user/message/${userInfo.userId}`,
+				pathname:`/user/message/${userInfo.id}`,
 				state: userInfo
 			});
 		} else {
@@ -73,13 +73,12 @@ class UserHeadBar extends Component{
 		return (
 			<Fragment>
 				<UserBannerWrapper>
-					<img width="100%" height="100%" className="user-banner-img" src={this.props.user.userBanner} />
+					<img width="100%" height="100%" className="user-banner-img" src={this.props.user.profile.banner} />
 				</UserBannerWrapper>
 				<UserHeaderWrapper>
 					<div>
-						<UserImg src={this.props.user.userIcon} />
-						<UserId>#{this.props.user.userId}</UserId>
-						<UserName>{this.props.user.userName}</UserName>
+						<UserImg src={this.props.user.profile.avatar} />
+						<UserName>{this.props.user.profile.name}</UserName>
 					</div>
 					<RightWrapper>
 						<MessageBtn onClick={e=>this.handleMessageClick(e, this.props.user)}>Message</MessageBtn>
@@ -97,5 +96,21 @@ UserHeadBar.propsTypes = {
 };
 
 UserHeadBar.defaultProps = {
-	user: {}
+	user: {
+		system: {
+			reg: "",
+			active: false,
+			status: "",
+			point: 0,
+			achievement: []
+		},
+		profile: {
+			name: "",
+			avatar: "",
+			banner: "",
+			description: "",
+			location: "",
+			website: ""
+		}
+	}
 };
