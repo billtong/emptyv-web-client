@@ -1,8 +1,8 @@
 import React from 'react';
-import { IoIosHeart } from 'react-icons/io';
-import { MdAdd } from 'react-icons/md';
-import { PulseLoader } from 'react-spinners';
-import {getFavList, patchFavList, postFavList } from "../../../utils/api/fav";
+import {IoIosHeart} from 'react-icons/io';
+import {MdAdd} from 'react-icons/md';
+import {PulseLoader} from 'react-spinners';
+import {getFavList, patchFavList, postFavList} from "../../../utils/api/fav";
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import history from "../../../utils/history";
 
@@ -17,10 +17,10 @@ class VideoFavButton extends React.Component {
 	};
 
 	handleFavClickAction = (e) => {
-    const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-    const user = (getSessionTokenJson() !== null) && getSessionTokenJson().user;
+		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
+		const user = (getSessionTokenJson() !== null) && getSessionTokenJson().user;
 		e.preventDefault();
-		if(!isUserA) {
+		if (!isUserA) {
 			getFavList({
 				userId: user.userId
 			}).then(res => {
@@ -37,7 +37,7 @@ class VideoFavButton extends React.Component {
 	};
 
 	//提交改变的favlist和新建的favlist
-	sendChangedFavList=(e) => {
+	sendChangedFavList = (e) => {
 		e.preventDefault();
 		if (this.state.changedFavList.length > 0) {
 			this.state.changedFavList.forEach((value, index) => {
@@ -208,8 +208,9 @@ class VideoFavButton extends React.Component {
 								}));
 							}}
 						>
-							<MdAdd className="add-icon" />
-						</div>make a new favourite list
+							<MdAdd className="add-icon"/>
+						</div>
+						make a new favourite list
 					</div>
 				</td>
 			</tr>
@@ -218,14 +219,17 @@ class VideoFavButton extends React.Component {
 
 		const addFavDialog = !this.state.favList ? (
 			<div className="favlist-loader">
-				<PulseLoader color={'#d9d9d9'} />
+				<PulseLoader color={'#d9d9d9'}/>
 			</div>
 		) : (
 			<div className="modal-dialog modal-lg fav-dialog">
 				<div className="modal-content">
 					<div className="modal-header">
 						<h4 className="modal-title">Add to Favourite List</h4>
-						<button type="button" className="close" data-dismiss="modal" onClick={(e) => {e.preventDefault(); this.setState(prevState => ({ ...prevState, favDialogCss: 'notShowDialog', isNewFavList: false })); }}>
+						<button type="button" className="close" data-dismiss="modal" onClick={(e) => {
+							e.preventDefault();
+							this.setState(prevState => ({...prevState, favDialogCss: 'notShowDialog', isNewFavList: false}));
+						}}>
 							&times;
 						</button>
 					</div>
@@ -237,7 +241,7 @@ class VideoFavButton extends React.Component {
 								</tbody>
 								{addNewFavList}
 							</table>
-							<input className="form-control" type="button" value="submit" onClick={(e) => this.sendChangedFavList(e)} />
+							<input className="form-control" type="button" value="submit" onClick={(e) => this.sendChangedFavList(e)}/>
 						</form>
 					</div>
 				</div>
@@ -250,11 +254,11 @@ class VideoFavButton extends React.Component {
 					style={{color: this.props.hasFav ? 'orange' : 'white'}}
 					onClick={e => this.handleFavClickAction(e)}
 				>
-					<IoIosHeart data-toggle="modal" />
+					<IoIosHeart data-toggle="modal"/>
 				</div>
 				<div className={this.state.favDialogCss} role="dialog">
 					{addFavDialog}
-			</div>
+				</div>
 			</React.Fragment>
 		);
 	}

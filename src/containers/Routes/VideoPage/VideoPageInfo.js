@@ -6,13 +6,13 @@ import VideoDesc from "./VideoDesc";
 import VideoButton from "./VideoButton";
 import VideoTitleDisplay from "./VideoTitleDisplay";
 
-const Wrapper  = styled.div`
+const Wrapper = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 `;
 
-class VideoPageInfo extends Component{
+class VideoPageInfo extends Component {
 	render = () => {
 		return (
 			<Fragment>

@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { MdAdd } from 'react-icons/md';
+import {MdAdd} from 'react-icons/md';
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import {patchTags} from "../../../utils/api/video";
 import history from "../../../utils/history";
@@ -22,7 +22,7 @@ const TagWrapper = styled.div`
 	font-weight: 500;
 `;
 
-class VideoTag extends Component{
+class VideoTag extends Component {
 	state = {
 		tagList: [],  //用于记录改变的tagList
 		isTagAdd: false,              //用于记录btn和input的状态改变
@@ -30,16 +30,16 @@ class VideoTag extends Component{
 		isTagForcus: false            //blur和focus是防止被其他input的enter提交给影响
 	};
 
-	componentWillMount=() => {
+	componentWillMount = () => {
 		document.addEventListener('keypress', this.handleEnterKey);
 	};
 
-	componentDidMount=() => {
+	componentDidMount = () => {
 		document.removeEventListener('keypress', this.handleEenterKey);
 	};
 
 	componentDidUpdate = (prevProps, prevState, snapshot) => {
-		if(prevProps.videoData !== this.props.videoData) {
+		if (prevProps.videoData !== this.props.videoData) {
 			this.setState({
 				tagList: this.props.videoData.videoTag
 			});
@@ -47,7 +47,7 @@ class VideoTag extends Component{
 	};
 
 	//点击Enter键提交这个tag
-	handleEnterKey=(e) => {
+	handleEnterKey = (e) => {
 		if (e.keyCode === 13 && this.state.isTagForcus && !this.state.isTagBlur) {
 			e.preventDefault();
 			const content = this.refs.addTag.value;
@@ -55,7 +55,7 @@ class VideoTag extends Component{
 				alert('fill with something please...');
 				return;
 			}
-			const { tagList } = this.state;
+			const {tagList} = this.state;
 			const tag = this.refs.addTag.value;
 			this.refs.addTag.value = '';
 			const newTagList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
@@ -74,9 +74,9 @@ class VideoTag extends Component{
 	};
 
 	//click the add button to open input board
-	handleClick=(e) => {
+	handleClick = (e) => {
 		e.preventDefault();
-		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
+		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
 		const userJSON = getSessionTokenJson();
 		if (!isUserA) {
 			if (userJSON.user.userId === this.props.videoData.userId) {
@@ -94,7 +94,7 @@ class VideoTag extends Component{
 	};
 
 	//监听tag输入筐的focus状态
-	ifTagForcus=() => {
+	ifTagForcus = () => {
 		this.setState({
 			isTagForcus: true,
 			isTagBlur: false
@@ -102,7 +102,7 @@ class VideoTag extends Component{
 	};
 
 	//监听tag输入框的blur状态
-	ifTagBlur=() => {
+	ifTagBlur = () => {
 		this.setState({
 			isTagForcus: false,
 			isTagBlur: true,
@@ -111,9 +111,9 @@ class VideoTag extends Component{
 	};
 
 	render = () => {
-		const { tagList } = this.state;
+		const {tagList} = this.state;
 		const solvedTageList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
-		const tagListSec = (!solvedTageList || solvedTageList.length === 0 ) ? (
+		const tagListSec = (!solvedTageList || solvedTageList.length === 0) ? (
 			<span key={-1}>no tags yet</span>
 		) : (
 			solvedTageList.map((value, index) => {
@@ -141,7 +141,7 @@ class VideoTag extends Component{
 		) : (
 			<div>
 				<div className="add-btn" onClick={e => this.handleClick(e)}>
-					<MdAdd className="add-icon" />
+					<MdAdd className="add-icon"/>
 				</div>
 				<Text id="v_ant"/>
 			</div>

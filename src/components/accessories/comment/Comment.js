@@ -7,7 +7,6 @@ import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import {postComment, postCommentA} from "../../../utils/api/comment";
 import PropTypes from "prop-types";
 import "./Comment.css";
-import history from "../../../utils/history";
 import {Link} from "react-router-dom";
 
 const cellNum = 7; //max cells display on pagination
@@ -23,11 +22,6 @@ class Comment extends Component {
 		isBlur: true,
 		isForcus: false
 	};
-
-	componentWillMount() {
-		document.addEventListener('keypress', this.handleEnterKey);
-	}
-
 	componentDidUpdate = (prevProps, prevState, snapshot) => {
 		if (prevProps.commentList !== this.props.commentList) {
 			const currPage = prevState.curr;
@@ -39,13 +33,6 @@ class Comment extends Component {
 			});
 		}
 	};
-
-	componentDidMount() {
-		this.props.getCommentListAction({videoId: this.props.videoId});
-		document.removeEventListener('keypress', this.handleEenterKey);
-		document.documentElement.scrollTop = 0;
-	}
-
 	handleEnterKey = (e) => {
 		if (e.keyCode === 13 && this.state.isForcus && !this.state.isBlur) {
 			e.preventDefault();
@@ -55,7 +42,7 @@ class Comment extends Component {
 				return;
 			}
 			this.refs.comment.value = '';
-			const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
+			const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
 			if (!isUserA) {
 				postComment({
 					text: comment,
@@ -69,7 +56,6 @@ class Comment extends Component {
 			}
 		}
 	};
-
 	handlePaginationClick = (currPage) => {
 		const {commentList} = this.state;
 		const newCommentList = commentList.slice((currPage - 1) * pageSize, ((currPage - 1) * pageSize) + pageSize);
@@ -78,9 +64,8 @@ class Comment extends Component {
 			commentSliceList: newCommentList,
 		});
 	};
-
 	render = () => {
-		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
+		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
 		const commentUploadBox = (!isUserA) ? (
 			<div className="comment-box">
 				<input
@@ -134,6 +119,16 @@ class Comment extends Component {
 				</div>
 			</Fragment>
 		);
+	}
+
+	componentWillMount() {
+		document.addEventListener('keypress', this.handleEnterKey);
+	}
+
+	componentDidMount() {
+		this.props.getCommentListAction({videoId: this.props.videoId});
+		document.removeEventListener('keypress', this.handleEenterKey);
+		document.documentElement.scrollTop = 0;
 	}
 }
 

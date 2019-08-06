@@ -54,13 +54,13 @@ const MessageBtn = styled.div`
 	}
 `;
 
-class UserHeadBar extends Component{
+class UserHeadBar extends Component {
 	handleMessageClick = (e, userInfo) => {
 		e.preventDefault();
-		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-		if(!isUserA) {
+		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
+		if (!isUserA) {
 			history.push({
-				pathname:`/user/message/${userInfo.id}`,
+				pathname: `/user/message/${userInfo.id}`,
 				state: userInfo
 			});
 		} else {
@@ -73,15 +73,16 @@ class UserHeadBar extends Component{
 		return (
 			<Fragment>
 				<UserBannerWrapper>
-					<img width="100%" height="100%" className="user-banner-img" src={this.props.user.profile && this.props.user.profile.banner} />
+					<img width="100%" height="100%" className="user-banner-img"
+					     src={this.props.user.profile && this.props.user.profile.banner}/>
 				</UserBannerWrapper>
 				<UserHeaderWrapper>
 					<div>
-						<UserImg src={this.props.user.profile && this.props.user.profile.avatar} />
+						<UserImg src={this.props.user.profile && this.props.user.profile.avatar}/>
 						<UserName>{this.props.user.profile && this.props.user.profile.name}</UserName>
 					</div>
 					<RightWrapper>
-						<MessageBtn onClick={e=>this.handleMessageClick(e, this.props.user)}>Message</MessageBtn>
+						<MessageBtn onClick={e => this.handleMessageClick(e, this.props.user)}>Message</MessageBtn>
 					</RightWrapper>
 				</UserHeaderWrapper>
 			</Fragment>

@@ -1,7 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import styled from "styled-components";
 import {withRouter} from "react-router-dom";
-import {getFavList} from "../../../utils/api/fav";
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import {getUserPublic} from "../../../utils/api/user";
 import history from "../../../utils/history";
@@ -25,15 +24,15 @@ class UserPage extends Component {
 	};
 
 	componentWillReceiveProps = (nextProps) => {
-		if(nextProps.match.params.id !== this.props.match.params.id) {
+		if (nextProps.match.params.id !== this.props.match.params.id) {
 			window.location.reload();
 		}
 	};
 
 	componentWillMount = () => {
 		const userId = this.props.match.params.id;
-		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-		if(!isUserA && getSessionTokenJson().user.id === userId) {
+		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
+		if (!isUserA && getSessionTokenJson().user.id === userId) {
 			this.setState({
 				user: getSessionTokenJson().user,
 				isHostUser: true,
@@ -46,7 +45,7 @@ class UserPage extends Component {
 					user: res.data,
 					isHostUser: false,
 				});
-			}).catch((err)=>{
+			}).catch((err) => {
 				history.push("/404");
 			});
 		}
@@ -56,14 +55,14 @@ class UserPage extends Component {
 		const userId = this.props.match.params.id;
 		return (
 			<Fragment>
-				<UserHeadBar user={this.state.user} />
+				<UserHeadBar user={this.state.user}/>
 				<UserWrapper>
 					<div>
-						<UserUploadVideo userId={userId} />
-						<UserFavVideo userId={userId} />
-						{this.state.isHostUser && <UserHistoryVideo userId={userId} />}
+						<UserUploadVideo userId={userId}/>
+						<UserFavVideo userId={userId}/>
+						{this.state.isHostUser && <UserHistoryVideo userId={userId}/>}
 					</div>
-					<UserInfo user={this.state.user} />
+					<UserInfo user={this.state.user}/>
 				</UserWrapper>
 			</Fragment>
 		);

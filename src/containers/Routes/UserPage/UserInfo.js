@@ -1,9 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import styled from "styled-components";
 import PropTypes from "prop-types";
 import "./UserInfo.css";
 
-class UserInfo extends Component{
+class UserInfo extends Component {
 	render = () => {
 		return (
 			<Fragment>

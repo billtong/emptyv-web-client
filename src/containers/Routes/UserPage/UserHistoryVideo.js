@@ -1,12 +1,11 @@
 import React, {Component, Fragment} from 'react';
-import styled from "styled-components";
 import PropTypes from "prop-types";
 import {TitleText, VideoWrapper} from "./UserUploadVideo";
 import {EmptyTitle, LittleTitle, LittleTitleSelected} from "./UserFavVideo";
 import {getUserHistory} from "../../../utils/api/user";
 import Video from "../../../components/accessories/video";
 
-class UserHistoryVideo extends Component{
+class UserHistoryVideo extends Component {
 	state = {
 		history: [],
 		action: -1,
@@ -32,15 +31,15 @@ class UserHistoryVideo extends Component{
 		});
 	};
 
-	generateHistoryVideoList=(rawVideoList, action) => {
+	generateHistoryVideoList = (rawVideoList, action) => {
 		let list = rawVideoList.map((value) => {
 			if (value.action === action) {
 				return value.video;
 			}
 		});
 		list = list.filter(video => video != null);
-		for(let index = list.length-1; index >= 0; index--) {
-			if (index >= 1 && list[index-1].videoId === list[index].videoId) {
+		for (let index = list.length - 1; index >= 0; index--) {
+			if (index >= 1 && list[index - 1].videoId === list[index].videoId) {
 				list.splice(index, 1);
 			}
 		}

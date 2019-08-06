@@ -42,7 +42,7 @@ export const LittleTitle = styled.div`
 	cursor: pointer;
 `;
 
-class UserFavVideo extends Component{
+class UserFavVideo extends Component {
 	state = {
 		favListSelectedId: 0,
 		favListSelected: {},
@@ -88,7 +88,7 @@ class UserFavVideo extends Component{
 				});
 			};
 			return (
-				<LittleTitle key={index}  ref={index} onClick={(e) => handleFavMenuClick(e, value.favId)}>
+				<LittleTitle key={index} ref={index} onClick={(e) => handleFavMenuClick(e, value.favId)}>
 					{value.favName}
 				</LittleTitle>
 			);

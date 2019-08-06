@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { IoIosHeart } from 'react-icons/io';
-import { MdThumbUp, MdThumbDown } from 'react-icons/md';
+import {IoIosHeart} from 'react-icons/io';
+import {MdThumbDown, MdThumbUp} from 'react-icons/md';
 import Text from '../../../components/accessories/Text';
 
 const TitleWrapper = styled.h3`
@@ -21,23 +21,23 @@ const Num = styled.div`
 	margin-inline-start: 1rem;
 `;
 
-class VideoTitleDisplay extends Component{
+class VideoTitleDisplay extends Component {
 
 	likeRateIcon = () => {
 		let likeRate = 100;
 		const videoLikeNum = parseInt(this.props.videoData.videoLikeNum, 10);
 		const videoUnlikeNum = parseInt(this.props.videoData.videoUnlikeNum, 10);
-		if(videoLikeNum === videoLikeNum + videoUnlikeNum) {
+		if (videoLikeNum === videoLikeNum + videoUnlikeNum) {
 			likeRate = 100;
-		} else if(videoUnlikeNum === videoLikeNum+videoUnlikeNum) {
+		} else if (videoUnlikeNum === videoLikeNum + videoUnlikeNum) {
 			likeRate = 0;
 		} else {
-			likeRate = (videoLikeNum / (videoLikeNum+videoUnlikeNum)).toFixed(2).slice(-2);
+			likeRate = (videoLikeNum / (videoLikeNum + videoUnlikeNum)).toFixed(2).slice(-2);
 		}
 		return likeRate >= 50 ? (
-			<Num>{likeRate}% <MdThumbUp color="#5faa01" /></Num>
+			<Num>{likeRate}% <MdThumbUp color="#5faa01"/></Num>
 		) : (
-			<Num>{likeRate}% <MdThumbDown color="#c71d1d" /></Num>
+			<Num>{likeRate}% <MdThumbDown color="#c71d1d"/></Num>
 		)
 	};
 
@@ -49,7 +49,7 @@ class VideoTitleDisplay extends Component{
 					<NumWrapper>
 						<Num>{this.props.videoData.videoViewNum} <Text id={"vb_views"}/></Num>
 						{this.likeRateIcon()}
-						<Num> {this.props.videoData.videoFavouriteNum}<IoIosHeart color={"orange"} /></Num>
+						<Num> {this.props.videoData.videoFavouriteNum}<IoIosHeart color={"orange"}/></Num>
 					</NumWrapper>
 				</div>
 			</Fragment>

@@ -44,7 +44,7 @@ const ShowButton = styled.div`
 `;
 
 
-class VideoDesc extends Component{
+class VideoDesc extends Component {
 	state = {
 		showCompelete: false,
 	};
@@ -52,7 +52,7 @@ class VideoDesc extends Component{
 	render = () => {
 
 		let videoDesc = null;
-		if(this.props.videoData.videoDesc) {
+		if (this.props.videoData.videoDesc) {
 			videoDesc = this.state.showCompelete ? (
 				<DescAllWrapper>{this.props.videoData.videoDesc}</DescAllWrapper>
 			) : (
@@ -71,11 +71,11 @@ class VideoDesc extends Component{
 
 				{videoDesc}
 				{!this.state.showCompelete ? (
-					<ShowButton onClick={e=>{
+					<ShowButton onClick={e => {
 						this.setState({showCompelete: true});
 					}}><Text id="v_show"/></ShowButton>
 				) : (
-					<ShowButton onClick={e=>{
+					<ShowButton onClick={e => {
 						this.setState({showCompelete: false});
 					}}><Text id="v_hide"/></ShowButton>
 				)}

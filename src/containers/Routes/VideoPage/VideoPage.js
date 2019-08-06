@@ -56,7 +56,7 @@ class VideoPage extends Component {
 					this.setState({
 						history: historyRes.data,
 					});
-				}).catch(historyErr=>{
+				}).catch(historyErr => {
 					console.log(historyErr.message);
 				}).finally(() => {
 					this.setState({
@@ -91,7 +91,7 @@ class VideoPage extends Component {
 				<VideoWrapper>
 					<VideoPlayer
 						className='react-player'
-						video={ !video ? {} : {
+						video={!video ? {} : {
 							thumbnail_url: video.videoThumbnailImg,
 							video_url: video.videoSrc,
 							video_id: video.videoId
@@ -106,7 +106,7 @@ class VideoPage extends Component {
 					/>
 				</VideoInfoWrapper>
 				<CommentWrapper>
-					<Comment videoId = {videoId}/>
+					<Comment videoId={videoId}/>
 				</CommentWrapper>
 			</Fragment>
 		);

@@ -5,16 +5,20 @@
     border-color: #313131;
     margin-left: 1.5rem;
 }
+
 .userInfo-table td {
     padding: 0.5rem 1rem 0.5rem 1rem;
     text-align: left;
 }
+
 .userInfo-table .title-td {
     font-weight: 500;
 }
+
 .userInfo-table .text-td {
     font-weight: 100;
 }
+
 .userInfo-table .bio-text {
     white-space: pre;
 }

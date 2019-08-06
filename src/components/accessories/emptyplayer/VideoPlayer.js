@@ -342,8 +342,8 @@ class VideoPlayer extends React.Component {
 		}
 		const navigatorName = 'Microsoft Internet Explorer';
 		if (window.navigator.appName === navigatorName) {
-		//	const WsShell = new ActiveXObject('WScript.Shell');
-		//	WsShell.SendKeys('{F11}');
+			//	const WsShell = new ActiveXObject('WScript.Shell');
+			//	WsShell.SendKeys('{F11}');
 			alert("you cannot use fullscreen feature on IE");
 		} else {
 			const de = document.getElementsByClassName('videos-player')[0];
@@ -369,7 +369,7 @@ class VideoPlayer extends React.Component {
 			<div>
 				<div className="vjs-control vjs-dan-switch" onClick={(e) => {
 					this.setState({isDisplayDan: false, danCss: "not-display"})
-				}}><Text id="vp_close" />
+				}}><Text id="vp_close"/>
 				</div>
 				<input
 					className="dan-input"

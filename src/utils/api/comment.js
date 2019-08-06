@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {BASE_URL} from './baseURL';
-import {getSessionTokenJson, getTokenParamURL} from './apiHelper';
+import {getSessionTokenJson} from './apiHelper';
 
 export const getComemtList = (inputJson) => {
 	const deviceListURL = `${BASE_URL}comment-service/comment/video/${inputJson.videoId}`;

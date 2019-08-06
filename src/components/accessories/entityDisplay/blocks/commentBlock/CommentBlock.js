@@ -60,13 +60,13 @@ class CommentBlock extends React.Component {
 					}
 				</Fragment>
 			) : (
-			<span className="reply-arro" onClick={e => {
-				e.preventDefault();
-				this.setState({isOpenReply: true});
-			}}>
+				<span className="reply-arro" onClick={e => {
+					e.preventDefault();
+					this.setState({isOpenReply: true});
+				}}>
         <GoChevronDown/> <Text id="c_display"/>
       </span>
-		);
+			);
 		return (
 			<div className="comment-block-section">
 				<CommentBlockFrag

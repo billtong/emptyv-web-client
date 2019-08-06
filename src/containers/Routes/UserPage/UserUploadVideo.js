@@ -20,7 +20,7 @@ export const TitleText = styled.div`
 	margin-inline-start: 2rem;
 `;
 
-class UserUploadVideo extends Component{
+class UserUploadVideo extends Component {
 	state = {
 		videoList: [],
 		isLoading: false,
@@ -39,7 +39,7 @@ class UserUploadVideo extends Component{
 				videoList: res.data.videoList,
 				isLoading: false,
 			});
-		}).catch(err=>{
+		}).catch(err => {
 			this.setState({
 				isLoading: false,
 				errMsg: err.message,

@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { MdThumbUp, MdThumbDown } from 'react-icons/md';
-import {IoIosHeart} from "react-icons/io";
+import {MdThumbDown, MdThumbUp} from 'react-icons/md';
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import history from "../../../utils/history";
 import {patchOtherNum} from "../../../utils/api/video";
@@ -16,15 +15,15 @@ const IconWrapper = styled.div`
 	cursor: pointer;
 `;
 
-class VideoButton extends Component{
+class VideoButton extends Component {
 	state = {
 		hasLike: false,
 		hasUnlike: false,
 		hasFav: false,
 	};
 
-	componentDidUpdate = (prevProps, prevState, snapshot)=> {
-		if(this.props.history !== prevProps.history) {
+	componentDidUpdate = (prevProps, prevState, snapshot) => {
+		if (this.props.history !== prevProps.history) {
 			this.initHistoryState();
 		}
 	};
@@ -60,9 +59,9 @@ class VideoButton extends Component{
 	};
 
 	handleClickAction = (e, myAction) => {
-    e.preventDefault();
-    const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-		if(!isUserA) {
+		e.preventDefault();
+		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
+		if (!isUserA) {
 			patchOtherNum({
 				action: myAction,
 				videoId: this.props.videoId,
@@ -101,11 +100,11 @@ class VideoButton extends Component{
 					<IconWrapper
 						style={{color: this.state.hasLike ? 'green' : 'white'}}
 						onClick={e => this.handleClickAction(e, 'like')}
-					><MdThumbUp /></IconWrapper>
+					><MdThumbUp/></IconWrapper>
 					<IconWrapper
 						style={{color: this.state.hasUnlike ? 'red' : 'white'}}
 						onClick={e => this.handleClickAction(e, 'unlike')}
-					><MdThumbDown /></IconWrapper>
+					><MdThumbDown/></IconWrapper>
 
 					<IconWrapper>
 						<VideoFavButton

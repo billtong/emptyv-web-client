@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BASE_URL } from './baseURL';
-import { getTokenParamURL, getSessionTokenJson } from './apiHelper';
+import {BASE_URL} from './baseURL';
+import {getSessionTokenJson, getTokenParamURL} from './apiHelper';
 
 export const getToken = (inputJson) => {
 	const loginUrl = `${BASE_URL}user-service/auth/login`;

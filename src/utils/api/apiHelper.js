@@ -1,5 +1,4 @@
 import {getCookie, setCookie} from '../cookieTools';
-import zh_CN from "../../assets/languages/zh_CN";
 
 export const userTokenSessionKey = 'empty-video-web-user-session';
 export const userTokenCookieKey = 'empty-video-web-user-cookie';
@@ -35,7 +34,6 @@ export const getSessionTokenJson = () => {
 	}
 	return !userJson || userJson === null ? null : userJson;
 };
-
 
 
 //append it to the url for user auth

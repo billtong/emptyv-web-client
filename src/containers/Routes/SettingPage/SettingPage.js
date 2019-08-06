@@ -110,10 +110,10 @@ class SettingPage extends React.Component {
 				}, 10);
 				break;
 			case 'name':
-				const timer4 = setInterval(()=>{
+				const timer4 = setInterval(() => {
 					if (this.state.user.profile.name !== this.refs.name.value) {
 						newUser.profile.name = this.refs.name.value;
-						this.setState({ userName: this.refs.name.value, user: newUser })
+						this.setState({userName: this.refs.name.value, user: newUser})
 					} else {
 						clearInterval(timer4);
 					}
@@ -219,7 +219,7 @@ class SettingPage extends React.Component {
 					<li className="setting-li">
 						<div>name</div>
 						<input className={"input-text"} placeholder={getSessionTokenJson().user.profile.name} type={"text"}
-						       onKeyDown={(e)=>this.handleKeyDown(e, 'name')} ref="name" />
+						       onKeyDown={(e) => this.handleKeyDown(e, 'name')} ref="name"/>
 					</li>
 					<li className="setting-li">
 						<div>Bio</div>

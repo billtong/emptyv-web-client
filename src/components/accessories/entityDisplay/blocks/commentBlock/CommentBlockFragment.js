@@ -8,7 +8,6 @@ import {deleteComment, postComment} from '../../../../../utils/api/comment';
 import UserAvatar from '../../../UserAvatar';
 import Text from '../../../Text';
 import PropTypes from "prop-types";
-import {getUserPublic} from "../../../../../utils/api/user";
 
 class CommentBlockFrag extends React.Component {
 	state = {
@@ -80,20 +79,20 @@ class CommentBlockFrag extends React.Component {
 					autoComplete="off"
 				/>
 				<Text id="c_send" children={text => (<input
-						className="reply-comment-confirm"
-						type="button"
-						value={text}
-						onClick={e => this.handleReplySubmit(e)}
-					/>)
+					className="reply-comment-confirm"
+					type="button"
+					value={text}
+					onClick={e => this.handleReplySubmit(e)}
+				/>)
 				}
 				/>
-				<Text id="c_cancel" children={text=><input
+				<Text id="c_cancel" children={text => <input
 					className="reply-comment-cancel"
 					type="button"
 					value={text}
 					onClick={e => this.handleReplyClick(e, false)}
 				/>}/>
-				</div>
+			</div>
 		) : (
 			<span className="reply-btn" onClick={e => this.handleReplyClick(e, true)}><Text id="c_reply"/></span>
 		);
@@ -102,7 +101,7 @@ class CommentBlockFrag extends React.Component {
 		) : null;
 		return (
 			<React.Fragment>
-				{ this.props.comment.userInfo && <UserAvatar userInfo={this.props.comment.userInfo} />}
+				{this.props.comment.userInfo && <UserAvatar userInfo={this.props.comment.userInfo}/>}
 				<div className="comment-public-date">
 					#{this.props.floor} {uploadDate}
 				</div>

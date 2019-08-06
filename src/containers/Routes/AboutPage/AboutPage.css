@@ -9,7 +9,6 @@
     background-color: #1f1f1f;
 }
 
-
 section {
     padding-left: 3rem;
     border-bottom: 1px solid #333;
@@ -20,9 +19,10 @@ section {
 @media screen and (max-width: 450px) {
     .about-us-container {
         margin: 0;
-        padding:0;
+        padding: 0;
         border-bottom: none;
     }
+
     section {
         padding-left: 0.5rem;
         border-bottom: none;

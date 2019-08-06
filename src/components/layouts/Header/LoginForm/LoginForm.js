@@ -41,14 +41,14 @@ class LoginForm extends Component {
 		};
 		if (!checkNull(email, 'email') && !checkNull(password, 'password')) {
 			getToken({
-					email: email,
-					password: password,
-				}).then((res) => {
-					const userJson = {
-						user: res.data,
-						userToken: res.headers.authorization,
-						userSessionId: ""
-					};
+				email: email,
+				password: password,
+			}).then((res) => {
+				const userJson = {
+					user: res.data,
+					userToken: res.headers.authorization,
+					userSessionId: ""
+				};
 				if (checked) {
 					setCookie(userTokenCookieKey, JSON.stringify(userJson));
 				} else {
