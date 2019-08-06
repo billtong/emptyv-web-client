@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import UserAvatar from "../../../components/accessories/UserAvatar";
-import {formatDateTime} from "../../../utils/dateTools";
 import Text from '../../../components/accessories/Text';
 
 const AvaterWrapper = styled.div`
