@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Video from "../../../components/accessories/video";
-import {getVideoList} from "../../../utils/api/video";
+import {getRandomVideoList} from "../../../utils/api/video";
 
 export const VideoWrapper = styled.div`
 	width: 1040px;
@@ -31,10 +31,7 @@ class UserUploadVideo extends Component {
 		this.setState({
 			isLoading: true,
 		});
-		getVideoList({
-			filter: "date",
-			userId: this.props.userId,
-		}).then(res => {
+		getRandomVideoList().then(res => {
 			this.setState({
 				videoList: res.data.videoList,
 				isLoading: false,

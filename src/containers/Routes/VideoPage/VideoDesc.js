@@ -52,11 +52,11 @@ class VideoDesc extends Component {
 	render = () => {
 
 		let videoDesc = null;
-		if (this.props.videoData.videoDesc) {
+		if (this.props.videoData.description) {
 			videoDesc = this.state.showCompelete ? (
-				<DescAllWrapper>{this.props.videoData.videoDesc}</DescAllWrapper>
+				<DescAllWrapper>{this.props.videoData.description}</DescAllWrapper>
 			) : (
-				<DescHideWrapper>{this.props.videoData.videoDesc}</DescHideWrapper>
+				<DescHideWrapper>{this.props.videoData.description}</DescHideWrapper>
 			);
 		} else {
 			videoDesc = <EmptyWrapper>It is empty here</EmptyWrapper>;
@@ -66,7 +66,7 @@ class VideoDesc extends Component {
 			<Fragment>
 				<AvaterWrapper>
 					<UserAvatar userInfo={this.props.videoData.userInfo}/>
-					<TimeWrapper><Text id="v_publish"/> {formatDateTime(this.props.videoData.videoDate)}</TimeWrapper>
+					<TimeWrapper><Text id="v_publish"/> {this.props.videoData.create}</TimeWrapper>
 				</AvaterWrapper>
 
 				{videoDesc}
@@ -91,5 +91,20 @@ VideoDesc.propTypes = {
 };
 
 VideoDesc.defaultProps = {
-	videoData: {},
+	videoData: {
+		commentCount: 0,
+		create: "",
+		danCount: 0,
+		description: "",
+		favCount: 0,
+		id: "",
+		likeCount: 0,
+		name: "",
+		tags: [],
+		thumbnailSrc: "",
+		unlikeCount: 0,
+		userId: "",
+		videoSrc: "",
+		viewCount: 0
+	},
 };

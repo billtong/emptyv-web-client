@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 import XHelmet from "../../components/accessories/XHelmet.js";
 import Text from "../../components/accessories/Text";
 import Selector from "../../components/accessories/Selector";
-import {getVideoList} from "../../utils/api/video";
+import {getRandomVideoList} from "../../utils/api/video";
 import Video from "../../components/accessories/video";
 
 const options = ["date", "rate", "view"];
@@ -22,11 +22,9 @@ class Home extends Component {
 	};
 	getVideosFromAPI = (sort) => {
 		this.setState({isLoading: true});
-		getVideoList({
-			filter: sort,
-		}).then((res) => {
+		getRandomVideoList().then((res) => {
 			this.setState({
-				videoList: res.data.videoList,
+				videoList: res.data,
 				isLoading: false
 			});
 		}).catch((err) => {

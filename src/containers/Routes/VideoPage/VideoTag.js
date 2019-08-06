@@ -41,7 +41,7 @@ class VideoTag extends Component {
 	componentDidUpdate = (prevProps, prevState, snapshot) => {
 		if (prevProps.videoData !== this.props.videoData) {
 			this.setState({
-				tagList: this.props.videoData.videoTag
+				tagList: this.props.videoData.tags
 			});
 		}
 	};
@@ -61,7 +61,7 @@ class VideoTag extends Component {
 			const newTagList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
 			newTagList.push(tag);
 			patchTags({
-				videoId: this.props.videoData.videoId,
+				videoId: this.props.videoData.id,
 				tagJsonString: newTagList.join(',')
 			});
 			this.setState({
@@ -112,7 +112,7 @@ class VideoTag extends Component {
 
 	render = () => {
 		const {tagList} = this.state;
-		const solvedTageList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
+		const solvedTageList = tagList && tagList;
 		const tagListSec = (!solvedTageList || solvedTageList.length === 0) ? (
 			<span key={-1}>no tags yet</span>
 		) : (
@@ -164,5 +164,20 @@ VideoTag.propTypes = {
 };
 
 VideoTag.defaultProps = {
-	videoData: {},
+	videoData: {
+		commentCount: 0,
+		create: "",
+		danCount: 0,
+		description: "",
+		favCount: 0,
+		id: "",
+		likeCount: 0,
+		name: "",
+		tags: [],
+		thumbnailSrc: "",
+		unlikeCount: 0,
+		userId: "",
+		videoSrc: "",
+		viewCount: 0
+	},
 };

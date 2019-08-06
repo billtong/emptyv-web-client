@@ -36,15 +36,15 @@ const handleVideoBlockClick = (e, videoId) => {
 
 export const VideoBlock = (props) => {
 	return (
-		<Wrapper onClick={e => handleVideoBlockClick(e, props.videoInfo.videoId)}>
+		<Wrapper onClick={e => handleVideoBlockClick(e, props.videoInfo.id)}>
 			<div>
-				<Img src={props.videoInfo.videoThumbnailImg}/>
+				<Img src={props.videoInfo.thumbnailSrc}/>
 			</div>
 			<Title>
-				{props.videoInfo.videoName}
+				{props.videoInfo.name}
 			</Title>
 			<Num>
-				{props.videoInfo.videoViewNum}
+				{props.videoInfo.viewCount}
 				<Text id={"vb_views"}/>
 			</Num>
 		</Wrapper>
@@ -56,5 +56,10 @@ VideoBlock.propTypes = {
 };
 
 VideoBlock.propTypes = {
-	videoInfo: {}
+	videoInfo: {
+		name: "",
+		id: "",
+		viewCount: "",
+		thumbnailSrc: "",
+	}
 };

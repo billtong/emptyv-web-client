@@ -22,11 +22,10 @@ const Num = styled.div`
 `;
 
 class VideoTitleDisplay extends Component {
-
 	likeRateIcon = () => {
 		let likeRate = 100;
-		const videoLikeNum = parseInt(this.props.videoData.videoLikeNum, 10);
-		const videoUnlikeNum = parseInt(this.props.videoData.videoUnlikeNum, 10);
+		const videoLikeNum = parseInt(this.props.videoData.likeCount, 10);
+		const videoUnlikeNum = parseInt(this.props.videoData.unlikeCount, 10);
 		if (videoLikeNum === videoLikeNum + videoUnlikeNum) {
 			likeRate = 100;
 		} else if (videoUnlikeNum === videoLikeNum + videoUnlikeNum) {
@@ -42,14 +41,15 @@ class VideoTitleDisplay extends Component {
 	};
 
 	render = () => {
+		console.log(this.props.videoData);
 		return (
 			<Fragment>
 				<div>
-					<TitleWrapper>{this.props.videoData.videoName}</TitleWrapper>
+					<TitleWrapper>{this.props.videoData.name}</TitleWrapper>
 					<NumWrapper>
-						<Num>{this.props.videoData.videoViewNum} <Text id={"vb_views"}/></Num>
+						<Num>{this.props.videoData.viewCount} <Text id={"vb_views"}/></Num>
 						{this.likeRateIcon()}
-						<Num> {this.props.videoData.videoFavouriteNum}<IoIosHeart color={"orange"}/></Num>
+						<Num> {this.props.videoData.favCount}<IoIosHeart color={"orange"}/></Num>
 					</NumWrapper>
 				</div>
 			</Fragment>
@@ -65,11 +65,19 @@ VideoTitleDisplay.propTypes = {
 
 VideoTitleDisplay.defaultProps = {
 	videoData: {
-		videoName: null,
-		videoDate: null,
-		videoViewNum: 0,
-		videoLikeNum: 0,
-		videoUnlikeNum: 0,
-		videoFavouriteNum: 0
+		commentCount: 0,
+		create: "",
+		danCount: 0,
+		description: "",
+		favCount: 0,
+		id: "",
+		likeCount: 0,
+		name: "",
+		tags: [],
+		thumbnailSrc: "",
+		unlikeCount: 0,
+		userId: "",
+		videoSrc: "",
+		viewCount: 0
 	},
 };

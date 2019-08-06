@@ -50,7 +50,9 @@ class VideoPage extends Component {
 		this.setState({
 			isLoading: true,
 		});
-		getVideo(videoId).then((videoRes) => {
+		getVideo({
+			videoId: videoId
+		}).then((videoRes) => {
 			if (getSessionTokenJson() !== null) {
 				getUserHistory().then(historyRes => {
 					this.setState({
@@ -92,9 +94,9 @@ class VideoPage extends Component {
 					<VideoPlayer
 						className='react-player'
 						video={!video ? {} : {
-							thumbnail_url: video.videoThumbnailImg,
+							thumbnail_url: video.thumbnailSrc,
 							video_url: video.videoSrc,
-							video_id: video.videoId
+							video_id: video.id
 						}}
 					/>
 				</VideoWrapper>

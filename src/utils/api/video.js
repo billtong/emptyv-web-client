@@ -2,9 +2,9 @@ import axios from 'axios';
 import {BASE_URL} from './baseURL';
 import {getSessionTokenJson, getTokenParamURL} from './apiHelper';
 
-export const getVideo = (videoId) => {
-	const deviceListURL = `${BASE_URL}api/video/getVideo?videoId=${videoId}`;
-	return axios.get(deviceListURL, {
+export const getVideo = (inputJson) => {
+	const getVideoURL = `${BASE_URL}video-service/video/${inputJson.videoId}`;
+	return axios.get(getVideoURL, {
 		headers: {
 			'Content-Type': 'application/json'
 		}
@@ -15,11 +15,8 @@ export const getVideo = (videoId) => {
 };
 
 //userId不用管，以后会被废除，现在也不影响搜索
-export const getVideoList = (inputJson) => {
-	inputJson.word = !inputJson.word ? '' : inputJson.word;
-	inputJson.filter = !inputJson.filter ? '' : inputJson.filter;
-	inputJson.userId = !inputJson.userId ? -1 : inputJson.userId;
-	const getVideoListURL = `${BASE_URL}api/video/getVideoList?filter=${inputJson.filter}&word=${inputJson.word}&userId=${inputJson.userId}`;
+export const getRandomVideoList = () => {
+	const getVideoListURL = `${BASE_URL}video-service/videos/random`;
 	return axios.get(getVideoListURL, {
 		headers: {
 			'Content-Type': 'application/json'

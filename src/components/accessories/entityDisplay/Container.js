@@ -29,7 +29,6 @@ export const Container = (props) => {
 				}) : null;
 		}
 	};
-
 	return (
 		<Fragment>
 			{isLoading}
