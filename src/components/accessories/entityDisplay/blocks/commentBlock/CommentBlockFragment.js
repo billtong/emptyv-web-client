@@ -17,18 +17,6 @@ class CommentBlockFrag extends React.Component {
 		userInfo: null
 	};
 
-	componentDidMount = () => {
-		this.setState({
-			isLoading: true,
-		});
-		getUserPublic({ userId: this.props.comment.userId }).then((res) => {
-			this.setState({
-				isLoading: false,
-				userInfo: res.data
-			});
-		});
-	};
-
 	//这个是comment的输入栏的提交法方法
 	handleReplySubmit = (e) => {
 		const reComment = this.props.comment;
@@ -114,7 +102,7 @@ class CommentBlockFrag extends React.Component {
 		) : null;
 		return (
 			<React.Fragment>
-				{ this.state.userInfo && <UserAvatar userInfo={this.state.userInfo} />}
+				{ this.props.comment.userInfo && <UserAvatar userInfo={this.props.comment.userInfo} />}
 				<div className="comment-public-date">
 					#{this.props.floor} {uploadDate}
 				</div>
@@ -140,23 +128,6 @@ class CommentBlockFrag extends React.Component {
 CommentBlockFrag.propTypes = {
 	rootComment: PropTypes.object,
 	comment: PropTypes.object,
-};
-
-CommentBlockFrag.defaultProps = {
-	rootComment: null,
-	comment: {
-		at: "",
-		created: new Date(),
-		deleted: false,
-		id: "",
-		likeNum: 0,
-		parentId: "",
-		replyNum: 0,
-		text: "",
-		userId: "",
-		videoId: "",
-		replies: []
-	}
 };
 
 

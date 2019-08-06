@@ -66,15 +66,6 @@ class Comment extends Component {
 				}).catch((err) => {
 					alert(`failed post comment${err.message}`);
 				});
-			} else if (this.props.videoId === 0) {
-				postCommentA({
-					commentContent: comment,
-					commentParentId: 0
-				}).then(() => {
-					this.props.getCommentListAction({videoId: this.props.videoId});
-				}).catch((err) => {
-					alert(`failed post comment${err.message}`);
-				});
 			}
 		}
 	};
@@ -90,7 +81,7 @@ class Comment extends Component {
 
 	render = () => {
 		const isUserA =  !getSessionTokenJson() || getSessionTokenJson() === null;
-		const commentUploadBox = (this.props.videoId === 0 || !isUserA) ? (
+		const commentUploadBox = (!isUserA) ? (
 			<div className="comment-box">
 				<input
 					className="form-control comment-content"

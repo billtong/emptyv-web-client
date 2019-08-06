@@ -91,3 +91,10 @@ export const getUserPublic = (inputJson) => {
 			throw new Error(err.message);
 		});
 };
+
+export const getUsersByIds = (inputJson) => {
+	const getUsersURL = `${BASE_URL}user-service/users/?ids=${inputJson.ids}`;
+	return axios.get(getUsersURL).then(res => res, err => {
+		throw new Error(err.message);
+	})
+};

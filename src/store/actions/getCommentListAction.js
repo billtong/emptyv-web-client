@@ -1,6 +1,7 @@
 import {COMPLETE_COMMENTS_FETCH, FAILED_COMMENTS_FETCH, START_COMMENTS_FETCH} from './types';
 import {getComemtList} from '../../utils/api/comment';
-import {handleCommentList} from "../../utils/commentListUtil";
+import {getCommentUserIds, handleCommentList} from "../../utils/commentListUtil";
+import {getUsersByIds} from "../../utils/api/user";
 
 export const startGetComment = () => ({
 	type: START_COMMENTS_FETCH
@@ -20,8 +21,14 @@ export const getCommentListAction = (inputJson) => {
 	return (dispatch) => {
 		dispatch(startGetComment);
 		getComemtList(inputJson).then((res) => {
-			const rslt = handleCommentList(res.data);
-			dispatch(completeGetComment(rslt));
+			const ids = getCommentUserIds(res.data);
+			getUsersByIds({
+				ids: ids
+			}).then((res1) => {
+				const rslt = handleCommentList(res.data, res1.data);
+				console.log(rslt);
+				dispatch(completeGetComment(rslt));
+			});
 		}).catch((err) => {
 			dispatch(failedGetComment(`Sorry...${err.message}`));
 		});

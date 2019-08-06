@@ -12,17 +12,17 @@ class UserInfo extends Component{
 						<td className="title-td">Bio</td>
 						<td className="text-td">
 							<p className="bio-text">
-								{this.props.user.profile.description}
+								{this.props.user.profile && this.props.user.profile.description}
 							</p>
 						</td>
 					</tr>
 					<tr>
 						<td className="title-td">Location</td>
-						<td className="text-td">{this.props.user.profile.location}</td>
+						<td className="text-td">{this.props.user.profile && this.props.user.profile.location}</td>
 					</tr>
 					<tr>
 						<td className="title-td">Website</td>
-						<td className="text-td">{this.props.user.profile.website}</td>
+						<td className="text-td">{this.props.user.profile && this.props.user.profile.website}</td>
 					</tr>
 				</table>
 			</Fragment>
