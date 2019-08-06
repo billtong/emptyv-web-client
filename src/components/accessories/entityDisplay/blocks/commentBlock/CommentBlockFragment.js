@@ -105,13 +105,13 @@ class CommentBlockFrag extends React.Component {
 				<div className="comment-public-date">
 					#{this.props.floor} {uploadDate}
 				</div>
-				<a className="comment-menu-btn">
+				<div className="comment-menu-btn">
 					<MdMoreVert/>
 					<ul className="comment-menu">
 						{deleteBtn}
 						<li><Text id="c_report"/></li>
 					</ul>
-				</a>
+				</div>
 				{replyTag}
 				<div className="comment-text">
 					{this.props.comment.text}

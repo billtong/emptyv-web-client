@@ -4,7 +4,7 @@ import {getCommentListAction} from "../../../store/actions/getCommentListAction"
 import {Container} from "../entityDisplay/Container";
 import Pagination from "../entityDisplay/Pagination";
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
-import {postComment, postCommentA} from "../../../utils/api/comment";
+import {postComment} from "../../../utils/api/comment";
 import PropTypes from "prop-types";
 import "./Comment.css";
 import {Link} from "react-router-dom";

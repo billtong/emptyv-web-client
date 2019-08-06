@@ -234,7 +234,7 @@ class VideoFavButton extends React.Component {
 						</button>
 					</div>
 					<div className="modal-body">
-						<form role="form">
+						<form>
 							<table className="fav-list-table">
 								<tbody>
 								{favCheckList}
