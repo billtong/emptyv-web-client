@@ -22,43 +22,44 @@ class CommentBlock extends React.Component {
 		})
 	);
 
-	render() {
-		const {commentInfo} = this.props;
-		const clist = commentInfo.replies ? commentInfo.replies : [];
-		const renderReplyList = this.state.isOpenReply ? clist.map((comment, index) => {
-			let rc = commentInfo;
-			if (index === 0) {
-				return (
-					<Fragment>
+	/*
+	<Fragment>
 						<span key={index} className="reply-arro" onClick={e => {
 								e.preventDefault();
 								this.setState({isOpenReply: false});
 							}}>
 							<GoChevronUp/> <Text id="c_hide"/>
 						</span>
-						<CommentBlockFrag
-							floor={clist.length - index}
-							comment={comment}
-							rootComment={commentInfo}
-						/>
 					</Fragment>
-				);
-			}
-			clist.forEach(element => {
-				if (element.id === comment.parentId) {
-					rc = element;
-				}
-			});
-			return (
-				<div key={index} className="comment-block-section">
-					<CommentBlockFrag
-						floor={clist.length - index}
-						comment={comment}
-						rootComment={commentInfo}
-					/>
-				</div>
-			);
-		}) : (
+	 */
+
+	render() {
+		const {commentInfo} = this.props;
+		const clist = commentInfo.replies ? commentInfo.replies : [];
+		const renderReplyList = this.state.isOpenReply ?
+			(
+				<Fragment>
+						<span key={commentInfo.id} className="reply-arro" onClick={e => {
+							e.preventDefault();
+							this.setState({isOpenReply: false});
+						}}>
+							<GoChevronUp/> <Text id="c_hide"/>
+						</span>
+					{
+						clist.map((comment, index) => {
+							return (
+								<div key={index} className="comment-block-section">
+									<CommentBlockFrag
+										floor={clist.length - index}
+										comment={comment}
+										rootComment={commentInfo}
+									/>
+								</div>
+							);
+						})
+					}
+				</Fragment>
+			) : (
 			<span className="reply-arro" onClick={e => {
 				e.preventDefault();
 				this.setState({isOpenReply: true});

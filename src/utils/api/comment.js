@@ -25,19 +25,6 @@ export const postComment = (inputJson) => {
 		, (err) => (err));
 };
 
-export const postCommentA = (inputJson) => {
-	const postCommentAnonyURL = `${BASE_URL}api/comment/writeA`;
-	return axios.post(postCommentAnonyURL, {
-		commentContent: inputJson.commentContent,
-		commentParentId: inputJson.commentParentId
-	}, {
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	}).then((res) => (res)
-		, (err) => (err));
-};
-
 export const deleteComment = (inputJson) => {
 	const deleteCommentURL = `${BASE_URL}comment-service/comment/${inputJson.commentId}`;
 	return axios.delete(deleteCommentURL, {
