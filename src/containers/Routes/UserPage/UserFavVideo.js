@@ -70,7 +70,7 @@ class UserFavVideo extends Component {
 			}).then(res2 => {
 				userFavLists.forEach(value => {
 					value.videoList = value.videoIds.map(value => {
-						return res2.data.filter(video => video.id === value);
+						return res2.data.filter(video => video.id === value)[0];
 					});
 				});
 				this.setState({
@@ -87,6 +87,7 @@ class UserFavVideo extends Component {
 	};
 
 	render = () => {
+		console.log(this.state.userFavLists);
 		const favMenuList = (!this.state.userFavLists || this.state.userFavLists.length === 0) ? (
 			<EmptyTitle>empty</EmptyTitle>
 		) : this.state.userFavLists.map((value, index) => {

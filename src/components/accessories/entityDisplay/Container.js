@@ -8,7 +8,7 @@ export const Container = (props) => {
 	const isLoading = props.isLoading ? (
 		<div>loading ...</div>
 	) : null;
-	const error = (props.errMsg && props.errMsg !== null) ? (
+	const error = (props.errMsg && true) ? (
 		<div>{props.errMsg}</div>
 	) : null;
 	const getList = (entityType) => {
