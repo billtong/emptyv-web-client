@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {BASE_URL} from './baseURL';
-import {getTokenParamURL} from './apiHelper';
+import {getSessionTokenJson, getTokenParamURL} from './apiHelper';
 
-export const getFavList = (inputJson) => {
-	const getFavListURL = `${BASE_URL}api/fav/getFavsByUserId?userId=${inputJson.userId}`;
+export const getFavListsByUser = (inputJson) => {
+	const getFavListURL = `${BASE_URL}fav-list-service/favlist?userId=${inputJson.userId}`;
 	return axios.get(getFavListURL, {
 		headers: {
 			'Content-Type': 'application/json'
@@ -15,11 +15,12 @@ export const getFavList = (inputJson) => {
 		});
 };
 
-export const patchFavList = (newFav) => {
-	const patchFavListURL = `${BASE_URL}api/fav/patchFav?${getTokenParamURL()}`;
-	return axios.patch(patchFavListURL, newFav, {
+export const patchFavList = (inputJson) => {
+	const patchFavListURL = `${BASE_URL}fav-list-service/favlist/${inputJson.id}?operation=${inputJson.operation}&videoId=${inputJson.videoId}`;
+	return axios.patch(patchFavListURL, null, {
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Authorization': getSessionTokenJson().userToken
 		}
 	})
 	.then((res) => (res)
@@ -28,11 +29,12 @@ export const patchFavList = (newFav) => {
 		});
 };
 
-export const postFavList = (newFav) => {
-	const getFavListURL = `${BASE_URL}api/fav/postNewFav?${getTokenParamURL()}`;
-	return axios.post(getFavListURL, newFav, {
+export const postFavList = (inputJson) => {
+	const getFavListURL = `${BASE_URL}fav-list-service/favlist`;
+	return axios.post(getFavListURL, inputJson, {
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Authorization': getSessionTokenJson().userToken
 		}
 	})
 	.then((res) => (res)

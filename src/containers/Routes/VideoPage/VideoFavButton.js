@@ -2,7 +2,7 @@ import React from 'react';
 import {IoIosHeart} from 'react-icons/io';
 import {MdAdd} from 'react-icons/md';
 import {PulseLoader} from 'react-spinners';
-import {getFavList, patchFavList, postFavList} from "../../../utils/api/fav";
+import {getFavListsByUser, patchFavList, postFavList} from "../../../utils/api/fav";
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import history from "../../../utils/history";
 
@@ -12,21 +12,22 @@ import operation from "../../../assets/operations";
 class VideoFavButton extends React.Component {
 	state = {
 		favDialogCss: 'notShowDialog',         //showDialog and notShowDialog
-		favList: [],                             //get from VideoPage
+		userFavLists: [],
 		isNewFavList: false,
 		changedFavList: [],
+		addListIds: [],
+		cancelListIds: [],
 	};
 
 	handleFavClickAction = (e) => {
 		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
-		const user = (getSessionTokenJson() !== null) && getSessionTokenJson().user;
 		e.preventDefault();
 		if (!isUserA) {
-			getFavList({
-				userId: user.userId
+			getFavListsByUser({
+				userId: getSessionTokenJson().user.id
 			}).then(res => {
 				this.setState({
-					favList: res.data,
+					userFavLists: res.data,
 					favDialogCss: 'showDialog'
 				});
 			}).catch((err) => {
@@ -40,46 +41,144 @@ class VideoFavButton extends React.Component {
 	//提交改变的favlist和新建的favlist
 	sendChangedFavList = (e) => {
 		e.preventDefault();
-		if (this.state.changedFavList.length > 0) {
-			this.state.changedFavList.forEach((value, index) => {
-				//it is better to combine these patch and post together with one time.
-				if (!value.favId) {
-					postFavList({
-						favList: value.favList,
-						favName: value.favName,
-						userId: value.userId,
-						favIsPublish: true
-					}).then(() => {
-						if ((index + 1) >= this.state.changedFavList.length) {
-							this.props.handleClickAction(e, 'favourite');
-							this.setState({
-								favDialogCss: 'notShowDialog'
-							});
-						}
-					}).catch();
-				} else {
-					patchFavList({
-						favId: value.favId,
-						favList: value.favList,
-						favName: value.favName,
-						userId: value.userId
-					}).then(() => {
-						if ((index + 1) >= this.state.changedFavList.length) {
-							this.props.handleClickAction(e, operation.FAV_A_VIDEO);
-							this.setState({
-								favDialogCss: 'notShowDialog'
-							});
-						}
-					}).catch();
-				}
+		this.state.cancelListIds.length > 0 && this.state.cancelListIds.forEach(value => {
+			patchFavList({
+				id: value,
+				videoId: this.props.videoId,
+				operation:  operation.CANCEL_FAV_A_VIDEO
+			}).then(() => {
+				this.props.handleClickAction(e, operation.CANCEL_FAV_A_VIDEO);
+				this.setState({
+					favDialogCss: 'notShowDialog',
+					userFavLists: [],
+					isNewFavList: false,
+					changedFavList: [],
+					addListIds: [],
+					cancelListIds: [],
+				});
 			});
-		}
+		});
+		this.state.addListIds.length > 0 && this.state.addListIds.forEach(value => {
+			patchFavList({
+				id: value,
+				videoId: this.props.videoId,
+				operation: operation.FAV_A_VIDEO
+			}).then(() => {
+				this.props.handleClickAction(e, operation.FAV_A_VIDEO);
+				this.setState({
+					favDialogCss: 'notShowDialog',
+					userFavLists: [],
+					isNewFavList: false,
+					changedFavList: [],
+					addListIds: [],
+					cancelListIds: [],
+				});
+			});
+		});
+		this.state.changedFavList.length > 0 && this.state.changedFavList.forEach((value, index) => {
+			postFavList({
+				videoIds: value.videoIds,
+				name: value.name,
+				isPublic: true
+			}).then(() => {
+				this.props.handleClickAction(e, operation.FAV_A_VIDEO);
+				this.setState({
+					favDialogCss: 'notShowDialog',
+					userFavLists: [],
+					isNewFavList: false,
+					changedFavList: [],
+					addListIds: [],
+					cancelListIds: [],
+				});
+			});
+		});
 	};
+
+	//checkbox变换监听
+	handleCheckboxOnChange(isCheck, value, index) {
+		const newChangedFavList = this.state.changedFavList;
+		const newFavList = this.state.userFavLists;
+		const addFavListIds = this.state.addListIds;
+		const cancelFavListIds = this.state.cancelListIds;
+		const localVideoId = this.props.videoId;
+		if (this.refs[`${index}-checkbox`].checked) {
+			if (!value.id) {
+				console.log("1");
+				const newVideoIds = value.videoIds;
+				newVideoIds.push(localVideoId);
+				newChangedFavList.push({
+					id: value.id,
+					videoIds: newVideoIds,
+					name: `${value.name}`,
+					userId: getSessionTokenJson().user.id,
+				});
+				this.setState({
+					changedFavList: newChangedFavList,
+				});
+			} else {
+				console.log("2");
+				newFavList.forEach((value1, index1) => {
+					if (value1.id === value.id) {
+						value1.videoIds.push(localVideoId);
+						const cancelIndex = cancelFavListIds.indexOf(value.id);
+						if (cancelIndex >= 0) {
+							cancelFavListIds.splice(cancelIndex, 1);
+						} else {
+							addFavListIds.push(value1.id);
+						}
+					}
+				});
+				this.setState({
+					userFavLists: newFavList,
+					addListIds: addFavListIds,
+				});
+			}
+		} else {
+			if (!value.id) {
+				console.log("3");
+				newChangedFavList.forEach((value1, index1) => {
+					if (value1.name === value.name) {
+						newChangedFavList.splice(index1, 1);
+					}
+				});
+				newFavList.forEach((value1, index1) => {
+					if (value1.name === value.name) {
+						newFavList.splice(index1, 1);
+					}
+				});
+				this.setState({
+					userFavLists: newFavList,
+					changedFavList: newChangedFavList,
+				});
+			} else {
+				console.log("4");
+				newFavList.forEach((value1, index1) => {
+					if (value1.id === value.id) {
+						value1.videoIds = value1.videoIds.filter(id => id !== localVideoId);
+						const addIndex = addFavListIds.indexOf(value1.id)
+						if (addIndex >= 0) {
+							addFavListIds.splice(addIndex, 1);
+						} else {
+							cancelFavListIds.push(value1.id);
+						}
+					}
+				});
+				this.setState({
+					userFavLists: newFavList,
+					cancelListIds: cancelFavListIds,
+				});
+			}
+		}
+		console.log(newChangedFavList);
+		console.log(newFavList);
+		console.log(addFavListIds);
+		console.log(cancelFavListIds)
+	}
 
 	render() {
 		//favlist表单，主要是逻辑判断，防止出现不合理的favlist选项
-		const favCheckList = !this.state.favList || this.state.favList.length === 0 ? null : this.state.favList.map((value, index) => {
-			const videoIdArr = value.favList.split(',');
+		const favCheckList = !this.state.userFavLists || this.state.userFavLists.length === 0 ? null : this.state.userFavLists.map((value, index) => {
+			const videoIdArr = value.videoIds;
 			let isCheck = false;
 			videoIdArr.forEach(videoId => {
 				if (this.props.videoId === videoId) {
@@ -95,56 +194,13 @@ class VideoFavButton extends React.Component {
 							defaultChecked={isCheck}
 							ref={`${index}-checkbox`}
 							onChange={() => {
-								const newChangedFavList = this.state.changedFavList;
-								let newFavList = value.favList;
-								const localVideoId = this.props.videoId;
-								if (this.refs[`${index}-checkbox`].checked) {
-									newFavList = `${newFavList},${localVideoId}`;
-									newChangedFavList.push({
-										favId: value.favId,
-										favList: `${newFavList}`,
-										favName: `${value.favName}`,
-										userId: getSessionTokenJson().user.userId,
-									});
-								}
-								if (!this.refs[`${index}-checkbox`].checked && !isCheck) {
-									newChangedFavList.forEach((value1, index1) => {
-										if (value1.favName === value.favName) {
-											newChangedFavList.splice(index1, 1);
-											return;
-										}
-									});
-								}
-								if (!this.refs[`${index}-checkbox`].checked && isCheck) {
-									//需要减去（从ture变成false，且最开始是ture）
-									if (value.favList === localVideoId) {
-										alert('the favlist should at least have one video');
-										this.refs[`${index}-checkbox`].checked = true;
-										return;
-									} else if (value.favList.match(eval(`/^${localVideoId},/g`)) != null) {
-										newFavList = newFavList.replace(eval(`/^${localVideoId},/g`), '');
-									} else if (value.favList.match(eval(`/,${localVideoId}$/g`)) != null) {
-										newFavList = newFavList.replace(eval(`/,${localVideoId}$/g`), '');
-									} else if (value.favList.indexOf(`,${localVideoId},`) !== -1) {
-										newFavList = newFavList.replace(`,${localVideoId},`, ',');
-									}
-									newChangedFavList.push({
-										favId: value.favId,
-										favList: `${newFavList}`,
-										favName: `${value.favName}`,
-										userId: getSessionTokenJson().user.userId,
-									});
-								}
-								this.setState(prevState => ({
-									...prevState,
-									changedFavList: newChangedFavList
-								}));
+								this.handleCheckboxOnChange(isCheck, value, index);
 							}}
 						/>
 					</td>
 					<td>
 						<div className="fav-list-name">
-							{value.favName}
+							{value.name}
 						</div>
 					</td>
 					<td>
@@ -175,20 +231,19 @@ class VideoFavButton extends React.Component {
 						onClick={() => {
 							//改变favlist的state状态，将name和该videoId放进去
 							const newItem = {
-								favList: `${this.props.videoId}`,
-								favName: this.refs.favName.value,
-								userId: getSessionTokenJson().user.userId,
+								videoIds: [`${this.props.videoId}`],
+								name: this.refs.favName.value,
+								userId: getSessionTokenJson().user.id,
 							};
-							const newFavList = this.state.favList;
+							const newFavList = this.state.userFavLists;
 							const newChangedFavList = this.state.changedFavList;
 							newFavList.push(newItem);
 							newChangedFavList.push(newItem);
-							this.setState(prevState => ({
-								...prevState,
-								favList: newFavList,
+							this.setState({
+								userFavLists: newFavList,
 								changedFavList: newChangedFavList,
 								isNewFavList: false
-							}));
+							});
 						}}
 					/>
 				</td>
@@ -203,10 +258,9 @@ class VideoFavButton extends React.Component {
 							className="add-btn"
 							onClick={(e) => {
 								e.preventDefault();
-								this.setState(prevState => ({
-									...prevState,
+								this.setState({
 									isNewFavList: true
-								}));
+								});
 							}}
 						>
 							<MdAdd className="add-icon"/>
@@ -218,7 +272,7 @@ class VideoFavButton extends React.Component {
 			</tbody>
 		);
 
-		const addFavDialog = !this.state.favList ? (
+		const addFavDialog = !this.state.userFavLists ? (
 			<div className="favlist-loader">
 				<PulseLoader color={'#d9d9d9'}/>
 			</div>
@@ -229,7 +283,10 @@ class VideoFavButton extends React.Component {
 						<h4 className="modal-title">Add to Favourite List</h4>
 						<button type="button" className="close" data-dismiss="modal" onClick={(e) => {
 							e.preventDefault();
-							this.setState(prevState => ({...prevState, favDialogCss: 'notShowDialog', isNewFavList: false}));
+							this.setState({
+								favDialogCss: 'notShowDialog',
+								isNewFavList: false
+							});
 						}}>
 							&times;
 						</button>

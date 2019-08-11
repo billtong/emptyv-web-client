@@ -15,6 +15,14 @@ export const getVideo = (inputJson) => {
 		});
 };
 
+export const getVideoByIds = (inputJson) => {
+	const getVideosURL = `${BASE_URL}video-service/videos?ids=${inputJson.ids}`;
+	return axios.get(getVideosURL).then(res => res, err => {
+		throw new Error(err.message);
+	})
+};
+
+
 export const getRandomVideoList = () => {
 	const getVideoListURL = `${BASE_URL}video-service/videos/random`;
 	return axios.get(getVideoListURL, {

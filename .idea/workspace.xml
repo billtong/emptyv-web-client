@@ -2,26 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1afcfa01-123b-4d5a-8cab-deb9ca8222b2" name="Default Changelist" comment="Refactoring init commit">
-      <change afterPath="$PROJECT_DIR$/src/assets/operations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/MessageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/MessageUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/Message/TalkerOption.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Message/TalkerOption.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/UserAvatar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/UserAvatar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/emptyplayer/Dan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/emptyplayer/Dan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/emptyplayer/VideoPlayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/emptyplayer/VideoPlayer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/Container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserHeadBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserHeadBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/operations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/operations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserFavVideo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserFavVideo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoFavButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTag.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTitleDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoTitleDisplay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/baseURL.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/baseURL.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/dan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/dan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/api/fav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/fav.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/api/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/cookieTools.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/cookieTools.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +136,7 @@
       <workItem from="1564809971442" duration="32130000" />
       <workItem from="1565074916400" duration="1986000" />
       <workItem from="1565389697635" duration="1003000" />
-      <workItem from="1565392957535" duration="14631000" />
+      <workItem from="1565392957535" duration="38848000" />
     </task>
     <servers />
   </component>

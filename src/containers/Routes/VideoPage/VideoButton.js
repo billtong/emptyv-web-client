@@ -61,11 +61,18 @@ class VideoButton extends Component {
 
 	handleClickAction = (e, myOperation) => {
 		e.preventDefault();
+		console.log();
 		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
 		if (!isUserA) {
 			if (myOperation === operation.FAV_A_VIDEO) {
 				this.setState({
-					hasFav: true
+					hasFav: true,
+				});
+				return;
+			}
+			if (myOperation === operation.CANCEL_FAV_A_VIDEO) {
+				this.setState({
+					hasFav: false,
 				});
 				return;
 			}
