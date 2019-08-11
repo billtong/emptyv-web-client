@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {BASE_URL} from './baseURL';
 import {getSessionTokenJson, getTokenParamURL} from './apiHelper';
+import operation from '../../assets/operations';
 
 export const getVideo = (inputJson) => {
 	const getVideoURL = `${BASE_URL}video-service/video/${inputJson.videoId}`;
@@ -14,7 +15,6 @@ export const getVideo = (inputJson) => {
 		});
 };
 
-//userId不用管，以后会被废除，现在也不影响搜索
 export const getRandomVideoList = () => {
 	const getVideoListURL = `${BASE_URL}video-service/videos/random`;
 	return axios.get(getVideoListURL, {
@@ -26,37 +26,41 @@ export const getRandomVideoList = () => {
 	);
 };
 
-export const patchView = (videoId) => {
+export const patchVideoView = (inputJson) => {
 	const userJson = getSessionTokenJson();
-	const deviceListURL = userJson !== null ? `${BASE_URL}api/video/patchViewNum?videoId=${videoId}&userId=${userJson.user.userId}` : `${BASE_URL}api/video/patchViewNum?videoId=${videoId}&userId=`;
-	return axios.patch(deviceListURL, {
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	}).then((res) => (res)
-		, (err) => (err));
+	const patchViewURL = `${BASE_URL}video-service/video/${inputJson.videoId}?operation=${operation.VIEW_A_VIDEO}`;
+	if (userJson) {
+		return axios.patch(patchViewURL, null, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': getSessionTokenJson().userToken
+			}
+		}).then(res => res, err => err);
+	} else {
+		return axios.patch(patchViewURL, {
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}).then(res => res, err => err);
+	}
 };
 
-export const patchOtherNum = (inputJson) => {
-	const deviceListURL = `${BASE_URL}api/video/patchOtherNum?videoId=${inputJson.videoId}&action=${inputJson.action}&${getTokenParamURL()}`;
-	return axios.patch(deviceListURL, {
+export const patchVideoCount = (inputJson) => {
+	const patchCountURL = `${BASE_URL}video-service/video/${inputJson.videoId}?operation=${inputJson.operation}`;
+	return axios.patch(patchCountURL, null,{
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Authorization': getSessionTokenJson().userToken
 		}
-	}).then((res) => (res)
-		, (err) => {
-			throw new Error(err.message);
-		});
+	}).then(res => res, err => err);
 };
 
-export const patchTags = (inputJson) => {
-	const deviceListURL = `${BASE_URL}api/video/patchTags?videoId=${inputJson.videoId}&tagJsonString=${inputJson.tagJsonString}&${getTokenParamURL()}`;
-	return axios.patch(deviceListURL, {
+export const patchVideoTag = (inputJson) => {
+	const patchTagURL = `${BASE_URL}video-service/video/${inputJson.videoId}?operation=${operation.TAG_A_VIDEO}&tag=${inputJson.tag}`;
+	return axios.patch(patchTagURL, null,{
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Authorization': getSessionTokenJson().userToken
 		}
-	}).then((res) => (res)
-		, (err) => {
-			throw new Error(err.message);
-		});
+	}).then(res => res, err => err);
 };

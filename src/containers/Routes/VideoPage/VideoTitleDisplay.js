@@ -41,7 +41,6 @@ class VideoTitleDisplay extends Component {
 	};
 
 	render = () => {
-		console.log(this.props.videoData);
 		return (
 			<Fragment>
 				<div>

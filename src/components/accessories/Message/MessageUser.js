@@ -33,7 +33,7 @@ export const MessageUser = (props) => {
 		<Wrapper>
 			<MYul>
 				<InfoWrapper>
-					{props.userInfo.userName}<img className="user-icon" width={"30"} height={"30"} src={props.userInfo.userIcon}/>
+					{props.userInfo.userName}<img alt={"user avatar"} className="user-icon" width={"30"} height={"30"} src={props.userInfo.profile.avatar}/>
 				</InfoWrapper>
 				<MsgContentWrapper>
 					<li className="content">{props.msg.msgContent}</li>

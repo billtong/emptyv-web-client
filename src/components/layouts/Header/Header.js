@@ -48,6 +48,8 @@ class Header extends Component {
 					this.handleNavClick("/");
 				});
 				break;
+			default:
+				break;
 		}
 	}
 
@@ -59,7 +61,7 @@ class Header extends Component {
 					<Selector
 						title={(
 							<div className="userMenuButton">
-								<img width="30" heigh="30" src={getSessionTokenJson().user.profile.avatar}/>
+								<img alt={"user avatar"} width="30" height="30" src={getSessionTokenJson().user.profile.avatar}/>
 								<div className="user-name">{getSessionTokenJson().user.profile.name}</div>
 							</div>
 						)}

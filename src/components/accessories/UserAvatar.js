@@ -31,6 +31,7 @@ class UserAvatar extends React.Component {
 			<React.Fragment>
 				<Wrapper onClick={e => this.handleUserClick(e, this.props.userInfo.id)}>
 					<img
+						alt={"user avatar"}
 						src={this.props.userInfo.profile.avatar}
 						height="100%"
 						width="100%"

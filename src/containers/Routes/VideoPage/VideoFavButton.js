@@ -7,6 +7,7 @@ import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import history from "../../../utils/history";
 
 import "./VideoFavButton.css";
+import operation from "../../../assets/operations";
 
 class VideoFavButton extends React.Component {
 	state = {
@@ -64,7 +65,7 @@ class VideoFavButton extends React.Component {
 						userId: value.userId
 					}).then(() => {
 						if ((index + 1) >= this.state.changedFavList.length) {
-							this.props.handleClickAction(e, 'favourite');
+							this.props.handleClickAction(e, operation.FAV_A_VIDEO);
 							this.setState({
 								favDialogCss: 'notShowDialog'
 							});

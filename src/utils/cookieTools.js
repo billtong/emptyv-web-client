@@ -18,8 +18,8 @@ export const setCookie = (key, value) => {
 };
 
 export const deleteCookie = (key) => {
-	var date = new Date();
+	const date = new Date();
 	date.setTime(date.getTime() - 10000);
-	const value = getCookie(key);
+	//const value = getCookie(key);
 	document.cookie = `${key}=; expire=` + date.toGMTString();
 };

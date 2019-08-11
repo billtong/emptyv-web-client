@@ -37,11 +37,11 @@ class Dan extends React.Component {
 			isNew = true;
 		} else if (nextProps.displayDanList.length > 0) {
 			nextProps.displayDanList.forEach((value, index) => {
-				if (value.danId !== this.props.displayDanList[index].danId) {
+				if (value.id !== this.props.displayDanList[index].id) {
 					isNew = true;
 					return;
 				}
-				if (value.currentTime !== this.props.displayDanList[index].currentTime) {
+				if (value.videoTime !== this.props.displayDanList[index].videoTime) {
 					isNew = true;
 					return;
 				}
@@ -67,7 +67,7 @@ class Dan extends React.Component {
 			Array.prototype.push.apply(newColorArr, Array(displayDanList.length).fill('#FFFFFF'));
 			const newSpeedArr = this.state.speedArr;
 			const newSpeedArr2 = displayDanList.map((value) => {
-				return (value.danContent.length / 10);
+				return (value.text.length / 10);
 			});
 			Array.prototype.push.apply(newSpeedArr, newSpeedArr2);
 			const newDisplayDanList = this.state.displayDanList;
@@ -94,7 +94,7 @@ class Dan extends React.Component {
 		ctx.save();
 		this.state.displayDanList.forEach((dan, index) => {
 			ctx.fillStyle = this.state.colorArr[index];
-			ctx.fillText(dan.danContent, this.state.numArrL[index], this.state.numArrT[index]);
+			ctx.fillText(dan.text, this.state.numArrL[index], this.state.numArrT[index]);
 			if (this.state.numArrL[index] <= -canvas.width) {
 				const newNumArrL = this.state.numArrL;
 				const newNumArrT = this.state.numArrT;

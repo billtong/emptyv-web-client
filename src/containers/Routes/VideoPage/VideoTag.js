@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import {MdAdd} from 'react-icons/md';
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
-import {patchTags} from "../../../utils/api/video";
+import {patchVideoTag} from "../../../utils/api/video";
 import history from "../../../utils/history";
 import Text from '../../../components/accessories/Text';
 
@@ -51,27 +51,29 @@ class VideoTag extends Component {
 		if (e.keyCode === 13 && this.state.isTagForcus && !this.state.isTagBlur) {
 			e.preventDefault();
 			const content = this.refs.addTag.value;
-			if (!content || content === null || content === '' || (typeof content === 'string' && content.trim().length === 0)) {
+			if (!content || content === '' || (typeof content === 'string' && content.trim().length === 0)) {
 				alert('fill with something please...');
 				return;
 			}
-			const {tagList} = this.state;
-			const tag = this.refs.addTag.value;
+			const newTagList = this.state.tagList;
+			if (newTagList.includes(content)) {
+				alert('fill with something different please...');
+				return;
+			}
 			this.refs.addTag.value = '';
-			const newTagList = (!tagList || typeof tagList !== 'string' || tagList.constructor !== String) ? [] : tagList.split(',');
-			newTagList.push(tag);
-			patchTags({
+			newTagList.push(content);
+			patchVideoTag({
 				videoId: this.props.videoData.id,
-				tagJsonString: newTagList.join(',')
+				tag: content
 			});
 			this.setState({
 				isTagAdd: false,
 				isTagForcus: false,
 				isTagBlur: true,
-				tagList: newTagList.join(',')
+				tagList: newTagList
 			});
 		}
-	};
+	}
 
 	//click the add button to open input board
 	handleClick = (e) => {
@@ -79,7 +81,7 @@ class VideoTag extends Component {
 		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
 		const userJSON = getSessionTokenJson();
 		if (!isUserA) {
-			if (userJSON.user.userId === this.props.videoData.userId) {
+			if (userJSON.user.id === this.props.videoData.userId) {
 				this.setState({
 					isTagAdd: true,
 					isTagForcus: true,

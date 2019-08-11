@@ -27,6 +27,8 @@ export const Container = (props) => {
 						<CommentBlock key={index} floor={props.totalLength - index} commentInfo={comment}/>
 					)
 				}) : null;
+			default:
+				break;
 		}
 	};
 	return (

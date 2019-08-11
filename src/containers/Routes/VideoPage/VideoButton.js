@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import {MdThumbDown, MdThumbUp} from 'react-icons/md';
 import {getSessionTokenJson} from "../../../utils/api/apiHelper";
 import history from "../../../utils/history";
-import {patchOtherNum} from "../../../utils/api/video";
+import {patchVideoCount} from "../../../utils/api/video";
 import VideoFavButton from "./VideoFavButton";
+import operation from "../../../assets/operations";
 
 const IconWrapper = styled.div`
 	display: inline-block;
@@ -58,34 +59,33 @@ class VideoButton extends Component {
 		});
 	};
 
-	handleClickAction = (e, myAction) => {
+	handleClickAction = (e, myOperation) => {
 		e.preventDefault();
 		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
 		if (!isUserA) {
-			patchOtherNum({
-				action: myAction,
+			if (myOperation === operation.FAV_A_VIDEO) {
+				this.setState({
+					hasFav: true
+				});
+				return;
+			}
+			patchVideoCount({
+				operation: myOperation,
 				videoId: this.props.videoId,
-				userId: getSessionTokenJson().user.userId,
 			}).then(() => {
-				switch (myAction) {
-					case 'like':
+				switch (myOperation) {
+					case operation.LIKE_A_VIDEO:
 						this.setState({
 							hasLike: true,
 							hasUnlike: false
 						});
 						break;
-					case 'unlike':
+					case operation.UNLIKE_A_VIDEO:
 						this.setState({
 							hasUnlike: true,
 							hasLike: false
 						});
 						break;
-					case 'favourite':
-						this.setState({
-							hasFav: true
-						});
-						break;
-					default:
 				}
 			});
 		} else {
@@ -99,11 +99,11 @@ class VideoButton extends Component {
 				<div>
 					<IconWrapper
 						style={{color: this.state.hasLike ? 'green' : 'white'}}
-						onClick={e => this.handleClickAction(e, 'like')}
+						onClick={e => this.handleClickAction(e, operation.LIKE_A_VIDEO)}
 					><MdThumbUp/></IconWrapper>
 					<IconWrapper
 						style={{color: this.state.hasUnlike ? 'red' : 'white'}}
-						onClick={e => this.handleClickAction(e, 'unlike')}
+						onClick={e => this.handleClickAction(e, operation.UNLIKE_A_VIDEO)}
 					><MdThumbDown/></IconWrapper>
 
 					<IconWrapper>

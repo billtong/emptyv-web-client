@@ -35,7 +35,7 @@ export const TalkerOption = (props) => {
 	const option = (
 		<Fragment>
 			<div className="user-avatar">
-				<img src={props.userInfo.userIcon} height="20px" width="20px"/>
+				<img alt={"user avatar"} src={props.userInfo.profile.avatar} height="20px" width="20px"/>
 			</div>
 			<UserText>{props.userInfo.userName}</UserText>
 			<div className="msg-text">{props.lastMsg}</div>

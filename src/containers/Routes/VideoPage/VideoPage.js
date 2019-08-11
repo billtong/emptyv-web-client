@@ -93,11 +93,7 @@ class VideoPage extends Component {
 				<VideoWrapper>
 					<VideoPlayer
 						className='react-player'
-						video={!video ? {} : {
-							thumbnail_url: video.thumbnailSrc,
-							video_url: video.videoSrc,
-							video_id: video.id
-						}}
+						video={video}
 					/>
 				</VideoWrapper>
 				<VideoInfoWrapper>

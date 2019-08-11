@@ -6,7 +6,7 @@ import Dan from './Dan';
 import ContentMenu from './ContentMenu';
 import Text from '../Text';
 import {getSessionTokenJson} from '../../../utils/api/apiHelper';
-import {patchView} from '../../../utils/api/video';
+import {patchVideoView} from '../../../utils/api/video';
 import {getDanList, postDan} from '../../../utils/api/dan';
 import history from '../../../utils/history';
 import "./VidoePlayer.css";
@@ -36,10 +36,12 @@ class VideoPlayer extends React.Component {
 				clearTimeout(this.timeTask);
 				this.timeTask = null;
 			}
-			myVideo.src = nextProps.video.video_url;
+			myVideo.src = nextProps.video.videoSrc;
 			myVideo.volume = 1.0;
 			myVideo.muted = false;
-			getDanList(this.props.video.video_id).then(res => {
+			getDanList({
+				videoId: nextProps.video.id
+			}).then(res => {
 				this.setState({
 					danList: res.data,
 				});
@@ -62,13 +64,15 @@ class VideoPlayer extends React.Component {
 				realCurrentTime: 0
 			});
 		}
-	}
+	};
+
 	//让Dan组件中的弹幕清零,可用于关闭弹幕功能，被dan组件调用
 	setResetDan = (bool) => {
 		this.setState({
 			resetDan: bool
 		});
-	}
+	};
+
 	//更新时间+更新该时间点的弹幕(详见loadCurrentDanList)
 	updateVideoTime = (myVideo) => {
 		if (myVideo) {
@@ -94,10 +98,10 @@ class VideoPlayer extends React.Component {
 		const newDispalyDanList = [];
 		if (this.state.danList.length > 0) {
 			this.state.danList.forEach((dan) => {
-				if (this.state.danHasDisplayed !== dan.danId && dan.danCurrTime === (Math.floor((myVideo.currentTime)))) {
+				if (this.state.danHasDisplayed !== dan.id && dan.videoTime === (Math.floor((myVideo.currentTime)))) {
 					newDispalyDanList.push(dan);
 					this.setState({
-						danHasDisplayed: dan.danId
+						danHasDisplayed: dan.id
 					});
 				}
 			});
@@ -105,7 +109,7 @@ class VideoPlayer extends React.Component {
 			if (newDispalyDanList.length > 0) {
 				if (newDispalyDanList.length === this.state.currentDanList.length) {
 					newDispalyDanList.forEach((value, index) => {
-						if (value.danId !== this.state.currentDanList[index].danId) {
+						if (value.id !== this.state.currentDanList[index].id) {
 							isNew = true;
 						}
 						if (value.userId !== this.state.currentDanList[index].userId) {
@@ -134,7 +138,9 @@ class VideoPlayer extends React.Component {
 		if (myVideo.paused) {
 			//第一次点击时，myvideo已暂停且showPlayBtn还在
 			if (this.state.showPlayBtn) {
-				patchView(this.props.video.video_id);
+				patchVideoView({
+					videoId: this.props.video.id
+				});
 			}
 			myVideo.play();
 			this.setState({
@@ -188,7 +194,8 @@ class VideoPlayer extends React.Component {
 			clearTimeout(this.timeTask);
 			this.timeTask = null;
 		}, 3000);
-	}
+	};
+
 	//改变controlbar和光标的状态
 	switchControlBar = (e, flag) => {
 		e.preventDefault();
@@ -225,11 +232,11 @@ class VideoPlayer extends React.Component {
 			const myVideo = document.getElementById('myVideo');
 			//假的，未了让用户看到伪造一个id和currentTIme+1
 			const newDanItem = {
-				danId: -Math.floor(myVideo.currentTime),
-				danContent: this.refs.danContent.value,
-				danCurrTime: Math.floor(myVideo.currentTime) + 1,
-				danStyle: 'default',
-				videoId: this.props.video.video_id
+				id: -Math.floor(myVideo.currentTime),
+				text: this.refs.danContent.value,
+				videoTime: Math.floor(myVideo.currentTime) + 1,
+				style: 'default',
+				videoId: this.props.video.id
 			};
 			const newDanList = this.state.danList;
 			newDanList.push(newDanItem);
@@ -238,10 +245,10 @@ class VideoPlayer extends React.Component {
 			});
 			//真的
 			postDan({
-				danContent: this.refs.danContent.value,
-				danCurrTime: Math.floor(myVideo.currentTime),
-				danStyle: 'default',
-				videoId: this.props.video.video_id
+				text: this.refs.danContent.value,
+				videoTime: Math.floor(myVideo.currentTime),
+				style: 'default',
+				videoId: this.props.video.id
 			}).then().catch(err => {
 				console.log(err);
 			});
@@ -363,7 +370,7 @@ class VideoPlayer extends React.Component {
 	render() {
 		const {video} = this.props;
 		const startControlIcon = this.state.progress === '100%' || this.state.pause ? <MdPlayArrow/> : <MdPause/>;
-		const volumnControlIcon = this.state.offVolume === true ? <MdVolumeMute/> : <MdVolumeUp/>;
+		const volumeControlIcon = this.state.offVolume === true ? <MdVolumeMute/> : <MdVolumeUp/>;
 		const fullScreenControlIcon = this.state.fullscreen === true ? <MdFullscreenExit/> : <MdFullscreen/>;
 		const danInputDiv = this.state.isDisplayDan ? (
 			<div>
@@ -460,7 +467,7 @@ class VideoPlayer extends React.Component {
 						</div>
 					</div>
 					<div className="vjs-mute-control vjs-control" onClick={this.handleVolume.bind(this)}>
-						{volumnControlIcon}
+						{volumeControlIcon}
 					</div>
 				</div>
 			</div>
@@ -475,9 +482,5 @@ VideoPlayer.propTypes = {
 };
 
 VideoPlayer.defaultProps = {
-	video: {
-		thumbnail_url: "",
-		video_url: "",
-		video_id: ""
-	}
+	video: {}
 };

@@ -23,13 +23,6 @@ const UserImg = styled.img`
 	display: inline-block;
 `;
 
-const UserId = styled.span`
-	display: inline-block;
-	margin-left: 1rem;
-	font-size: 1.5rem;
-	font-weight: 100;
-`;
-
 const UserName = styled.span`
 	font-size: 1.5rem;
 	font-weight: 500;
@@ -73,7 +66,7 @@ class UserHeadBar extends Component {
 		return (
 			<Fragment>
 				<UserBannerWrapper>
-					<img width="100%" height="100%" className="user-banner-img"
+					<img alt={"user banner"} width="100%" height="100%" className="user-banner-img"
 					     src={this.props.user.profile && this.props.user.profile.banner}/>
 				</UserBannerWrapper>
 				<UserHeaderWrapper>
