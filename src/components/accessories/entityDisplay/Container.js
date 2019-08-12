@@ -17,7 +17,7 @@ export const Container = (props) => {
 				return props.list.length > 0 ? (
 					props.list.map((video, index) => {
 						return (
-							<VideoBlock videoInfo={video}/>
+							<VideoBlock key={index} videoInfo={video} />
 						);
 					})
 				) : null;

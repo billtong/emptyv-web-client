@@ -55,11 +55,6 @@ VideoBlock.propTypes = {
 	videoInfo: PropTypes.object,
 };
 
-VideoBlock.propTypes = {
-	videoInfo: {
-		name: "",
-		id: "",
-		viewCount: "",
-		thumbnailSrc: "",
-	}
+VideoBlock.defaultProps = {
+	videoInfo: {},
 };

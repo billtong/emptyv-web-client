@@ -55,9 +55,9 @@ class Pagination extends Component {
 		const cells = [...Array(this.props.total > this.props.cellNum ? this.props.cellNum : this.props.total)].map((item, index) => {
 				const value = startNum + index;
 				if (value === this.props.curr) {
-					return <SelectedCell> {value} </SelectedCell>
+					return <SelectedCell key={index}> {value} </SelectedCell>
 				}
-				return <Cell onClick={e => {
+				return <Cell key={index} onClick={e => {
 					this.handleCellClick(e, value)
 				}}> {value} </Cell>
 			}

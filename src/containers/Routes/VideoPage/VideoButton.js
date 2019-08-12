@@ -130,7 +130,7 @@ export default VideoButton;
 
 VideoButton.propTypes = {
 	history: PropTypes.arrayOf(PropTypes.object),
-	videoId: PropTypes.number,
+	videoId: PropTypes.string,
 };
 
 VideoButton.defaultProps = {

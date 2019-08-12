@@ -40,7 +40,7 @@ export default VideoPageInfo;
 
 VideoPageInfo.propTypes = {
 	videoData: PropTypes.object,
-	videoId: PropTypes.number,
+	videoId: PropTypes.string,
 	history: PropTypes.arrayOf(PropTypes.object),
 };
 

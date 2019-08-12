@@ -80,15 +80,33 @@ class LoginForm extends Component {
 					<Dialog titleTextId={"lgtitle"} event={this.handleCloseClick}>
 						<tr>
 							<td colSpan={2}>
-								<Text id={"lgip_1"} children={(text) => <input className={"text-input"} type="text" placeholder={text}
-								                                               id={"login-email"}/>}/>
+								<Text
+									id={"lgip_1"}
+									children={(text) => (
+										<input
+											className={"text-input"}
+											type="text" placeholder={text}
+											id={"login-email"}
+										/>
+										)
+									}
+								/>
 							</td>
 						</tr>
 						<tr>
 							<td colSpan={2}>
-								<Text id={"lgip_2"}
-								      children={(text) => <input className={"text-input"} type="password" placeholder={text}
-								                                 id={"login-password"}/>}/>
+								<Text
+									id={"lgip_2"}
+									children={(text) => (
+										<input
+											className={"text-input"}
+											type="password"
+											placeholder={text}
+											id={"login-password"}
+										/>
+										)
+									}
+								/>
 							</td>
 						</tr>
 						<tr>

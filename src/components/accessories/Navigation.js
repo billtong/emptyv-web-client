@@ -5,11 +5,11 @@ import Text from "./Text";
 
 const Button = styled.td`
 	user-select: none;
-  padding-right: 1rem;
-  cursor: pointer;
-  &:hover {
-    color: grey;
-  }
+	padding-right: 1rem;
+  	cursor: pointer;
+  	&:hover {
+    	color: grey;
+  	}
 `;
 
 export const NavItem = (props) => (

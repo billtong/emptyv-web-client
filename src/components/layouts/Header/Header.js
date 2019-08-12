@@ -57,18 +57,17 @@ class Header extends Component {
 		const rightMenu = getSessionTokenJson() !== null ? (
 			<Fragment>
 				<NavItem event={() => this.handleNavClick("/user/notification")} id={"notification"}/>
-				<div className={"selector-contaienr"}>
+				<td>
 					<Selector
 						title={(
 							<div className="userMenuButton">
-								<img alt={"user avatar"} width="30" height="30" src={getSessionTokenJson().user.profile.avatar}/>
 								<div className="user-name">{getSessionTokenJson().user.profile.name}</div>
 							</div>
 						)}
 						options={rightUserMenus}
 						passFatherState={this.handleUserMenuClick}
 					/>
-				</div>
+				</td>
 			</Fragment>
 		) : (
 			<Fragment>
