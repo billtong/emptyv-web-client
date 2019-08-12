@@ -18,7 +18,7 @@ const zh_CN = {
 	c_cancel: "取消",
 	c_delete: "删除评论",
 	c_report: "举报评论",
-	c_hover_delete_tip: "这个人还神秘的删除或隐藏了评论, 只更强(更高等级)的人才能看到他！",
+	c_hover_delete_tip: "该评论已删除, ps. 最高等级可浏览",
 
 	//video
 	vb_views: " 观看",
@@ -67,10 +67,10 @@ const zh_CN = {
 	abl2_3: "更加强大的Empty Player播放器功能",
 	abl2_4: "后端重构微服务架构",
 	abs3: "加入我们",
-	abl3_1: "编程语言：",
-	abl3_2: "架构：",
-	abl3_3: "其他工具：",
-	abl3_4: "邮箱：",
+	abl3_1: "语言：",
+	abl3_2: "框架：",
+	abl3_3: "DevOps工具：",
+	abl3_4: "",
 	abl3_5: "关注我们: ",
 	abf: "创造一个自由的世界",
 };

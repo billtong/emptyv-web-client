@@ -23,7 +23,7 @@ const en_US = {
 	c_cancel: "cancel",
 	c_delete: "delete",
 	c_report: "report",
-	c_hover_delete_tip: "this has been deleted or hidden, view it in higher level!",
+	c_hover_delete_tip: "it's been deleted, view it in higher level",
 
 	//video
 	vb_views: " views",
@@ -67,8 +67,8 @@ const en_US = {
 	abl2_4: "backend will be built in micro-services",
 	abs3: "Join Us",
 	abl3_1: "Language: ",
-	abl3_2: "Frameworks: ",
-	abl3_3: "Others: ",
+	abl3_2: "Framework: ",
+	abl3_3: "DevOps Toolchain: ",
 	abl3_4: "Email: ",
 	abl3_5: "FollowMe: ",
 	abf: "we create a free WORLD",

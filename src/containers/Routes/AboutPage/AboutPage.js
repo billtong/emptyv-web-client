@@ -15,7 +15,7 @@ class AboutPage extends Component {
 				<XHelmet title={"About Us"}/>
 				<div className="about-us-container">
 					<h1 className="title-text">Empty Video</h1>
-					<h4 className="title-text">1.2.0510</h4>
+					<h4 className="title-text">1.3.0901</h4>
 					<section>
 						<h2><Text id="abs1"/></h2>
 						<ul>
@@ -37,11 +37,10 @@ class AboutPage extends Component {
 					<section>
             <span>
               <h2><Text id="abs3"/></h2>
-              <li><Text id="abl3_1"/>Java, Golang, JavaScript, H5, CSS</li>
+              <li><Text id="abl3_1"/>Java, Golang, ES6, H5, CSS</li>
               <li><Text id="abl3_2"/>React, Spring Boot, Spring Cloud</li>
               <li><Text id="abl3_3"/>Docker, Jenkins</li>
-              <li><Text id="abl3_4"/><p>emptyvideos@outlook.com</p></li>
-              <li><Text id="abl3_5"/><p><a href="https://github.com/billtong">GitHub Account</a></p></li>
+              <li><Text id="abl3_5"/><p><a href="https://github.com/agateram" target="_blank">GitHub</a></p></li>
             </span>
 					</section>
 					<div className="foot-text">

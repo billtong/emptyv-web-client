@@ -206,16 +206,16 @@ class SettingPage extends React.Component {
 					<li className="setting-li">
 						<div>Profile Banner Picture</div>
 						<img alt={"user-banner"} src={this.state.userBannerImgURL} id="responsive-userBanner"/>
-						<input className="input-img" enctype="multipart/form-data" id="userBanner" type="file"
+						<input className="input-img" formEncType="multipart/form-data" id="userBanner" type="file"
 						       onChange={(e) => this.fileChangedHandler(e, 'userBanner')}/>
-						<label for="userBanner">Update</label>
+						<label htmlFor="userBanner">Update</label>
 					</li>
 					<li className="setting-li">
 						<div>Profile Picture</div>
 						<img alt={"user-avatar"} src={this.state.userIconImgURL} id="responsive-userIcon"/>
-						<input className="input-img" enctype="multipart/form-data" id="userIcon" type="file"
+						<input className="input-img" formEncType="multipart/form-data" id="userIcon" type="file"
 						       onChange={(e) => this.fileChangedHandler(e, 'userIcon')}/>
-						<label for="userIcon">Update</label>
+						<label htmlFor="userIcon">Update</label>
 					</li>
 					<li className="setting-li">
 						<div>name</div>

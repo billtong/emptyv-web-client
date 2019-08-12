@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {videoStyle} from '../style.js';
 import history from "../../../../../utils/history";
 import Text from '../../../Text';
+import {Link} from "react-router-dom";
 
 const Wrapper = styled.div`
 	display: inline-block;
@@ -30,25 +31,22 @@ const Num = styled.div`
 	margin: 0 auto;
 `;
 
-const handleVideoBlockClick = (e, videoId) => {
-	e.preventDefault();
-	history.push(`/video/${videoId}`);
-};
-
 export const VideoBlock = (props) => {
 	return (
-		<Wrapper onClick={e => handleVideoBlockClick(e, props.videoInfo.id)}>
-			<div>
-				<Img src={props.videoInfo.thumbnailSrc}/>
-			</div>
-			<Title>
-				{props.videoInfo.name}
-			</Title>
-			<Num>
-				{props.videoInfo.viewCount}
-				<Text id={"vb_views"}/>
-			</Num>
-		</Wrapper>
+		<Link to={`/video/${props.videoInfo.id}`} target="_blank">
+			<Wrapper>
+				<div>
+					<Img src={props.videoInfo.thumbnailSrc}/>
+				</div>
+				<Title>
+					{props.videoInfo.name}
+				</Title>
+				<Num>
+					{props.videoInfo.viewCount}
+					<Text id={"vb_views"}/>
+				</Num>
+			</Wrapper>
+		</Link>
 	);
 };
 

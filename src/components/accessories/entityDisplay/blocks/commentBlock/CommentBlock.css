@@ -87,15 +87,13 @@
 
 }
 
-.comment-block-section .deleted-comment-text:hover:after {
+.comment-block-section .deleted-comment-text:hover:before {
     font-size: 0.5rem;
-    width: 12rem;
     content: attr(tip);
     display: inline;
     position:absolute;
-    margin-top: -1rem;
     color:yellow;
-    margin-left: 1rem;
+    margin-top: -1.5rem;
 }
 
 

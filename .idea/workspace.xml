@@ -6,10 +6,10 @@
       <change beforePath="$PROJECT_DIR$/src/assets/languages/en_US.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/en_US.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/getCommentListAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/getCommentListAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/LoginForm/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/LoginForm/LoginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Routes/SettingPage/SettingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/SettingPage/SettingPage.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +137,7 @@
       <workItem from="1564809971442" duration="32130000" />
       <workItem from="1565074916400" duration="1986000" />
       <workItem from="1565389697635" duration="1003000" />
-      <workItem from="1565392957535" duration="49826000" />
+      <workItem from="1565392957535" duration="51241000" />
     </task>
     <servers />
   </component>

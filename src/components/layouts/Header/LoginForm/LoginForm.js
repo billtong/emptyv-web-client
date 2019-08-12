@@ -54,6 +54,7 @@ class LoginForm extends Component {
 				} else {
 					sessionStorage.setItem(userTokenSessionKey, JSON.stringify(userJson));
 				}
+
 				history.go(-1);
 			}).catch((err) => {
 				this.setState({
