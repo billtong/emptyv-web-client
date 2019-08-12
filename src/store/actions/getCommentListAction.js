@@ -26,7 +26,6 @@ export const getCommentListAction = (inputJson) => {
 				ids: ids
 			}).then((res1) => {
 				const rslt = handleCommentList(res.data, res1.data);
-				console.log(rslt);
 				dispatch(completeGetComment(rslt));
 			});
 		}).catch((err) => {

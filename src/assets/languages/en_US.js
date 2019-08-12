@@ -23,6 +23,7 @@ const en_US = {
 	c_cancel: "cancel",
 	c_delete: "delete",
 	c_report: "report",
+	c_hover_delete_tip: "this has been deleted or hidden, view it in higher level!",
 
 	//video
 	vb_views: " views",

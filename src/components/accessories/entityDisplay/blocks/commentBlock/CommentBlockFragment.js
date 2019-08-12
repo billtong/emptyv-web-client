@@ -8,6 +8,7 @@ import {deleteComment, postComment} from '../../../../../utils/api/comment';
 import UserAvatar from '../../../UserAvatar';
 import Text from '../../../Text';
 import PropTypes from "prop-types";
+import {FormattedMessage} from "react-intl";
 
 class CommentBlockFrag extends React.Component {
 	state = {
@@ -51,7 +52,7 @@ class CommentBlockFrag extends React.Component {
 	};
 
 	checkDeletePerm = () => {
-		return getSessionTokenJson() !== null && this.props.comment.userId === getSessionTokenJson().user.id;
+		return !this.props.comment.deleted && getSessionTokenJson() !== null && this.props.comment.userId === getSessionTokenJson().user.id;
 	};
 
 	handleDelete = (e) => {
@@ -113,8 +114,14 @@ class CommentBlockFrag extends React.Component {
 					</ul>
 				</div>
 				{replyTag}
-				<div className="comment-text">
-					{this.props.comment.text}
+				<div>
+					<Text id={"c_hover_delete_tip"}>
+						{text => (
+							<span className={this.props.comment.deleted ? "deleted-comment-text" : "comment-text"} tip={text} >
+								{this.props.comment.text}
+							</span>
+						)}
+					</Text>
 				</div>
 				<div className="reply-input-section">
 					{replyInput}

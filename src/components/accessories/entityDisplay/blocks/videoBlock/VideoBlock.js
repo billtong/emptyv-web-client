@@ -8,6 +8,7 @@ import Text from '../../../Text';
 const Wrapper = styled.div`
 	display: inline-block;
 	padding: ${videoStyle.paddingVerti}px ${videoStyle.paddingHori}px; 
+	cursor: pointer;
 `;
 
 const Img = styled.img`

@@ -65,6 +65,41 @@
     font-weight: 400;
 }
 
+.comment-block-section .deleted-comment-text {
+    cursor: pointer;
+    margin-left: 5rem;
+    color: grey;
+    background: grey;
+    line-height: 2rem;
+    font-weight: 400;
+    moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+.comment-block-section .deleted-comment-text:hover {
+    color: orangered;
+    background: orangered;
+
+}
+
+.comment-block-section .deleted-comment-text:hover:after {
+    font-size: 0.5rem;
+    width: 12rem;
+    content: attr(tip);
+    display: inline;
+    position:absolute;
+    margin-top: -1rem;
+    color:yellow;
+    margin-left: 1rem;
+}
+
+
+
 .comment-block-section .reply-input-section {
     margin-left: 5rem;
     font-weight: 700;

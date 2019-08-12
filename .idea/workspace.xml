@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1afcfa01-123b-4d5a-8cab-deb9ca8222b2" name="Default Changelist" comment="Refactoring init commit">
-      <change afterPath="$PROJECT_DIR$/docs/video_button_design.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/languages/en_US.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/en_US.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlockFragment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/getCommentListAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/getCommentListAction.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +137,7 @@
       <workItem from="1564809971442" duration="32130000" />
       <workItem from="1565074916400" duration="1986000" />
       <workItem from="1565389697635" duration="1003000" />
-      <workItem from="1565392957535" duration="46385000" />
+      <workItem from="1565392957535" duration="49826000" />
     </task>
     <servers />
   </component>

@@ -18,6 +18,7 @@ const zh_CN = {
 	c_cancel: "取消",
 	c_delete: "删除评论",
 	c_report: "举报评论",
+	c_hover_delete_tip: "这个人还神秘的删除或隐藏了评论, 只更强(更高等级)的人才能看到他！",
 
 	//video
 	vb_views: " 观看",

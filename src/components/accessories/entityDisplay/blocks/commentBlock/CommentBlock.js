@@ -22,17 +22,6 @@ class CommentBlock extends React.Component {
 		})
 	);
 
-	/*
-	<Fragment>
-						<span key={index} className="reply-arro" onClick={e => {
-								e.preventDefault();
-								this.setState({isOpenReply: false});
-							}}>
-							<GoChevronUp/> <Text id="c_hide"/>
-						</span>
-					</Fragment>
-	 */
-
 	render() {
 		const {commentInfo} = this.props;
 		const clist = commentInfo.replies ? commentInfo.replies : [];
