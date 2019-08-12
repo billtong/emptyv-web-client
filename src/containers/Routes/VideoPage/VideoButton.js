@@ -82,15 +82,37 @@ class VideoButton extends Component {
 			}).then(() => {
 				switch (myOperation) {
 					case operation.LIKE_A_VIDEO:
+						if (this.state.hasUnlike) {
+							patchVideoCount({
+								operation: operation.CANCEL_UNLIKE_A_VIDEO,
+								videoId: this.props.videoId,
+							});
+						}
 						this.setState({
 							hasLike: true,
 							hasUnlike: false
 						});
 						break;
 					case operation.UNLIKE_A_VIDEO:
+						if (this.state.hasLike) {
+							patchVideoCount({
+								operation: operation.CANCEL_LIKE_A_VIDEO,
+								videoId: this.props.videoId,
+							});
+						}
 						this.setState({
 							hasUnlike: true,
 							hasLike: false
+						});
+						break;
+					case operation.CANCEL_LIKE_A_VIDEO:
+						this.setState({
+							hasLike: false
+						});
+						break;
+					case operation.CANCEL_UNLIKE_A_VIDEO:
+						this.setState({
+							hasUnlike: false,
 						});
 						break;
 				}
@@ -106,11 +128,11 @@ class VideoButton extends Component {
 				<div>
 					<IconWrapper
 						style={{color: this.state.hasLike ? 'green' : 'white'}}
-						onClick={e => this.handleClickAction(e, operation.LIKE_A_VIDEO)}
+						onClick={e => !this.state.hasLike ? this.handleClickAction(e, operation.LIKE_A_VIDEO) : this.handleClickAction(e, operation.CANCEL_LIKE_A_VIDEO)}
 					><MdThumbUp/></IconWrapper>
 					<IconWrapper
 						style={{color: this.state.hasUnlike ? 'red' : 'white'}}
-						onClick={e => this.handleClickAction(e, operation.UNLIKE_A_VIDEO)}
+						onClick={e => !this.state.hasUnlike ? this.handleClickAction(e, operation.UNLIKE_A_VIDEO) : this.handleClickAction(e, operation.CANCEL_UNLIKE_A_VIDEO)}
 					><MdThumbDown/></IconWrapper>
 
 					<IconWrapper>
