@@ -57,10 +57,11 @@ export const postRegister = (inputJson) => {
 };
 
 export const getUserHistory = () => {
-	const deviceListURL = `${BASE_URL}api/history/getHistory?${getTokenParamURL()}`;
-	return axios.get(deviceListURL, {
+	const userHistoryURL = `${BASE_URL}history-service/history`;
+	return axios.get(userHistoryURL, {
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Authorization': getSessionTokenJson().userToken
 		}
 	}).then((res) => (res)
 		, (err) => {

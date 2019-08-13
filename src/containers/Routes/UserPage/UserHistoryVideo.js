@@ -4,11 +4,12 @@ import {TitleText, VideoWrapper} from "./UserUploadVideo";
 import {EmptyTitle, LittleTitle, LittleTitleSelected} from "./UserFavVideo";
 import {getUserHistory} from "../../../utils/api/user";
 import Video from "../../../components/accessories/video";
+import operation from "../../../assets/operations";
 
 class UserHistoryVideo extends Component {
 	state = {
 		history: [],
-		action: -1,
+		operation: "",
 		videoList: [],
 		isLoading: false,
 		errMsg: null,
@@ -31,25 +32,28 @@ class UserHistoryVideo extends Component {
 		});
 	};
 
-	generateHistoryVideoList = (rawVideoList, action) => {
+	generateHistoryVideoList = (rawVideoList, operation) => {
 		let list = rawVideoList.map((value) => {
-			if (value.action === action) {
-				return value.video;
+			if (value.operation === operation) {
+				return value.object;
 			}
 		});
 		list = list.filter(video => video != null);
+		/*
 		for (let index = list.length - 1; index >= 0; index--) {
 			if (index >= 1 && list[index - 1].videoId === list[index].videoId) {
 				list.splice(index, 1);
 			}
 		}
+		 */
 		this.setState({videoList: list});
 	};
 
 	render = () => {
-		const HistMenuArr = ['view', 'like', 'unlike'];
-		const historyMenuList = this.state.history && this.state.history.length > 0 ? HistMenuArr.map((value, index) => {
-			if (this.state.action === index + 1) {
+		const histMenuArr = ['view', 'like', 'unlike'];
+		const histMenuOpt = [operation.VIEW_A_VIDEO, operation.LIKE_A_VIDEO, operation.UNLIKE_A_VIDEO];
+		const historyMenuList = this.state.history && this.state.history.length > 0 ? histMenuArr.map((value, index) => {
+			if (this.state.operation === histMenuOpt[index]) {
 				return (
 					<LittleTitleSelected key={index}>{value}</LittleTitleSelected>
 				);
@@ -57,12 +61,12 @@ class UserHistoryVideo extends Component {
 			const handleHistoryMenuClick = (e, newAction) => {
 				e.preventDefault();
 				this.setState({
-					action: newAction,
+					operation: newAction,
 				});
 				this.generateHistoryVideoList(this.state.history, newAction);
 			};
 			return (
-				<LittleTitle key={index} onClick={e => handleHistoryMenuClick(e, index + 1)}>{value}</LittleTitle>
+				<LittleTitle key={index} onClick={e => handleHistoryMenuClick(e, histMenuOpt[index])}>{value}</LittleTitle>
 			);
 		}) : (<EmptyTitle>It is empty here</EmptyTitle>);
 		return (

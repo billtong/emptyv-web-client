@@ -27,34 +27,45 @@ class VideoButton extends Component {
 		if (this.props.history !== prevProps.history) {
 			this.initHistoryState();
 		}
+		if (this.props.favLists !== prevProps.favLists) {
+			this.initFavListState();
+		}
 	};
 
 	initHistoryState = () => {
 		const {history, videoId} = this.props;
-		history.reverse();
 		history.forEach(item => {
-			if (item.videoId === parseInt(videoId, 10)) {
-				switch (item.action) {
-					case 2:
+			switch (item.operation) {
+				case operation.LIKE_A_VIDEO:
+					if (item.object.id === videoId) {
 						this.setState({
 							hasLike: true,
 							hasUnlike: false
 						});
-						break;
-					case 3:
+					}
+					break;
+				case operation.UNLIKE_A_VIDEO:
+					if (item.object.id === videoId) {
 						this.setState({
 							hasLike: false,
 							hasUnlike: true,
 						});
-						break;
-					case 4:
-						this.setState({
-							hasFav: true
-						});
-						break;
-					default:
-						break;
-				}
+					}
+					break;
+				default:
+					break;
+			}
+		});
+	};
+
+	initFavListState = () => {
+		const {favLists, videoId} = this.props;
+		console.log(favLists);
+		favLists.forEach(item => {
+			if (item.videoIds.indexOf(videoId) !== -1) {
+				this.setState({
+					hasFav: true
+				});
 			}
 		});
 	};
@@ -145,7 +156,7 @@ class VideoButton extends Component {
 				</div>
 			</Fragment>
 		);
-	}
+	};
 }
 
 export default VideoButton;

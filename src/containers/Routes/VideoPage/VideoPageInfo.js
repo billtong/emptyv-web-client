@@ -23,6 +23,7 @@ class VideoPageInfo extends Component {
 					<VideoButton
 						history={this.props.history}
 						videoId={this.props.videoId}
+						favLists={this.props.favLists}
 					/>
 				</Wrapper>
 				<VideoDesc
@@ -42,10 +43,12 @@ VideoPageInfo.propTypes = {
 	videoData: PropTypes.object,
 	videoId: PropTypes.string,
 	history: PropTypes.arrayOf(PropTypes.object),
+	favLists: PropTypes.arrayOf(PropTypes.object),
 };
 
 VideoPageInfo.defaultProps = {
 	videoData: {},
 	videoId: null,
 	history: [],
+	favLists: [],
 };

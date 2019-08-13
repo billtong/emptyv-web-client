@@ -8,6 +8,7 @@ import VideoPlayer from "../../../components/accessories/emptyplayer/VideoPlayer
 import styled from "styled-components";
 import Comment from "../../../components/accessories/comment/Comment";
 import VideoPageInfo from "./VideoPageInfo";
+import {getFavListsByUser} from "../../../utils/api/fav";
 
 const VideoWrapper = styled.div`
 	position: relative;
@@ -41,6 +42,7 @@ class VideoPage extends Component {
 
 	state = {
 		video: undefined,
+		favLists: undefined,
 		history: undefined,
 		isLoading: false,
 	};
@@ -58,13 +60,15 @@ class VideoPage extends Component {
 					this.setState({
 						history: historyRes.data,
 					});
-				}).catch(historyErr => {
-					console.log(historyErr.message);
-				}).finally(() => {
-					this.setState({
-						video: videoRes.data,
-						isLoading: false,
-					});
+					getFavListsByUser({
+						userId: getSessionTokenJson().user.id,
+					}).then(favListRes => {
+						this.setState({
+							favLists: favListRes.data,
+							video: videoRes.data,
+							isLoading: false,
+						});
+					})
 				});
 			} else {
 				this.setState({
@@ -82,7 +86,7 @@ class VideoPage extends Component {
 
 	render = () => {
 		const videoId = this.props.match.params.id;
-		const {video, isLoading, history} = this.state;
+		const {video, isLoading, history, favLists} = this.state;
 		const loading = isLoading ? (<div>
 			loading...
 		</div>) : null;
@@ -101,6 +105,7 @@ class VideoPage extends Component {
 						videoData={video}
 						videoId={videoId}
 						history={history}
+						favLists={favLists}
 					/>
 				</VideoInfoWrapper>
 				<CommentWrapper>

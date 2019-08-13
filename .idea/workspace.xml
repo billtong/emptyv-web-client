@@ -3,13 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="1afcfa01-123b-4d5a-8cab-deb9ca8222b2" name="Default Changelist" comment="Refactoring init commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/languages/en_US.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/en_US.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/commentBlock/CommentBlock.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/entityDisplay/blocks/videoBlock/VideoBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/LoginForm/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/LoginForm/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/AboutPage/AboutPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/SettingPage/SettingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/SettingPage/SettingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserHistoryVideo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserHistoryVideo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPageInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPageInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/api/baseURL.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/baseURL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/user.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,6 +138,7 @@
       <workItem from="1565074916400" duration="1986000" />
       <workItem from="1565389697635" duration="1003000" />
       <workItem from="1565392957535" duration="51241000" />
+      <workItem from="1565666777510" duration="4704000" />
     </task>
     <servers />
   </component>
@@ -160,18 +161,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactoring init commit" />
     <option name="LAST_COMMIT_MESSAGE" value="Refactoring init commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/utils/api/apiHelper.js</url>
-          <line>18</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="masterDetails">
     <states>
