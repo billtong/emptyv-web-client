@@ -86,13 +86,12 @@ class UserFavVideo extends Component {
     };
 
     render = () => {
-        console.log(this.state.userFavLists);
         const favMenuList = (!this.state.userFavLists || this.state.userFavLists.length === 0) ? (
             <EmptyTitle>empty</EmptyTitle>
         ) : this.state.userFavLists.map((value, index) => {
             if (this.state.favListSelectedId === value.id) {
                 return (
-                    <LittleTitleSelected>{value.name}</LittleTitleSelected>
+                    <LittleTitleSelected key={index}>{value.name}</LittleTitleSelected>
                 );
             }
             const handleFavMenuClick = (e, favId) => {

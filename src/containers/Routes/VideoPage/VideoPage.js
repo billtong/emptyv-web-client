@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Comment from "../../../components/accessories/comment/Comment";
 import VideoPageInfo from "./VideoPageInfo";
 import {getFavListsByUser} from "../../../utils/api/fav";
+import history from "../../../utils/history";
 
 const VideoWrapper = styled.div`
 	position: relative;
@@ -55,6 +56,9 @@ class VideoPage extends Component {
         getVideo({
             videoId: videoId
         }).then((videoRes) => {
+            if (!videoRes.data) {
+                history.push("/404");
+            }
             if (getSessionTokenJson() !== null) {
                 getUserHistory().then(historyRes => {
                     this.setState({

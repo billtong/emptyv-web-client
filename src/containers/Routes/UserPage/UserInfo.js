@@ -7,22 +7,24 @@ class UserInfo extends Component {
         return (
             <Fragment>
                 <table className="userInfo-table" border="1">
-                    <tr>
-                        <td className="title-td">Bio</td>
-                        <td className="text-td">
-                            <p className="bio-text">
-                                {this.props.user.profile && this.props.user.profile.description}
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="title-td">Location</td>
-                        <td className="text-td">{this.props.user.profile && this.props.user.profile.location}</td>
-                    </tr>
-                    <tr>
-                        <td className="title-td">Website</td>
-                        <td className="text-td">{this.props.user.profile && this.props.user.profile.website}</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td className="title-td">Bio</td>
+                            <td className="text-td">
+                                <p className="bio-text">
+                                    {this.props.user.profile && this.props.user.profile.description}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="title-td">Location</td>
+                            <td className="text-td">{this.props.user.profile && this.props.user.profile.location}</td>
+                        </tr>
+                        <tr>
+                            <td className="title-td">Website</td>
+                            <td className="text-td">{this.props.user.profile && this.props.user.profile.website}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </Fragment>
         );

@@ -41,12 +41,13 @@ class UserPage extends Component {
             getUserPublic({
                 userId: userId
             }).then((res) => {
+                if (!res.data) {
+                    history.push("/404");
+                }
                 this.setState({
                     user: res.data,
                     isHostUser: false,
                 });
-            }).catch((err) => {
-                history.push("/404");
             });
         }
     };
