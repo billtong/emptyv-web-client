@@ -16,34 +16,34 @@ const MsgWrapper = styled.li`
 `;
 
 class MessageBoard extends React.Component {
-	render() {
-		const MsgList = this.props.msgListSelected && this.props.msgListSelected.length > 0 ? (
-			this.props.msgListSelected.map((value, index) => {
-				return value.isSend ? (
-					<MsgWrapper>
-						<MessageUser userInfo={value.userInfo} msg={value}/>
-					</MsgWrapper>
-				) : (
-					<MsgWrapper>
-						<MessageTalker talkerInfo={value.talkerInfo} msg={value}/>
-					</MsgWrapper>
-				);
-			})
-		) : null;
-		return (
-			<Wrapper id="style-scroll">
-				{MsgList}
-			</Wrapper>
-		);
-	}
+    render() {
+        const MsgList = this.props.msgListSelected && this.props.msgListSelected.length > 0 ? (
+            this.props.msgListSelected.map((value, index) => {
+                return value.isSend ? (
+                    <MsgWrapper>
+                        <MessageUser userInfo={value.userInfo} msg={value}/>
+                    </MsgWrapper>
+                ) : (
+                    <MsgWrapper>
+                        <MessageTalker talkerInfo={value.talkerInfo} msg={value}/>
+                    </MsgWrapper>
+                );
+            })
+        ) : null;
+        return (
+            <Wrapper id="style-scroll">
+                {MsgList}
+            </Wrapper>
+        );
+    }
 }
 
 export default MessageBoard;
 
 MessageBoard.propTypes = {
-	msgListSelected: PropTypes.arrayOf(PropTypes.object),
+    msgListSelected: PropTypes.arrayOf(PropTypes.object),
 };
 
 MessageBoard.defaultProps = {
-	msgListSelected: [],
+    msgListSelected: [],
 };

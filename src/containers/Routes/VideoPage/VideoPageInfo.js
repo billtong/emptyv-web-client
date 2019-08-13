@@ -13,42 +13,42 @@ const Wrapper = styled.div`
 `;
 
 class VideoPageInfo extends Component {
-	render = () => {
-		return (
-			<Fragment>
-				<Wrapper>
-					<VideoTitleDisplay
-						videoData={this.props.videoData}
-					/>
-					<VideoButton
-						history={this.props.history}
-						videoId={this.props.videoId}
-						favLists={this.props.favLists}
-					/>
-				</Wrapper>
-				<VideoDesc
-					videoData={this.props.videoData}
-				/>
-				<VideoTag
-					videoData={this.props.videoData}
-				/>
-			</Fragment>
-		);
-	}
+    render = () => {
+        return (
+            <Fragment>
+                <Wrapper>
+                    <VideoTitleDisplay
+                        videoData={this.props.videoData}
+                    />
+                    <VideoButton
+                        history={this.props.history}
+                        videoId={this.props.videoId}
+                        favLists={this.props.favLists}
+                    />
+                </Wrapper>
+                <VideoDesc
+                    videoData={this.props.videoData}
+                />
+                <VideoTag
+                    videoData={this.props.videoData}
+                />
+            </Fragment>
+        );
+    }
 }
 
 export default VideoPageInfo;
 
 VideoPageInfo.propTypes = {
-	videoData: PropTypes.object,
-	videoId: PropTypes.string,
-	history: PropTypes.arrayOf(PropTypes.object),
-	favLists: PropTypes.arrayOf(PropTypes.object),
+    videoData: PropTypes.object,
+    videoId: PropTypes.string,
+    history: PropTypes.arrayOf(PropTypes.object),
+    favLists: PropTypes.arrayOf(PropTypes.object),
 };
 
 VideoPageInfo.defaultProps = {
-	videoData: {},
-	videoId: null,
-	history: [],
-	favLists: [],
+    videoData: {},
+    videoId: null,
+    history: [],
+    favLists: [],
 };

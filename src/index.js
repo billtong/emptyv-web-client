@@ -11,14 +11,14 @@ import {persistor, store} from './store';
 import history from "./utils/history";
 
 ReactDOM.render(
-	<Provider store={store}>
-		<PersistGate loading={null} persistor={persistor}>
-			<Router history={history}>
-				<Intl>
-					<App/>
-				</Intl>
-			</Router>
-		</PersistGate>
-	</Provider>
-	, document.getElementById('root'));
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+            <Router history={history}>
+                <Intl>
+                    <App/>
+                </Intl>
+            </Router>
+        </PersistGate>
+    </Provider>
+    , document.getElementById('root'));
 serviceWorker.register();

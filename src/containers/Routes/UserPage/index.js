@@ -10,18 +10,18 @@ import MessagePage from "../MessagePage";
  */
 
 class UserRouter extends Component {
-	render = () => {
-		return (
-			<Fragment>
-				<Switch>
-					<Route path="/user/dashboard/:id" component={UserPage}/>
-					<Route path="/user/notification" component={NotificationPage}/>
-					<Route path="/user/setting" component={SettingPage}/>
-					<Route path="/user/message" component={MessagePage}/>
-				</Switch>
-			</Fragment>
-		);
-	}
+    render = () => {
+        return (
+            <Fragment>
+                <Switch>
+                    <Route path="/user/dashboard/:id" component={UserPage}/>
+                    <Route path="/user/notification" component={NotificationPage}/>
+                    <Route path="/user/setting" component={SettingPage}/>
+                    <Route path="/user/message" component={MessagePage}/>
+                </Switch>
+            </Fragment>
+        );
+    }
 }
 
 export default withRouter(UserRouter);

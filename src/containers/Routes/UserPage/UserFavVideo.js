@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import {getFavListsByUser} from "../../../utils/api/fav";
 import {TitleText, VideoWrapper} from "./UserUploadVideo";
 import Video from "../../../components/accessories/video";
-import {formatDateTime} from "../../../utils/dateTools";
 import {getVideoByIds} from "../../../utils/api/video";
 
 const FavFlexWrapper = styled.div`
@@ -44,115 +43,115 @@ export const LittleTitle = styled.div`
 `;
 
 class UserFavVideo extends Component {
-	state = {
-		favListSelectedId: 0,
-		favListSelected: {},
-		userFavLists: [],
-		videoList: [],
-		isLoading: false,
-		errMsg: null,
-	};
-	componentDidMount = () => {
-		this.setState({
-			isLoading: true,
-		});
-		getFavListsByUser({
-			userId: this.props.userId
-		}).then(res1 => {
-			const userFavLists = res1.data;
-			let videoIds = [];
-			userFavLists.forEach(value=>{
-				videoIds = videoIds.concat(value.videoIds);
-			});
-			const videoIdsString = [...new Set(videoIds)].join(",");
-			getVideoByIds({
-				ids: videoIdsString
-			}).then(res2 => {
-				userFavLists.forEach(value => {
-					value.videoList = value.videoIds.map(value => {
-						return res2.data.filter(video => video.id === value)[0];
-					});
-				});
-				this.setState({
-					userFavLists: userFavLists,
-					isLoading: false,
-				});
-			});
-		}).catch((err) => {
-			this.setState({
-				isLoading: false,
-				errMsg: err.message,
-			});
-		});
-	};
+    state = {
+        favListSelectedId: 0,
+        favListSelected: {},
+        userFavLists: [],
+        videoList: [],
+        isLoading: false,
+        errMsg: null,
+    };
+    componentDidMount = () => {
+        this.setState({
+            isLoading: true,
+        });
+        getFavListsByUser({
+            userId: this.props.userId
+        }).then(res1 => {
+            const userFavLists = res1.data;
+            let videoIds = [];
+            userFavLists.forEach(value => {
+                videoIds = videoIds.concat(value.videoIds);
+            });
+            const videoIdsString = [...new Set(videoIds)].join(",");
+            getVideoByIds({
+                ids: videoIdsString
+            }).then(res2 => {
+                userFavLists.forEach(value => {
+                    value.videoList = value.videoIds.map(value => {
+                        return res2.data.filter(video => video.id === value)[0];
+                    });
+                });
+                this.setState({
+                    userFavLists: userFavLists,
+                    isLoading: false,
+                });
+            });
+        }).catch((err) => {
+            this.setState({
+                isLoading: false,
+                errMsg: err.message,
+            });
+        });
+    };
 
-	render = () => {
-		console.log(this.state.userFavLists);
-		const favMenuList = (!this.state.userFavLists || this.state.userFavLists.length === 0) ? (
-			<EmptyTitle>empty</EmptyTitle>
-		) : this.state.userFavLists.map((value, index) => {
-			if (this.state.favListSelectedId === value.id) {
-				return (
-					<LittleTitleSelected>{value.name}</LittleTitleSelected>
-				);
-			}
-			const handleFavMenuClick = (e, favId) => {
-				e.preventDefault();
-				this.setState({
-					favListSelectedId: value.id,
-					favListSelected: value,
-					videoList: value.videoList,
-				});
-			};
-			return (
-				<LittleTitle key={index} ref={index} onClick={(e) => handleFavMenuClick(e, value.id)}>
-					{value.name}
-				</LittleTitle>
-			);
-		});
+    render = () => {
+        console.log(this.state.userFavLists);
+        const favMenuList = (!this.state.userFavLists || this.state.userFavLists.length === 0) ? (
+            <EmptyTitle>empty</EmptyTitle>
+        ) : this.state.userFavLists.map((value, index) => {
+            if (this.state.favListSelectedId === value.id) {
+                return (
+                    <LittleTitleSelected>{value.name}</LittleTitleSelected>
+                );
+            }
+            const handleFavMenuClick = (e, favId) => {
+                e.preventDefault();
+                this.setState({
+                    favListSelectedId: value.id,
+                    favListSelected: value,
+                    videoList: value.videoList,
+                });
+            };
+            return (
+                <LittleTitle key={index} ref={index} onClick={(e) => handleFavMenuClick(e, value.id)}>
+                    {value.name}
+                </LittleTitle>
+            );
+        });
 
-		const favListInfo = (this.state.favListSelected && this.state.favListSelected.videoList) && (
-			<FavDetailsWrapper>
-				<FavListDetails>
-					{this.state.favListSelected.videoList.length} videos
-				</FavListDetails>
-				<FavListDetails>
-					Published on {this.state.favListSelected.created}
-				</FavListDetails>
-				<FavListDetails>
-					Updated on {this.state.favListSelected.updated}
-				</FavListDetails>
-			</FavDetailsWrapper>
-		);
+        const favListInfo = (this.state.favListSelected && this.state.favListSelected.videoList) && (
+            <FavDetailsWrapper>
+                <FavListDetails>
+                    {this.state.favListSelected.videoList.length} videos
+                </FavListDetails>
+                <FavListDetails>
+                    Published on {this.state.favListSelected.created}
+                </FavListDetails>
+                <FavListDetails>
+                    Updated on {this.state.favListSelected.updated}
+                </FavListDetails>
+            </FavDetailsWrapper>
+        );
 
-		return (
-			<Fragment>
-				<VideoWrapper>
-					<FavFlexWrapper>
-						<div>
-							<TitleText>Favourite List</TitleText>
-							{favMenuList}
-						</div>
-						{favListInfo}
-					</FavFlexWrapper>
-					<Video
-						videoList={this.state.videoList}
-						isLoading={this.state.isLoading}
-						errMsg={this.state.errMsg}
-						pageSize={3}
-					/>
-				</VideoWrapper>
-			</Fragment>
-		);
-	}
+        return (
+            <Fragment>
+                <VideoWrapper>
+                    <FavFlexWrapper>
+                        <div>
+                            <TitleText>Favourite List</TitleText>
+                            {favMenuList}
+                        </div>
+                        {favListInfo}
+                    </FavFlexWrapper>
+                    <Video
+                        videoList={this.state.videoList}
+                        isLoading={this.state.isLoading}
+                        errMsg={this.state.errMsg}
+                        pageSize={3}
+                    />
+                </VideoWrapper>
+            </Fragment>
+        );
+    }
 }
 
 export default UserFavVideo;
 
 UserFavVideo.propsTypes = {
-	userId: PropTypes.number,
+    userId: PropTypes.number,
 };
 
 UserFavVideo.defaultProps = {
-	userId: null,
+    userId: null,
 };

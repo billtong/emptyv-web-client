@@ -40,80 +40,80 @@ const CommentWrapper = styled.div`
 
 class VideoPage extends Component {
 
-	state = {
-		video: undefined,
-		favLists: undefined,
-		history: undefined,
-		isLoading: false,
-	};
+    state = {
+        video: undefined,
+        favLists: undefined,
+        history: undefined,
+        isLoading: false,
+    };
 
-	componentDidMount = () => {
-		const videoId = this.props.match.params.id;
-		this.setState({
-			isLoading: true,
-		});
-		getVideo({
-			videoId: videoId
-		}).then((videoRes) => {
-			if (getSessionTokenJson() !== null) {
-				getUserHistory().then(historyRes => {
-					this.setState({
-						history: historyRes.data,
-					});
-					getFavListsByUser({
-						userId: getSessionTokenJson().user.id,
-					}).then(favListRes => {
-						this.setState({
-							favLists: favListRes.data,
-							video: videoRes.data,
-							isLoading: false,
-						});
-					})
-				});
-			} else {
-				this.setState({
-					video: videoRes.data
-				});
-			}
-		}).catch(historyErr => {
-			console.log(historyErr.message);
-		}).finally(() => {
-			this.setState({
-				isLoading: false,
-			});
-		});
-	};
+    componentDidMount = () => {
+        const videoId = this.props.match.params.id;
+        this.setState({
+            isLoading: true,
+        });
+        getVideo({
+            videoId: videoId
+        }).then((videoRes) => {
+            if (getSessionTokenJson() !== null) {
+                getUserHistory().then(historyRes => {
+                    this.setState({
+                        history: historyRes.data,
+                    });
+                    getFavListsByUser({
+                        userId: getSessionTokenJson().user.id,
+                    }).then(favListRes => {
+                        this.setState({
+                            favLists: favListRes.data,
+                            video: videoRes.data,
+                            isLoading: false,
+                        });
+                    })
+                });
+            } else {
+                this.setState({
+                    video: videoRes.data
+                });
+            }
+        }).catch(historyErr => {
+            console.log(historyErr.message);
+        }).finally(() => {
+            this.setState({
+                isLoading: false,
+            });
+        });
+    };
 
-	render = () => {
-		const videoId = this.props.match.params.id;
-		const {video, isLoading, history, favLists} = this.state;
-		const loading = isLoading ? (<div>
-			loading...
-		</div>) : null;
-		return (
-			<Fragment>
-				<XHelmet title={`you are watching video@${videoId}`}/>
-				{loading}
-				<VideoWrapper>
-					<VideoPlayer
-						className='react-player'
-						video={video}
-					/>
-				</VideoWrapper>
-				<VideoInfoWrapper>
-					<VideoPageInfo
-						videoData={video}
-						videoId={videoId}
-						history={history}
-						favLists={favLists}
-					/>
-				</VideoInfoWrapper>
-				<CommentWrapper>
-					<Comment videoId={videoId}/>
-				</CommentWrapper>
-			</Fragment>
-		);
-	}
+    render = () => {
+        const videoId = this.props.match.params.id;
+        const {video, isLoading, history, favLists} = this.state;
+        const loading = isLoading ? (<div>
+            loading...
+        </div>) : null;
+        return (
+            <Fragment>
+                <XHelmet title={`you are watching video@${videoId}`}/>
+                {loading}
+                <VideoWrapper>
+                    <VideoPlayer
+                        className='react-player'
+                        video={video}
+                    />
+                </VideoWrapper>
+                <VideoInfoWrapper>
+                    <VideoPageInfo
+                        videoData={video}
+                        videoId={videoId}
+                        history={history}
+                        favLists={favLists}
+                    />
+                </VideoInfoWrapper>
+                <CommentWrapper>
+                    <Comment videoId={videoId}/>
+                </CommentWrapper>
+            </Fragment>
+        );
+    }
 }
 
 export default withRouter(VideoPage);

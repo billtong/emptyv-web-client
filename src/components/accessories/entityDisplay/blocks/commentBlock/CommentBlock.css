@@ -74,11 +74,11 @@
     font-weight: 400;
     moz-user-select: -moz-none;
     -moz-user-select: none;
-    -o-user-select:none;
-    -khtml-user-select:none;
-    -webkit-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .comment-block-section .deleted-comment-text:hover {
@@ -91,11 +91,10 @@
     font-size: 0.5rem;
     content: attr(tip);
     display: inline;
-    position:absolute;
-    color:yellow;
+    position: absolute;
+    color: yellow;
     margin-top: -1.5rem;
 }
-
 
 
 .comment-block-section .reply-input-section {

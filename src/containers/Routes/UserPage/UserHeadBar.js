@@ -48,63 +48,63 @@ const MessageBtn = styled.div`
 `;
 
 class UserHeadBar extends Component {
-	handleMessageClick = (e, userInfo) => {
-		e.preventDefault();
-		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
-		if (!isUserA) {
-			history.push({
-				pathname: `/user/message/${userInfo.id}`,
-				state: userInfo
-			});
-		} else {
-			history.push('/login');
-		}
-	};
+    handleMessageClick = (e, userInfo) => {
+        e.preventDefault();
+        const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
+        if (!isUserA) {
+            history.push({
+                pathname: `/user/message/${userInfo.id}`,
+                state: userInfo
+            });
+        } else {
+            history.push('/login');
+        }
+    };
 
 
-	render = () => {
-		return (
-			<Fragment>
-				<UserBannerWrapper>
-					<img alt={"user banner"} width="100%" height="100%" className="user-banner-img"
-					     src={this.props.user.profile && this.props.user.profile.banner}/>
-				</UserBannerWrapper>
-				<UserHeaderWrapper>
-					<div>
-						<UserImg src={this.props.user.profile && this.props.user.profile.avatar}/>
-						<UserName>{this.props.user.profile && this.props.user.profile.name}</UserName>
-					</div>
-					<RightWrapper>
-						<MessageBtn onClick={e => this.handleMessageClick(e, this.props.user)}>Message</MessageBtn>
-					</RightWrapper>
-				</UserHeaderWrapper>
-			</Fragment>
-		);
-	}
+    render = () => {
+        return (
+            <Fragment>
+                <UserBannerWrapper>
+                    <img alt={"user banner"} width="100%" height="100%" className="user-banner-img"
+                         src={this.props.user.profile && this.props.user.profile.banner}/>
+                </UserBannerWrapper>
+                <UserHeaderWrapper>
+                    <div>
+                        <UserImg src={this.props.user.profile && this.props.user.profile.avatar}/>
+                        <UserName>{this.props.user.profile && this.props.user.profile.name}</UserName>
+                    </div>
+                    <RightWrapper>
+                        <MessageBtn onClick={e => this.handleMessageClick(e, this.props.user)}>Message</MessageBtn>
+                    </RightWrapper>
+                </UserHeaderWrapper>
+            </Fragment>
+        );
+    }
 }
 
 export default UserHeadBar;
 
 UserHeadBar.propsTypes = {
-	user: PropTypes.object,
+    user: PropTypes.object,
 };
 
 UserHeadBar.defaultProps = {
-	user: {
-		system: {
-			reg: "",
-			active: false,
-			status: "",
-			point: 0,
-			achievement: []
-		},
-		profile: {
-			name: "",
-			avatar: "",
-			banner: "",
-			description: "",
-			location: "",
-			website: ""
-		}
-	}
+    user: {
+        system: {
+            reg: "",
+            active: false,
+            status: "",
+            point: 0,
+            achievement: []
+        },
+        profile: {
+            name: "",
+            avatar: "",
+            banner: "",
+            description: "",
+            location: "",
+            website: ""
+        }
+    }
 };

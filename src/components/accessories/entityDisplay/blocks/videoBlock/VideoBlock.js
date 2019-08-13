@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import {videoStyle} from '../style.js';
-import history from "../../../../../utils/history";
 import Text from '../../../Text';
 import {Link} from "react-router-dom";
 
@@ -32,28 +31,28 @@ const Num = styled.div`
 `;
 
 export const VideoBlock = (props) => {
-	return (
-		<Link to={`/video/${props.videoInfo.id}`} target="_blank">
-			<Wrapper>
-				<div>
-					<Img src={props.videoInfo.thumbnailSrc}/>
-				</div>
-				<Title>
-					{props.videoInfo.name}
-				</Title>
-				<Num>
-					{props.videoInfo.viewCount}
-					<Text id={"vb_views"}/>
-				</Num>
-			</Wrapper>
-		</Link>
-	);
+    return (
+        <Link to={`/video/${props.videoInfo.id}`} target="_blank">
+            <Wrapper>
+                <div>
+                    <Img src={props.videoInfo.thumbnailSrc}/>
+                </div>
+                <Title>
+                    {props.videoInfo.name}
+                </Title>
+                <Num>
+                    {props.videoInfo.viewCount}
+                    <Text id={"vb_views"}/>
+                </Num>
+            </Wrapper>
+        </Link>
+    );
 };
 
 VideoBlock.propTypes = {
-	videoInfo: PropTypes.object,
+    videoInfo: PropTypes.object,
 };
 
 VideoBlock.defaultProps = {
-	videoInfo: {},
+    videoInfo: {},
 };

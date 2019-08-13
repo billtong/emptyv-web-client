@@ -12,30 +12,30 @@ const initialState = {};
 const middleware = [thunk];
 
 const persistConfig = {
-	key: 'root',
-	storage: storage,
-	//stateReconciler: hardSet,
-	transforms: [transforms],
-	whitelist: ['changeLanguageReducer']
+    key: 'root',
+    storage: storage,
+    //stateReconciler: hardSet,
+    transforms: [transforms],
+    whitelist: ['changeLanguageReducer']
 };
 
 const rootReducer = (history) => combineReducers({
-	changeLanguageReducer,
-	getCommentListReducer,
-	router: connectRouter(history)
+    changeLanguageReducer,
+    getCommentListReducer,
+    router: connectRouter(history)
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer(history));
 
 export const store = createStore(
-	persistedReducer,
-	initialState,
-	compose(
-		applyMiddleware(
-			routerMiddleware(history),
-			...middleware),
-		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-	)
+    persistedReducer,
+    initialState,
+    compose(
+        applyMiddleware(
+            routerMiddleware(history),
+            ...middleware),
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    )
 );
 
 export const persistor = persistStore(store);

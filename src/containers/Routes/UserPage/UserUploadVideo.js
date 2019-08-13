@@ -21,52 +21,52 @@ export const TitleText = styled.div`
 `;
 
 class UserUploadVideo extends Component {
-	state = {
-		videoList: [],
-		isLoading: false,
-		errMsg: null,
-	};
+    state = {
+        videoList: [],
+        isLoading: false,
+        errMsg: null,
+    };
 
-	componentDidMount = () => {
-		this.setState({
-			isLoading: true,
-		});
-		getRandomVideoList().then(res => {
-			this.setState({
-				videoList: res.data.videoList,
-				isLoading: false,
-			});
-		}).catch(err => {
-			this.setState({
-				isLoading: false,
-				errMsg: err.message,
-			});
-		});
-	};
+    componentDidMount = () => {
+        this.setState({
+            isLoading: true,
+        });
+        getRandomVideoList().then(res => {
+            this.setState({
+                videoList: res.data.videoList,
+                isLoading: false,
+            });
+        }).catch(err => {
+            this.setState({
+                isLoading: false,
+                errMsg: err.message,
+            });
+        });
+    };
 
-	render = () => {
-		return (
-			<Fragment>
-				<VideoWrapper>
-					<TitleText>Upload</TitleText>
-					<Video
-						videoList={this.state.videoList}
-						isLoading={this.state.isLoading}
-						errMsg={this.state.errMsg}
-						pageSize={3}
-					/>
-				</VideoWrapper>
-			</Fragment>
-		);
-	}
+    render = () => {
+        return (
+            <Fragment>
+                <VideoWrapper>
+                    <TitleText>Upload</TitleText>
+                    <Video
+                        videoList={this.state.videoList}
+                        isLoading={this.state.isLoading}
+                        errMsg={this.state.errMsg}
+                        pageSize={3}
+                    />
+                </VideoWrapper>
+            </Fragment>
+        );
+    }
 }
 
 export default UserUploadVideo;
 
 UserUploadVideo.propsTypes = {
-	userId: PropTypes.number,
+    userId: PropTypes.number,
 };
 
 UserUploadVideo.defaultProps = {
-	userId: null,
+    userId: null,
 };

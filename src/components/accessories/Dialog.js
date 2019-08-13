@@ -37,36 +37,36 @@ const Form = styled.table`
 `;
 
 export const Dialog = (props) => {
-	return (
-		<Fragment>
-			<Wrapper>
-				<Form>
-					<tbody>
-					<tr>
-						<th>
-							<DialogTitle>
-								<Text id={props.titleTextId}/>
-							</DialogTitle>
-						</th>
-						<th>
-							<DialogClose><span onClick={props.event}>&times;</span></DialogClose>
-						</th>
-					</tr>
-					{props.children}
-					</tbody>
-				</Form>
-			</Wrapper>
-		</Fragment>
-	);
+    return (
+        <Fragment>
+            <Wrapper>
+                <Form>
+                    <tbody>
+                    <tr>
+                        <th>
+                            <DialogTitle>
+                                <Text id={props.titleTextId}/>
+                            </DialogTitle>
+                        </th>
+                        <th>
+                            <DialogClose><span onClick={props.event}>&times;</span></DialogClose>
+                        </th>
+                    </tr>
+                    {props.children}
+                    </tbody>
+                </Form>
+            </Wrapper>
+        </Fragment>
+    );
 };
 
 Dialog.propTypes = {
-	titleTextId: PropTypes.string,
-	event: PropTypes.func,
+    titleTextId: PropTypes.string,
+    event: PropTypes.func,
 };
 
 Dialog.defaultProps = {
-	titleTextId: "undefined",
-	event: undefined,
+    titleTextId: "undefined",
+    event: undefined,
 };
 

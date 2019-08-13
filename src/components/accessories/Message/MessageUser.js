@@ -29,35 +29,36 @@ const MsgTimeWrapper = styled.li`
 `;
 
 export const MessageUser = (props) => {
-	return (
-		<Wrapper>
-			<MYul>
-				<InfoWrapper>
-					{props.userInfo.userName}<img alt={"user avatar"} className="user-icon" width={"30"} height={"30"} src={props.userInfo.profile.avatar}/>
-				</InfoWrapper>
-				<MsgContentWrapper>
-					<li className="content">{props.msg.msgContent}</li>
-				</MsgContentWrapper>
-				<MsgTimeWrapper>
-					<li className="time">{props.msg.msgTime}</li>
-				</MsgTimeWrapper>
-			</MYul>
-		</Wrapper>
-	);
+    return (
+        <Wrapper>
+            <MYul>
+                <InfoWrapper>
+                    {props.userInfo.userName}<img alt={"user avatar"} className="user-icon" width={"30"} height={"30"}
+                                                  src={props.userInfo.profile.avatar}/>
+                </InfoWrapper>
+                <MsgContentWrapper>
+                    <li className="content">{props.msg.msgContent}</li>
+                </MsgContentWrapper>
+                <MsgTimeWrapper>
+                    <li className="time">{props.msg.msgTime}</li>
+                </MsgTimeWrapper>
+            </MYul>
+        </Wrapper>
+    );
 };
 
 MessageUser.propTypes = {
-	userInfo: PropTypes.object,
-	msg: PropTypes.object,
+    userInfo: PropTypes.object,
+    msg: PropTypes.object,
 };
 
 MessageUser.defaultProps = {
-	userInfo: {
-		userIcon: null,
-		userName: null
-	},
-	msg: {
-		msgContent: null,
-		msgTime: null,
-	},
+    userInfo: {
+        userIcon: null,
+        userName: null
+    },
+    msg: {
+        msgContent: null,
+        msgTime: null,
+    },
 };

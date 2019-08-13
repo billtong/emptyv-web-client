@@ -25,34 +25,34 @@ const HoriList = styled.div`
 `;
 
 export const Layout = (props) => {
-	switch (props.layout) {
-		case "grid":
-			return (
-				<Grid>
-					{props.children}
-				</Grid>
-			);
-		case "verti-list":
-			return (
-				<VertiList>
-					{props.children}
-				</VertiList>
-			);
-		case "hori-list":
-			return (
-				<HoriList>
-					{props.children}
-				</HoriList>
-			);
-		default:
-			break;
-	}
+    switch (props.layout) {
+        case "grid":
+            return (
+                <Grid>
+                    {props.children}
+                </Grid>
+            );
+        case "verti-list":
+            return (
+                <VertiList>
+                    {props.children}
+                </VertiList>
+            );
+        case "hori-list":
+            return (
+                <HoriList>
+                    {props.children}
+                </HoriList>
+            );
+        default:
+            break;
+    }
 };
 
 Layout.propTypes = {
-	layout: PropTypes.string,
+    layout: PropTypes.string,
 };
 
 Layout.defaultProps = {
-	layout: "grid",
+    layout: "grid",
 };

@@ -1,20 +1,20 @@
 import {createTransform} from 'redux-persist';
 
 const transforms = createTransform(
-	// transform state on its way to being serialized and persisted.
-	(inboundState, key) => {
-		// convert mySet to an Array.
-		return {...inboundState, mySet: [...inboundState.mySet]};
-	},
+    // transform state on its way to being serialized and persisted.
+    (inboundState, key) => {
+        // convert mySet to an Array.
+        return {...inboundState, mySet: [...inboundState.mySet]};
+    },
 
-	// transform state being rehydrated
-	(outboundState, key) => {
-		// convert mySet back to a Set.
-		return {...outboundState, mySet: new Set(outboundState.mySet)};
-	},
+    // transform state being rehydrated
+    (outboundState, key) => {
+        // convert mySet back to a Set.
+        return {...outboundState, mySet: new Set(outboundState.mySet)};
+    },
 
-	// define which reducers this transform gets called for.
-	{whitelist: ['someReducer']}
+    // define which reducers this transform gets called for.
+    {whitelist: ['someReducer']}
 );
 
 export default transforms;

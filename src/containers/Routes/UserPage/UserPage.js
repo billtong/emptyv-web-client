@@ -18,55 +18,55 @@ const UserWrapper = styled.div`
 `;
 
 class UserPage extends Component {
-	state = {
-		user: {},
-		isHostUser: false,
-	};
+    state = {
+        user: {},
+        isHostUser: false,
+    };
 
-	componentWillReceiveProps = (nextProps) => {
-		if (nextProps.match.params.id !== this.props.match.params.id) {
-			window.location.reload();
-		}
-	};
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.match.params.id !== this.props.match.params.id) {
+            window.location.reload();
+        }
+    };
 
-	componentWillMount = () => {
-		const userId = this.props.match.params.id;
-		const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
-		if (!isUserA && getSessionTokenJson().user.id === userId) {
-			this.setState({
-				user: getSessionTokenJson().user,
-				isHostUser: true,
-			});
-		} else {
-			getUserPublic({
-				userId: userId
-			}).then((res) => {
-				this.setState({
-					user: res.data,
-					isHostUser: false,
-				});
-			}).catch((err) => {
-				history.push("/404");
-			});
-		}
-	};
+    componentWillMount = () => {
+        const userId = this.props.match.params.id;
+        const isUserA = !getSessionTokenJson() || getSessionTokenJson() === null;
+        if (!isUserA && getSessionTokenJson().user.id === userId) {
+            this.setState({
+                user: getSessionTokenJson().user,
+                isHostUser: true,
+            });
+        } else {
+            getUserPublic({
+                userId: userId
+            }).then((res) => {
+                this.setState({
+                    user: res.data,
+                    isHostUser: false,
+                });
+            }).catch((err) => {
+                history.push("/404");
+            });
+        }
+    };
 
-	render = () => {
-		const userId = this.props.match.params.id;
-		return (
-			<Fragment>
-				<UserHeadBar user={this.state.user}/>
-				<UserWrapper>
-					<div>
-						<UserUploadVideo userId={userId}/>
-						<UserFavVideo userId={userId}/>
-						{this.state.isHostUser && <UserHistoryVideo userId={userId}/>}
-					</div>
-					<UserInfo user={this.state.user}/>
-				</UserWrapper>
-			</Fragment>
-		);
-	}
+    render = () => {
+        const userId = this.props.match.params.id;
+        return (
+            <Fragment>
+                <UserHeadBar user={this.state.user}/>
+                <UserWrapper>
+                    <div>
+                        <UserUploadVideo userId={userId}/>
+                        <UserFavVideo userId={userId}/>
+                        {this.state.isHostUser && <UserHistoryVideo userId={userId}/>}
+                    </div>
+                    <UserInfo user={this.state.user}/>
+                </UserWrapper>
+            </Fragment>
+        );
+    }
 }
 
 export default withRouter(UserPage);

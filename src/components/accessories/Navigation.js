@@ -13,20 +13,20 @@ const Button = styled.td`
 `;
 
 export const NavItem = (props) => (
-	<Fragment>
-		<Button onClick={props.event}>
-			<Text id={props.id}/>
-		</Button>
-	</Fragment>
+    <Fragment>
+        <Button onClick={props.event}>
+            <Text id={props.id}/>
+        </Button>
+    </Fragment>
 );
 
 
 NavItem.propTypes = {
-	event: PropTypes.func,
-	id: PropTypes.string,
+    event: PropTypes.func,
+    id: PropTypes.string,
 };
 
 NavItem.defaultProps = {
-	event: undefined,
-	id: "undefined"
+    event: undefined,
+    id: "undefined"
 };

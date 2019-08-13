@@ -27,38 +27,38 @@ const SendBtn = styled.span`
 `;
 
 class MessageInput extends React.Component {
-	state = {
-		msgType: 'text',
-	};
+    state = {
+        msgType: 'text',
+    };
 
-	handleClick = (e) => {
-		e.preventDefault();
-		if (!this.refs.content.value || this.refs.content.value === null || this.refs.content.value === '' || this.refs.content.value.trim().size === 0) {
-			alert("please say something!");
-			return;
-		}
-		postMsg({
-			msgContent: this.refs.content.value,
-			msgType: this.state.msgType,
-			senderId: getSessionTokenJson().user.userId,
-			listenerId: this.props.talkerInfo.userId
-		}).then(() => {
-			this.props.updateMsg(this.props.talkerSelected);
-			history.push('/user/message');
-		}).catch(err => {
-			alert(err);
-		});
-		this.refs.content.value = '';
-	};
+    handleClick = (e) => {
+        e.preventDefault();
+        if (!this.refs.content.value || this.refs.content.value === null || this.refs.content.value === '' || this.refs.content.value.trim().size === 0) {
+            alert("please say something!");
+            return;
+        }
+        postMsg({
+            msgContent: this.refs.content.value,
+            msgType: this.state.msgType,
+            senderId: getSessionTokenJson().user.userId,
+            listenerId: this.props.talkerInfo.userId
+        }).then(() => {
+            this.props.updateMsg(this.props.talkerSelected);
+            history.push('/user/message');
+        }).catch(err => {
+            alert(err);
+        });
+        this.refs.content.value = '';
+    };
 
-	render() {
-		return (
-			<div className="message-input-board">
-				<SendBtn onClick={e => this.handleClick(e)}>Send</SendBtn>
-				<InputArea ref="content"/>
-			</div>
-		);
-	}
+    render() {
+        return (
+            <div className="message-input-board">
+                <SendBtn onClick={e => this.handleClick(e)}>Send</SendBtn>
+                <InputArea ref="content"/>
+            </div>
+        );
+    }
 }
 
 export default MessageInput;

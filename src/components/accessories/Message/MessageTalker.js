@@ -25,33 +25,33 @@ const MsgTimeWrapper = styled.li`
 `;
 
 export const MessageTalker = (props) => {
-	return (
-		<Wrapper>
-			<MYul>
-				<UserAvatar userInfo={props.talkerInfo}/>
-				<MsgContentWrapper>
-					<li className="content">{props.msg.msgContent}</li>
-				</MsgContentWrapper>
-				<MsgTimeWrapper>
-					<li className="time">{props.msg.msgTime}</li>
-				</MsgTimeWrapper>
-			</MYul>
-		</Wrapper>
-	);
+    return (
+        <Wrapper>
+            <MYul>
+                <UserAvatar userInfo={props.talkerInfo}/>
+                <MsgContentWrapper>
+                    <li className="content">{props.msg.msgContent}</li>
+                </MsgContentWrapper>
+                <MsgTimeWrapper>
+                    <li className="time">{props.msg.msgTime}</li>
+                </MsgTimeWrapper>
+            </MYul>
+        </Wrapper>
+    );
 };
 
 MessageTalker.propTypes = {
-	talkerInfo: PropTypes.object,
-	msg: PropTypes.object,
+    talkerInfo: PropTypes.object,
+    msg: PropTypes.object,
 };
 
 MessageTalker.defaultProps = {
-	talkerInfo: {
-		userIcon: null,
-		userName: null
-	},
-	msg: {
-		msgContent: null,
-		msgTime: null,
-	}
+    talkerInfo: {
+        userIcon: null,
+        userName: null
+    },
+    msg: {
+        msgContent: null,
+        msgTime: null,
+    }
 };

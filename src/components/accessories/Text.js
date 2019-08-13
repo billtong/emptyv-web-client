@@ -7,25 +7,25 @@ import PropTypes from "prop-types";
 */
 
 class Text extends Component {
-	render() {
-		return (
-			<Fragment>
-				<FormattedMessage id={this.props.id}>
-					{this.props.children}
-				</FormattedMessage>
-			</Fragment>
-		)
-	}
+    render() {
+        return (
+            <Fragment>
+                <FormattedMessage id={this.props.id}>
+                    {this.props.children}
+                </FormattedMessage>
+            </Fragment>
+        )
+    }
 }
 
 Text.propTypes = {
-	id: PropTypes.string,
-	children: PropTypes.func
+    id: PropTypes.string,
+    children: PropTypes.func
 };
 
 Text.defaultProps = {
-	id: "",
-	children: null,
+    id: "",
+    children: null,
 };
 
 export default Text

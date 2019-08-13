@@ -38,68 +38,68 @@ const OptionsSelected = styled.li`
 `;
 
 class Selector extends Component {
-	state = {
-		isClick: false,
-	};
+    state = {
+        isClick: false,
+    };
 
-	handleSortButtonClick = (e) => {
-		e.preventDefault();
-		this.setState({
-			isClick: !this.state.isClick,
-		});
-	};
+    handleSortButtonClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            isClick: !this.state.isClick,
+        });
+    };
 
-	handleOptionCick = (e, value) => {
-		e.preventDefault();
-		this.props.passFatherState(value);
-		this.setState({
-			isClick: !this.state.isClick,
-		});
-	};
+    handleOptionCick = (e, value) => {
+        e.preventDefault();
+        this.props.passFatherState(value);
+        this.setState({
+            isClick: !this.state.isClick,
+        });
+    };
 
-	render = () => {
-		const options = this.state.isClick ? (
-			<Wrapper>
-				{this.props.options.map((value) => {
-					if (value === this.props.selectedOptions) {
-						return (<OptionsSelected key={value}><Text id={`se_o_${value}`}/></OptionsSelected>);
-					} else {
-						return (
-							<Options key={value} onClick={e => {
-								this.handleOptionCick(e, value)
-							}}><Text id={`se_o_${value}`}/></Options>
-						);
-					}
-				})}
-			</Wrapper>
-		) : null;
-		return (
-			<Fragment>
-				<Container>
-					<Button onClick={e => this.handleSortButtonClick(e)}>{this.props.title}</Button>
-					{options}
-				</Container>
-			</Fragment>
-		);
-	};
+    render = () => {
+        const options = this.state.isClick ? (
+            <Wrapper>
+                {this.props.options.map((value) => {
+                    if (value === this.props.selectedOptions) {
+                        return (<OptionsSelected key={value}><Text id={`se_o_${value}`}/></OptionsSelected>);
+                    } else {
+                        return (
+                            <Options key={value} onClick={e => {
+                                this.handleOptionCick(e, value)
+                            }}><Text id={`se_o_${value}`}/></Options>
+                        );
+                    }
+                })}
+            </Wrapper>
+        ) : null;
+        return (
+            <Fragment>
+                <Container>
+                    <Button onClick={e => this.handleSortButtonClick(e)}>{this.props.title}</Button>
+                    {options}
+                </Container>
+            </Fragment>
+        );
+    };
 }
 
 Selector.propTypes = {
-	title: PropTypes.oneOfType([
-		PropTypes.node,
-		PropTypes.arrayOf(PropTypes.node),
-	]),
-	options: PropTypes.arrayOf(PropTypes.string),
-	selectedOptions: PropTypes.string,
-	passFatherState: PropTypes.func,
+    title: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.arrayOf(PropTypes.node),
+    ]),
+    options: PropTypes.arrayOf(PropTypes.string),
+    selectedOptions: PropTypes.string,
+    passFatherState: PropTypes.func,
 };
 
 Selector.defaultProps = {
-	titel: null,
-	options: ["null"],
-	selectedOptions: "null",
-	passFatherState: () => {
-	},
+    titel: null,
+    options: ["null"],
+    selectedOptions: "null",
+    passFatherState: () => {
+    },
 };
 
 export default Selector;
