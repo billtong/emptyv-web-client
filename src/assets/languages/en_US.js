@@ -1,11 +1,11 @@
 const en_US = {
     notfound: "Page Not Found",
     //header
-    home: "Home",
-    about: "About Us",
+    home: "Empty Video",
+    about: "About",
     language: "Language",
     login: "Login",
-    signup: "Sign Up",
+    signup: "Join",
     notification: "notification",
 
     //user right menu
@@ -53,6 +53,9 @@ const en_US = {
     lgitxt_5: "*check only if this is your device",
     lgi_6: "sign up",
     lgi_txt_6: "don't have an account yet?",
+
+    //sign up dialog
+    sutitle: "Register",
 
     //about Page
     abs1: "Why you should become Empty Video member",

@@ -2,14 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1afcfa01-123b-4d5a-8cab-deb9ca8222b2" name="Default Changelist" comment="Refactoring init commit">
+      <change afterPath="$PROJECT_DIR$/src/assets/images/banner1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/banner1@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/banner1@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layouts/Header/SignUpForm/SignUpForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/Routes/HomePage/Home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/languages/en_US.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/en_US.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/languages/zh_CN.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accessories/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accessories/Selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accessories/Selector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/Header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header/LoginForm/LoginForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header/LoginForm/LoginForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Routes/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/HomePage/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserHistoryVideo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/UserPage/UserHistoryVideo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPageInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Routes/VideoPage/VideoPageInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/baseURL.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/baseURL.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/user.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +57,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/0-Project/Empty/empty_video/src/empty-video-web/src/containers/Routes/UserPage/UserHistoryVideo.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -59,18 +69,20 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2018.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Bill Tong\Documents\GitHub\agateram\empty-video-react-client\src\assets" />
-      <recent name="D:\0-Project\Empty\empty_video\src\empty-video-web\src\utils" />
-      <recent name="D:\0-Project\Empty\empty_video\src\empty-video-web\src\components\accessories" />
-      <recent name="D:\0-Project\Empty\empty_video\src\empty-video-web\src\store\actions" />
-      <recent name="D:\0-Project\Empty\empty_video\src\empty-video-web\src\store" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Bill Tong\Documents\GitHub\agateram\empty-video-react-client\src\assets\images" />
+      <recent name="C:\Users\Bill Tong\Documents\GitHub\agateram\empty-video-react-client\public" />
       <recent name="D:\0-Project\Empty\empty_video\src\empty-video-web\public" />
+      <recent name="D:\0-Project\Empty\empty_video\src\empty-video-web\src\utils" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Bill Tong\Documents\GitHub\agateram\empty-video-react-client\src\components\accessories\selector" />
+      <recent name="C:\Users\Bill Tong\Documents\GitHub\agateram\empty-video-react-client\src\containers\Routes\HomePage" />
+      <recent name="C:\Users\Bill Tong\Documents\GitHub\agateram\empty-video-react-client\public" />
+      <recent name="C:\Users\Bill Tong\Documents\GitHub\agateram\empty-video-react-client\src\assets" />
       <recent name="D:\0-Project\Empty\empty_video\src\empty-video-web\src\utils" />
     </key>
   </component>
@@ -139,6 +151,7 @@
       <workItem from="1565389697635" duration="1003000" />
       <workItem from="1565392957535" duration="51241000" />
       <workItem from="1565666777510" duration="4704000" />
+      <workItem from="1565735675130" duration="11833000" />
     </task>
     <servers />
   </component>

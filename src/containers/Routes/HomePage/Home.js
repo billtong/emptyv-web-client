@@ -1,11 +1,15 @@
 import React, {Component, Fragment} from 'react';
 import {withRouter} from "react-router-dom";
 
-import XHelmet from "../../components/accessories/XHelmet.js";
-import Text from "../../components/accessories/Text";
-import Selector from "../../components/accessories/Selector";
-import {getRandomVideoList} from "../../utils/api/video";
-import Video from "../../components/accessories/video";
+import XHelmet from "../../../components/accessories/XHelmet.js";
+import Text from "../../../components/accessories/Text";
+import Selector from "../../../components/accessories/Selector";
+import {getRandomVideoList} from "../../../utils/api/video";
+import Video from "../../../components/accessories/video";
+import banner1 from '../../../assets/images/banner1.png';
+import banner1_2 from '../../../assets/images/banner1@2x.png';
+import banner1_3 from '../../../assets/images/banner1@3x.png';
+import './Home.css';
 
 const options = ["date", "rate", "view"];
 
@@ -43,7 +47,10 @@ class Home extends Component {
         return (
             <Fragment>
                 <XHelmet title={"Empty Video"}/>
-                <div>
+                <img src={banner1}
+                     srcSet={`${banner1_2}, ${banner1_3}`}
+                     className="banner-image"/>
+                <div className={"selector-container"}>
                     <Selector
                         title={selectorTitle}
                         options={options}

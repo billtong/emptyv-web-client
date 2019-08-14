@@ -57,17 +57,15 @@ class Header extends Component {
         const rightMenu = getSessionTokenJson() !== null ? (
             <Fragment>
                 <NavItem event={() => this.handleNavClick("/user/notification")} id={"notification"}/>
-                <td>
-                    <Selector
-                        title={(
-                            <div className="userMenuButton">
-                                <div className="user-name">{getSessionTokenJson().user.profile.name}</div>
-                            </div>
-                        )}
-                        options={rightUserMenus}
-                        passFatherState={this.handleUserMenuClick}
-                    />
-                </td>
+                <Selector
+                    title={(
+                        <div className="userMenuButton">
+                            <div className="user-name">{getSessionTokenJson().user.profile.name}</div>
+                        </div>
+                    )}
+                    options={rightUserMenus}
+                    passFatherState={this.handleUserMenuClick}
+                />
             </Fragment>
         ) : (
             <Fragment>
@@ -78,22 +76,14 @@ class Header extends Component {
 
         return (
             <Fragment>
-                <table className="App-header-left">
-                    <tbody>
-                    <tr>
-                        <NavItem event={() => this.handleNavClick("/")} id={"home"}/>
-                        <NavItem event={() => this.handleNavClick("/about")} id={"about"}/>
-                    </tr>
-                    </tbody>
-                </table>
-                <table className="App-header-right">
-                    <tbody>
-                    <tr>
-                        <NavItem event={() => this.switchLanguage()} id={"language"}/>
-                        {rightMenu}
-                    </tr>
-                    </tbody>
-                </table>
+                <div className="App-header-left">
+                    <NavItem event={() => this.handleNavClick("/")} id={"home"}/>
+                </div>
+                <div className="App-header-right">
+                    <NavItem event={() => this.switchLanguage()} id={"language"}/>
+                    <NavItem event={() => this.handleNavClick("/about")} id={"about"}/>
+                    {rightMenu}
+                </div>
             </Fragment>
         )
     }

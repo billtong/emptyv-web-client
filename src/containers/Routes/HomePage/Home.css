@@ -1,0 +1,9 @@
+.selector-container {
+    width: 8rem;
+    text-align: left;
+}
+
+.banner-image {
+    width: 80vw;
+    object-fit: contain;
+}

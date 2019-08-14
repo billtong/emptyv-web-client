@@ -15,7 +15,7 @@ class NotFound extends Component {
             this.setState({
                 time: newTime - 1
             });
-            if(this.state.time === 0) {
+            if (this.state.time === 0) {
                 history.push("/");
                 clearInterval(set);
             }

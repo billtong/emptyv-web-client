@@ -2,8 +2,8 @@ const zh_CN = {
     notfound: '页面找不到了QAQ',
 
     //header
-    home: "主页",
-    about: "关于我们",
+    home: "Empty Video",
+    about: "关于",
     language: "语言",
     login: "登陆",
     signup: "注册",
@@ -54,6 +54,9 @@ const zh_CN = {
     lgitxt_5: "请在私人电脑上使用此功能，以保护个人信息",
     lgi_6: "注册",
     lgi_txt_6: "没有注册用户？",
+
+    //sign up dialog
+    sutitle: "注册",
 
     //about Page
     abs1: "为什么要成为EmptyVideo用户",

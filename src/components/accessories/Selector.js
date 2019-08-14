@@ -6,6 +6,7 @@ import Text from './Text'
 const Container = styled.div`
 	width: 8rem;
 	user-select: none;
+	display: inline-block;
 `;
 
 const Button = styled.div`
@@ -17,11 +18,14 @@ const Button = styled.div`
 
 const Wrapper = styled.ul`
 	position: absolute;
-	margin-block-start: 0;
-	margin-block-end: 0;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	padding-inline-start: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0rem;
+    background: #d9d9d9;
+    color: #000;
+    margin-top: 1rem;
 `;
 
 const Options = styled.li`

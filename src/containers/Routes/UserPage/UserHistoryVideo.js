@@ -5,6 +5,7 @@ import {EmptyTitle, LittleTitle, LittleTitleSelected} from "./UserFavVideo";
 import {getUserHistory} from "../../../utils/api/user";
 import Video from "../../../components/accessories/video";
 import operation from "../../../assets/operations";
+import {getVideoByIds} from "../../../utils/api/video";
 
 class UserHistoryVideo extends Component {
     state = {
@@ -20,9 +21,20 @@ class UserHistoryVideo extends Component {
             isLoading: true,
         });
         getUserHistory().then(res => {
-            this.setState({
-                history: res.data,
-                isLoading: false,
+            const historyList = res.data.filter(item => item.operation === operation.LIKE_A_VIDEO || item.operation === operation.UNLIKE_A_VIDEO || item.operation === operation.VIEW_A_VIDEO);
+            const ids = [...new Set(historyList.map(item => item.object.id))].join(",");
+            getVideoByIds({
+                ids: ids,
+            }).then(res => {
+                const videoList = res.data;
+                historyList.forEach(value => {
+                    value.object = videoList.find(video => video.id === value.object.id);
+                });
+                console.log(historyList);
+                this.setState({
+                    history: historyList,
+                    isLoading: false,
+                });
             });
         }).catch((err) => {
             this.setState({
